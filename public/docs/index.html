@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>I Want It API Documentation</title>
+
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> -->
+    <!-- Fonts: Inter (UI) + IBM Plex Mono (codi) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+                    body .content .php-example code { display: none; }
+                    body .content .python-example code { display: none; }
+            </style>
+
+    <script>
+        var tryItOutBaseUrl = "http://demo2-iwi.test";
+        var useCsrf = Boolean();
+        var csrfUrl = "";
+    </script>
+    <script src="../docs/js/tryitout-5.3.0.js"></script>
+
+    <script src="../docs/js/theme-default-5.3.0.js"></script>
+
+
+    <!-- Our overrides: must come AFTER vendor CSS -->
+    <link rel="stylesheet" href="../docs/custom/claude-style.css">
+    <script src="../docs/custom/claude-behavior.js" defer></script>
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;,&quot;php&quot;,&quot;python&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image"/>
+    </span>
+</a>
+<div class="tocify-wrapper">
+            <img src="http://demo2-iwi.test/img/logo_iwantit.png" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
+                                            <button type="button" class="lang-button" data-language-name="python">python</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                    <ul id="tocify-header-introduction" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="introduction">
+                    <a href="#introduction">Introduction</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-bienvenido-a-la-api-i-want-it" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="bienvenido-a-la-api-i-want-it">
+                    <a href="#bienvenido-a-la-api-i-want-it">Bienvenido a la API I Want It</a>
+                </li>
+                                    <ul id="tocify-subheader-bienvenido-a-la-api-i-want-it" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="introduccion">
+                                <a href="#introduccion">Introducción</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="url-base">
+                                <a href="#url-base">URL Base</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="autenticacion">
+                                <a href="#autenticacion">Autenticación</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="formato-de-respuesta">
+                                <a href="#formato-de-respuesta">Formato de respuesta</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="codigos-de-estado-http">
+                                <a href="#codigos-de-estado-http">Códigos de estado HTTP</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="rate-limiting">
+                                <a href="#rate-limiting">Rate Limiting</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="metodos-http-soportados">
+                                <a href="#metodos-http-soportados">Métodos HTTP soportados</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="versionado">
+                                <a href="#versionado">Versionado</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="entorno-de-pruebas">
+                                <a href="#entorno-de-pruebas">Entorno de pruebas</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="soporte">
+                                <a href="#soporte">Soporte</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="changelog">
+                                <a href="#changelog">Changelog</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+                    <ul id="tocify-header-authenticating-requests" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="authenticating-requests">
+                    <a href="#authenticating-requests">Authenticating requests</a>
+                </li>
+                            </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-iwi">
+                                <a href="#endpoints-POSTapi-iwi">POST api-iwi</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-iwi">
+                                <a href="#endpoints-GETapi-iwi">GET api-iwi</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
+            </div>
+
+    <ul class="toc-footer" id="toc-footer">
+                    <li style="padding-bottom: 5px;"><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li style="padding-bottom: 5px;"><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+    </ul>
+
+    <ul class="toc-footer" id="last-updated">
+        <li>Last updated: November 6, 2025</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>API REST para consultar productos detectados en videos mediante IA</p>
+<aside>
+    <strong>Base URL</strong>: <code>http://demo2-iwi.test</code>
+</aside>
+<h1 id="bienvenido-a-la-api-i-want-it">Bienvenido a la API I Want It</h1>
+<h2 id="introduccion">Introducción</h2>
+<p>La <strong>API I Want It</strong> es un servicio REST que permite consultar información sobre productos detectados en videos mediante un sistema de reconocimiento por IA. Esta API está diseñada para integrarse con sistemas de análisis de contenido audiovisual.</p>
+<h2 id="url-base">URL Base</h2>
+<pre><code>http://uat.i-want-it.es/docs</code></pre>
+<p>Para producción, la URL será proporcionada por el equipo técnico.</p>
+<h2 id="autenticacion">Autenticación</h2>
+<p>Esta API utiliza un sistema de autenticación basado en <strong>claves hash SHA-512</strong>. Cada petición debe incluir los siguientes parámetros de autenticación:</p>
+<ul>
+<li><strong>key</strong>: Clave de autenticación única generada mediante hash SHA-512</li>
+<li><strong>time</strong>: Timestamp que indica el momento de la petición</li>
+<li><strong>vid</strong>: Identificador único del video o recurso</li>
+</ul>
+<h3 id="ejemplo-de-autenticacion">Ejemplo de autenticación</h3>
+<pre><code>GET /api-iwi?action=get&amp;time=142.2&amp;key=b6a6cba60643cc188730bb1e80110d79...&amp;vid=12</code></pre>
+<p>⚠️ <strong>Importante</strong>: La clave (key) debe mantenerse segura y nunca debe compartirse públicamente.</p>
+<h2 id="formato-de-respuesta">Formato de respuesta</h2>
+<p>Todas las respuestas de la API están en formato <strong>JSON</strong> y siguen esta estructura:</p>
+<h3 id="respuesta-exitosa-200">Respuesta exitosa (200)</h3>
+<pre><code>{
+  "success": true,
+  "data": {
+    ...datos solicitados...
+  },
+  "message": "Mensaje descriptivo"
+}</code></pre>
+<h3 id="respuesta-de-error-4xx-5xx">Respuesta de error (4xx, 5xx)</h3>
+<pre><code>{
+  "success": false,
+  "message": "Descripción del error",
+  "errors": {
+    ...detalles específicos...
+  }
+}</code></pre>
+<h2 id="codigos-de-estado-http">Códigos de estado HTTP</h2>
+<table>
+<thead>
+<tr>
+<th>Código</th>
+<th>Significado</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>La petición se procesó correctamente</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Faltan parámetros o son inválidos</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Clave de autenticación inválida o expirada</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>Recurso no encontrado</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests</td>
+<td>Límite de peticiones excedido</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Error en el servidor</td>
+</tr>
+</tbody>
+</table>
+<h2 id="rate-limiting">Rate Limiting</h2>
+<p>Para garantizar la disponibilidad del servicio, se aplican los siguientes límites:</p>
+<ul>
+<li><strong>60 peticiones por minuto</strong> por clave de autenticación</li>
+<li><strong>1000 peticiones por hora</strong> por clave de autenticación</li>
+</ul>
+<p>Cuando se excede el límite, la API devolverá un código 429.</p>
+<h2 id="metodos-http-soportados">Métodos HTTP soportados</h2>
+<p>La API soporta los siguientes métodos HTTP:</p>
+<ul>
+<li><strong>GET</strong>: Para consultas de lectura</li>
+<li><strong>POST</strong>: Para consultas con parámetros en el body</li>
+</ul>
+<h2 id="versionado">Versionado</h2>
+<p>Actualmente la API está en su versión inicial. Futuras versiones se indicarán mediante prefijos en la URL:</p>
+<ul>
+<li>v1: /api-iwi (actual)</li>
+<li>v2: /api/v2/iwi (futura)</li>
+</ul>
+<h2 id="entorno-de-pruebas">Entorno de pruebas</h2>
+<p>Para realizar pruebas, puedes usar:</p>
+<ul>
+<li><strong>Postman</strong>: Importa la colección desde public/docs/collection.json</li>
+<li><strong>cURL</strong>: Usa los ejemplos proporcionados en cada endpoint</li>
+<li><strong>Navegador</strong>: Accede a la documentación interactiva en /docs</li>
+</ul>
+<h2 id="soporte">Soporte</h2>
+<p>Si tienes problemas o preguntas sobre la API:</p>
+<ul>
+<li>📧 Email: david.herrero@i-want-it.es</li>
+<li>📚 Documentación: <a href="http://uat.i-want-it.es/docs">http://uat.i-want-it.es/docs</a></li>
+<li>🐛 Reportar bugs: Sistema de tickets interno</li>
+</ul>
+<h2 id="changelog">Changelog</h2>
+<h3 id="version-100-actual">Versión 1.0.0 (Actual)</h3>
+<ul>
+<li>✨ Lanzamiento inicial de la API</li>
+<li>✅ Endpoint GET /api-iwi</li>
+<li>✅ Endpoint POST /api-iwi</li>
+<li>✅ Sistema de autenticación por key</li>
+<li>✅ Soporte para consulta de productos por timestamp</li>
+</ul>
+<hr />
+<p><strong>Última actualización</strong>: Octubre 2025</p>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-POSTapi-iwi">POST api-iwi</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-iwi">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://demo2-iwi.test/api-iwi"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://demo2-iwi.test/api-iwi"
+);
+
+fetch(url, {
+    method: "POST",
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://demo2-iwi.test/api-iwi';
+$response = $client-&gt;post($url);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://demo2-iwi.test/api-iwi'
+response = requests.request('POST', url, )
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-iwi">
+</span>
+<span id="execution-results-POSTapi-iwi" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-iwi"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-iwi"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-iwi" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-iwi">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-iwi" data-method="POST"
+      data-path="api-iwi"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-iwi', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-iwi"
+                    onclick="tryItOut('POSTapi-iwi');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-iwi"
+                    onclick="cancelTryOut('POSTapi-iwi');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-iwi"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api-iwi</code></b>
+        </p>
+                    </form>
+
+                    <h2 id="endpoints-GETapi-iwi">GET api-iwi</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-iwi">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://demo2-iwi.test/api-iwi"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://demo2-iwi.test/api-iwi"
+);
+
+fetch(url, {
+    method: "GET",
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://demo2-iwi.test/api-iwi';
+$response = $client-&gt;get($url);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://demo2-iwi.test/api-iwi'
+response = requests.request('GET', url, )
+response.json()</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-iwi">
+    </span>
+<span id="execution-results-GETapi-iwi" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-iwi"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-iwi"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-iwi" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-iwi">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-iwi" data-method="GET"
+      data-path="api-iwi"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-iwi', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-iwi"
+                    onclick="tryItOut('GETapi-iwi');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-iwi"
+                    onclick="cancelTryOut('GETapi-iwi');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-iwi"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api-iwi</code></b>
+        </p>
+                    </form>
+
+            
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
+                                                        <button type="button" class="lang-button" data-language-name="python">python</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>

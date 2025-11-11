@@ -1,0 +1,67 @@
+@font-face {
+    font-family: 'Trebuchet MS';
+    src: local('Trebuchet MS'), local('TrebuchetMS'),
+        url('../../fonts/subset-TrebuchetMS.woff2') format('woff2'),
+        url('../../fonts/subset-TrebuchetMS.woff') format('woff'),
+        url('../../fonts/subset-TrebuchetMS.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Trebuchet MS';
+    src: local('Trebuchet MS Bold'), local('TrebuchetMS-Bold'),
+        url('../../fonts/subset-TrebuchetMS-Bold.woff2') format('woff2'),
+        url('../../fonts/subset-TrebuchetMS-Bold.woff') format('woff'),
+        url('../../fonts/subset-TrebuchetMS-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: local('Cormorant Garamond Light'), local('CormorantGaramond-Light'),
+        url('../../fonts/-CormorantGaramond-Light.woff2') format('woff2'),
+        url('../../fonts/subset-CormorantGaramond-Light.woff') format('woff'),
+        url('../../fonts/subset-CormorantGaramond-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'EB Garamond';
+    src: local('EB Garamond Medium'), local('EBGaramond-Medium'),
+        url('../../fonts/subset-EBGaramond-Medium.woff2') format('woff2'),
+        url('../../fonts/subset-EBGaramond-Medium.woff') format('woff'),
+        url('../../fonts/subset-EBGaramond-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'EB Garamond';
+    src: local('EB Garamond Regular'), local('EBGaramond-Regular'),
+        url('../../fonts/subset-EBGaramond-Regular.woff2') format('woff2'),
+        url('../../fonts/subset-EBGaramond-Regular.woff') format('woff'),
+        url('../../fonts/subset-EBGaramond-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Felt-That';
+    src: url('../../fonts/felt_that/FeltThat.eot');
+    src: local('Felt That'), local('FeltThat'),
+        url('../../fonts/felt_that/FeltThat.eot?#iefix') format('embedded-opentype'),
+        url('../../fonts/felt_that/FeltThat.woff2') format('woff2'),
+        url('../../fonts/felt_that/FeltThat.woff') format('woff'),
+        url('../../fonts/felt_that/FeltThat.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

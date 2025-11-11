@@ -1,0 +1,181 @@
+:root {
+     /* Palette */
+    /* --palette-white-alpha40: rgba(255,255,255,0.4); */
+    --palette-white: #FFFFFF;
+    --palette-big-stone: #142842;
+    --palette-black: #000;
+    --palette-dark-tan: #750F14;
+    --palette-denim: #147BD1; /* Corporate */
+    --palette-indochine: #CF7F00; /* Corporate */
+    --palette-gray: #888888;
+    --palette-gray-chateau: #989EA3;
+    --palette-loblolly: #C8CFD4;
+    --palette-biscay: #1B365D; /* Corporate */
+    --palette-biscay-translucent: rgba(27,54,93,0.8);
+    --palette-biscay-10-translucent: rgba(27,54,93,0.1);
+    --palette-nile-blue: #1A3356;
+    --palette-parsley: #196C21;
+    --palette-regal-blue: #054A75;
+    --palette-timberwolf: #D7D2CB; /* Corporate */
+    --palette-wild-sand: #F6F6F6;
+    --palette-wild-sand-translucent: rgba(246,246,246,90%);
+
+     /* Dark mode */
+    --color-scheme: dark;
+    --color-font: var( --palette-timberwolf);
+    --color-background: var(--palette-biscay);
+    --color-background-translucent: var(--palette-biscay-translucent);
+    --color-link-hover-default: var(--palette-indochine);
+
+       /* Native bar */
+    --color-bar-native-scroll-bar: var(--color-font);
+    --color-track-native-scroll-bar: var(--color-background);
+
+    /* Background */
+    /* --background-video-filter: none; */
+
+
+      /* Dark mode switcher */
+    /* --color-dark-mode-switcher-background: var(--palette-white);
+    --color-dark-mode-switcher-dark: var(--palette-biscay);
+    --position-dark-mode-switcher-selection: 2px; */
+
+    /*  Container admin. */
+    --color-background-admin: var(--palette-nile-blue);
+    --color-border-admin: var(--palette-big-stone);
+
+    /* Menu */
+    --color-background-menu: var(--palette-denim);
+
+    /* Menu options */
+    --color-option-text: var(--palette-timberwolf);
+    --color-option-background-active: var(--palette-timberwolf);
+    --color-option-text-active: var(--palette-biscay);
+    --color-option-background-hover: var(--palette-indochine);
+    --color-option-text-hover: var(--palette-timberwolf);
+    --color-option-text-disabled: var(--palette-biscay);
+
+    /* Table */
+    --color-table-border: var(--palette-nile-blue);
+    --color-table-header-background: var(--palette-denim);
+    --color-table-cell-background: var(--palette-biscay);
+    --color-table-actions-cell-background: var(--palette-biscay);
+
+    /* Button */
+
+    --color-button-default-background: var(--palette-denim);
+    --color-button-default-text: var(--palette-timberwolf);
+    --color-button-default-hover-text: var(--palette-white);
+    --color-button-danger-background: var(--palette-dark-tan);
+    --color-button-warning-background: var(--palette-indochine);
+    --color-button-success-background: var(--palette-denim);
+    --color-buton-enabled-background: var(--palette-parsley);
+    --color-buton-disabled-background: var(--palette-dark-tan);
+
+    /*  Label */
+    --color-label-enabled-background: var(--palette-parsley);
+    --color-label-disabled-background: var(--palette-dark-tan);
+
+    /*  Input and select */
+    --color-input-placeholder: var(--palette-denim);
+    --color-input-select-border: var(--palette-biscay);
+    --color-input-select-background: var(--palette-big-stone);
+    --color-select-option-checked: var(--palette-indochine);
+
+    /* Spinner */
+    --color-spinner-background: var(--palette-biscay-translucent);
+    --color-spinner: var(--palette-indochine);
+
+    /* Login */
+    /* --color-login-sign-up: var(--palette-denim); */
+
+    /* Default color for the :focus event in browser ui components */
+    /* --color-iu-focus-default: var(--palette-indochine); */
+
+    /* input */
+    /* --color-input-background: var( --palette-timberwolf);
+    --color-input-text: var(--palette-black);
+    --color-input-icon: var(--palette-gray);
+    --color-input-placeholder: var(--palette-gray);
+    --color-input-stroke: none; */
+
+    /* Button */
+    /* --color-button-background: var(--palette-denim);
+    --color-button-background-hover: var(--palette-timberwolf);
+    --color-button-text: var(--palette-timberwolf);
+    --color-button-text-hover: var(--palette-denim);
+    --color-button-stroke-hover: var(--palette-denim); */
+
+    /* Checkbox */
+    /* --color-checkbox-background: var(--palette-timberwolf);
+    --color-checkbox-stroke: var(--palette-timberwolf);
+    --color-checkbox-background-hover: var(--palette-denim); */
+
+    /* Background Logo Header App */
+    /* --color-header-logo-background: var(--palette-biscay);
+    --color-header-logo-text: var(--palette-timberwolf); */
+
+     /* Menu Header App */
+    /* --color-header-background-menu: var(--palette-timberwolf);
+    --color-header-icon-background-menu: var(--palette-loblolly);
+    --color-header-icon-background-hover-menu: var(--palette-denim);
+    --color-header-burger: var(--palette-timberwolf); */
+
+    /* Main Menu */
+    /* --color-main-menu-section-text-and-arrow: var(--palette-wild-sand); */
+
+    /* List Colums Names */
+    /* --list-columns-names-background: var(--palette-regal-blue); */
+
+    /* Item user */
+    /* --item-list-background: var(--list-columns-names-background);
+    --text-with-background-background: var(--palette-biscay);
+    --photo-and-name-photo-background: var(--palette-biscay);
+    --tool-button-stroke: var(--palette-timberwolf); */
+
+    /* .--indochine {
+      color: var(--palette-indochine);
+    } */
+
+    /* light mode */
+    &.light-mode {
+        --color-scheme: light;
+        /* --color-font: var(--palette-biscay);
+        --color-background: var(--palette-wild-sand);
+        --color-background-translucent: var(--palette-wild-sand-translucent);
+        --color-link-hover-default: var(--palette-indochine); */
+
+        /* Background */
+        /* --background-video-filter: invert(100%) grayscale(100%); */
+
+        /* Dark mode switcher */
+        /* --color-dark-mode-switcher-background: var(--palette-wild-sand);
+        --color-dark-mode-switcher-dark: var(--palette-indochine);
+        --position-dark-mode-switcher-selection: 20px; */
+
+         /* Default color for the :focus event in browser ui components */
+        /* --color-iu-focus-default: var(--palette-indochine); */
+
+        /* input */
+        /* --color-input-stroke: var(--palette-biscay-10-translucent); */
+
+        /* Button */
+        /* --color-button-background: var(--palette-regal-blue);
+        --color-button-text-hover: var(--palette-regal-blue);
+        --color-button-stroke-hover: var(--palette-regal-blue); */
+
+        /* Checkbox */
+        /* --color-checkbox-stroke: var(--palette-biscay);
+        --color-checkbox-background-hover: var(--palette-regal-blue); */
+
+        /* Background Logo Header App */
+        /* --color-header-logo-background: var(--palette-biscay);
+        --color-header-burger: var(--palette-loblolly); */
+
+        /* List Colums Names */
+        /* --list-columns-names-background: var(--palette-white);
+        --text-with-background-background: var(--palette-wild-sand);
+        --photo-and-name-photo-background: var(--palette-wild-sand);
+        --tool-button-stroke: var(--palette-gray-chateau); */
+    }
+}

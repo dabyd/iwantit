@@ -1,0 +1,240 @@
+<?php
+
+return [
+    'theme' => 'default',
+    'title' => 'I Want It API Documentation',
+    'description' => 'API REST para consultar productos detectados en videos mediante IA',
+    'base_url' => env('APP_URL', 'http://localhost'),
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Tipo: static generará archivos HTML
+    |--------------------------------------------------------------------------
+    */
+    'type' => 'static',
+
+    // AÑADIR: Personalizar los colores del tema
+    'theme_color' => '#2563eb', // Azul similar a Claude
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Rutas a documentar - SOLO api-iwi
+    |--------------------------------------------------------------------------
+    */
+    'routes' => [
+        [
+            'match' => [
+                'prefixes' => ['api-iwi'],  // ← Solo rutas que empiecen con api-iwi
+                'domains' => ['*'],
+            ],
+            // No incluir nada más, solo lo que coincida con el prefix
+            'exclude' => [],
+        ],
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Estrategias - Deshabilitar peticiones HTTP automáticas
+    |--------------------------------------------------------------------------
+    */
+    'strategies' => [
+        'metadata' => [
+            \Knuckles\Scribe\Extracting\Strategies\Metadata\GetFromDocBlocks::class,
+        ],
+        'urlParameters' => [
+            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLaravelAPI::class,
+            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromUrlParamTag::class,
+        ],
+        'queryParameters' => [
+            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromFormRequest::class,
+            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromInlineValidator::class,
+            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromQueryParamTag::class,
+        ],
+        'headers' => [
+            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromHeaderTag::class,
+        ],
+        'bodyParameters' => [
+            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromFormRequest::class,
+            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromInlineValidator::class,
+            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamTag::class,
+        ],
+        'responses' => [
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseAttributes::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseApiResourceTags::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseTransformerTags::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseTag::class,
+            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseFileTag::class,
+            // ← NO incluir ResponseCalls para evitar peticiones HTTP reales
+        ],
+        'responseFields' => [
+            \Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldTag::class,
+        ],
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Directorio de salida
+    |--------------------------------------------------------------------------
+    */
+    'static' => [
+        'output_path' => 'public/docs',
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Try It Out
+    |--------------------------------------------------------------------------
+    */
+    'try_it_out' => [
+        'enabled' => true,
+        'base_url' => null,
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Lenguajes de ejemplo
+    |--------------------------------------------------------------------------
+    */
+    'example_languages' => [
+        'bash',
+        'javascript',
+        'php',
+        'python',
+    ],
+
+    // NUEVO: Añadir configuración de assets personalizados
+    'custom_assets' => [
+        'css' => [
+            'public/docs/custom/claude-style.css',
+        ],
+        'js' => [
+            'public/docs/custom/claude-behavior.js',
+        ],
+    ],
+
+    'custom' => [
+        'css' => [
+            '/docs/custom/claude-style.css',
+        ],
+        'js' => [
+            '/docs/custom/claude-behavior.js',
+        ],
+    ],
+
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Postman
+    |--------------------------------------------------------------------------
+    */
+    'postman' => [
+        'enabled' => true,
+        'overrides' => [
+            'info.version' => '1.0.0',
+        ],
+    ],
+    
+    /*
+    |--------------------------------------------------------------------------
+    | OpenAPI
+    |--------------------------------------------------------------------------
+    */
+    'openapi' => [
+        'enabled' => true,
+        'overrides' => [
+            'info' => [
+                'version' => '1.0.0',
+                'title' => 'I Want It API',
+                'description' => 'API REST para consultar productos detectados en videos mediante IA',
+            ],
+            'servers' => [
+                [
+                    'url' => env('APP_URL', 'http://uat.i-want-it.es/docs'),
+                    'description' => 'Servidor de desarrollo',
+                ],
+            ],
+            'paths' => [
+                '/api-iwi' => [
+                    'get' => [
+                        'parameters' => [
+                            [
+                                'name' => 'action',
+                                'in' => 'query',
+                                'required' => true,
+                                'schema' => [
+                                    'type' => 'string',
+                                    'default' => 'get',
+                                ],
+                            ],
+                            [
+                                'name' => 'time',
+                                'in' => 'query',
+                                'required' => true,
+                                'schema' => [
+                                    'type' => 'number',
+                                    'default' => 142.2,
+                                ],
+                            ],
+                            [
+                                'name' => 'key',
+                                'in' => 'query',
+                                'required' => true,
+                                'schema' => [
+                                    'type' => 'string',
+                                    'default' => 'b6a6cba60643cc188730bb1e80110d79e325079ba269f80d56fdaa65e0535052821f3dbcbd337cd4d8f5d9a84cf8d3182f853f3f984bdfc378dfa0df13bfe509a1e77b0534e22f24fa910459139ded455874981696d9e8dfd848d5998406c426fa12e92686c5d59972590cd1460987b0b49a14832600d29e34b7f5c99cc9cc603e5a20695a0042541b54060a55c689cec9ac1338f90f13bfa3201fb4b88c2ed26536b54630bb14b582699dadbb5281bd5c3e46fc66da48787b52a44868f6558b567b85088019d48cffeaebcc1887ed446ae1eab306803a4982e7197a7c5a24b7bdfbe47d73b23531270469f5905716e5ca8b1ad66cc8760d240d238ed3eb93c28b643a12ec4df256d2ad8a604b0067941c5cb2700f9fd8e259f058d1576a1071efdc5ff4b422b416689a4687f4d83311698b0565f826ad5091f466c30dc02a917a53a39fd4a886f4834d464c581a32d8c7efc5ecf6cd26a191fd3ac6d9dcd73f46ba23c999efb44587e3533977ec765795ec718513fa7c078563a48e058d3171aa36e6266bce1aeb95cc8d2a9a9282c8f20d6e6450126af015c4c2372fec69f3e232c36e75c4df6087876fb43aa04b3d6da7dfd7d2e7d3e8ababba38e34e264acad7e52de0931c188b7fcca894cbb34eef62fc9b7191a4527fd20d6412d071bd1ab11c067f68d0561a34bccc717bed3e1c23e53cf15b05a2662e807a4f50589340cc70400d4f0b6fac37a6d5c07a04e36e69653146a3fb4d09f2922363057ac82c01e96abd9410050ae532482668daa73701caecb3e4739b087739fb8477ece3d4c5fee4890efd9b798a5d8bc2d98a3d1621bebeb5f5e8b2a991f9ae67b18b350b2aa9e999aec5f72d7a47cc2e1b2962755c5a27bbefa11621802f8daa893b854a908a8d94dabbc18b1891cbc9a24f36d9a06ce69a0f942bf778384ca08825fc714f5f9cd517992f60018b9990b098ea09e339e33805ce2aa5ab30973996f73d17669ad8b12b179a99405d26a21f29a1fc099e6e8d56ef1345575bf72c829f1c3761cb195728f4267ba9d0f4d8d756c1d6c211c948d77fa47bcebc96b2aedf87b335e754592763559de25f1d42a7fd75aef9e5778b6b27da8474e9499c3daa63d804b9c43fc7d18fcd9052ae58688e3940d65352cd420980b71419ab8e0ba6035023c0bddd1825242ac306017868c693f76de32fee2e46f649c23eb072535ac67e663ae18d2d1879e5b9ecae0970c2407749b38b51b5b8c06d96f9b2ed145bf505f9b88c3e52f56449db0effdc92c1440c0329414e057f1bf7d03c90817bf78c9a8127907ec43f568384737a1ef5a5d621d8d4e947e422a0babcd667f20d18f2735c01f5d13392212205e2c837aa2d584131423562b05892f624035d73771997673bdce528cc1fddd6f4ca67b46ec69c3a2140978f963202641231230cc7a4d4',
+                                ],
+                            ],
+                            [
+                                'name' => 'vid',
+                                'in' => 'query',
+                                'required' => true,
+                                'schema' => [
+                                    'type' => 'integer',
+                                    'default' => 12,
+                                ],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],    
+    /*
+    |--------------------------------------------------------------------------
+    | Autenticación
+    |--------------------------------------------------------------------------
+    */
+    'auth' => [
+        'enabled' => false,
+        'default' => false,
+        'in' => 'bearer',  // ← Este campo faltaba
+        'name' => 'key',
+        'use_value' => env('SCRIBE_AUTH_KEY'),
+        'placeholder' => '{YOUR_AUTH_KEY}',
+        'extra_info' => 'Obtén tu clave desde el panel de administración.',
+    ],    
+    /*
+    |--------------------------------------------------------------------------
+    | Introducción desde archivo Markdown
+    |--------------------------------------------------------------------------
+    */
+    'intro_text' => file_exists(resource_path('docs/intro.md')) 
+        ? file_get_contents(resource_path('docs/intro.md')) 
+        : 'Documentación de la API I Want It',
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Logo
+    |--------------------------------------------------------------------------
+    */
+//    'logo' => asset('/img/logo_iwantit.png'),
+    'logo' => env('APP_URL', 'http://localhost') . '/img/logo_iwantit.png',
+
+    
+    /*
+    |--------------------------------------------------------------------------
+    | Última actualización
+    |--------------------------------------------------------------------------
+    */
+    'last_updated' => 'Last updated: ' . date('F j, Y'),
+];

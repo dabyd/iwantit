@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="iwt-player" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>I Want It - Player</title>
+    <script type="module" crossorigin src="./assets/player.5a295e80.js"></script>
+    <link rel="stylesheet" href="./assets/index.d6a5764f.css">
+  </head>
+
+  <body data-iwt-behaviour="main-app">
+
+    <script data-iwt-config type="application/json">
+      { 
+            "main-app": { "behaviour": "main-app",  "props": {} },
+            "responsive-video": { "behaviour": "responsive-video",  "props": {} },
+            "video-controls": { "behaviour": "video-controls",  "props": {} }
+      }
+    </script>
+
+    <section class="iwt-content">
+
+      <main class="iwt-main">
+
+         <div class="iwt-spinner-wrapper">
+          <div class="iwt-spinner"></div>
+        </div>
+
+         <dialog id="iwt-message-modal">
+          <div class="iwt-message-modal-wrapper">
+            <svg class="iwt-message-modal-error" width="60px" height="60px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.493 0.015 C 7.442 0.021,7.268 0.039,7.107 0.055 C 5.234 0.242,3.347 1.208,2.071 2.634 C 0.660 4.211,-0.057 6.168,0.009 8.253 C 0.124 11.854,2.599 14.903,6.110 15.771 C 8.169 16.280,10.433 15.917,12.227 14.791 C 14.017 13.666,15.270 11.933,15.771 9.887 C 15.943 9.186,15.983 8.829,15.983 8.000 C 15.983 7.171,15.943 6.814,15.771 6.113 C 14.979 2.878,12.315 0.498,9.000 0.064 C 8.716 0.027,7.683 -0.006,7.493 0.015 M8.853 1.563 C 9.967 1.707,11.010 2.136,11.944 2.834 C 12.273 3.080,12.920 3.727,13.166 4.056 C 13.727 4.807,14.142 5.690,14.330 6.535 C 14.544 7.500,14.544 8.500,14.330 9.465 C 13.916 11.326,12.605 12.978,10.867 13.828 C 10.239 14.135,9.591 14.336,8.880 14.444 C 8.456 14.509,7.544 14.509,7.120 14.444 C 5.172 14.148,3.528 13.085,2.493 11.451 C 2.279 11.114,1.999 10.526,1.859 10.119 C 1.618 9.422,1.514 8.781,1.514 8.000 C 1.514 6.961,1.715 6.075,2.160 5.160 C 2.500 4.462,2.846 3.980,3.413 3.413 C 3.980 2.846,4.462 2.500,5.160 2.160 C 6.313 1.599,7.567 1.397,8.853 1.563 M7.706 4.290 C 7.482 4.363,7.355 4.491,7.293 4.705 C 7.257 4.827,7.253 5.106,7.259 6.816 C 7.267 8.786,7.267 8.787,7.325 8.896 C 7.398 9.033,7.538 9.157,7.671 9.204 C 7.803 9.250,8.197 9.250,8.329 9.204 C 8.462 9.157,8.602 9.033,8.675 8.896 C 8.733 8.787,8.733 8.786,8.741 6.816 C 8.749 4.664,8.749 4.662,8.596 4.481 C 8.472 4.333,8.339 4.284,8.040 4.276 C 7.893 4.272,7.743 4.278,7.706 4.290 M7.786 10.530 C 7.597 10.592,7.410 10.753,7.319 10.932 C 7.249 11.072,7.237 11.325,7.294 11.495 C 7.388 11.780,7.697 12.000,8.000 12.000 C 8.303 12.000,8.612 11.780,8.706 11.495 C 8.763 11.325,8.751 11.072,8.681 10.932 C 8.616 10.804,8.460 10.646,8.333 10.580 C 8.217 10.520,7.904 10.491,7.786 10.530 " stroke="none" fill-rule="evenodd"></path></svg>
+            <h3 class="iwt-message-modal-content"></h3>
+            <button class="iwt-control iwt-message-modal-button">
+              <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#000000" d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/>
+              </svg>
+            </button>
+          </div>
+        </dialog>
+
+        <dialog id="iwt-hotpoint-record">
+          <div class="iwt-hotpoint-record-wrapper">
+            <article class="iwt-hotpoint-record-info">
+              <div class="iwt-hotpoint-record-product-image-wrapper">
+                <img class="iwt-hotpoint-record-product-image"> 
+              </div>
+              <a class="iwt-hotpoint-record-product-name" href="#" target="_blank"><h3>Product name</h3></a>
+              <p class="iwt-hotpoint-record-product-description">Description</p>
+              <a class="iwt-hotpoint-record-brand-name" href="#" target="_blank"><h3>Brand name</h3></a>
+              <div class="iwt-hotpoint-record-brand-logo-wrapper">
+                <img class="iwt-hotpoint-record-brand-logo"> 
+              </div>
+            </article>
+            <div class="iwt-hotpoint-record-ui">
+              <button class="iwt-control iwt-hotpoint-record-prev">
+                <svg width="36px" height="36px" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
+                  <path d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
+              </svg>
+              </button>
+              <button class="iwt-control iwt-hotpoint-record-next">
+                <svg width="36px" height="36px" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
+                  <path d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
+              </svg>
+              </button>
+              <button class="iwt-control iwt-hotpoint-record-close">
+                <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </dialog>
+
+        <dialog id="iwt-selectors-modal">
+            <div class="iwt-selectors-modal-wrapper">
+              <div class="iwt-project-select-wrapper">
+                <label for="iwt-project-select">Project</label>
+                <select id="iwt-project-select" name="iwt-project-select">
+                </select>
+              </div>
+              <div class="iwt-key-input-wrapper">
+                <label for="iwt-key-input">Key</label>
+                <input id="iwt-key-input" name="iwt-key-select" type="file" accept=".xml">
+              </div>
+              <div class="iwt-selectors-modal-ui">
+                <button class="iwt-control iwt-selectors-modal-okey">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+                    <path d="M 41.9375 8.625 C 41.273438 8.648438 40.664063 9 40.3125 9.5625 L 21.5 38.34375 L 9.3125 27.8125 C 8.789063 27.269531 8.003906 27.066406 7.28125 27.292969 C 6.5625 27.515625 6.027344 28.125 5.902344 28.867188 C 5.777344 29.613281 6.078125 30.363281 6.6875 30.8125 L 20.625 42.875 C 21.0625 43.246094 21.640625 43.410156 22.207031 43.328125 C 22.777344 43.242188 23.28125 42.917969 23.59375 42.4375 L 43.6875 11.75 C 44.117188 11.121094 44.152344 10.308594 43.78125 9.644531 C 43.410156 8.984375 42.695313 8.589844 41.9375 8.625 Z"/>
+                  </svg>
+                </button>
+                <button class="iwt-control iwt-selectors-modal-close">
+                  <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/>
+                  </svg>
+                </button>
+              </div>
+          </div>
+        </dialog>
+
+          <div class="iwt-wrapper">
+
+            <div class="iwt-logo">
+              <a href="https://i-want-it.es/" target="_blank">
+                  <img src="./images/logo_iwantit.png" alt="I Want It Logo">
+              </a>
+          </div>
+
+            <section class="iwt-selectors-button-wrapper">
+              <p class="iwt-selectors-button-project"></p>
+              <button class="iwt-control iwt-selectors-button" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                  <path d="M28,28H4a3,3,0,0,1-3-3V7A3,3,0,0,1,4,4h8a1,1,0,0,1,.77.36L15.8,8H28a3,3,0,0,1,3,3V25A3,3,0,0,1,28,28ZM4,6A1,1,0,0,0,3,7V25a1,1,0,0,0,1,1H28a1,1,0,0,0,1-1V11a1,1,0,0,0-1-1H15.33a1,1,0,0,1-.76-.36L11.53,6Z"/>
+                </svg>
+              </button>
+            </section>
+            
+            <section class="iwt-video" data-iwt-behaviour="responsive-video">
+
+              <video class="video" autoplay preload="metadata">
+                <source src="" type="video/mp4">
+              </video>
+
+              <template class="iwt-hotpoint-template">
+                <button class="iwt-hot-point" data-iwt-id="">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.4,24H18.6a4,4,0,0,0,3.968-4.5l-1.25-10A4.005,4.005,0,0,0,17.352,6H17V5A5,5,0,0,0,7,5V6H6.648A4.005,4.005,0,0,0,2.68,9.5l-1.25,10A4,4,0,0,0,5.4,24ZM9,5a3,3,0,0,1,6,0V6H9ZM3.414,19.752l1.25-10A2,2,0,0,1,6.648,8H7v2a1,1,0,0,0,2,0V8h6v2a1,1,0,0,0,2,0V8h.352a2,2,0,0,1,1.984,1.752l1.25,10A2,2,0,0,1,18.6,22H5.4a2,2,0,0,1-1.984-2.248Z"/>
+                  </svg>
+                  <img class="iwt-hot-point-custom-icon">
+                </button>
+              </template>
+
+              <section class="iwt-hot-points-container">
+              </section>
+    
+            </section>
+
+            <section class="iwt-controls" data-iwt-behaviour="video-controls">
+              <div class="iwt-centered-play-pause"></div>
+              <div class="iwt-progress-control-wrapper">
+                <progress class="iwt-progress-bar progress-bar" max="100"></progress>
+                <input class="iwt-progress-control progress" type="range" value="0" /> 
+              </div>    
+              <div class="iwt-time">
+                <p class="iwt-time-current">00:00:00.00</p><p class="iwt-time-duration">00:00:00</p>
+              </div>     
+              <div class="iwt-controls-wrapper">
+                <button class="iwt-control play-pause ">
+                  <svg class="iwt-play-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 13" id="Layer_13"><path d="M25.11,13.72l-12.16-7A2.14,2.14,0,0,0,9.73,8.55v14a2.14,2.14,0,0,0,3.21,1.85l12.16-7a2.14,2.14,0,0,0,0-3.71Zm-1,2-12.16,7a.14.14,0,0,1-.21-.12v-14a.13.13,0,0,1,.07-.12l.07,0a.14.14,0,0,1,.07,0l12.16,7a.14.14,0,0,1,0,.24Z"/></g></svg>
+                  <svg class="iwt-pause-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 16" id="Layer_16"><path d="M10,6A3.22,3.22,0,0,0,7,9.4V22.6A3.22,3.22,0,0,0,10,26a3.22,3.22,0,0,0,3-3.4V9.4A3.22,3.22,0,0,0,10,6Zm1,16.6c0,.76-.46,1.4-1,1.4s-1-.64-1-1.4V9.4C9,8.64,9.46,8,10,8s1,.64,1,1.4Z"/><path d="M22,6a3.22,3.22,0,0,0-3,3.4V22.6A3.22,3.22,0,0,0,22,26a3.22,3.22,0,0,0,3-3.4V9.4A3.22,3.22,0,0,0,22,6Zm1,16.6c0,.76-.46,1.4-1,1.4s-1-.64-1-1.4V9.4c0-.76.46-1.4,1-1.4s1,.64,1,1.4Z"/></g></svg>
+                </button>
+                <div class="iwt-volume-control-container">
+                  <button class="iwt-control volume">
+                    <svg class="iwt-volume-mute-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g><path d="M17.86,6.5a8.85,8.85,0,0,0-8,5.19,5.09,5.09,0,0,0-1.94-.4A5.15,5.15,0,1,0,10.19,21a8.84,8.84,0,0,0,7.68,4.47,1,1,0,0,0,1-1V7.5A1,1,0,0,0,17.86,6.5Zm-10,13.1a3.15,3.15,0,0,1,0-6.3,3.1,3.1,0,0,1,1.32.3A8.84,8.84,0,0,0,9,15.35v1.31a8.81,8.81,0,0,0,.38,2.55A3.13,3.13,0,0,1,7.87,19.6Zm9,3.82A6.85,6.85,0,0,1,11,16.65V15.35a6.85,6.85,0,0,1,5.84-6.77Z"/><path d="M25.81,16.45l2.4-2.4a1,1,0,0,0-1.41-1.41L24.39,15,22,12.64a1,1,0,0,0-1.41,1.41l2.4,2.4-2.4,2.4A1,1,0,1,0,22,20.27l2.4-2.4,2.4,2.4a1,1,0,0,0,1.41-1.41Z"/></g></svg>
+                    <svg class="iwt-volume-low-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g><path d="M17.86,6.5a8.85,8.85,0,0,0-8,5.19,5.09,5.09,0,0,0-1.94-.4A5.15,5.15,0,1,0,10.19,21a8.84,8.84,0,0,0,7.68,4.47,1,1,0,0,0,1-1V7.5A1,1,0,0,0,17.86,6.5Zm-10,13.1a3.15,3.15,0,1,1,0-6.3,3.1,3.1,0,0,1,1.32.3A8.84,8.84,0,0,0,9,15.35v1.31A8.81,8.81,0,0,0,9.4,19.2,3.13,3.13,0,0,1,7.87,19.6Zm9,3.82A6.85,6.85,0,0,1,11,16.65V15.35a6.85,6.85,0,0,1,5.84-6.77Z"/><path d="M21.29,9.21a1,1,0,0,0-1.41,1.41,7.62,7.62,0,0,1,0,10.76,1,1,0,1,0,1.41,1.41A9.62,9.62,0,0,0,21.29,9.21Z"/></g></svg>
+                    <svg class="iwt-volume-high-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g><path d="M17.38,6.75a8.85,8.85,0,0,0-8,5.19,5.09,5.09,0,0,0-1.94-.4,5.15,5.15,0,1,0,2.31,9.73,8.84,8.84,0,0,0,7.68,4.47,1,1,0,0,0,1-1v-17A1,1,0,0,0,17.38,6.75Zm-10,13.1a3.15,3.15,0,0,1,0-6.3,3.1,3.1,0,0,1,1.32.3,8.85,8.85,0,0,0-.18,1.75V16.9a8.81,8.81,0,0,0,.38,2.55A3.13,3.13,0,0,1,7.4,19.85Zm9,3.82a6.85,6.85,0,0,1-5.84-6.77V15.59a6.85,6.85,0,0,1,5.84-6.77Z"/><path d="M21.41,9.45A1,1,0,0,0,20,10.86a7.6,7.6,0,0,1,0,10.76A1,1,0,1,0,21.41,23a9.6,9.6,0,0,0,0-13.59Z"/><path d="M23.9,7a1,1,0,0,0-1.41,1.41,11.12,11.12,0,0,1,0,15.7,1,1,0,1,0,1.41,1.41A13.1,13.1,0,0,0,23.9,7Z"/></g></svg>
+                  </button>
+                  <div class="iwt-volume-seek">
+                    <progress class="iwt-volume-progress-bar" max="100" value="0"></progress>
+                    <input class="iwt-volume-range-control volume-range" type="range" max="100" />
+                  </div>
+                </div>
+                <button class="iwt-control shop-bag">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.4,24H18.6a4,4,0,0,0,3.968-4.5l-1.25-10A4.005,4.005,0,0,0,17.352,6H17V5A5,5,0,0,0,7,5V6H6.648A4.005,4.005,0,0,0,2.68,9.5l-1.25,10A4,4,0,0,0,5.4,24ZM9,5a3,3,0,0,1,6,0V6H9ZM3.414,19.752l1.25-10A2,2,0,0,1,6.648,8H7v2a1,1,0,0,0,2,0V8h6v2a1,1,0,0,0,2,0V8h.352a2,2,0,0,1,1.984,1.752l1.25,10A2,2,0,0,1,18.6,22H5.4a2,2,0,0,1-1.984-2.248Z"/></svg>
+                </button>
+                <button class="iwt-control full-screen">
+                  <svg class="iwt-windowed-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 23" id="Layer_23"><path d="M27.54,20.89a1,1,0,0,0-1,1v3.23l-7.4-7.4a1,1,0,0,0-1.41,1.41l7.4,7.4H21.89a1,1,0,0,0,0,2h5.65a1,1,0,0,0,.65-.24,1,1,0,0,0,.14-.15,1,1,0,0,0,.21-.54s0-.05,0-.08V21.89A1,1,0,0,0,27.54,20.89Z"/><path d="M6.87,5.46h3.23a1,1,0,0,0,0-2H4.46a1,1,0,0,0-.65.24,1,1,0,0,0-.14.15,1,1,0,0,0-.2.54s0,.05,0,.08v5.64a1,1,0,0,0,2,0V6.87l7.4,7.4a1,1,0,0,0,1.41-1.41Z"/></g></svg>
+                  <svg class="iwt-full-screen-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 24" id="Layer_24"><path d="M28.25,26.83l-7.4-7.4h3.23a1,1,0,1,0,0-2H18.43a1,1,0,0,0-.65.25l-.13.14a1,1,0,0,0-.21.54s0,.05,0,.08v5.64a1,1,0,1,0,2,0V20.85l7.4,7.4a1,1,0,0,0,1.41-1.41Z"/><path d="M13.56,6.92a1,1,0,0,0-1,1v3.23l-7.4-7.4A1,1,0,0,0,3.75,5.17l7.4,7.4H7.92a1,1,0,1,0,0,2h5.65a1,1,0,0,0,.65-.25l.13-.14a1,1,0,0,0,.21-.54s0-.05,0-.08V7.92A1,1,0,0,0,13.56,6.92Z"/></g></svg>
+                </button>
+              </div>
+            </section>
+          </div>
+
+      </main>
+
+    </section>
+    
+  </body>
+</html>

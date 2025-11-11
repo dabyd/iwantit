@@ -1,0 +1,24 @@
+:root {
+    /* Breakpoints */
+
+    /* @custom-media --breakpoint-tiny (min-width: 375px);
+    @custom-media --breakpoint-small (min-width: 480px);
+    @custom-media --breakpoint-mobile (min-width: 600px);
+    @custom-media --breakpoint-tablet (min-width: 768px);
+    @custom-media --breakpoint-big (min-width: 960px);
+    @custom-media --breakpoint-bigger (min-width: 1100px);
+    @custom-media --breakpoint-ref-width (min-width: 1440px);
+    @custom-media --breakpoint-max-width (min-width: 1920px); */
+
+    --wrapper-width:1097px;
+    --wrapper-width-vw:76.389vw;
+    --wrapper-width-big:1470px;
+    --wrapper-ref-width:1440px;
+    --wrapper-max-width:1920px;
+
+    /* Font family */
+     --font-primary: "Trebuchet MS", arial, helvetica, sans-serif;
+     --font-secondary:  'EB Garamond', 'Garamond', 'Baskerville', 'Times New Roman', serif;;
+     --font-tertiary: 'Cormorant Garamond Light', arial, sans-serif;
+     --font-decorative: 'Felt-That';
+}

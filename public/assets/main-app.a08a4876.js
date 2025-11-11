@@ -1,0 +1,1 @@
+import"./index.66764821.js";import{G as n}from"./goldComponent.679ed27e.js";class h extends n{constructor(e,o,s,a=void 0){super(e,o,s,a)}whenTheBehaviourIsFullyLoaded(){super.whenTheBehaviourIsFullyLoaded(),this._notifiesThatInteractionWithTheUserIsAvailable()}whenMakeupIsAllowed(){super.whenMakeupIsAllowed()}}export{h as default};

@@ -1,0 +1,71 @@
+.iwt-header {
+
+    position: fixed;
+    /* top: 0; */
+    width: 100%;
+    max-width: 1920px;
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    padding: 0 52px 0 30px;
+}
+
+.iwt-logo {
+    width: 110px;
+}
+
+.iwt-search-wrapper {
+
+    display: flex;
+}
+
+.iwt-search-wrapper input {
+
+    width: 300px;
+    font-family: "Cormorant Garamond";
+}
+
+.iwt-search-wrapper .btn {
+
+    height: 28px;
+    position: relative;
+    top: 3px;
+    display: grid;
+    place-content: center;
+    border-radius: 0 8px 8px 0;
+    left: -1px;
+}
+
+.iwt-search-input {
+
+    display: flex;
+    align-items: baseline;
+}
+
+.iwt-search-input input {
+
+    padding: 8px 16px;
+    border-radius: 8px 0 0 8px;
+}
+
+/* .iwt-search-advanced {
+
+    margin: 0 10px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    white-space: nowrap;
+} */
+
+.iwt-search-wrapper .ad-search {
+
+    margin-left: 16px;
+    border-radius: 8px;
+}
+
+.iwt-search-wrapper .ad-search svg {
+
+    width: 18px;
+    fill: var(--palette-timberwolf);
+}

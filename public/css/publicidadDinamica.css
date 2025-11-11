@@ -1,0 +1,522 @@
+:root {
+    --palette-brown: #9E4300;
+    --palette-fire: #A74702;
+    --palette-flesh: #FFD0AD;
+    --palette-regal-blue: #054A75;
+
+    --color-base-controles-background: var(--palette-regal-blue);
+    --color-base-controles-border: var(--palette-biscay-translucent);
+
+    --color-control-tiempo-general-background: var(--palette-regal-blue);
+
+    --color-horas-minutos-segundos-background: var(--palette-white);
+    --color-horas-minutos-segundos-border: var(--palette-denim);
+    --color-horas-minutos-segundos-text: var(  --palette-black);
+
+    --color-horas-minutos-segundos-read-only-background: var(--palette-denim);
+    --color-horas-minutos-segundos-read-only-border: var(--palette-denim);
+    --color-horas-minutos-segundos-read-only-text: var(  --palette-black);
+
+    --color-barra-tiempo-general-background: var(--palette-denim);
+    --color-barra-tiempo-general-borde: var(--palette-black);
+
+    --color-bar-native-scroll-bar: var(--color-font);
+    --color-track-native-scroll-bar: var(--color-background);
+
+    --color-boton-tiempo-general-background: var(--palette-denim);
+    --color-boton-tiempo-general-icon: invert(1);
+    --color-boton-tiempo-general-icon-hover: none;
+    --color-boton-tiempo-general-border-hover: var(--palette-denim);
+    --color-boton-tiempo-general-background-hover: var(--palette-white);
+
+    --color-boton-opciones-background: var(--palette-denim);
+    --color-boton-opciones-text: var(--color-font);
+    --color-boton-opciones-text-hover: var(--palette-black);
+    --color-boton-opciones-border-hover: var(--palette-denim);
+    --color-boton-opciones-background-hover: var(--palette-white);
+
+    --color-contenedor-productos-background: var(--palette-regal-blue);
+    --color-contenedor-productos-border: var(--palette-biscay-translucent);
+
+    --color-boton-otro-producto-background: var(--palette-denim);
+    --color-boton-otro-producto-icon: invert(1);
+    --color-boton-otro-producto-icon-hover: none;
+    --color-boton-otro-producto-border-hover: var(--palette-denim);
+    --color-boton-otro-producto-background-hover: var(--palette-white);
+
+    --color-producto-background: var(--palette-regal-blue);
+    --color-producto-border: var(--palette-biscay-10-translucent);
+
+    --barra-timer-producto-background: var(--palette-denim);
+
+    --cursor-tiempo-general-background: var(--palette-white);
+    --cursor-tiempo-general-border: var(--palette-biscay);
+    --cursor-tiempo-general-background-hover: var(--palette-indochine);
+
+    --color-boton-deshabilitado: var(--palette-biscay);
+
+    --color-cursor-inicio-background: var(--palette-fire);
+    --color-cursor-final-background: var(--palette-fire);
+    --color-cursor-inicio-background-hover: var(--palette-flesh);
+    --color-cursor-final-background-hover: var(--palette-flesh);
+    --color-cursor-inicio-border: var(--palette-brown);
+    --color-cursor-final-border: var(--palette-brown);
+}
+
+#caja-principal {
+    margin: 0 auto;         /* Para centrar el contenido en horizontal */
+    padding: 5px 20px;
+    width: 100%;
+    text-align: center;
+}
+
+#item-base {
+    position: relative;
+}
+
+
+/* Puntero que aparece sobre la posición del producto activo en el video reproducido */
+
+#item-main {
+    position: absolute;
+    visibility: hidden;
+    transition: none;
+}
+
+#item-main * {
+    transition: none;
+}
+
+.item-nokey, .item-key {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+}
+.item-nokey {
+    background: url(../img/target_grey.png);
+}
+.item-nokey:hover {
+    background: url(../img/target_white.png);
+}
+.item-key {
+    background: url(../img/target_red.png);
+}
+.item-key:hover {
+    background: url(../img/target_yellow.png);
+}
+
+.item-bt {
+    position:absolute;
+    top: 22px;
+    margin: 0;
+    padding: 0;
+    width: 22px;
+    height: 23px;
+    background-color: grey;
+}
+.item-bt:hover {
+    background-color: yellow;
+}
+
+#item-botonera {
+    position: absolute;
+    left: 0;
+}
+
+
+/* Controles generales del video */
+
+#base-controles {
+    border-style: solid;
+    border-color: var(--color-base-controles-border);
+    width: 100%;
+    height: 95px;
+    background-color: var(--color-base-controles-background);
+    padding: 7px;
+}
+
+.horas, .minutos, .segundos {
+    margin: 0 0 2px 0;
+    width:24px;
+    height: 18px;
+    padding: 0;
+    background: var(--color-horas-minutos-segundos-background);
+    color: var(--color-horas-minutos-segundos-text);
+    border: none;
+    border-radius: unset;
+    border-top: 1px solid var(--color-horas-minutos-segundos-border);
+}
+
+.horas:read-only, .minutos:read-only, .segundos:read-only {
+    background-color: var(--color-horas-minutos-segundos-read-only-background);
+    color: var(--color-horas-minutos-segundos-read-only-text)
+    border: none;
+    border-top: 1px solid var(--color-horas-minutos-segundos-read-only-border);
+    margin-bottom: 5px;
+}
+
+#botonera-tiempo-general {
+    width: 100%;
+    height: 34px;
+}
+
+.boton-tiempo-general {
+    background-color: var(--color-boton-tiempo-general-background);
+    color: var(--color-boton-tiempo-general-text);
+    border: none;
+    border-radius: 16px;
+    padding: 2px;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.boton-tiempo-general img {
+
+    filter: var(--color-boton-tiempo-general-icon);
+}
+
+.img-tiempo-general {
+    height: 100%;
+    width: auto;
+}
+
+.boton-tiempo-general:hover {
+    background-color: var(--color-boton-tiempo-general-background-hover);
+    border: 1px solid var(--color-boton-tiempo-general-border-hover);
+}
+
+.boton-tiempo-general:hover img {
+
+    filter: var( --color-boton-tiempo-general-icon-hover);
+}
+
+.control-tiempo-general {
+    display: flex;
+    width: 100%;
+    background-color: var(--color-control-tiempo-general-background);
+    padding: 0 4px;
+}
+
+.tiempo-general {
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+}
+
+#barra-tiempo-general {
+    border-color: var(--color-barra-tiempo-general-borde:);
+    width: 100%;
+    height: 40px;
+    background-color: var(--color-barra-tiempo-general-background);
+}
+
+#cursor-tiempo-general {
+    position: relative;
+    width: 4px;
+    height: 40px;
+    background-color: var(--cursor-tiempo-general-background);
+    border-color: var(--cursor-tiempo-general-border);
+    cursor: pointer;
+}
+
+#cursor-tiempo-general:hover {
+    background-color: var(--cursor-tiempo-general-background-hover);
+}
+
+
+/* Control de productos */
+
+#contenedor-productos {
+    margin: 2px 0 0 0;
+    border-style: solid;
+    border-color: var(--color-contenedor-productos-border);
+    width: 100%;
+//    height: calc(30% - 90px);
+    background-color: var(--color-contenedor-productos-background);
+    overflow: auto;
+    padding: 4px;
+}
+
+.producto {
+    border-style: solid;
+    border-color: var(--color-producto-border);
+    display: flex;
+    width: 100%;
+    height: 90px;
+    background-color: var(--color-producto-background);
+    margin: 0 0 4px 0;
+    padding: 4px;
+}
+
+#otro-producto {
+    border: none;
+    width: 95%;
+    height: 30px;
+    background-color: var( --color-boton-otro-producto-background);
+    padding: 5px;
+    border-radius: 16px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+#otro-producto img {
+    filter: var(--color-boton-otro-producto-icon);
+}
+
+#otro-producto:hover {
+    background-color: var(--color-boton-otro-producto-background-hover);
+    border: var(--color-boton-otro-producto-border-hover);
+}
+
+#otro-producto:hover img {
+    filter: var(--color-boton-otro-icon-hover);
+}
+
+.info-producto {
+    height: 95%;
+    width: 130px;
+    min-width: 130px;
+    max-width: 130px;
+    padding: 0 5px 0 0;
+}
+
+.timer-producto {
+    width: 100%;
+    height: 100%;
+/*    background-color: gray;  */
+}
+
+.barra-timer-producto {
+    position: relative;
+    width: 100%;
+    height: 20px;
+    margin: 4px 0 8px 0;
+    background-color: var(--barra-timer-producto-background);
+}
+
+.base-segmentos-tiempo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.segmento-tiempo {
+    position: absolute;
+
+    border-width: 1px;
+    height: 100%;
+}
+
+.cursor-inicio {
+    visibility: hidden;
+    position: absolute;
+    width:15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--color-cursor-inicio-background);
+    border-color:var(--color-cursor-inicio-border);
+    border-style: solid;
+    border-width: 1px;
+    top: -5px;
+    cursor: pointer;
+}
+
+.cursor-final {
+    visibility: hidden;
+    position: absolute;
+    width:15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--color-cursor-final-background);
+    border-color: var(--color-cursor-final-border);
+    border-style: solid;
+    border-width: 1px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.cursor-inicio:hover {
+    background-color: var(--color-cursor-inicio-background-hover);
+}
+
+.cursor-final:hover {
+    background-color: var(--color-cursor-final-background-hover);
+}
+
+.cursor-tiempo-general {
+    position: absolute;
+    width: 1px;
+    height: 20px;
+    background-color: rgba(200, 200, 200, 0.5);
+}
+
+.control-producto {
+    position: relative;
+    width: 100%;
+    height: 38px;
+    display: flex;
+/*    background-color: yellowgreen;  */
+}
+
+.tiempo-seccion {
+    display: flex;
+    /* flex-direction: column; */
+    color: var(--color-font);
+}
+
+.tiempo-seccion div:first-of-type  {
+    display: flex;
+    flex-direction: column;
+    width: 60px;
+}
+
+.tiempo-seccion div span:first-of-type {
+    padding-bottom: 4px;
+}
+
+
+.boton-inicio, .boton-final {
+    background-color: var(--color-boton-otro-producto-background);
+    opacity: 0.3;
+    pointer-events: none;
+    border: none;
+    border-radius: 16px;
+    padding: 1px;
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+
+}
+
+.boton-inicio img, .boton-final img {
+
+    filter: var(--color-boton-otro-producto-icon);
+}
+
+.boton-inicio:hover, .boton-final:hover {
+    background-color: var(--color-boton-otro-producto-background-hover);
+    border: 1px solid var(background-color: var(--color-boton-otro-producto-border-hover);)
+}
+
+.boton-inicio:hover img, .boton-final:hover img {
+    filter: var(--color-boton-otro-producto-icon-hover);
+}
+
+
+
+
+.boton-control {
+    background-color: var(--color-boton-otro-producto-background);
+    color: var(--color-boton-opciones-text);
+    opacity: 0.3;
+    pointer-events: none;
+    border: none;
+    border-radius: 16px;
+    padding: 2px;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.boton-control img {
+    filter: var(--color-boton-otro-producto-icon);
+}
+
+.boton-control:hover {
+    background-color: var(--color-boton-otro-producto-background-hover);
+    color: var(--color-boton-opciones-text-hover);
+    border: 1px solid var(--color-boton-otro-producto-border-hover);
+}
+
+.boton-control:hover img {
+    filter: var(--color-boton-otro-producto-icon-hover);
+}
+
+
+.boton-activo {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.boton-activo:hover {
+    background-color: white;
+}
+
+
+/* Ventana de load/save */
+
+#ventana-io {
+    visibility: hidden;
+    position: fixed;
+    border: none;
+    width: 400px;
+    height: 200px;
+    left: calc(50% - 200px);
+    top: calc(30% - 100px);
+    background-color: #054A75;
+    padding: 5px;
+    text-align: center;
+}
+
+#lista-ficheros {
+    border: none;
+    width: 100%;
+    height: 80%;
+    color: #FFF;
+    margin: 0 3px 5px 0;
+    padding: 2px;
+    background-color: #0AA1FF;
+    overflow: auto;
+}
+
+#barra-ficheros {
+    width: 100%;
+    display: flex;
+}
+
+#input-fichero {
+    margin: 0 5px 0 0;
+    width: 100%;
+    outline: none;
+    color: #FFF;
+    border: none;
+    padding: 0 10px;
+    background-color: #0AA1FF;
+}
+
+.boton-opciones, #boton-fichero {
+    background-color: var(--color-boton-opciones-background);
+    border: none;
+    color: var(--color-boton-opciones-text);
+    border-radius: 16px;
+    padding: 2px;
+    margin: 0 2px;
+    width: 80px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.boton-opciones:hover, #boton-fichero:hover {
+    background-color: var(--color-boton-opciones-background-hover);
+    border: 1px solid var(--color-boton-opciones-border-hover);
+    color: var(--color-boton-opciones-text-hover);
+}
+
+.fichero {
+    width: 100%;
+    height: 18px;
+    background-color: white;
+    color: black;
+    margin: 2px 0 2px 0;
+    text-align: left;
+    user-select: none;
+}
+
+.fichero:hover {
+    background-color: black;
+    color: white;
+}

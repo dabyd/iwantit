@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Surt-Expanded-TRIAL';
+    src: url('Surt-Expanded-TRIAL-Bold.eot');
+    src: local('Surt-Expanded-TRIAL Bold'), local('Surt-Expanded-TRIAL-Bold'),
+        url('Surt-Expanded-TRIAL-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Surt-Expanded-TRIAL-Bold.woff2') format('woff2'),
+        url('Surt-Expanded-TRIAL-Bold.woff') format('woff'),
+        url('Surt-Expanded-TRIAL-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+

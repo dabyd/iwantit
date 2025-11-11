@@ -1,0 +1,62 @@
+{
+  "index.html": {
+    "file": "assets/player.5a295e80.js",
+    "src": "index.html",
+    "isEntry": true,
+    "dynamicImports": [
+      "js/behaviours/main-app/main-app.js",
+      "js/behaviours/responsive-video/responsive-video.js",
+      "js/behaviours/video-controls/hot-points.js",
+      "js/behaviours/video-controls/video-controls.js"
+    ],
+    "css": [
+      "assets/index.d6a5764f.css"
+    ]
+  },
+  "js/behaviours/main-app/main-app.js": {
+    "file": "assets/main-app.bf634596.js",
+    "src": "js/behaviours/main-app/main-app.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_goldComponent.e5e22987.js",
+      "index.html"
+    ]
+  },
+  "_goldComponent.e5e22987.js": {
+    "file": "assets/goldComponent.e5e22987.js",
+    "imports": [
+      "index.html"
+    ]
+  },
+  "js/behaviours/responsive-video/responsive-video.js": {
+    "file": "assets/responsive-video.7dd8a3c5.js",
+    "src": "js/behaviours/responsive-video/responsive-video.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_goldComponent.e5e22987.js",
+      "index.html"
+    ]
+  },
+  "js/behaviours/video-controls/hot-points.js": {
+    "file": "assets/hot-points.5049d712.js",
+    "src": "js/behaviours/video-controls/hot-points.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "js/behaviours/video-controls/video-controls.js": {
+    "file": "assets/video-controls.730ec0c5.js",
+    "src": "js/behaviours/video-controls/video-controls.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_goldComponent.e5e22987.js",
+      "js/behaviours/video-controls/hot-points.js",
+      "index.html"
+    ]
+  },
+  "index.css": {
+    "file": "assets/index.d6a5764f.css",
+    "src": "index.css"
+  }
+}

@@ -1,0 +1,209 @@
+/* Claude-inspired — high-specificity overrides for Scribe static theme
+   Place at: public/docs/custom/claude-style.css
+*/
+
+/* --- Variables --- */
+:root{
+  --primary: #2563eb;
+  --primary-600: #1d4ed8;
+  --text: #0f172a;           /* very dark slate */
+  --muted: #6b7280;
+  --bg: #ffffff;
+  --panel-bg: #0b1220;      /* dark panel (will be used in right area) */
+  --panel-contrast: rgba(255,255,255,0.04);
+  --card-bg: #fbfdff;
+  --code-bg: #0f172a;       /* dark code background for the right panel */
+  --border: #e6eefb;
+  --mono: "IBM Plex Mono", "Fira Code", monospace;
+  --ui: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* --- Global typography & base --- */
+html,body{
+  height:100%;
+}
+body{
+  font-family: var(--ui);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  margin:0;
+  line-height:1.6;
+}
+
+/* Ensure our CSS overrides vendor ones — use stronger selectors */
+.page-wrapper, .page-wrapper * { box-sizing: border-box; }
+
+/* --- Layout: left toc + main + right code panel --- */
+.tocify-wrapper {
+/* //.tocify-wrapper .tocify-focus { */
+  width: 300px !important;
+  min-width: 260px !important;
+  background: #fbfdff;
+  border-right:1px solid var(--border);
+  padding: 24px;
+  position: fixed;
+  height: 100vh;
+  overflow:auto;
+}
+
+.page-wrapper {
+  margin-left: 320px; /* leave space for sidebar */
+  display: grid;
+  grid-template-columns: 1fr 420px; /* content | right panel */
+  gap: 32px;
+  align-items: start;
+  padding: 40px;
+  max-width: calc(100% - 340px);
+}
+
+/* Main content column */
+.content{
+/*  max-width: 820px; */
+  background: transparent;
+  padding-right: 12px;
+}
+
+/* Right dark panel with examples */
+.page-wrapper .dark-box:nth-of-type(1),
+.page-wrapper .dark-box:nth-of-type(2) {
+  display: none;
+  background: linear-gradient(180deg, rgba(11,17,27,1) 0%, rgba(16,24,36,1) 100%);
+  border-radius: 12px;
+  padding: 20px;
+  color: #e6eefb;
+  min-height: 240px;
+  box-shadow: 0 8px 30px rgba(11,17,27,0.35);
+  height: auto;
+  overflow:auto;
+  font-family: var(--mono);
+}
+
+/* Make the right panel sticky on scroll */
+.page-wrapper .dark-box {
+  position: sticky;
+  top: 20px;
+  align-self: start;
+}
+
+/* Headings */
+.content h1, .content h2, .content h3 {
+  font-family: var(--ui);
+  color: var(--text);
+  margin: 16px 0;
+  font-weight: 600;
+}
+
+/* Intro aside (Base URL) style similar to Claude */
+.content aside {
+  display:inline-block;
+  border-radius:10px;
+  padding:10px 14px;
+  background: linear-gradient(180deg, rgba(245,247,255,1), rgba(241,246,255,1));
+  border:1px solid var(--border);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+/* Buttons / Try it out */
+.btn, button, .lang-button, .tocify-wrapper > .search input {
+  font-family: var(--ui);
+  background: var(--primary) !important;
+  color:#fff !important;
+  border:none !important;
+  padding:8px 12px !important;
+  border-radius:8px !important;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.14);
+  cursor: pointer;
+  transition: transform .12s ease, background .12s ease;
+}
+.btn:hover, button:hover { transform: translateY(-2px); background: var(--primary-600) !important; }
+
+/* Code styling: main blocks in content (light bg), right panel dark examples */
+.content pre, .content code {
+  font-family: var(--mono);
+  background: #f7fafc;
+  color: #0f172a;
+  border-radius:8px;
+  padding:14px;
+  border:1px solid #e6eefb;
+  overflow:auto;
+  font-size: 0.95rem;
+}
+
+/* Right-panel code: override highlight styles inside dark-box */
+.page-wrapper .dark-box pre, .page-wrapper .dark-box code {
+  background: transparent !important;
+  color: #e6eefb !important;
+  border: none !important;
+  font-size: 0.95rem;
+}
+
+/* Make inline code visible */
+.content code:not(pre code) {
+  padding: .15rem .4rem;
+  border-radius:6px;
+  background: #f1f5f9;
+  border: 1px solid #e6eefb;
+}
+
+/* Tables tweak */
+.content table {
+  border-collapse: collapse;
+  width:100%;
+  background:white;
+}
+.content th, .content td {
+  border:1px solid #eef2ff;
+  padding:10px;
+  text-align:left;
+}
+
+/* Language tabs (right panel) */
+.lang-selector { display:flex; gap:8px; margin-bottom:10px; }
+.lang-selector .lang-button {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding:8px 10px;
+  border-radius:6px;
+}
+.lang-selector .lang-button.active {
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border-color: rgba(255,255,255,0.12);
+}
+
+/* Sidebar link appearance */
+.tocify-wrapper .toc-footer a, .tocify-wrapper a {
+  color: var(--muted);
+  text-decoration:none;
+}
+.tocify-wrapper a:hover { color: var(--primary); font-weight:600; }
+
+/* Logo area */
+.logo-area { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.logo-area .logo { width:42px; height:42px; object-fit:contain; border-radius:6px; }
+
+/* Ensure our assets are highest priority */
+@media all {
+  /* Force primary color for links and accents */
+  a, .btn, .lang-button { color: inherit; }
+  .content a { color: var(--primary) !important; font-weight:600; }
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .tocify-wrapper { position: static; width: 100%; height: auto; border-right:none; }
+  .page-wrapper { margin-left:0; grid-template-columns: 1fr; padding:20px; }
+  .page-wrapper .dark-box { position: static; margin-top:24px; }
+}
+
+/* Extra specificity for stubborn vendor rules */
+body .page-wrapper .content pre { border-radius:10px !important; }
+
+.page-wrapper .lang-selector {
+  background: transparent;
+  border: none;
+}

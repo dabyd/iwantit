@@ -1,0 +1,11 @@
+<x-layouts.edit 
+	:controller="$controller"
+	:data="$product"
+	:tags="$tags"
+	:vinculated="$vinculated"
+	:url="$url"
+	:related="$brands" 
+	:txtrelated="'brand'"
+	:ia_selected_classes="$ia_selected_classes"
+	:ia_available_classes="$ia_available_classes"
+/>

@@ -1,0 +1,20 @@
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-bar-native-scroll-bar) var(--color-track-native-scroll-bar);
+  }
+
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--color-track-native-scroll-bar);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: var(--color-bar-native-scroll-bar);
+    border-radius: 20px;
+    border: 0px solid var(--color-track-native-scroll-bar);
+  }

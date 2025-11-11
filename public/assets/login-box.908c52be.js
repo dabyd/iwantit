@@ -1,0 +1,1 @@
+import{G as i}from"./goldComponent.679ed27e.js";import"./index.66764821.js";class d extends i{constructor(e,o,t,s=void 0){super(e,o,t,s)}whenTheBehaviourIsFullyLoaded(){super.whenTheBehaviourIsFullyLoaded(),this._init()}destroy(){super.destroy()}_init(){this._notifiesThatInteractionWithTheUserIsAvailable()}}export{d as default};

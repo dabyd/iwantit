@@ -1,0 +1,77 @@
+.iwt-inform.row {
+
+    min-width: 686px;
+}
+
+.iwt-inform .linea.header :is( .imagen, .producto, .logo, .marca, .veces ) {
+
+    width: 100%;
+    padding: 16px;
+    background: var(--color-table-header-background);
+    text-align: center;
+    font-family: var(--font-secondary);
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.iwt-inform .linea :is( .imagen, .producto, .logo, .marca, .veces ) {
+
+    background: var(--color-table-cell-background);
+    display: grid;
+    place-content: center;
+}
+
+
+.iwt-inform .linea.header {
+
+    min-width: 686px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) 130px minmax(100px, 1fr) 130px 130px;
+    gap: 0 1px;
+}
+
+.iwt-inform .linea .producto {
+
+    border-radius: 8px 0 0 8px;
+}
+
+.iwt-inform .linea .veces {
+
+    border-radius: 0 8px 8px 0;
+}
+
+.iwt-inform .linea .imagen:has(img), .iwt-inform .linea .logo:has(img) {
+
+    border-radius: 8px;
+}
+
+.iwt-inform .linea :is( .producto, .marca, .veces ) {
+
+    padding: 16px;
+}
+
+.iwt-inform .linea:not(.header) {
+
+    min-width: 686px;
+    display: grid;
+    grid-template-columns: minmax(150px, 1fr) 130px minmax(100px, 1fr) 130px 130px;
+    margin-bottom: 16px;
+    gap: 0 1px;
+    border-radius: 8px;
+}
+
+.iwt-inform .linea:not(.header) a:hover {
+
+    color: var(--color-button-default-hover-text);
+}
+
+.iwt-inform .imagen, .iwt-inform .logo {
+
+    width: 130px;
+}
+
+.iwt-inform .imagen img, .iwt-inform .logo img {
+
+    border-radius: 8px;
+}
