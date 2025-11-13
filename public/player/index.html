@@ -12,7 +12,7 @@
   <body data-iwt-behaviour="main-app">
 
     <script data-iwt-config type="application/json">
-      { 
+      {
             "main-app": { "behaviour": "main-app",  "props": {} },
             "responsive-video": { "behaviour": "responsive-video",  "props": {} },
             "video-controls": { "behaviour": "video-controls",  "props": {} }
@@ -43,31 +43,38 @@
           <div class="iwt-hotpoint-record-wrapper">
             <article class="iwt-hotpoint-record-info">
               <div class="iwt-hotpoint-record-product-image-wrapper">
-                <img class="iwt-hotpoint-record-product-image"> 
+                <img class="iwt-hotpoint-record-product-image">
+                <a class="iwt-hotpoint-record-brand-logo-wrapper iwt-hotpoint-record-brand-link" href="#" target="_blank">
+                   <img class="iwt-hotpoint-record-brand-logo">
+                </a>
               </div>
-              <a class="iwt-hotpoint-record-product-name" href="#" target="_blank"><h3>Product name</h3></a>
-              <p class="iwt-hotpoint-record-product-description">Description</p>
-              <a class="iwt-hotpoint-record-brand-name" href="#" target="_blank"><h3>Brand name</h3></a>
-              <div class="iwt-hotpoint-record-brand-logo-wrapper">
-                <img class="iwt-hotpoint-record-brand-logo"> 
-              </div>
+              <div class="iwt-hotpoint-record-product-name" href="#"><h3>Product name</h3></div>
+              <div class="iwt-hotpoint-record-product-description"><p class="iwt-hotpoint-record-product-description-content">Description</p></div>
             </article>
             <div class="iwt-hotpoint-record-ui">
-              <button class="iwt-control iwt-hotpoint-record-prev">
-                <svg width="36px" height="36px" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
-                  <path d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
-              </svg>
-              </button>
-              <button class="iwt-control iwt-hotpoint-record-next">
-                <svg width="36px" height="36px" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
-                  <path d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
-              </svg>
-              </button>
-              <button class="iwt-control iwt-hotpoint-record-close">
-                <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/>
-                </svg>
-              </button>
+
+                <div class="iwt-hotpoint-record-ui-row-top">
+                    <a class="iwt-hotpoint-record-link" target="_blank" href="#">Link to product</a>
+                    <a class="iwt-hotpoint-record-wishlist" href="#">Add to wishlist</a>
+                </div>
+
+                 <div class="iwt-hotpoint-record-ui-row-bottom">
+                    <button class="iwt-control iwt-hotpoint-record-prev">
+                        <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
+                        <path d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
+                    </svg>
+                    </button>
+                    <button class="iwt-control iwt-hotpoint-record-next">
+                        <svg width="20px" height="20px" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 46 46" style="enable-background:new 0 0 46 46;" xml:space="preserve">
+                        <path d="M11.003,40.094c-1.338,1.352-1.338,3.541,0,4.893c1.336,1.35,3.506,1.352,4.844,0l19.15-19.539c1.338-1.352,1.338-3.543,0-4.895L15.847,1.014c-1.338-1.352-3.506-1.352-4.844,0s-1.338,3.541-0.002,4.893L26.706,23L11.003,40.094z"/>
+                    </svg>
+                    </button>
+                    <button class="iwt-control iwt-hotpoint-record-close">
+                        <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
           </div>
         </dialog>
@@ -85,12 +92,12 @@
               </div>
               <div class="iwt-selectors-modal-ui">
                 <button class="iwt-control iwt-selectors-modal-okey">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px">
                     <path d="M 41.9375 8.625 C 41.273438 8.648438 40.664063 9 40.3125 9.5625 L 21.5 38.34375 L 9.3125 27.8125 C 8.789063 27.269531 8.003906 27.066406 7.28125 27.292969 C 6.5625 27.515625 6.027344 28.125 5.902344 28.867188 C 5.777344 29.613281 6.078125 30.363281 6.6875 30.8125 L 20.625 42.875 C 21.0625 43.246094 21.640625 43.410156 22.207031 43.328125 C 22.777344 43.242188 23.28125 42.917969 23.59375 42.4375 L 43.6875 11.75 C 44.117188 11.121094 44.152344 10.308594 43.78125 9.644531 C 43.410156 8.984375 42.695313 8.589844 41.9375 8.625 Z"/>
                   </svg>
                 </button>
                 <button class="iwt-control iwt-selectors-modal-close">
-                  <svg width="50px" height="50px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                  <svg width="20px" height="20px" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                     <path d="M195.2 195.2a64 64 0 0 1 90.496 0L512 421.504 738.304 195.2a64 64 0 0 1 90.496 90.496L602.496 512 828.8 738.304a64 64 0 0 1-90.496 90.496L512 602.496 285.696 828.8a64 64 0 0 1-90.496-90.496L421.504 512 195.2 285.696a64 64 0 0 1 0-90.496z"/>
                   </svg>
                 </button>
@@ -114,7 +121,7 @@
                 </svg>
               </button>
             </section>
-            
+
             <section class="iwt-video" data-iwt-behaviour="responsive-video">
 
               <video class="video" autoplay preload="metadata">
@@ -132,18 +139,18 @@
 
               <section class="iwt-hot-points-container">
               </section>
-    
+
             </section>
 
             <section class="iwt-controls" data-iwt-behaviour="video-controls">
               <div class="iwt-centered-play-pause"></div>
               <div class="iwt-progress-control-wrapper">
                 <progress class="iwt-progress-bar progress-bar" max="100"></progress>
-                <input class="iwt-progress-control progress" type="range" value="0" /> 
-              </div>    
+                <input class="iwt-progress-control progress" type="range" value="0" />
+              </div>
               <div class="iwt-time">
                 <p class="iwt-time-current">00:00:00.00</p><p class="iwt-time-duration">00:00:00</p>
-              </div>     
+              </div>
               <div class="iwt-controls-wrapper">
                 <button class="iwt-control play-pause ">
                   <svg class="iwt-play-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 13" id="Layer_13"><path d="M25.11,13.72l-12.16-7A2.14,2.14,0,0,0,9.73,8.55v14a2.14,2.14,0,0,0,3.21,1.85l12.16-7a2.14,2.14,0,0,0,0-3.71Zm-1,2-12.16,7a.14.14,0,0,1-.21-.12v-14a.13.13,0,0,1,.07-.12l.07,0a.14.14,0,0,1,.07,0l12.16,7a.14.14,0,0,1,0,.24Z"/></g></svg>
@@ -174,6 +181,6 @@
       </main>
 
     </section>
-    
+
   </body>
 </html>

@@ -136,27 +136,77 @@
         color: white;
     }
     .product-hotpoint  {
-        background-color: wheat;
-        position: absolute;
-        padding: 5px;
-        z-index: 10;
-        border: 1px solid #606060;
-        border-radius: 10px;
+        background-color: var(--color-background-menu);
+        position: fixed;
+        /* z-index: 10; */
+        padding: 0 0 16px 0;
+        border: 1px solid #054a75;
+        border-radius: 8px;
+        height: 400px;
+        min-height: 300px;
+        min-width: 400px;
+        box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.2);
+        display: none;
     }
+
+     .product-hotpoint.show {
+        display: block;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+     }
+
+    .product-hotpoint-scroll {
+        overflow-y: auto;
+        height: calc(100% - 52px);
+    }
+
+    .product-hotpoint-wrapper {
+        padding: 16px 16px 0 16px;
+    }
+
+    .product-hotpoint-ui {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 16px 16px 16px;
+        background: #054a75;
+        align-items: center;
+    }
+
+    .product-hotpoint-ui .btn {
+        height: 28px;
+        position: relative;
+        top: 3px;
+        display: grid;
+        place-content: center;
+        border-radius: 0 8px 8px 0;
+        left: -1px;
+    }
+
     .product-hotpoint-element {
         cursor: pointer;
         margin: 0;
-        padding: 0 5px;
+        padding: 4px 16px;
+        margin: 8px 0;
+        transition: all .5s ease;
+        border-radius: 8px;
     }
+
     .product-hotpoint-element.selected {
         font-weight: bold;
-        color: red;
+        background: var(--color-option-background-active);
+        color: var(--color-option-text-active);
+        box-shadow: 0px 0px 5px 0px rgba(27,54,93,0.6);
+        pointer-events: none;
     }
     .product-hotpoint-element.selected:hover,
     .product-hotpoint-element:hover {
         color: white;
-        background-color: black;
+        background-color: var(--color-option-background-hover);
+        box-shadow: 0px 0px 5px 0px rgba(27,54,93,0.6);
     }
+
     #capa-save {
         position: absolute;
         top: 0;
@@ -247,6 +297,21 @@
         grid-template-rows: auto 1fr auto;
     }
 
+    .project-detail-page .iwt-main,
+    .project-detail-page.expanded .iwt-main {
+        grid-template-areas:
+            "header header"
+            "admin  admin "
+            "footer footer";
+    }
+
+    .project-detail-page.contracted .iwt-main {
+        grid-template-areas:
+            "header header"
+            "menu admin "
+            "footer footer";
+    }
+
     .container {
         margin: 0;
         padding: 16px;
@@ -322,7 +387,7 @@
         gap: 1rem;
         margin: 20px 0;
     }
-      
+
     .option-group h4 {
         position: absolute;
         top: -1.2rem;
@@ -337,7 +402,7 @@
         align-items: center;
         margin: 0;
     }
-    
+
     /* Oculta el checkbox nativo para personalizarlo */
     .option-group .form-check-input {
         appearance: none;
@@ -350,7 +415,7 @@
         position: relative;
         background-color: #fff;
     }
-    
+
     /* Check visible al estar marcado */
     .option-group .form-check-input:checked::before {
         content: '✓';
@@ -370,10 +435,11 @@
     .tab-nav {
         display: flex;
         gap: 10px;
-        margin-bottom: 1rem;
+        /* margin-bottom: 1rem; */
         flex-wrap: wrap;
+        margin: 16px 0;
       }
-    
+
     .tab-nav button {
         padding: 0.5rem 1rem;
         cursor: pointer;
@@ -386,19 +452,19 @@
         font-weight: 500;
         border: 1px solid #2d8cf0;
     }
-    
+
     .tab-nav button:hover {
         background: #2d8cf0;
         color: white;
         transform: translateY(-1px);
     }
-    
+
     .tab-nav button.active {
         background: #2d8cf0;
         color: white;
         box-shadow: 0 4px 12px rgba(45, 140, 240, 0.4);
     }
-    
+
     .tab-content {
         opacity: 0;
         visibility: hidden;
@@ -407,12 +473,13 @@
         transition: all 0.4s ease;
         transform: translateY(10px);
     }
-    
+
     .tab-content.active {
         opacity: 1;
         visibility: visible;
-        height: auto;
-        transform: translateY(0);
+        /* height: auto; */
+            height: 100%;
+            transform : unset;
     }
 
     /* Modal Añadir Usuarios */

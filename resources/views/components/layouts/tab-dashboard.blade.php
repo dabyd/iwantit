@@ -6,9 +6,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 <style>
 	.container {
-		max-width: 1200px;
+		    /* max-width: 1200px; */
 		margin: 0 auto;
 		padding: 0 20px;
+
+        /*    overflow: hidden;  */  // SOLO TIENE QUE ESTAR CUANDO ESTA EN LA PESTAÑAA HOTPOINTS EDITOR
 	}
 
 	.container-fluid {
@@ -440,7 +442,7 @@
 <script>
 	// Chart Configuration
 	const ctx = document.getElementById('clicksChart').getContext('2d');
-	
+
 	const chartData = {
 		labels: ['4/6/23', '4/7/23', '4/8/23', '4/9/23', '4/10/23', '4/11/23', '4/12/23', '4/13/23', '4/14/23', '4/15/23', '4/16/23', '4/17/23', '4/18/23'],
 		datasets: [
@@ -574,7 +576,7 @@
 				current = numericValue;
 				clearInterval(timer);
 			}
-			
+
 			if (finalValue.includes('%')) {
 				element.textContent = Math.round(current) + '%';
 			} else if (finalValue.includes('K')) {
@@ -597,7 +599,7 @@
 				current = numericValue;
 				clearInterval(timer);
 			}
-			
+
 			element.textContent = Math.round(current).toLocaleString('es-ES') + ' €';
 		}, 16);
 	}

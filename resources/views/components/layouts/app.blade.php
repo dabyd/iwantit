@@ -33,7 +33,7 @@
         <meta name="theme-color" content="#ffffff">
 
     </head>
-	<body onselectstart = 'return false'>
+	<body onselectstart = 'return false' >
         <main class="iwt-main">
             <x-layouts.header />
             <x-layouts.nav />
@@ -50,6 +50,7 @@
                 ?>
             </div>
             <x-layouts.footer />
+            <section id="iwtModalOverlay"></section>
         </main>
     </body>
 </html>

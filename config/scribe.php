@@ -228,7 +228,7 @@ return [
     |--------------------------------------------------------------------------
     */
 //    'logo' => asset('/img/logo_iwantit.png'),
-    'logo' => env('APP_URL', 'http://localhost') . '/img/logo_iwantit.png',
+    'logo' => env('APP_URL', 'http://localhost') . '/img/logo_iwi_peque.jpg',
 
     
     /*

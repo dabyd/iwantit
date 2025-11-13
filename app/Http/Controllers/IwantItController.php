@@ -11,7 +11,80 @@ use App\Models\License;
 use App\Http\Controllers\ProductController;
 
 class IwantitController extends Controller {
-    public function api_iwi( Request $request ) {
+    /**
+    * @hideFromAPIDocumentation
+    */
+    public function api_iwi_post( Request $request ) {
+        $this->api_iwi_get( $request );
+    }
+
+    /**
+     * Retrieves hotpoints (products) for a video at a specific timestamp.
+     *
+     * This endpoint returns a list of products detected in a video (`vid`) at a specific moment (`time`),
+     * as long as a valid and active API key (`key`) for the requested version is provided.
+     *
+     * There are different possible responses depending on the key and parameters provided:
+     * - If the [translate:key] is valid and active for the project, the list of products is returned.
+     * - If the [translate:key] is disabled for the project, a specific error message is returned.
+     * - If the [translate:key] is invalid or not active for the project, another error message is returned.
+     * - If the [translate:key] has expired, a different error message is also returned.
+     *
+     * __Example parameters__:
+     * - [translate:action]: get
+     * - [translate:vid]: 12
+     * - [translate:time]: 142.2
+     * - [translate:key]: validKeyForTestingOnly, disabledKeyForTestingOnly, invalidKeyForTestingOnly invalidKeyForProjectForTestingOnly, expiredProjectKeyForTestingOnly, or real key
+     *
+     * @queryParam action string required The action for get the data. Example: get
+     * @queryParam vid integer required The ID of the video to query. Example: 12
+     * @queryParam time float required The timestamp (in seconds) to query. Example: 142.2
+     * @queryParam key string required The authentication key (SHA-512). Example: validKeyForTestingOnly
+     *
+     * @response 200 {
+     *   "objects": [
+     *     {
+     *       "id": 1,
+     *       "pos_x": 0.5,
+     *       "pos_y": 0.5,
+     *       "name": "Smartphone XYZ",
+     *       "description": "A state-of-the-art smartphone.",
+     *       "image": "http://uat.i-want-it.es/uploads/product_image.jpg",
+     *       "url": "http://example.com/product/1",
+     *       "auto_open": 0,
+     *       "brand": "TechBrand",
+     *       "logo": "http://uat.i-want-it.es/uploads/brand_logo.png",
+     *       "brand_url": "http://example.com/brand",
+     *       "hotpoint_icon": "http://uat.i-want-it.es/uploads/hotpoint_icon.png"
+     *     }
+     *   ]
+     * }
+     *
+     * @response 401 {
+     *   "error": "The key does not exist or is incorrect"
+     * }
+     *
+     * @response 403 {
+     *   "error": "The key has been disabled, please contact the administrator"
+     * }
+     *
+     * @response 403 scenario="Key not valid for project" {
+     *   "error": "This key is not valid for this project, please contact the administrator"
+     * }
+     *
+     * @response 403 scenario="Key expired" {
+     *   "error": "The key has expired, please contact the administrator"
+     * }
+     *
+     * __Accepted test keys:__
+     * - "validKeyForTestingOnly": Valid and active key (200 OK response)
+     * - "disabledKeyForTestingOnly": Key disabled for this project (403 error)
+     * - "invalidKeyForTestingOnly": Incorrect key for this project (401 error)
+     * - "invalidKeyForProjectForTestingOnly": Key not valid for the requested project (403 error)
+     * - "expiredProjectKeyForTestingOnly": Key has expired (403 error)
+     */
+
+    public function api_iwi_get( Request $request ) {
         switch( $request->action ) {
             case 'load':
                 echo $this->load_hotpoints( $request->id );
@@ -113,7 +186,10 @@ class IwantitController extends Controller {
         echo json_encode("OK");
 //                else echo json_encode("BAD");
         die();
-/*
+
+
+
+        /*
     $result = mysqli_query($conn, "replace into datos_editor_hotpoints (nombre, data) values ('".addslashes(trim($nombre))."', '".addslashes(trim($data))."')");
     if($result) {
 //            $result = mysqli_query($conn, "select @@identity");       // Devuelve el último id introducido.
@@ -219,17 +295,43 @@ class IwantitController extends Controller {
             ])
             ->get()
             ->toArray();
-        print_r( $license );
-        die();
-        $force_test = false;
-        if ( 'onlyForTestint' == $request->key ) {
-            $request->vid = 12;
-            $force_test = true;
+        $tmp = [
+            'id' => 25,
+            'name' => 'Emilys_demo1',
+            'versions_id' => '12',
+            'disabled' => 0,
+            'key' => 'xxxx'
+        ];
+
+        switch ( $request->key ) {
+            case 'validKeyForTestingOnly':
+                $license = [ (object) $tmp ];
+                break;
+            
+            case 'disabledKeyForTestingOnly':
+                $license = [ (object) $tmp ];
+                $license[0]->disabled = 1;
+                break;
+
+             case 'invalidKeyForTestingOnly':
+                $license = [];
+                break;
+                
+            case 'invalidKeyForProjectForTestingOnly':
+                echo json_encode( [ 'error' => 'This key is not valid for this project, please contact with the administrator' ] );
+                die();
+                break;
+
+            case 'expiredProjectKeyForTestingOnly':
+                echo json_encode( [ 'error' => 'The key has expired, please contact with the administrator' ] );
+                die();
+                break;
         }
+
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: *');
         header('Access-Control-Allow-Headers: *');
-        if ( count( $license ) > 0 || $force_test) {
+        if ( count( $license ) > 0 ) {
             //
             // La licencia existe
             //

@@ -3,35 +3,6 @@ description: ''
 endpoints:
   -
     httpMethods:
-      - POST
-    uri: api-iwi
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: null
-      subgroupDescription: null
-      title: ''
-      description: ''
-      authenticated: false
-      deprecated: false
-      custom: []
-    headers: []
-    urlParameters: []
-    cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
       - GET
     uri: api-iwi
     metadata:
@@ -39,20 +10,145 @@ endpoints:
       groupDescription: ''
       subgroup: null
       subgroupDescription: null
-      title: ''
-      description: ''
+      title: 'Retrieves hotpoints (products) for a video at a specific timestamp.'
+      description: |-
+        This endpoint returns a list of products detected in a video (`vid`) at a specific moment (`time`),
+        as long as a valid and active API key (`key`) for the requested version is provided.
+
+        There are different possible responses depending on the key and parameters provided:
+        - If the [translate:key] is valid and active for the project, the list of products is returned.
+        - If the [translate:key] is disabled for the project, a specific error message is returned.
+        - If the [translate:key] is invalid or not active for the project, another error message is returned.
+        - If the [translate:key] has expired, a different error message is also returned.
+
+        __Example parameters__:
+        - [translate:action]: get
+        - [translate:vid]: 12
+        - [translate:time]: 142.2
+        - [translate:key]: validKeyForTestingOnly, disabledKeyForTestingOnly, invalidKeyForTestingOnly invalidKeyForProjectForTestingOnly, expiredProjectKeyForTestingOnly, or real key
       authenticated: false
       deprecated: false
       custom: []
     headers: []
     urlParameters: []
     cleanUrlParameters: []
-    queryParameters: []
-    cleanQueryParameters: []
+    queryParameters:
+      action:
+        name: action
+        description: 'The action for get the data.'
+        required: true
+        example: get
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      vid:
+        name: vid
+        description: 'The ID of the video to query.'
+        required: true
+        example: 12
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      time:
+        name: time
+        description: 'The timestamp (in seconds) to query.'
+        required: true
+        example: 142.2
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      key:
+        name: key
+        description: 'The authentication key (SHA-512).'
+        required: true
+        example: validKeyForTestingOnly
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      action: get
+      vid: 12
+      time: 142.2
+      key: validKeyForTestingOnly
     bodyParameters: []
     cleanBodyParameters: []
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "objects": [
+              {
+                "id": 1,
+                "pos_x": 0.5,
+                "pos_y": 0.5,
+                "name": "Smartphone XYZ",
+                "description": "A state-of-the-art smartphone.",
+                "image": "http://uat.i-want-it.es/uploads/product_image.jpg",
+                "url": "http://example.com/product/1",
+                "auto_open": 0,
+                "brand": "TechBrand",
+                "logo": "http://uat.i-want-it.es/uploads/brand_logo.png",
+                "brand_url": "http://example.com/brand",
+                "hotpoint_icon": "http://uat.i-want-it.es/uploads/hotpoint_icon.png"
+              }
+            ]
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "error": "The key does not exist or is incorrect"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "error": "The key has been disabled, please contact the administrator"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "error": "This key is not valid for this project, please contact the administrator"
+          }
+        headers: []
+        description: 'Key not valid for project'
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "error": "The key has expired, please contact the administrator"
+          }
+
+          __Accepted test keys:__
+          - "validKeyForTestingOnly": Valid and active key (200 OK response)
+          - "disabledKeyForTestingOnly": Key disabled for this project (403 error)
+          - "invalidKeyForTestingOnly": Incorrect key for this project (401 error)
+          - "invalidKeyForProjectForTestingOnly": Key not valid for the requested project (403 error)
+          - "expiredProjectKeyForTestingOnly": Key has expired (403 error)
+        headers: []
+        description: 'Key expired'
+        custom: []
     responseFields: []
     auth: []
     controller: null

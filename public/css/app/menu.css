@@ -10,6 +10,10 @@
     overflow-y: auto;
 }
 
+.project-detail-page .iwt-menu {
+    display: none !important;
+}
+
 .iwt-options {
 
     height: 100%;

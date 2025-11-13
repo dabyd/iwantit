@@ -113,7 +113,8 @@ class ControlGeneral {
 
             if(this.video.duration && (e.target == this.barraTiempoGeneral || e.target == this.cursorTiempoGeneral)) {
                 this.cursorArrastrado = true;
-                let offX = e.clientX - this.barraTiempoGeneral.offsetLeft;
+                const rect = this.barraTiempoGeneral.getBoundingClientRect(); // 1. Obtenemos el rectángulo actual
+                let offX = e.clientX - rect.left; // <-- 2. Usamos el borde izquierdo ABSOLUTO (rect.left)
                 if(offX < 0) offX = 0;
                 if(offX > this.barraTiempoGeneral.clientWidth) offX = this.barraTiempoGeneral.clientWidth;
                 this.video.currentTime = offX * this.video.duration / this.barraTiempoGeneral.clientWidth;
@@ -129,7 +130,9 @@ class ControlGeneral {
             if(Producto.procesaEventoMarcadorProductoSobreVideo(e)) return;
 
             if(this.cursorArrastrado) {
-                let offX = e.clientX - this.barraTiempoGeneral.offsetLeft;
+
+                const rect = this.barraTiempoGeneral.getBoundingClientRect(); // 1. Obtenemos el rectángulo actual
+                let offX = e.clientX - rect.left; // <-- 2. Usamos el borde izquierdo ABSOLUTO (rect.left)sss
                 if(offX < 0) offX = 0;
                 if(offX > this.barraTiempoGeneral.clientWidth) offX = this.barraTiempoGeneral.clientWidth;
                 this.video.currentTime = offX * this.video.duration / this.barraTiempoGeneral.clientWidth;
@@ -264,6 +267,7 @@ class ControlGeneral {
     //  interferir con el usuario).
 
     process() {
+
         if(!this.video.duration) return;
         this.cursorTiempoGeneral.style.left =
             this.getPosicionBarraSegunTiempo(this.video.currentTime, this.barraTiempoGeneral.clientWidth, this.video.duration) + "px";
@@ -372,7 +376,11 @@ class Producto {
 
         contenedor.scrollTop = 0;
 
-        prepareEvents(contenedor);
+        /* HACK-002: En principio, entiendo que lo que hay que pasar a 'prepareEvents' no es "contenedor", porque "contenedor" es el contenedor
+            de todos los productos, sino unicamente el contenedor del producto actual, que se crea dinamicamente en la constante 'nuevoProducto'
+        */
+        prepareEvents(nuevoProducto);
+        // prepareEvents(contenedor);
     }
 
     // Actualiza un segmento o genera uno nuevo sobre la barra de tiempo basándose en los tiempos indicados (en segundos).
@@ -1289,32 +1297,62 @@ function cambiaNombre(resultado) {
 // Productos vinculados
 //
 function prepareEvents(contenedor) {
+// console.log(contenedor)
     Array.prototype.forEach.call(contenedor.querySelectorAll('.label-product-hotpoint'), (e) => {
-        e.removeEventListener('click', update_product_hotpoint, true);
+
+        // e.removeEventListener('click', update_product_hotpoint, true);
         e.addEventListener('click', update_product_hotpoint, true);
         Array.prototype.forEach.call(e.parentElement.querySelectorAll('.product-hotpoint-element'), (o) => {
-            o.removeEventListener('click', update_product_hotpoint_option, true);
+            // o.removeEventListener('click', update_product_hotpoint_option, true);
             o.addEventListener('click', update_product_hotpoint_option, true);
         })
     })
+
+    const productListModal = contenedor.querySelector(".product-hotpoint");
+    const closeButton = productListModal.querySelector(".close-button");
+    closeButton.addEventListener("click",
+        (e)=> {
+            contenedor.querySelector(".product-hotpoint").classList.remove('show');
+            document.getElementById("iwtModalOverlay").classList.remove("show");
+        }
+    );
 }
+
 function update_product_hotpoint(e) {
-    e.target.style.display = 'none';
-    e.target.parentElement.querySelector('.product-hotpoint').style.display = 'block';
+    e.target.parentElement.querySelector('.product-hotpoint').classList.add('show');
+    document.getElementById("iwtModalOverlay").classList.add("show");
+
+        const selectedProduct = e.target.parentElement.querySelector('.product-hotpoint .product-hotpoint-element.selected');
+        if(selectedProduct) {
+            selectedProduct.scrollIntoView({
+                // 'start' intenta colocar el elemento activo en la parte superior del contenedor.
+                block: 'center',
+                // Esto es opcional, pero hace el movimiento más suave y visible
+                behavior: 'smooth'
+            });
+        }
+        else {
+            e.target.parentElement.querySelector('.product-hotpoint .product-hotpoint-scroll').scrollTop = 0;
+        }
 }
+
 function update_product_hotpoint_option(e) {
+
     e = e.target;
-    parent = e.parentElement.parentElement;
-    parent.querySelector('.product-hotpoint').style.display = 'none';
+    parent = e.parentElement.parentElement.parentElement; // Obtiene una referencia a <div class="product-hotpoint">
+
+    parent.classList.remove('show');
+    document.getElementById("iwtModalOverlay").classList.remove("show");
+
     Array.prototype.forEach.call(parent.querySelectorAll('.product-hotpoint-element'), (o) => {
         o.classList.remove('selected');
     })
     e.classList.add('selected');
-    let elem_id = parent.parentElement.dataset.elemento;
-    parent.querySelector('.product-hotpoint').style.display = 'none';
-    parent.querySelector('.label-product-hotpoint').innerHTML = e.innerHTML;
-    parent.querySelector('[name="product-selected"]').value = e.dataset.value;
-    parent.querySelector('.label-product-hotpoint').style.display = 'block';
+
+    let elem_id = parent.parentElement.parentElement.dataset.elemento; // Obtiene el id del elemento de aquí <div class="producto" data-elemento="{{element-id}}">
+
+    parent.previousElementSibling.innerHTML = e.innerHTML; // Copia el nombre del producto seleccionado en <p class="label-product-hotpoint">{{productName}}</p>
+    parent.nextElementSibling.value = e.dataset.value; // Asigna el id del producto seleccionado a <input type="hidden" name="product-selected" value="{{product-id}}">
     Producto.productos[ elem_id ].producto = e.dataset.value;
 //    console.log(Producto.productos[elem_id]);
 }

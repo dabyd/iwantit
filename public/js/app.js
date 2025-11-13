@@ -52,43 +52,60 @@ document.addEventListener("readystatechange", function () {
                     tabs.push({ element: tab, id: `tab-${i}` });
                 }
             }
-        
+
             if (tabs.length === 0) return;
-        
+
             const nav = document.createElement('div');
             nav.classList.add('tab-nav');
-        
+
+            let button2 = document.createElement('button');
+            button2.innerText = '<';
+            button2.dataset.target = 0;
+            button2.addEventListener('click', (e) => {                
+                document.querySelector('body').classList.toggle('project-detail-page')
+                e.target.classList.toggle('iwi-rotated')
+            });
+            nav.appendChild(button2);
+
             tabs.forEach((tab, index) => {
                 const h2 = tab.element.querySelector('h2');
                 const label = h2 ? h2.innerText.trim() : `Tab ${index + 1}`;
-        
+
                 const button = document.createElement('button');
                 button.innerText = label;
                 button.dataset.target = tab.id;
-        
+
                 // if (h2) h2.style.display = 'none'; // ocultar el h2 del contenido
-        
+
                 if (index === 0) {
                     button.classList.add('active');
                     tab.element.classList.add('active');
                 }
-        
-                button.addEventListener('click', () => {
+
+                button.addEventListener('click', (e) => {
                     // Ocultar todas las pestañas
                     tabs.forEach(t => t.element.classList.remove('active'));
                     document.querySelectorAll('.tab-nav button').forEach(btn => btn.classList.remove('active'));
-        
+
+                    // HACK-001: Añade a .iwt-admin la clase "hotpoints-editor-opened" si se abre
+                    // la pestaña 4 (data-target="tab-4") y se elimina si se abre cualquier otra pestaña.
+                    // CSS: public\css\app\admin.css
+                    document.querySelector(".iwt-admin")?.classList.toggle("hotpoints-editor-opened", e.target.dataset.target==="tab-4" );
+                    //
+
                     // Mostrar la activa
                     tab.element.classList.add('active');
                     button.classList.add('active');
                 });
-        
+
                 nav.appendChild(button);
                 tab.element.classList.add('tab-content');
             });
-        
+
             tabs[0].element.parentNode.insertBefore(nav, tabs[0].element);
         }
+
+
 
         //
         // Actualización de permisos de usuarios / proyectos
@@ -112,7 +129,7 @@ document.addEventListener("readystatechange", function () {
                     document.body.appendChild(confirmModal);
                 });
             });
-        
+
         }
 
         // Cambio de rol
@@ -311,7 +328,7 @@ function lanza_ajax_deteccion(e) {
                     });
                     html += `<tr class="table-secondary fw-bold detected_item_group" data-grupo="${groupId}">
                             <td colspan="6">
-                                <input name="detection_id" type="checkbox" value="${todoelgrupo}"> ${clase} #${groupId} 
+                                <input name="detection_id" type="checkbox" value="${todoelgrupo}"> ${clase} #${groupId}
                                 (TC ${frameInicio}-${frameFin} · ${total} elements)
                                 <span class="detected_group_see_more">(show detections)</span>
                             </td>
@@ -423,7 +440,7 @@ function check_selections() {
     }
     // escucha cambios en todos los checkboxes
     detections.forEach(ch => ch.addEventListener('change', updateButton));
-    products.forEach(ch => ch.addEventListener('change', updateButton));        
+    products.forEach(ch => ch.addEventListener('change', updateButton));
 
     // estado inicial
     updateButton();
@@ -446,7 +463,7 @@ function getDetectedItemValue(obj) {
     current = obj.previousSibling;
 //    current = getParentDetectedItem(obj);
     let tmp = current.querySelector('[name="detection_id"');
-    
+
 
     console.log('getDetectedItemValue')
     console.log('================================================')
@@ -831,7 +848,7 @@ function showDeleteModal(userId, projectId) {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector("input[name='_token']").value,                
+                'X-CSRF-TOKEN': document.querySelector("input[name='_token']").value,
             },
             body: JSON.stringify({ user_id: userId })
         })
@@ -1178,7 +1195,7 @@ function proyectos_objetos() {
                 proyectos_objetos_row();
             });
         });
-        
+
         proyectos_objetos_row();
     }
 }

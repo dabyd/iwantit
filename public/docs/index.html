@@ -31,7 +31,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://demo2-iwi.test";
+        var tryItOutBaseUrl = "https://demo2-iwi.test";
         var useCsrf = Boolean();
         var csrfUrl = "";
     </script>
@@ -54,7 +54,7 @@
     </span>
 </a>
 <div class="tocify-wrapper">
-            <img src="http://demo2-iwi.test/img/logo_iwantit.png" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
+            <img src="https://demo2-iwi.test/img/logo_iwi_peque.jpg" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
     
             <div class="lang-selector">
                                             <button type="button" class="lang-button" data-language-name="bash">bash</button>
@@ -73,40 +73,40 @@
                     <a href="#introduction">Introduction</a>
                 </li>
                             </ul>
-                    <ul id="tocify-header-bienvenido-a-la-api-i-want-it" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="bienvenido-a-la-api-i-want-it">
-                    <a href="#bienvenido-a-la-api-i-want-it">Bienvenido a la API I Want It</a>
+                    <ul id="tocify-header-welcome-to-the-i-want-it-api" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="welcome-to-the-i-want-it-api">
+                    <a href="#welcome-to-the-i-want-it-api">Welcome to the I Want It API</a>
                 </li>
-                                    <ul id="tocify-subheader-bienvenido-a-la-api-i-want-it" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="introduccion">
-                                <a href="#introduccion">Introducción</a>
+                                    <ul id="tocify-subheader-welcome-to-the-i-want-it-api" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="introduction">
+                                <a href="#introduction">Introduction</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="url-base">
-                                <a href="#url-base">URL Base</a>
+                                                                                <li class="tocify-item level-2" data-unique="base-url">
+                                <a href="#base-url">Base URL</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="autenticacion">
-                                <a href="#autenticacion">Autenticación</a>
+                                                                                <li class="tocify-item level-2" data-unique="authentication">
+                                <a href="#authentication">Authentication</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="formato-de-respuesta">
-                                <a href="#formato-de-respuesta">Formato de respuesta</a>
+                                                                                <li class="tocify-item level-2" data-unique="response-format">
+                                <a href="#response-format">Response format</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="codigos-de-estado-http">
-                                <a href="#codigos-de-estado-http">Códigos de estado HTTP</a>
+                                                                                <li class="tocify-item level-2" data-unique="http-status-codes">
+                                <a href="#http-status-codes">HTTP Status Codes</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="rate-limiting">
                                 <a href="#rate-limiting">Rate Limiting</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="metodos-http-soportados">
-                                <a href="#metodos-http-soportados">Métodos HTTP soportados</a>
+                                                                                <li class="tocify-item level-2" data-unique="supported-http-methods">
+                                <a href="#supported-http-methods">Supported HTTP Methods</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="versionado">
-                                <a href="#versionado">Versionado</a>
+                                                                                <li class="tocify-item level-2" data-unique="versioning">
+                                <a href="#versioning">Versioning</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="entorno-de-pruebas">
-                                <a href="#entorno-de-pruebas">Entorno de pruebas</a>
+                                                                                <li class="tocify-item level-2" data-unique="testing-environment">
+                                <a href="#testing-environment">Testing Environment</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="soporte">
-                                <a href="#soporte">Soporte</a>
+                                                                                <li class="tocify-item level-2" data-unique="support">
+                                <a href="#support">Support</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="changelog">
                                 <a href="#changelog">Changelog</a>
@@ -123,11 +123,8 @@
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-iwi">
-                                <a href="#endpoints-POSTapi-iwi">POST api-iwi</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-iwi">
-                                <a href="#endpoints-GETapi-iwi">GET api-iwi</a>
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-iwi">
+                                <a href="#endpoints-GETapi-iwi">Retrieves hotpoints (products) for a video at a specific timestamp.</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -140,7 +137,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 6, 2025</li>
+        <li>Last updated: November 11, 2025</li>
     </ul>
 </div>
 
@@ -148,130 +145,126 @@
     <div class="dark-box"></div>
     <div class="content">
         <h1 id="introduction">Introduction</h1>
-<p>API REST para consultar productos detectados en videos mediante IA</p>
-<aside>
-    <strong>Base URL</strong>: <code>http://demo2-iwi.test</code>
-</aside>
-<h1 id="bienvenido-a-la-api-i-want-it">Bienvenido a la API I Want It</h1>
-<h2 id="introduccion">Introducción</h2>
-<p>La <strong>API I Want It</strong> es un servicio REST que permite consultar información sobre productos detectados en videos mediante un sistema de reconocimiento por IA. Esta API está diseñada para integrarse con sistemas de análisis de contenido audiovisual.</p>
-<h2 id="url-base">URL Base</h2>
-<pre><code>http://uat.i-want-it.es/docs</code></pre>
-<p>Para producción, la URL será proporcionada por el equipo técnico.</p>
-<h2 id="autenticacion">Autenticación</h2>
-<p>Esta API utiliza un sistema de autenticación basado en <strong>claves hash SHA-512</strong>. Cada petición debe incluir los siguientes parámetros de autenticación:</p>
+<p>REST API to query products detected in videos using AI</p>
+<h1 id="welcome-to-the-i-want-it-api">Welcome to the I Want It API</h1>
+<h2 id="introduction">Introduction</h2>
+<p>The <strong>I Want It API</strong> is a REST service that allows querying information about products detected in videos through an AI recognition system. This API is designed to integrate with audiovisual content analysis systems.</p>
+<h2 id="base-url">Base URL</h2>
+<pre><code>http://uat.i-want-it.es/</code></pre>
+<p>For production, the URL will be provided by the technical team.</p>
+<h2 id="authentication">Authentication</h2>
+<p>This API uses an authentication system based on <strong>SHA-512 hash keys</strong>. Each request must include the following authentication parameters:</p>
+<p><strong>Authentication &amp; Context Parameters:</strong></p>
 <ul>
-<li><strong>key</strong>: Clave de autenticación única generada mediante hash SHA-512</li>
-<li><strong>time</strong>: Timestamp que indica el momento de la petición</li>
-<li><strong>vid</strong>: Identificador único del video o recurso</li>
+<li><strong>key</strong>: Securely generated unique identifier using SHA-512 hash encryption for request validation</li>
+<li><strong>time</strong>: Precise timestamp (measured in seconds and miliseconds) defining the temporal location within the project for object detection analysis</li>
+<li><strong>vid</strong>: Unique resource identifier specifying the target project/video for processing</li>
 </ul>
-<h3 id="ejemplo-de-autenticacion">Ejemplo de autenticación</h3>
+<h3 id="authentication-example">Authentication example</h3>
 <pre><code>GET /api-iwi?action=get&amp;time=142.2&amp;key=b6a6cba60643cc188730bb1e80110d79...&amp;vid=12</code></pre>
-<p>⚠️ <strong>Importante</strong>: La clave (key) debe mantenerse segura y nunca debe compartirse públicamente.</p>
-<h2 id="formato-de-respuesta">Formato de respuesta</h2>
-<p>Todas las respuestas de la API están en formato <strong>JSON</strong> y siguen esta estructura:</p>
-<h3 id="respuesta-exitosa-200">Respuesta exitosa (200)</h3>
+<p>⚠️ <strong>Important</strong>: The key must be kept secure and should never be shared publicly.</p>
+<h2 id="response-format">Response format</h2>
+<p>All API responses are in <strong>JSON</strong> format and follow this structure:</p>
+<h3 id="successful-response-200">Successful response (200)</h3>
 <pre><code>{
   "success": true,
   "data": {
-    ...datos solicitados...
+    ...requested data...
   },
-  "message": "Mensaje descriptivo"
+  "message": "Descriptive message"
 }</code></pre>
-<h3 id="respuesta-de-error-4xx-5xx">Respuesta de error (4xx, 5xx)</h3>
+<h3 id="error-response-4xx-5xx">Error response (4xx, 5xx)</h3>
 <pre><code>{
   "success": false,
-  "message": "Descripción del error",
+  "message": "Error description",
   "errors": {
-    ...detalles específicos...
+    ...specific details...
   }
 }</code></pre>
-<h2 id="codigos-de-estado-http">Códigos de estado HTTP</h2>
+<h2 id="http-status-codes">HTTP Status Codes</h2>
 <table>
 <thead>
 <tr>
-<th>Código</th>
-<th>Significado</th>
-<th>Descripción</th>
+<th>Code</th>
+<th>Meaning</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>200</td>
 <td>OK</td>
-<td>La petición se procesó correctamente</td>
+<td>Request processed successfully</td>
 </tr>
 <tr>
 <td>400</td>
 <td>Bad Request</td>
-<td>Faltan parámetros o son inválidos</td>
+<td>Missing or invalid parameters</td>
 </tr>
 <tr>
 <td>401</td>
 <td>Unauthorized</td>
-<td>Clave de autenticación inválida o expirada</td>
+<td>Invalid or expired authentication key</td>
 </tr>
 <tr>
 <td>404</td>
 <td>Not Found</td>
-<td>Recurso no encontrado</td>
+<td>Resource not found</td>
 </tr>
 <tr>
 <td>429</td>
 <td>Too Many Requests</td>
-<td>Límite de peticiones excedido</td>
+<td>Rate limit exceeded</td>
 </tr>
 <tr>
 <td>500</td>
 <td>Internal Server Error</td>
-<td>Error en el servidor</td>
+<td>Server error</td>
 </tr>
 </tbody>
 </table>
 <h2 id="rate-limiting">Rate Limiting</h2>
-<p>Para garantizar la disponibilidad del servicio, se aplican los siguientes límites:</p>
+<p>To ensure service availability, the following limits are applied:</p>
 <ul>
-<li><strong>60 peticiones por minuto</strong> por clave de autenticación</li>
-<li><strong>1000 peticiones por hora</strong> por clave de autenticación</li>
+<li><strong>60 requests per minute</strong> per authentication key</li>
+<li><strong>1000 requests per hour</strong> per authentication key</li>
 </ul>
-<p>Cuando se excede el límite, la API devolverá un código 429.</p>
-<h2 id="metodos-http-soportados">Métodos HTTP soportados</h2>
-<p>La API soporta los siguientes métodos HTTP:</p>
+<p>When the limit is exceeded, the API will return a 429 code.</p>
+<h2 id="supported-http-methods">Supported HTTP Methods</h2>
+<p>The API supports the following HTTP methods:</p>
 <ul>
-<li><strong>GET</strong>: Para consultas de lectura</li>
-<li><strong>POST</strong>: Para consultas con parámetros en el body</li>
+<li><strong>GET</strong>: For read queries</li>
 </ul>
-<h2 id="versionado">Versionado</h2>
-<p>Actualmente la API está en su versión inicial. Futuras versiones se indicarán mediante prefijos en la URL:</p>
+<h2 id="versioning">Versioning</h2>
+<p>The API is currently in its initial version. Future versions will be indicated through URL prefixes:</p>
 <ul>
-<li>v1: /api-iwi (actual)</li>
-<li>v2: /api/v2/iwi (futura)</li>
+<li>v1: /api-iwi (current)</li>
+<li>v2: /api/v2/iwi (future)</li>
 </ul>
-<h2 id="entorno-de-pruebas">Entorno de pruebas</h2>
-<p>Para realizar pruebas, puedes usar:</p>
+<h2 id="testing-environment">Testing Environment</h2>
+<p>For testing, you can use:</p>
 <ul>
-<li><strong>Postman</strong>: Importa la colección desde public/docs/collection.json</li>
-<li><strong>cURL</strong>: Usa los ejemplos proporcionados en cada endpoint</li>
-<li><strong>Navegador</strong>: Accede a la documentación interactiva en /docs</li>
+<li><strong>Postman</strong>: Import the collection from public/docs/collection.json</li>
+<li><strong>cURL</strong>: Use the examples provided in each endpoint</li>
+<li><strong>Browser</strong>: Access the interactive documentation at /docs</li>
 </ul>
-<h2 id="soporte">Soporte</h2>
-<p>Si tienes problemas o preguntas sobre la API:</p>
+<h2 id="support">Support</h2>
+<p>If you have problems or questions about the API:</p>
 <ul>
 <li>📧 Email: david.herrero@i-want-it.es</li>
-<li>📚 Documentación: <a href="http://uat.i-want-it.es/docs">http://uat.i-want-it.es/docs</a></li>
-<li>🐛 Reportar bugs: Sistema de tickets interno</li>
+<li>📚 Documentation: <a href="http://uat.i-want-it.es/docs">http://uat.i-want-it.es/docs</a></li>
+<li>🐛 Bug reports: Internal ticket system</li>
 </ul>
 <h2 id="changelog">Changelog</h2>
-<h3 id="version-100-actual">Versión 1.0.0 (Actual)</h3>
+<h3 id="version-100-current">Version 1.0.0 (Current)</h3>
 <ul>
-<li>✨ Lanzamiento inicial de la API</li>
-<li>✅ Endpoint GET /api-iwi</li>
-<li>✅ Endpoint POST /api-iwi</li>
-<li>✅ Sistema de autenticación por key</li>
-<li>✅ Soporte para consulta de productos por timestamp</li>
+<li>✨ Initial API release</li>
+<li>✅ GET /api-iwi endpoint</li>
+<li>✅ Key-based authentication system</li>
+<li>✅ Support for product queries by timestamp</li>
 </ul>
 <hr />
-<p><strong>Última actualización</strong>: Octubre 2025</p>
+<p><strong>Last update</strong>: October 2025</p>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
@@ -280,106 +273,30 @@
 
     
 
-                                <h2 id="endpoints-POSTapi-iwi">POST api-iwi</h2>
+                                <h2 id="endpoints-GETapi-iwi">Retrieves hotpoints (products) for a video at a specific timestamp.</h2>
 
 <p>
 </p>
 
-
-
-<span id="example-requests-POSTapi-iwi">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://demo2-iwi.test/api-iwi"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://demo2-iwi.test/api-iwi"
-);
-
-fetch(url, {
-    method: "POST",
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://demo2-iwi.test/api-iwi';
-$response = $client-&gt;post($url);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://demo2-iwi.test/api-iwi'
-response = requests.request('POST', url, )
-response.json()</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-iwi">
-</span>
-<span id="execution-results-POSTapi-iwi" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-iwi"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-iwi"
-      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
-</span>
-<span id="execution-error-POSTapi-iwi" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-iwi">
-
-Tip: Check that you&#039;re properly connected to the network.
-If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
-You can check the Dev Tools console for debugging information.</code></pre>
-</span>
-<form id="form-POSTapi-iwi" data-method="POST"
-      data-path="api-iwi"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-iwi', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-iwi"
-                    onclick="tryItOut('POSTapi-iwi');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-iwi"
-                    onclick="cancelTryOut('POSTapi-iwi');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-iwi"
-                    data-initial-text="Send Request 💥"
-                    data-loading-text="⏱ Sending..."
-                    hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api-iwi</code></b>
-        </p>
-                    </form>
-
-                    <h2 id="endpoints-GETapi-iwi">GET api-iwi</h2>
-
-<p>
-</p>
-
-
+<p>This endpoint returns a list of products detected in a video (<code>vid</code>) at a specific moment (<code>time</code>),
+as long as a valid and active API key (<code>key</code>) for the requested version is provided.</p>
+<p>There are different possible responses depending on the key and parameters provided:</p>
+<ul>
+<li>If the [translate:key] is valid and active for the project, the list of products is returned.</li>
+<li>If the [translate:key] is disabled for the project, a specific error message is returned.</li>
+<li>If the [translate:key] is invalid or not active for the project, another error message is returned.</li>
+<li>If the [translate:key] has expired, a different error message is also returned.</li>
+</ul>
+<p><strong>Example parameters</strong>:</p>
+<ul>
+<li>
+</li>
+<li>
+</li>
+<li>
+</li>
+<li>[translate:key]: validKeyForTestingOnly, disabledKeyForTestingOnly, invalidKeyForTestingOnly invalidKeyForProjectForTestingOnly, expiredProjectKeyForTestingOnly, or real key</li>
+</ul>
 
 <span id="example-requests-GETapi-iwi">
 <blockquote>Example request:</blockquote>
@@ -387,13 +304,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://demo2-iwi.test/api-iwi"</code></pre></div>
+    --get "https://demo2-iwi.test/api-iwi?action=get&amp;vid=12&amp;time=142.2&amp;key=validKeyForTestingOnly"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://demo2-iwi.test/api-iwi"
+    "https://demo2-iwi.test/api-iwi"
 );
+
+const params = {
+    "action": "get",
+    "vid": "12",
+    "time": "142.2",
+    "key": "validKeyForTestingOnly",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 fetch(url, {
     method: "GET",
@@ -402,8 +328,18 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://demo2-iwi.test/api-iwi';
-$response = $client-&gt;get($url);
+$url = 'https://demo2-iwi.test/api-iwi';
+$response = $client-&gt;get(
+    $url,
+    [
+        'query' =&gt; [
+            'action' =&gt; 'get',
+            'vid' =&gt; '12',
+            'time' =&gt; '142.2',
+            'key' =&gt; 'validKeyForTestingOnly',
+        ],
+    ]
+);
 $body = $response-&gt;getBody();
 print_r(json_decode((string) $body));</code></pre></div>
 
@@ -412,13 +348,86 @@ print_r(json_decode((string) $body));</code></pre></div>
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://demo2-iwi.test/api-iwi'
-response = requests.request('GET', url, )
+url = 'https://demo2-iwi.test/api-iwi'
+params = {
+  'action': 'get',
+  'vid': '12',
+  'time': '142.2',
+  'key': 'validKeyForTestingOnly',
+}
+response = requests.request('GET', url, params=params)
 response.json()</code></pre></div>
 
 </span>
 
 <span id="example-responses-GETapi-iwi">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;objects&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;pos_x&quot;: 0.5,
+            &quot;pos_y&quot;: 0.5,
+            &quot;name&quot;: &quot;Smartphone XYZ&quot;,
+            &quot;description&quot;: &quot;A state-of-the-art smartphone.&quot;,
+            &quot;image&quot;: &quot;http://uat.i-want-it.es/uploads/product_image.jpg&quot;,
+            &quot;url&quot;: &quot;http://example.com/product/1&quot;,
+            &quot;auto_open&quot;: 0,
+            &quot;brand&quot;: &quot;TechBrand&quot;,
+            &quot;logo&quot;: &quot;http://uat.i-want-it.es/uploads/brand_logo.png&quot;,
+            &quot;brand_url&quot;: &quot;http://example.com/brand&quot;,
+            &quot;hotpoint_icon&quot;: &quot;http://uat.i-want-it.es/uploads/hotpoint_icon.png&quot;
+        }
+    ]
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;The key does not exist or is incorrect&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;The key has been disabled, please contact the administrator&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Key not valid for project):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;error&quot;: &quot;This key is not valid for this project, please contact the administrator&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Key expired):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+  &quot;error&quot;: &quot;The key has expired, please contact the administrator&quot;
+}
+
+__Accepted test keys:__
+- &quot;validKeyForTestingOnly&quot;: Valid and active key (200 OK response)
+- &quot;disabledKeyForTestingOnly&quot;: Key disabled for this project (403 error)
+- &quot;invalidKeyForTestingOnly&quot;: Incorrect key for this project (401 error)
+- &quot;invalidKeyForProjectForTestingOnly&quot;: Key not valid for the requested project (403 error)
+- &quot;expiredProjectKeyForTestingOnly&quot;: Key has expired (403 error)</code>
+ </pre>
     </span>
 <span id="execution-results-GETapi-iwi" hidden>
     <blockquote>Received response<span
@@ -466,7 +475,52 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <small class="badge badge-green">GET</small>
             <b><code>api-iwi</code></b>
         </p>
-                    </form>
+                        <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>action</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="action"                data-endpoint="GETapi-iwi"
+               value="get"
+               data-component="query">
+    <br>
+<p>The action for get the data. Example: <code>get</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>vid</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="vid"                data-endpoint="GETapi-iwi"
+               value="12"
+               data-component="query">
+    <br>
+<p>The ID of the video to query. Example: <code>12</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>time</code></b>&nbsp;&nbsp;
+<small>number</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="time"                data-endpoint="GETapi-iwi"
+               value="142.2"
+               data-component="query">
+    <br>
+<p>The timestamp (in seconds) to query. Example: <code>142.2</code></p>
+            </div>
+                                    <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>key</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="key"                data-endpoint="GETapi-iwi"
+               value="validKeyForTestingOnly"
+               data-component="query">
+    <br>
+<p>The authentication key (SHA-512). Example: <code>validKeyForTestingOnly</code></p>
+            </div>
+                </form>
 
             
 

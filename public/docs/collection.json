@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/demo2-iwi.test"
+            "value": "https:\/\/demo2-iwi.test"
         }
     ],
     "info": {
         "name": "I Want It API Documentation",
-        "_postman_id": "c4797953-c438-415b-ae23-b03f97a4238a",
+        "_postman_id": "0997cabd-3bf4-47e8-a376-c1b1b376a098",
         "description": "API REST para consultar productos detectados en videos mediante IA",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json",
         "version": "1.0.0"
@@ -21,37 +21,38 @@
             "description": "",
             "item": [
                 {
-                    "name": "POST api-iwi",
+                    "name": "Retrieves hotpoints (products) for a video at a specific timestamp.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api-iwi",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api-iwi"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": []
-                },
-                {
-                    "name": "GET api-iwi",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api-iwi",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api-iwi"
+                            "query": [
+                                {
+                                    "key": "action",
+                                    "value": "get",
+                                    "description": "The action for get the data.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "vid",
+                                    "value": "12",
+                                    "description": "The ID of the video to query.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "time",
+                                    "value": "142.2",
+                                    "description": "The timestamp (in seconds) to query.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "validKeyForTestingOnly",
+                                    "description": "The authentication key (SHA-512).",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api-iwi?action=get&vid=12&time=142.2&key=validKeyForTestingOnly"
                         },
                         "method": "GET",
                         "header": [
@@ -61,12 +62,43 @@
                             }
                         ],
                         "body": null,
-                        "description": "",
+                        "description": "This endpoint returns a list of products detected in a video (`vid`) at a specific moment (`time`),\nas long as a valid and active API key (`key`) for the requested version is provided.\n\nThere are different possible responses depending on the key and parameters provided:\n- If the [translate:key] is valid and active for the project, the list of products is returned.\n- If the [translate:key] is disabled for the project, a specific error message is returned.\n- If the [translate:key] is invalid or not active for the project, another error message is returned.\n- If the [translate:key] has expired, a different error message is also returned.\n\n__Example parameters__:\n- [translate:action]: get\n- [translate:vid]: 12\n- [translate:time]: 142.2\n- [translate:key]: validKeyForTestingOnly, disabledKeyForTestingOnly, invalidKeyForTestingOnly invalidKeyForProjectForTestingOnly, expiredProjectKeyForTestingOnly, or real key",
                         "auth": {
                             "type": "noauth"
                         }
                     },
-                    "response": []
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n  \"objects\": [\n    {\n      \"id\": 1,\n      \"pos_x\": 0.5,\n      \"pos_y\": 0.5,\n      \"name\": \"Smartphone XYZ\",\n      \"description\": \"A state-of-the-art smartphone.\",\n      \"image\": \"http:\/\/uat.i-want-it.es\/uploads\/product_image.jpg\",\n      \"url\": \"http:\/\/example.com\/product\/1\",\n      \"auto_open\": 0,\n      \"brand\": \"TechBrand\",\n      \"logo\": \"http:\/\/uat.i-want-it.es\/uploads\/brand_logo.png\",\n      \"brand_url\": \"http:\/\/example.com\/brand\",\n      \"hotpoint_icon\": \"http:\/\/uat.i-want-it.es\/uploads\/hotpoint_icon.png\"\n    }\n  ]\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n  \"error\": \"The key does not exist or is incorrect\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\n  \"error\": \"The key has been disabled, please contact the administrator\"\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\n  \"error\": \"This key is not valid for this project, please contact the administrator\"\n}",
+                            "name": "Key not valid for project"
+                        },
+                        {
+                            "header": [],
+                            "code": 403,
+                            "body": "{\n  \"error\": \"The key has expired, please contact the administrator\"\n}\n\n__Accepted test keys:__\n- \"validKeyForTestingOnly\": Valid and active key (200 OK response)\n- \"disabledKeyForTestingOnly\": Key disabled for this project (403 error)\n- \"invalidKeyForTestingOnly\": Incorrect key for this project (401 error)\n- \"invalidKeyForProjectForTestingOnly\": Key not valid for the requested project (403 error)\n- \"expiredProjectKeyForTestingOnly\": Key has expired (403 error)",
+                            "name": "Key expired"
+                        }
+                    ]
                 }
             ]
         }

@@ -14,7 +14,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\HotpointController;
 
-use App\Http\Controllers\IwantitController;
+use App\Http\Controllers\IwantItController;
 use App\Models\Project;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\DatisionController;
@@ -133,8 +133,8 @@ Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 /**
  * Api REST Routing
  */
-Route::post('api-iwi', [IwantitController::class, 'api_iwi'])->name('api-iwi');
-Route::get('api-iwi', [IwantitController::class, 'api_iwi'])->name('api-iwi');
+Route::post('api-iwi', [IwantitController::class, 'api_iwi_post'])->name('api-iwi');
+Route::get('api-iwi', [IwantitController::class, 'api_iwi_get'])->name('api-iwi');
 // Route::get('api-iwi', [ IwantitController::class, 'not_allowed' ] )->name('api-iwi');
 
 //

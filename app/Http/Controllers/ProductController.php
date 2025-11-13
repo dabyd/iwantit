@@ -347,6 +347,13 @@ class ProductController extends Controller {
                 'force_nbsp' => true,
             ],
             [
+                'label' => 'Description',
+                'name' => 'description',
+                'editable' => true,
+                'type' => 'textarea',
+                'orderby' => false,
+            ],
+            [
                 'label' => 'Status',
                 'name' => 'disabled',
                 'editable' => true,

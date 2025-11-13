@@ -12,6 +12,17 @@
     overflow-y: auto;
 }
 
+/*
+    HACK-001: Añade a .iwt-admin la clase "hotpoints-editor-opened" si se abre
+    la pestaña 4 (data-target="tab-4") y se elimina si se abre cualquier otra pestaña.
+    JS: public\js\app.js
+*/
+.iwt-admin.hotpoints-editor-opened {
+    display: flex;
+    flex-direction: column;
+    overflow-y: hidden;
+}
+
 .iwt-admin .table {
 
     border: var(--color-table-border);
@@ -379,3 +390,20 @@ input::placeholder {
     min-width: 250px;
     max-width: 500px;
  }
+
+ #iwtModalOverlay {
+    position: fixed;
+    display: none;
+    inset: 0;
+    background: black;
+    opacity: 0.6
+ }
+
+  #iwtModalOverlay.show {
+    display: block;
+ }
+
+ .iwi-rotated {
+  transform: rotate(180deg);
+  display: inline-block; /* necesario si el texto es inline */
+}

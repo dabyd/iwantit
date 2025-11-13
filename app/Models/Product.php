@@ -14,6 +14,7 @@ class Product extends Model
     /** Campos que se pueden rellenar en masa */
     protected $fillable = [
         'name',
+        'description',
         'disabled',
         'brands_id',
         'url',

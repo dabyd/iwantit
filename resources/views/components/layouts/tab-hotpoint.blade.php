@@ -18,7 +18,7 @@
         <input type="hidden" id="version-id" value="{{ $data->id }}" />
         <div id="caja-principal">
             <div id="item-base">
-                <video autoplay="true" muted id="video-display" style="width: 100%; height: auto;">
+                <video autoplay="true" muted id="video-display">
                     <source src="{{ $video }}" type="video/mp4" />
                 </video>
 
@@ -79,12 +79,13 @@
                 </div>
             </div>
 
-            <!-- Control de productos -->
+            <!-- Botón añadir producto -->
+            <div id="otro-producto">
+                <img src="{{URL::asset('img/plus.png')}}" />
+            </div>
 
+            <!-- Control de productos -->
             <div id="contenedor-productos">
-                <div id="otro-producto">
-                    <img src="{{URL::asset('img/plus.png')}}" style="width:auto; height:100%;" />
-                </div>
             </div>
         </div>
     </div>
@@ -105,11 +106,21 @@
         <div class="producto" data-elemento="">
             <div class="info-producto">
                 <p class="label-product-hotpoint">No product assigned</p>
-                <div class="product-hotpoint" style="display: none;">
-                    <p class="product-hotpoint-element" data-value="0">No product assigned</p>
-                    @foreach ($productos as $id => $producto)
-	                    <p class="product-hotpoint-element" data-value="{{$producto['id']}}">{{$producto['name']}}</p>
-                    @endforeach
+                <div class="product-hotpoint">
+                    <div class="product-hotpoint-ui">
+                        <div>Assigned products</div>
+                        <a class="btn btn-primary close-button" href="#">
+                            <i class="fa-solid fa-close" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    <div class="product-hotpoint-scroll">
+                        <div class="product-hotpoint-wrapper">
+                            <p class="product-hotpoint-element" data-value="0">No product assigned</p>
+                            @foreach ($productos as $id => $producto)
+                                <p class="product-hotpoint-element" data-value="{{$producto['id']}}">{{$producto['name']}}</p>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
                 <input type="hidden" name="product-selected" value="" />
             </div>

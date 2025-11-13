@@ -48,6 +48,19 @@ body{
   overflow:auto;
 }
 
+.tocify-wrapper .tocify-subheader.visible {
+  background: transparent;
+}
+
+.tocify-wrapper .tocify-focus {
+  background: #c0c0c0;
+  box-shadow: none;
+}
+
+.tocify-wrapper .tocify-focus a {
+  color: white;
+}
+
 .page-wrapper {
   margin-left: 320px; /* leave space for sidebar */
   display: grid;
@@ -85,6 +98,12 @@ body{
   position: sticky;
   top: 20px;
   align-self: start;
+
+  /*
+    Bug #1459419 / Bug #1369345: Errores específicos relacionados con la incorrecta determinación del scroll 
+    container para elementos position: sticky anidados en contenedores grid o flex con overflow o height definidos.
+  */
+  will-change: transform, top;
 }
 
 /* Headings */
@@ -206,4 +225,19 @@ body .page-wrapper .content pre { border-radius:10px !important; }
 .page-wrapper .lang-selector {
   background: transparent;
   border: none;
+}
+
+.tocify-wrapper .logo {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+#execution-response-content-GETapi-iwi {
+    max-width: 600px; /* o el ancho que prefieras */
+    width: 100%; /* para que sea responsive hasta el max-width */
+    white-space: pre-wrap; /* preserva saltos de línea y hace wrap */
+    word-wrap: break-word; /* rompe palabras largas si es necesario */
+    overflow-wrap: break-word; /* alternativa moderna */
+    box-sizing: border-box; /* incluye padding en el ancho */
 }

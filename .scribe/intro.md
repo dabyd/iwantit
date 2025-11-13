@@ -1,121 +1,116 @@
 # Introduction
 
-API REST para consultar productos detectados en videos mediante IA
+REST API to query products detected in videos using AI
 
-<aside>
-    <strong>Base URL</strong>: <code>http://demo2-iwi.test</code>
-</aside>
+# Welcome to the I Want It API
 
-# Bienvenido a la API I Want It
+## Introduction
 
-## Introducción
+The **I Want It API** is a REST service that allows querying information about products detected in videos through an AI recognition system. This API is designed to integrate with audiovisual content analysis systems.
 
-La **API I Want It** es un servicio REST que permite consultar información sobre productos detectados en videos mediante un sistema de reconocimiento por IA. Esta API está diseñada para integrarse con sistemas de análisis de contenido audiovisual.
-
-## URL Base
+## Base URL
 
     http://uat.i-want-it.es/
 
-Para producción, la URL será proporcionada por el equipo técnico.
+For production, the URL will be provided by the technical team.
 
-## Autenticación
+## Authentication
 
-Esta API utiliza un sistema de autenticación basado en **claves hash SHA-512**. Cada petición debe incluir los siguientes parámetros de autenticación:
+This API uses an authentication system based on **SHA-512 hash keys**. Each request must include the following authentication parameters:
 
-- **key**: Clave de autenticación única generada mediante hash SHA-512
-- **time**: Timestamp que indica el momento de la petición
-- **vid**: Identificador único del video o recurso
+**Authentication & Context Parameters:**
 
-### Ejemplo de autenticación
+- **key**: Securely generated unique identifier using SHA-512 hash encryption for request validation
+- **time**: Precise timestamp (measured in seconds and miliseconds) defining the temporal location within the project for object detection analysis
+- **vid**: Unique resource identifier specifying the target project/video for processing
+
+### Authentication example
 
     GET /api-iwi?action=get&time=142.2&key=b6a6cba60643cc188730bb1e80110d79...&vid=12
 
-⚠️ **Importante**: La clave (key) debe mantenerse segura y nunca debe compartirse públicamente.
+⚠️ **Important**: The key must be kept secure and should never be shared publicly.
 
-## Formato de respuesta
+## Response format
 
-Todas las respuestas de la API están en formato **JSON** y siguen esta estructura:
+All API responses are in **JSON** format and follow this structure:
 
-### Respuesta exitosa (200)
+### Successful response (200)
 
     {
       "success": true,
       "data": {
-        ...datos solicitados...
+        ...requested data...
       },
-      "message": "Mensaje descriptivo"
+      "message": "Descriptive message"
     }
 
-### Respuesta de error (4xx, 5xx)
+### Error response (4xx, 5xx)
 
     {
       "success": false,
-      "message": "Descripción del error",
+      "message": "Error description",
       "errors": {
-        ...detalles específicos...
+        ...specific details...
       }
     }
 
-## Códigos de estado HTTP
+## HTTP Status Codes
 
-| Código | Significado | Descripción |
+| Code | Meaning | Description |
 |--------|-------------|-------------|
-| 200 | OK | La petición se procesó correctamente |
-| 400 | Bad Request | Faltan parámetros o son inválidos |
-| 401 | Unauthorized | Clave de autenticación inválida o expirada |
-| 404 | Not Found | Recurso no encontrado |
-| 429 | Too Many Requests | Límite de peticiones excedido |
-| 500 | Internal Server Error | Error en el servidor |
+| 200 | OK | Request processed successfully |
+| 400 | Bad Request | Missing or invalid parameters |
+| 401 | Unauthorized | Invalid or expired authentication key |
+| 404 | Not Found | Resource not found |
+| 429 | Too Many Requests | Rate limit exceeded |
+| 500 | Internal Server Error | Server error |
 
 ## Rate Limiting
 
-Para garantizar la disponibilidad del servicio, se aplican los siguientes límites:
+To ensure service availability, the following limits are applied:
 
-- **60 peticiones por minuto** por clave de autenticación
-- **1000 peticiones por hora** por clave de autenticación
+- **60 requests per minute** per authentication key
+- **1000 requests per hour** per authentication key
 
-Cuando se excede el límite, la API devolverá un código 429.
+When the limit is exceeded, the API will return a 429 code.
 
-## Métodos HTTP soportados
+## Supported HTTP Methods
 
-La API soporta los siguientes métodos HTTP:
+The API supports the following HTTP methods:
 
-- **GET**: Para consultas de lectura
-- **POST**: Para consultas con parámetros en el body
+- **GET**: For read queries
 
-## Versionado
+## Versioning
 
-Actualmente la API está en su versión inicial. Futuras versiones se indicarán mediante prefijos en la URL:
+The API is currently in its initial version. Future versions will be indicated through URL prefixes:
 
-- v1: /api-iwi (actual)
-- v2: /api/v2/iwi (futura)
+- v1: /api-iwi (current)
+- v2: /api/v2/iwi (future)
 
-## Entorno de pruebas
+## Testing Environment
 
-Para realizar pruebas, puedes usar:
+For testing, you can use:
 
-- **Postman**: Importa la colección desde public/docs/collection.json
-- **cURL**: Usa los ejemplos proporcionados en cada endpoint
-- **Navegador**: Accede a la documentación interactiva en /docs
+- **Postman**: Import the collection from public/docs/collection.json
+- **cURL**: Use the examples provided in each endpoint
+- **Browser**: Access the interactive documentation at /docs
 
-## Soporte
+## Support
 
-Si tienes problemas o preguntas sobre la API:
+If you have problems or questions about the API:
 
 - 📧 Email: david.herrero@i-want-it.es
-- 📚 Documentación: http://uat.i-want-it.es/docs
-- 🐛 Reportar bugs: Sistema de tickets interno
+- 📚 Documentation: http://uat.i-want-it.es/docs
+- 🐛 Bug reports: Internal ticket system
 
 ## Changelog
 
-### Versión 1.0.0 (Actual)
-- ✨ Lanzamiento inicial de la API
-- ✅ Endpoint GET /api-iwi
-- ✅ Endpoint POST /api-iwi
-- ✅ Sistema de autenticación por key
-- ✅ Soporte para consulta de productos por timestamp
+### Version 1.0.0 (Current)
+- ✨ Initial API release
+- ✅ GET /api-iwi endpoint
+- ✅ Key-based authentication system
+- ✅ Support for product queries by timestamp
 
 ---
 
-**Última actualización**: Octubre 2025
-
+**Last update**: October 2025
