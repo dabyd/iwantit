@@ -30,78 +30,80 @@ class ProjectController extends Controller {
         $projects = $this->getProjects()->distinct()->paginate(300);
         $controller = $this;
 
-        // --- NUEVO: consultar estados de IA para cada proyecto con ai_task_id presente ---
+        // --- OPTIMIZADO: consultar estados de IA en paralelo ---
         try {
-            // Pillamos la machine_url de la primera fila de datision_parameters
             $machineUrl = DB::table('datision_parameters')->value('machine_url');
 
-            if (!empty($machineUrl)) {
-                // Recorremos los items de la página actual
+            // Paso 1: Recoger todos los task_ids y resetear el campo
+            $tasksToCheck = [];
+            foreach ($projects->items() as $project) {
+                $taskId = $project->ai_task_id;
+                $project->ai_task_id = '--'; // Valor por defecto
+                
+                if ($taskId !== null && $taskId !== '') {
+                    $tasksToCheck[$project->id] = $taskId;
+                }
+            }
+
+            // Paso 2: Hacer todas las peticiones HTTP en paralelo
+            if (!empty($tasksToCheck) && !empty($machineUrl)) {
+                $baseUrl = rtrim($machineUrl, '/') . ':5018/v1/get_result/';
+                
+                $responses = Http::pool(fn ($pool) => 
+                    collect($tasksToCheck)->map(fn ($taskId, $projectId) =>
+                        $pool->as((string)$projectId)
+                            ->timeout(5)
+                            ->connectTimeout(2)
+                            ->acceptJson()
+                            ->get($baseUrl . $taskId)
+                    )->toArray()
+                );
+
+                // Paso 3: Procesar las respuestas
                 foreach ($projects->items() as $project) {
-                    $taskId = $project->ai_task_id;
-
-                    $project->ai_task_id = '--';
-
-                    // Si no hay task_id (null o vacío), saltamos
-                    if ($taskId === null || $taskId === '') {
+                    $projectId = (string)$project->id;
+                    
+                    if (!isset($responses[$projectId])) {
+                        continue;
+                    }
+                    
+                    $resp = $responses[$projectId];
+                    
+                    if ($resp instanceof \Throwable || $resp->failed()) {
                         continue;
                     }
 
-                    // Construimos la URL: {machine_url}:5018/v1/get_result/{taskId}
-                    $endpoint = rtrim($machineUrl, '/') . ':5018/v1/get_result/' . $taskId;
-
-                    try {
-                        $resp = Http::timeout(60)
-                            ->acceptJson()
-                            ->get($endpoint);
-
-                        if ($resp->failed()) {
-                            // Si peta, seguimos con el siguiente sin romper el listado
-                            continue;
+                    $json = $resp->json();
+                    if (!$json && $resp->body()) {
+                        $maybe = json_decode($resp->body(), true);
+                        if (json_last_error() === JSON_ERROR_NONE) {
+                            $json = $maybe;
                         }
+                    }
 
-                        $json = $resp->json();
-                        if (!$json && $resp->body()) {
-                            $maybe = json_decode($resp->body(), true);
-                            if (json_last_error() === JSON_ERROR_NONE) {
-                                $json = $maybe;
-                            }
-                        }
+                    if (!$json || !isset($json['state'])) {
+                        continue;
+                    }
 
-                        // PROGRESS -> "In Progress: X%"
-                        if (isset($json['state']) && $json['state'] === 'PROGRESS') {
+                    switch ($json['state']) {
+                        case 'PROGRESS':
                             $percent = isset($json['status']) ? trim((string)$json['status']) : '';
                             $project->ai_task_id = $percent !== '' ? "In Progress: {$percent}" : "In Progress";
-                            continue;
-                        }
-
-                        // PENDING
-                        if (isset($json['state']) && $json['state'] === 'PENDING') {
-                            $percent = isset($json['status']) ? trim((string)$json['status']) : '';
+                            break;
+                        case 'PENDING':
                             $project->ai_task_id = "Pending...";
-                            continue;
-                        }
-
-                        // SUCCESS -> dejar campo en blanco
-                        if (isset($json['state']) && $json['state'] === 'SUCCESS') {
+                            break;
+                        case 'SUCCESS':
                             $project->ai_task_id = '--';
-                            continue;
-                        }
-
-                        // Otros estados: ignoramos sin romper nada
-                    } catch (\Throwable $e) {
-                        // Silencioso para no reventar el index si la máquina no responde
-                        // \Log::warning('AI check error: ' . $e->getMessage());
-                        continue;
+                            break;
                     }
                 }
             }
         } catch (\Throwable $e) {
-            // Si falla datision_parameters o lo que sea, no tiramos el listado
-            // \Log::warning('AI bulk check skipped: ' . $e->getMessage());
-            echo '<h1>AI bulk check skipped: ' . $e->getMessage() . '</h1>';
+            // Si falla, no rompemos el listado
+            \Log::warning('AI bulk check error: ' . $e->getMessage());
         }
-        // --- FIN NUEVO ---
+        // --- FIN OPTIMIZADO ---
 
         // Territorios (tal cual tenías)
         $territorios = DB::table('territories')->get();
@@ -634,6 +636,13 @@ class ProjectController extends Controller {
                 ];
             }
             $prd = Product::find($object_id);
+
+            // Si el producto no existe, saltamos esta iteración
+            if (!$prd) {
+                unset($objects[$object_id]);
+                continue;
+            }
+
             $cls = ProductDatisionObjectsIaClass::where('products_id', $object_id)->get();
             $brd = Brand::find($prd->brands_id);
             $hpd = HotpointsDate::where('project_id', $project->id)
