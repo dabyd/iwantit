@@ -328,6 +328,10 @@ class IwantitController extends Controller {
                 break;
         }
 
+        if ( '25' == $request->vid ) {
+            $license = [ (object) $tmp ];
+        }
+
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: *');
         header('Access-Control-Allow-Headers: *');
