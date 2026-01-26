@@ -12,6 +12,9 @@ set('branch', 'main');
 set('php_version', '8.2');
 set('bin/php', '/usr/bin/php8.2');
 
+// Stage por defecto (para que funcione `dep deploy` sin especificar stage)
+set('default_stage', 'production');
+
 // Shared files/dirs between deploys
 add('shared_files', [
     '.env',
