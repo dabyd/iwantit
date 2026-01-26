@@ -128,10 +128,11 @@ task('artisan:migrate', function () {
 });
 
 // Hooks - añadir tareas al flujo de deploy
-after('deploy:symlink', 'deploy:fix-permissions');
-after('deploy:fix-permissions', 'artisan:cache:clear:all');
-after('artisan:cache:clear:all', 'artisan:optimize');
-after('artisan:optimize', 'services:restart');
+// Ejecutar fix-permissions ANTES de los comandos artisan del recipe de Laravel
+after('deploy:writable', 'deploy:fix-permissions');
+
+// Reiniciar servicios después del deploy completo
+after('deploy:symlink', 'services:restart');
 
 // Hooks
 after('deploy:failed', 'deploy:unlock');
