@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>i-want-it.es - Multimedia Player</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #38bdf8;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-main);
+            text-transform: lowercase;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            width: 90%;
+        }
+
+        .option-card {
+            background: var(--card-bg);
+            border: 2px solid transparent;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .option-card:hover, .option-card:focus {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(56, 189, 248, 0.2);
+            outline: none;
+        }
+
+        .option-card h2 {
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.25rem;
+        }
+
+        .option-card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .key-hint {
+            margin-top: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.2rem 0.8rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            font-size: 0.8rem;
+            color: var(--accent-color);
+        }
+
+        .icon {
+            width: 60px;
+            height: 60px;
+            fill: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo">i-want-it<span>.es</span></div>
+        <p style="color: var(--text-dim)">Selecciona tu modo de visualización</p>
+    </div>
+
+    <div class="container">
+        <a href="1.html" class="option-card" id="opt1">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+            <h2>Full Screen</h2>
+            <p>Reproductor a pantalla completa</p>
+            <div class="key-hint">PULSA 1</div>
+        </a>
+
+        <a href="2.html" class="option-card" id="opt2">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M4 11h5V5H4v6zm0 7h5v-6H4v6zm6 0h5v-6h-5v6zm6 0h5v-6h-5v6zm-6-7h5V5h-5v6zm6-6v6h5V5h-5z"/></svg>
+            <h2>Grid Mode</h2>
+            <p>Vista de cuadrícula estándar</p>
+            <div class="key-hint">PULSA 2</div>
+        </a>
+
+        <a href="3.html" class="option-card" id="opt3">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M3 3v18h18V3H3zm16 16H5V5h14v14zM7 7h2v2H7V7zm4 0h2v2h-2V7zm4 0h2v2h-2V7zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zm-8 4h2v2H7v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2z"/></svg>
+            <h2>Grid 3x3</h2>
+            <p>Multicámara profesional</p>
+            <div class="key-hint">PULSA 3</div>
+        </a>
+    </div>
+
+    <script>
+        // Lógica para detectar las teclas 1, 2 y 3
+        document.addEventListener('keydown', function(event) {
+            if (event.key === '1') {
+                window.location.href = '1.html';
+            } else if (event.key === '2') {
+                window.location.href = '2.html';
+            } else if (event.key === '3') {
+                window.location.href = '3.html';
+            }
+        });
+
+        // Opcional: Accesibilidad con teclado (Enter sobre la tarjeta enfocada)
+        document.querySelectorAll('.option-card').forEach(card => {
+            card.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
