@@ -114,11 +114,12 @@ task('services:restart', [
     'nginx:restart',
 ]);
 
-// Task para corregir permisos del directorio public
-desc('Fix public directory permissions');
+// Task para corregir permisos del release (al final del deploy)
+desc('Fix release directory permissions');
 task('deploy:fix-permissions', function () {
+    // Cambiar propietario a www-data:www-data DESPUÉS de que artisan haya terminado
     run('sudo chown -R www-data:www-data {{release_path}}');
-    writeln('<info>✅ Permisos de public/ corregidos (www-data:www-data)</info>');
+    writeln('<info>✅ Permisos corregidos (www-data:www-data)</info>');
 });
 
 // Task para ejecutar migraciones
@@ -128,11 +129,11 @@ task('artisan:migrate', function () {
 });
 
 // Hooks - añadir tareas al flujo de deploy
-// Ejecutar fix-permissions ANTES de los comandos artisan del recipe de Laravel
-after('deploy:writable', 'deploy:fix-permissions');
-
-// Reiniciar servicios después del deploy completo
+// Reiniciar servicios después del symlink
 after('deploy:symlink', 'services:restart');
+
+// Ejecutar fix-permissions AL FINAL, después de reiniciar servicios
+after('services:restart', 'deploy:fix-permissions');
 
 // Hooks
 after('deploy:failed', 'deploy:unlock');
