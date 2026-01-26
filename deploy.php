@@ -117,9 +117,27 @@ task('services:restart', [
 // Task para corregir permisos del release (al final del deploy)
 desc('Fix release directory permissions');
 task('deploy:fix-permissions', function () {
-    // Cambiar propietario a www-data:www-data DESPUÉS de que artisan haya terminado
-    run('sudo chown -R www-data:www-data {{release_path}}');
-    writeln('<info>✅ Permisos corregidos (www-data:www-data)</info>');
+    // Cambiar grupo a www-data pero mantener ubuntu como propietario
+    // Así ubuntu puede borrar en cleanup y www-data puede leer/escribir
+    run('sudo chown -R ubuntu:www-data {{release_path}}');
+    run('sudo chmod -R 775 {{release_path}}');
+    writeln('<info>✅ Permisos corregidos (ubuntu:www-data)</info>');
+});
+
+// Task para limpiar releases antiguas con sudo (porque pueden tener permisos restrictivos)
+desc('Cleanup old releases with sudo');
+task('deploy:cleanup:sudo', function () {
+    $releases = get('releases_list');
+    $keep = get('keep_releases');
+    
+    if ($keep > 0) {
+        $releasesToDelete = array_slice($releases, $keep);
+        foreach ($releasesToDelete as $release) {
+            run("sudo rm -rf {{deploy_path}}/releases/$release");
+        }
+    }
+    
+    writeln('<info>✅ Releases antiguas limpiadas</info>');
 });
 
 // Task para ejecutar migraciones
@@ -132,8 +150,16 @@ task('artisan:migrate', function () {
 // Reiniciar servicios después del symlink
 after('deploy:symlink', 'services:restart');
 
-// Ejecutar fix-permissions AL FINAL, después de reiniciar servicios
+// Ejecutar fix-permissions después de reiniciar servicios
 after('services:restart', 'deploy:fix-permissions');
+
+// Usar cleanup con sudo en lugar del cleanup normal
+after('deploy:fix-permissions', 'deploy:cleanup:sudo');
+
+// Deshabilitar el cleanup normal de deployer (lo hacemos nosotros con sudo)
+task('deploy:cleanup', function () {
+    writeln('<comment>Cleanup handled by deploy:cleanup:sudo</comment>');
+});
 
 // Hooks
 after('deploy:failed', 'deploy:unlock');
