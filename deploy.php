@@ -63,8 +63,13 @@ host('production')
 // Sobrescribir artisan:view:cache para evitar errores de componentes Blade
 desc('Skip view cache - views compiled on-demand');
 task('artisan:view:cache', function () {
-    // No hacer nada - las vistas se compilan on-demand
     writeln('<comment>Skipping view:cache - views will compile on-demand</comment>');
+});
+
+// Sobrescribir artisan:route:cache para evitar errores de rutas duplicadas
+desc('Skip route cache - routes loaded on-demand');
+task('artisan:route:cache', function () {
+    writeln('<comment>Skipping route:cache - routes will load on-demand</comment>');
 });
 
 // Tasks
