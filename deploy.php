@@ -42,9 +42,10 @@ add('writable_dirs', [
 // Número de releases a mantener
 set('keep_releases', 5);
 
-// Configuración de permisos (usar chmod en lugar de ACL)
+// Configuración de permisos (usar chmod en lugar de ACL, con sudo)
 set('writable_mode', 'chmod');
 set('writable_chmod_mode', '0775');
+set('writable_use_sudo', true);
 set('http_user', 'www-data');
 
 // Composer sin dependencias de desarrollo
