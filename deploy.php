@@ -9,8 +9,8 @@ set('repository', 'git@github.com:dabyd/iwantit.git');
 set('branch', 'main');
 
 // Configuración PHP
-set('php_version', '8.2');
-set('bin/php', '/usr/bin/php8.2');
+set('php_version', '8.4');
+set('bin/php', '/usr/bin/php');
 
 // Stage por defecto (para que funcione `dep deploy` sin especificar stage)
 set('default_stage', 'production');
