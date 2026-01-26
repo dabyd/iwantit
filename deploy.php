@@ -114,6 +114,13 @@ task('services:restart', [
     'nginx:restart',
 ]);
 
+// Task para corregir permisos del directorio public
+desc('Fix public directory permissions');
+task('deploy:fix-permissions', function () {
+    run('sudo chown -R www-data:www-data {{release_path}}');
+    writeln('<info>✅ Permisos de public/ corregidos (www-data:www-data)</info>');
+});
+
 // Task para ejecutar migraciones
 desc('Run database migrations');
 task('artisan:migrate', function () {
@@ -124,6 +131,7 @@ task('artisan:migrate', function () {
 after('deploy:symlink', 'artisan:cache:clear:all');
 after('artisan:cache:clear:all', 'artisan:optimize');
 after('artisan:optimize', 'services:restart');
+after('services:restart', 'deploy:fix-permissions');
 
 // Hooks
 after('deploy:failed', 'deploy:unlock');
