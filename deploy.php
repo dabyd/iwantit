@@ -47,6 +47,9 @@ set('writable_mode', 'chmod');
 set('writable_chmod_mode', '0775');
 set('http_user', 'www-data');
 
+// Composer sin dependencias de desarrollo
+set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progress --no-interaction --no-dev --optimize-autoloader');
+
 // Allow anonymous stats (optional)
 set('allow_anonymous_stats', false);
 
