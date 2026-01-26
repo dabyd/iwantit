@@ -83,11 +83,11 @@ task('artisan:cache:clear:all', function () {
     run('{{bin/php}} {{release_path}}/artisan view:clear');
 });
 
-// Task para optimizar Laravel (cachear config y routes, sin views para evitar errores de componentes)
+// Task para optimizar Laravel (solo config:cache, sin routes ni views)
 desc('Optimize Laravel');
 task('artisan:optimize', function () {
     run('{{bin/php}} {{release_path}}/artisan config:cache');
-    run('{{bin/php}} {{release_path}}/artisan route:cache');
+    // route:cache omitido - hay rutas duplicadas que causan error
     // view:cache omitido - las vistas se compilan on-demand
 });
 
