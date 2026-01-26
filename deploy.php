@@ -42,6 +42,11 @@ add('writable_dirs', [
 // Número de releases a mantener
 set('keep_releases', 5);
 
+// Configuración de permisos (usar chmod en lugar de ACL)
+set('writable_mode', 'chmod');
+set('writable_chmod_mode', '0775');
+set('http_user', 'www-data');
+
 // Allow anonymous stats (optional)
 set('allow_anonymous_stats', false);
 
