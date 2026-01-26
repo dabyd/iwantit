@@ -28,6 +28,8 @@ use App\Http\Controllers\AiGatewayController;
 
 use App\Http\Controllers\HotpointsDatesController;
 
+use App\Http\Controllers\ClickStatisticController;
+
 /*
 $path = public_path('build/manifest.json');
 $manifestContent = file_get_contents($path);
@@ -198,3 +200,8 @@ Route::get('/api-docs', function () { return view('api-docs-scalar'); })->name('
 Route::get('/api-docs-stoplight', function () { return view('api-docs-stoplight'); });
 Route::get('/api-docs-redoc', function () { return view('api-docs-redoc'); });
 Route::get('/api-docs-rapidoc', function () {   return view('api-docs-rapidoc'); });
+
+// Ruta para tracking de clics (estadísticas)
+Route::get('/track/{type}/{id}', [ClickStatisticController::class, 'redirect'])
+    ->name('track.click')
+    ->where('type', 'product|brand');

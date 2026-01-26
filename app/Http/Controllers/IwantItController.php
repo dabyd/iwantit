@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use stdClass;
 use App\Models\Hotpoint;
 use Illuminate\Support\Facades\URL;
 use App\Models\License;
+use App\Models\ClickStatistic;
 use App\Http\Controllers\ProductController;
 
 class IwantitController extends Controller {
@@ -343,6 +345,13 @@ class IwantitController extends Controller {
                 //
                 // La licencia, a parte de existir, está habilitada
                 //
+                // Registrar la visualización en estadísticas
+                try {
+                    ClickStatistic::logView($request);
+                } catch (\Exception $e) {
+                    // Log error but don't fail the request
+                    \Log::error('Error logging view statistic: ' . $e->getMessage());
+                }
                 //
                 // Recojo todos los PRODUCTOS, repetidos o no, que estén en esa versión y tiempo inidcado
                 //
@@ -526,11 +535,14 @@ class IwantitController extends Controller {
                     $dato->nombre = $pr->name;
                     $dato->descripcion = $pr->description;
                     $dato->imagen = URL::asset( 'uploads/' . $pr->filename );
-                    $dato->url =  $pr->url;
+                    // URLs envueltas con endpoint de tracking
+                    $dato->url = route('track.click', ['type' => 'product', 'id' => $pr->id]) . '?vid=' . $request->vid;
+                    $dato->url_original = $pr->url;
                     $dato->auto_open = $pr->auto_open;
                     $dato->marca = $br->name;
                     $dato->logo = URL::asset( 'uploads/' . $br->filename );
-                    $dato->url_marca =  $br->url;
+                    $dato->url_marca = route('track.click', ['type' => 'brand', 'id' => $br->id]) . '?vid=' . $request->vid;
+                    $dato->url_marca_original = $br->url;
                     if ( '' != $pr->icono ) {
                         $dato->hotpoint_icon = URL::asset( 'uploads/' . $pr->icono );
                     }
