@@ -15,6 +15,9 @@ set('bin/php', '/usr/bin/php');
 // Stage por defecto (para que funcione `dep deploy` sin especificar stage)
 set('default_stage', 'production');
 
+// Usar composer del sistema (evitar descargarlo cada vez)
+set('bin/composer', 'composer');
+
 // Shared files/dirs between deploys
 add('shared_files', [
     '.env',
