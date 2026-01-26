@@ -95,7 +95,7 @@ task('artisan:optimize', function () {
 // Task para reiniciar PHP-FPM
 desc('Restart PHP-FPM');
 task('php-fpm:restart', function () {
-    run('sudo systemctl restart php8.2-fpm');
+    run('sudo systemctl restart php8.4-fpm');
 })->once();
 
 // Task para reiniciar Nginx
