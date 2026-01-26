@@ -60,6 +60,13 @@ host('production')
     ->set('deploy_path', '/var/www2/iwantit')
     ->stage('production');
 
+// Sobrescribir artisan:view:cache para evitar errores de componentes Blade
+desc('Skip view cache - views compiled on-demand');
+task('artisan:view:cache', function () {
+    // No hacer nada - las vistas se compilan on-demand
+    writeln('<comment>Skipping view:cache - views will compile on-demand</comment>');
+});
+
 // Tasks
 
 // Task para limpiar cachés de Laravel
