@@ -128,10 +128,10 @@ task('artisan:migrate', function () {
 });
 
 // Hooks - añadir tareas al flujo de deploy
-after('deploy:symlink', 'artisan:cache:clear:all');
+after('deploy:symlink', 'deploy:fix-permissions');
+after('deploy:fix-permissions', 'artisan:cache:clear:all');
 after('artisan:cache:clear:all', 'artisan:optimize');
 after('artisan:optimize', 'services:restart');
-after('services:restart', 'deploy:fix-permissions');
 
 // Hooks
 after('deploy:failed', 'deploy:unlock');
