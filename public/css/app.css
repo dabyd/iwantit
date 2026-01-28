@@ -477,8 +477,8 @@
     .tab-content.active {
         opacity: 1;
         visibility: visible;
-        /* height: auto; */
-            height: 100%;
+            height: auto;
+            /* height: 100%; */
             transform : unset;
     }
 
