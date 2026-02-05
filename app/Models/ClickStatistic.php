@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class ClickStatistic extends Model
 {
@@ -56,9 +58,15 @@ class ClickStatistic extends Model
      */
     public static function logView(Request $request): self
     {
+        Log::info('ClickStatistic::logView triggered', [
+            'vid' => $request->vid,
+            'time' => $request->time,
+            'key' => $request->key
+        ]);
+
         $clientInfo = self::parseClientInfo($request);
         
-        return self::create([
+        $stat = self::create([
             'type' => 'view',
             'versions_id' => $request->vid ?? null,
             'video_time' => $request->time ?? null,
@@ -72,13 +80,23 @@ class ClickStatistic extends Model
             'referer' => $request->header('referer'),
             'license_key' => $request->key ?? null,
         ]);
+
+        Log::info('ClickStatistic::logView saved', ['id' => $stat->id]);
+
+        return $stat;
     }
+
 
     /**
      * Registra un clic en producto o marca
      */
     public static function logClick(Request $request, string $type, int $id, ?int $versionsId = null): self
     {
+        Log::info("ClickStatistic::logClick triggered for $type", [
+            'id' => $id,
+            'versions_id' => $versionsId
+        ]);
+
         $clientInfo = self::parseClientInfo($request);
         
         $data = [
@@ -101,11 +119,48 @@ class ClickStatistic extends Model
             $data['brands_id'] = $id;
         }
 
-        return self::create($data);
+        $stat = self::create($data);
+
+        Log::info('ClickStatistic::logClick saved', ['id' => $stat->id]);
+
+        return $stat;
+    }
+
+
+    /**
+     * Registra la visualización de una imagen de producto
+     */
+    public static function logProductView(Request $request, int $productId, ?int $versionsId = null): self
+    {
+        Log::info("ClickStatistic::logProductView triggered for product $productId", [
+            'versions_id' => $versionsId
+        ]);
+
+        $clientInfo = self::parseClientInfo($request);
+        
+        $stat = self::create([
+            'type' => 'view_p',
+            'versions_id' => $versionsId ?? $request->vid ?? null,
+            'products_id' => $productId,
+            'video_time' => $request->time ?? null,
+            'ip_address' => $clientInfo['ip'],
+            'user_agent' => $clientInfo['user_agent'],
+            'browser' => $clientInfo['browser'],
+            'browser_version' => $clientInfo['browser_version'],
+            'os' => $clientInfo['os'],
+            'os_version' => $clientInfo['os_version'],
+            'device' => $clientInfo['device'],
+            'referer' => $request->header('referer'),
+        ]);
+
+        Log::info('ClickStatistic::logProductView saved', ['id' => $stat->id]);
+
+        return $stat;
     }
 
     /**
      * Parsea la información del cliente desde el Request
+
      */
     public static function parseClientInfo(Request $request): array
     {

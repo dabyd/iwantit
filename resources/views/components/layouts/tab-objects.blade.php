@@ -574,12 +574,23 @@
 			} else if (modalId === 'stateModal' && currentElement && currentModalType === 'status') {
 				const selectedStatus = $('input[name="status"]:checked').val();
 				if (selectedStatus) {
+					const oldStatus = currentElement.text().trim();
 					currentElement.text(selectedStatus);
-					currentElement[0].parentElement.parentElement.dataset.updated = '1';
+					const row = currentElement[0].parentElement.parentElement;
+					row.dataset.updated = '1';
 					
 					console.log('Status updated:', {
 						window: currentElement.data('window'),
 						status: selectedStatus
+					});
+
+					// Perform immediate AJAX update
+					performAjaxUpdate(row, (success) => {
+						if (!success) {
+							// Revert if failed
+							currentElement.text(oldStatus);
+							alert('Failed to update status on server. Please try again.');
+						}
 					});
 				}
 			} else if (modalId === 'priceModal' && currentElement && currentModalType === 'price') {
@@ -805,6 +816,116 @@
 			// Ocultar indicador de carga
 			hideLoadingState(originalButtonState);
 		});
+	}
+
+	/**
+	 * Realiza una actualización AJAX para una fila específica
+	 * @param {HTMLElement} row La fila a actualizar
+	 * @param {Function} callback Función opcional de retorno (success: boolean)
+	 */
+	function performAjaxUpdate(row, callback) {
+		const versionIdElement = document.getElementById('version-id');
+		if (!versionIdElement) {
+			console.error('No se encontró el elemento #version-id');
+			if (callback) callback(false);
+			return;
+		}
+		
+		const projectId = versionIdElement.value || versionIdElement.textContent || versionIdElement.innerText;
+		
+		try {
+			// Obtener product_id
+			const elementWithWindow = row.querySelector('[data-window]');
+			const productId = elementWithWindow ? elementWithWindow.getAttribute('data-window') : null;
+			
+			if (!productId) {
+				console.error('No se pudo encontrar el product_id en la fila');
+				if (callback) callback(false);
+				return;
+			}
+
+			// Obtener status
+			const statusElement = row.querySelector('.status-link');
+			const status = statusElement ? statusElement.textContent.trim().toLowerCase() === 'enabled' : true;
+
+			// Obtener precio
+			const priceElement = row.querySelector('[data-precio]');
+			const price = priceElement ? parseFloat(priceElement.getAttribute('data-precio')) || 0 : 0;
+
+			// Obtener fechas
+			const dateInElement = row.querySelector('[data-type="in"]');
+			const dateIn = dateInElement ? dateInElement.textContent.trim() : '';
+			const dateOutElement = row.querySelector('[data-type="out"]');
+			const dateOut = dateOutElement ? dateOutElement.textContent.trim() : '';
+
+			const update = {
+				product_id: parseInt(productId),
+				status: status,
+				price: price,
+				date_in: dateIn === '---' ? '' : dateIn,
+				date_out: dateOut === '---' ? '' : dateOut
+			};
+
+			const requestData = {
+				project_id: parseInt(projectId),
+				id: 0,
+				updates: [update]
+			};
+
+			// CSRF Token
+			const csrfToken = document.querySelector('meta[name="csrf-token"]');
+			if (!csrfToken) {
+				console.error('No se encontró el token CSRF');
+				if (callback) callback(false);
+				return;
+			}
+
+			// Indicador visual de carga en el enlace de status
+			const statusLink = row.querySelector('.status-link');
+			const originalStatusText = statusLink.textContent;
+			statusLink.textContent = '...';
+			statusLink.style.opacity = '0.5';
+
+			fetch('/hotpoints/update', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-CSRF-TOKEN': csrfToken.getAttribute('content'),
+					'Accept': 'application/json'
+				},
+				body: JSON.stringify(requestData)
+			})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success) {
+					row.removeAttribute('data-updated');
+					console.log(`Product ${productId} updated successfully via AJAX`);
+					if (callback) callback(true);
+				} else {
+					console.error(`Error updating product ${productId}:`, data.message);
+					if (callback) callback(false);
+				}
+			})
+			.catch(error => {
+				console.error('Error en la petición AJAX:', error);
+				if (callback) callback(false);
+			})
+			.finally(() => {
+				// Restaurar texto de status (el callback ya podría haberlo cambiado si falló)
+				statusLink.style.opacity = '1';
+				if (statusLink.textContent === '...') {
+					statusLink.textContent = originalStatusText;
+				}
+				// Recalcular totales e interfaz
+				if (typeof proyectos_objetos_row === 'function') {
+					proyectos_objetos_row();
+				}
+			});
+
+		} catch (error) {
+			console.error('Error preparando actualización AJAX:', error);
+			if (callback) callback(false);
+		}
 	}
 
 	/**

@@ -205,3 +205,6 @@ Route::get('/api-docs-rapidoc', function () {   return view('api-docs-rapidoc');
 Route::get('/track/{type}/{id}', [ClickStatisticController::class, 'redirect'])
     ->name('track.click')
     ->where('type', 'product|brand');
+// Ruta para tracking de visualización de imágenes de productos
+Route::get('/track/image/{id}', [ClickStatisticController::class, 'showProductImage'])
+    ->name('track.image');

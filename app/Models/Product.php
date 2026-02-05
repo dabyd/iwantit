@@ -11,6 +11,12 @@ class Product extends Model
 {
     use HasFactory;
 
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brands_id');
+    }
+
+
     /** Campos que se pueden rellenar en masa */
     protected $fillable = [
         'name',

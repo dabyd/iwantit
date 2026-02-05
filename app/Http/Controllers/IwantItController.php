@@ -347,210 +347,124 @@ class IwantitController extends Controller {
                 //
                 // Registrar la visualización en estadísticas
                 try {
+                    Log::info('Triggering logView for request', ['vid' => $request->vid, 'key' => $request->key]);
                     ClickStatistic::logView($request);
                 } catch (\Exception $e) {
                     // Log error but don't fail the request
-                    \Log::error('Error logging view statistic: ' . $e->getMessage());
-                }
-                //
-                // Recojo todos los PRODUCTOS, repetidos o no, que estén en esa versión y tiempo inidcado
-                //
-                $datos = DB::table( 'hotpoints' )
-                    ->where([
-                        [ 'versions_id', '=', $request->vid ],
-                        [ DB::raw('ROUND( time, 4 )'), DB::raw( ' ROUND ( "' . $request->time . '", 4 )' ) ],
+                    \Log::error('Error logging view statistic: ' . $e->getMessage(), [
+                        'exception' => $e,
+                        'request' => $request->all()
                     ]);
-                if ( $debug ) {
-                    echo '<pre>';
-                    echo '<h1>Sentencia SQL</h1>';
-                    echo '<h3>' . $this->getQueryWithBindings( $datos ) . '</h3>';
-                }
-                $datos = $datos->get()->toArray();
-
-                if ( $debug ) {
-                    echo '<h1>Datos en crudo</h1>';
-                    print_r( $datos );
-                    echo '<hr>';
-                }
-                //
-                // Elimino de la selección los PRODUCTOS desactivados
-                //
-                if ( $debug ) {
-                    echo '<h1>Elimino productos desactivados</h1>';
-                }
-                $tmp = DB::table( 'products' )
-                    ->where( 'disabled', '0' )
-                    ->get()
-                    ->toArray();
-                $data = [];
-                foreach( $tmp as $dato ) {
-                    $data[ $dato->id ] = $dato;
-                }
-                foreach( $datos as $k => $pr ) {
-                    if ( !isset( $data[ $pr->products_id ] ) ) {
-                        if ( $debug ) {
-                            echo 'Se elimina el producto ID: ' . $pr->products_id . '<br>';
-                        }
-                        unset( $datos[ $k ] );
-                    }
-                }
-                if ( $debug ) {
-                    print_r( $datos );
-                    echo '<hr>';
                 }
 
-                //
-                // Elimino de la selección las MARCAS desactivadas que están vinculados a los PRODUCTOS
-                //
-                if ( $debug ) {
-                    echo '<h1>Elimino marcas desactivados</h1>';
-                }
-                $tmp = DB::table( 'brands' )
-                    ->select( 'products.*' )
-                    ->leftJoin( 'products', 'brands.id', '=', 'products.brands_id' )
-                    ->where( 'brands.disabled', '0' )
-                    ->get()
-                    ->toArray();
-                $data = [];
-                foreach( $tmp as $dato ) {
-                    $data[ $dato->id ] = $dato;
-                }
-                foreach( $datos as $k => $pr ) {
-                    if ( !isset( $data[ $pr->products_id ] ) ) {
-                        if ( $debug ) {
-                            echo 'Se elimina el producto ID: ' . $pr->products_id . ' porque pertenece a una marca desabilitada<br>';
-                        }
-                        unset( $datos[ $k ] );
-                    }
-                }
-                if ( $debug ) {
-                    print_r( $datos );
-                    echo '<hr>';
+                // Optimized query to fetch hotpoints with product and brand data,
+                // while applying all necessary filters (disabled products, brands, tags, etc.)
+                $query = DB::table('hotpoints')
+                    ->select(
+                        'hotpoints.products_id',
+                        'hotpoints.pos_x',
+                        'hotpoints.pos_y',
+                        'products.name as product_name',
+                        'products.description as product_description',
+                        'products.filename as product_filename',
+                        'products.url as product_url',
+                        'products.auto_open as product_auto_open',
+                        'products.icono as product_icon',
+                        'brands.id as brand_id',
+                        'brands.name as brand_name',
+                        'brands.filename as brand_logo',
+                        'brands.url as brand_url'
+                    )
+                    ->join('products', 'hotpoints.products_id', '=', 'products.id')
+                    ->leftJoin('brands', 'products.brands_id', '=', 'brands.id')
+                    // Filter: Product and Brand global disabled status
+                    // products.disabled = '1' means disabled
+                    ->where('products.disabled', '0')
+                    ->where(function($q) {
+                        $q->whereNull('brands.id') // Allow products without brands (if desired, otherwise use join)
+                          ->orWhere('brands.disabled', '0');
+                    })
+                    // Filter: Per-project product status (hotpoints_dates)
+                    // We exclude if a record exists with estado = '0' (Disabled)
+                    ->whereNotExists(function ($q) use ($request) {
+                        $q->select(DB::raw(1))
+                          ->from('hotpoints_dates')
+                          ->whereRaw('hotpoints_dates.product_id = hotpoints.products_id')
+                          ->where('hotpoints_dates.project_id', $request->vid)
+                          ->where('hotpoints_dates.estado', '0');
+                    })
+                    // Filter: Tags (exclude products if any of their tags are disabled)
+                    ->whereNotExists(function ($q) {
+                        $q->select(DB::raw(1))
+                          ->from('products_tags')
+                          ->join('tags', 'products_tags.tags_id', '=', 'tags.id')
+                          ->whereRaw('products_tags.products_id = hotpoints.products_id')
+                          ->where('tags.disabled', '1');
+                    })
+                    // Filter: Disabled product-tag links
+                    ->whereNotExists(function ($q) {
+                        $q->select(DB::raw(1))
+                          ->from('products_tags')
+                          ->whereRaw('products_tags.products_id = hotpoints.products_id')
+                          ->where('products_tags.disabled', '1');
+                    })
+                    // Filter: Territory tags (exclusion list)
+                    ->when($request->tid, function($q, $tid) {
+                        $q->whereNotExists(function ($sq) use ($tid) {
+                            $sq->select(DB::raw(1))
+                               ->from('products_tags')
+                               ->join('territories_tags', 'products_tags.tags_id', '=', 'territories_tags.tags_id')
+                               ->whereRaw('products_tags.products_id = hotpoints.products_id')
+                               ->where('territories_tags.territories_id', $tid);
+                        });
+                    })
+                    ->where('hotpoints.versions_id', $request->vid)
+                    ->whereRaw('ROUND(hotpoints.time, 4) = ROUND(?, 4)', [$request->time]);
+
+                if ($debug) {
+                    echo '<pre><h1>Sentencia SQL Optimizada</h1><h3>' . $this->getQueryWithBindings($query) . '</h3></pre>';
                 }
 
-                //
-                // Elimino de la selección los TAGS desactivados que están vinculados a los PRODUCTOS
-                //
-                if ( $debug ) {
-                    echo '<h1>Elimino tags desactivados</h1>';
-                }
-                $tmp = DB::table( 'products_tags' )
-                    ->select( 'products.*' )
-                    ->leftJoin( 'products', 'products_tags.products_id', '=', 'products.id' )
-                    ->leftJoin( 'tags', 'products_tags.tags_id', '=', 'tags.id' )
-                    ->where( 'tags.disabled', '1' )
-                    ->get()
-                    ->toArray();
-                $data = [];
-                foreach( $tmp as $dato ) {
-                    $data[ $dato->id ] = $dato;
-                }
-                foreach( $datos as $k => $pr ) {
-                    if ( isset( $data[ $pr->products_id ] ) ) {
-                        if ( $debug ) {
-                            echo 'Se elimina el producto ID: ' . $pr->products_id . ' porque está vinculado a un tag desabilitado<br>';
-                        }
-                        unset( $datos[ $k ] );
-                    }
-                }
-                if ( $debug ) {
-                    print_r( $datos );
-                    echo '<hr>';
+                $datos = $query->get();
+
+                if ($debug) {
+                    echo '<h1>Datos recuperados</h1><pre>';
+                    print_r($datos->toArray());
+                    echo '</pre><hr>';
                 }
 
-                //
-                // Elimino de la selección los PRODUCTOS, vinculados a un TAG, que ha sido desactivado el TAG para ese PRODUCTO
-                //
-                if ( $debug ) {
-                    echo '<h1>Elimino tags vinculados a productos desactivados</h1>';
-                }
-                $tmp = DB::table( 'products_tags' )
-                    ->select( 'products.*' )
-                    ->leftJoin( 'products', 'products_tags.products_id', '=', 'products.id' )
-                    ->where( 'products_tags.disabled', '1' )
-                    ->get()
-                    ->toArray();
-                $data = [];
-                foreach( $tmp as $dato ) {
-                    $data[ $dato->id ] = $dato;
-                }
-                foreach( $datos as $k => $pr ) {
-                    if ( isset( $data[ $pr->products_id ] ) ) {
-                        if ( $debug ) {
-                            echo 'Se elimina el producto ID: ' . $pr->products_id . ' porque está vinculado a un tag que ha sido desabilitado para este producto<br>';
-                        }
-                        unset( $datos[ $k ] );
-                    }
-                }
-                if ( $debug ) {
-                    print_r( $datos );
-                    echo '<hr>';
-                }
-
-                //
-                // Elimino de la selección los PRODUCTOS, vinculados a un TERRITORIO que tenga un TAG que ha sido desactivado para ese TERRITORIO
-                //
-                if ( $debug ) {
-                    echo '<h1>Elimino tags desactivados para un territorio</h1>';
-                }
-                $tmp = DB::table( 'products_tags' )
-                    ->select( 'products.*' )
-                    ->leftJoin( 'products', 'products_tags.products_id', '=', 'products.id' )
-                    ->leftJoin( 'territories_tags', 'products_tags.tags_id', '=', 'territories_tags.tags_id' )
-                    ->where( 'territories_tags.territories_id', $request->tid )
-                    ->get()
-                    ->toArray();
-                $data = [];
-                foreach( $tmp as $dato ) {
-                    $data[ $dato->id ] = $dato;
-                }
-                foreach( $datos as $k => $pr ) {
-                    if ( isset( $data[ $pr->products_id ] ) ) {
-                        if ( $debug ) {
-                            echo 'Se elimina el producto ID: ' . $pr->products_id . ' porque está vinculado a un tag que ha sido desabilitado para este territorio<br>';
-                        }
-                        unset( $datos[ $k ] );
-                    }
-                }
-                if ( $debug ) {
-                    print_r( $datos );
-                    echo '<hr>';
-                }
-
-                //
-                // Preparo todo para enviarlo via JSON
-                //
                 $ret = null;
-                foreach( $datos as $data ) {
-                    if ( is_null( $ret ) ) {
-                        $ret = new stdClass;
-                        $ret->objetos = [];
+                if ($datos->isNotEmpty()) {
+                    $ret = new stdClass;
+                    $ret->objetos = [];
+                    foreach ($datos as $item) {
+                        $dato = new stdClass;
+                        $dato->id = $item->products_id;
+                        $dato->pos_x = $item->pos_x;
+                        $dato->pos_y = $item->pos_y;
+                        $dato->nombre = $item->product_name;
+                        $dato->descripcion = $item->product_description;
+                        $dato->imagen = route('track.image', ['id' => $item->products_id]) . '?vid=' . $request->vid . '&time=' . $request->time;
+                        // URLs envueltas con endpoint de tracking
+                        $dato->url = route('track.click', ['type' => 'product', 'id' => $item->products_id]) . '?vid=' . $request->vid . '&time=' . $request->time;
+                        $dato->url_original = $item->product_url;
+                        $dato->auto_open = $item->product_auto_open;
+                        $dato->marca = $item->brand_name;
+                        $dato->logo = $item->brand_logo ? URL::asset('uploads/' . $item->brand_logo) : null;
+                        $dato->url_marca = $item->brand_id ? route('track.click', ['type' => 'brand', 'id' => $item->brand_id]) . '?vid=' . $request->vid : null;
+                        $dato->url_marca_original = $item->brand_url;
+                        if (!empty($item->product_icon)) {
+                            $dato->hotpoint_icon = URL::asset('uploads/' . $item->product_icon);
+                        }
+                        $ret->objetos[] = $dato;
                     }
-                    $pr = DB::table( 'products' )->where( 'id', $data->products_id )->first();
-                    $br = DB::table( 'brands' )->where( 'id', $pr->brands_id )->first();
-                    $dato = new stdClass;
-                    $dato->id = $data->products_id;
-                    $dato->pos_x = $data->pos_x;
-                    $dato->pos_y = $data->pos_y;
-                    $dato->nombre = $pr->name;
-                    $dato->descripcion = $pr->description;
-                    $dato->imagen = URL::asset( 'uploads/' . $pr->filename );
-                    // URLs envueltas con endpoint de tracking
-                    $dato->url = route('track.click', ['type' => 'product', 'id' => $pr->id]) . '?vid=' . $request->vid;
-                    $dato->url_original = $pr->url;
-                    $dato->auto_open = $pr->auto_open;
-                    $dato->marca = $br->name;
-                    $dato->logo = URL::asset( 'uploads/' . $br->filename );
-                    $dato->url_marca = route('track.click', ['type' => 'brand', 'id' => $br->id]) . '?vid=' . $request->vid;
-                    $dato->url_marca_original = $br->url;
-                    if ( '' != $pr->icono ) {
-                        $dato->hotpoint_icon = URL::asset( 'uploads/' . $pr->icono );
-                    }
-                    $ret->objetos[] = $dato;
                 }
+
                 if ( $debug ) {
                     echo '<h1>Lo que se envía (sin formato json)</h1>';
+                    echo '<pre>';
                     print_r( $ret );
+                    echo '</pre>';
                 } else {
                     echo json_encode( $ret );
                 }
@@ -580,13 +494,13 @@ class IwantitController extends Controller {
         die();
     }
 
-    public function keyGenerator( $length = 1024 ) {
-        // Generar una secuencia de bytes aleatoria
+    public function keyGenerator( $length = 20 ) {
+        // Generar una secuencia de bytes aleatoria (20 bytes = 40 caracteres hexadecimales)
         $randomBytes = openssl_random_pseudo_bytes($length);
         // Convertir la secuencia de bytes en una cadena hexadecimal
         $sshKey = bin2hex($randomBytes);
-        // Imprimir la cadena generada
         return $sshKey;
     }
+
 
 }

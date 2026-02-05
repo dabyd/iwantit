@@ -16,8 +16,9 @@
     @endphp
 
     @if ( isset( $objects ) )
-        <x-layouts.tab-dashboard />
+        <x-layouts.tab-dashboard :project="$data" />
     @endif
+
 
 
 @php

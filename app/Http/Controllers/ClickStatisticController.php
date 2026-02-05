@@ -47,10 +47,50 @@ class ClickStatisticController extends Controller
             ClickStatistic::logClick($request, $type, $id, $versionsId);
         } catch (\Exception $e) {
             // Log error but don't fail the redirect
-            \Log::error('Error logging click statistic: ' . $e->getMessage());
+            Log::error('Error logging click statistic: ' . $e->getMessage());
         }
 
         // Redirigir al destino final
         return redirect()->away($url);
     }
+    /**
+     * Rastrea la visualización de la imagen del producto y la devuelve.
+     * Si no existe, devuelve un píxel blanco de 1x1.
+     * 
+     * GET /track/image/{id}?vid=X
+     * 
+     * @param Request $request
+     * @param int $id ID del producto
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|\Illuminate\Http\Response
+     */
+    public function showProductImage(Request $request, int $id)
+    {
+        $versionsId = $request->query('vid');
+        $product = Product::find($id);
+
+        // Registrar la visualización en estadísticas
+        try {
+            ClickStatistic::logProductView($request, $id, $versionsId);
+        } catch (\Exception $e) {
+            Log::error('Error logging product image view statistic: ' . $e->getMessage());
+        }
+
+        // Devolver la imagen si existe
+        if ($product && $product->filename) {
+            $path = public_path('uploads/' . $product->filename);
+            if (file_exists($path)) {
+                return response()->file($path);
+            }
+        }
+
+        // Devolver píxel blanco 1x1 si no hay imagen (GIF)
+        $pixel = base64_decode('R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=');
+        return response($pixel, 200, [
+            'Content-Type' => 'image/gif',
+            'Cache-Control' => 'no-cache, no-store, must-revalidate',
+            'Pragma' => 'no-cache',
+            'Expires' => '0',
+        ]);
+    }
 }
+

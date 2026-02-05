@@ -187,8 +187,9 @@
 		text-align: center;
 	}
 
-	#clicksChart {
-		max-height: 300px;
+	.chart-container canvas {
+		max-height: 600px;
+		width: 100% !important;
 	}
 
 	/* Table Styles */
@@ -334,18 +335,18 @@
             <div class="col-12">
                 <div class="main-revenue-card">
                     <h4 class="main-revenue-title">Total Product Placement Revenue</h4>
-                    <div class="main-revenue-amount">824.300 €</div>
+                    <div class="main-revenue-amount">{{ number_format($projectInfo['totalRevenue'], 0, ',', '.') }} €</div>
                     <div class="revenue-metrics">
                         <div class="revenue-metric">
-                            <div class="percentage-badge">68%</div>
+                            <div class="percentage-badge">{{ $projectInfo['productsEnabledPercent'] }}%</div>
                             <div class="metric-label">% Products enabled</div>
                         </div>
                         <div class="revenue-metric">
-                            <div class="metric-value">22</div>
+                            <div class="metric-value">{{ $projectInfo['brandsCount'] }}</div>
                             <div class="metric-label"># Brands</div>
                         </div>
                         <div class="revenue-metric">
-                            <div class="metric-value">77</div>
+                            <div class="metric-value">{{ $projectInfo['productsCount'] }}</div>
                             <div class="metric-label"># Products</div>
                         </div>
                     </div>
@@ -357,8 +358,8 @@
             <!-- Chart Section -->
             <div class="col-8">
                 <div class="chart-container">
-                    <div class="chart-title">Clicks x Day</div>
-                    <canvas id="clicksChart"></canvas>
+                    <div class="chart-title">Activity x Day (Last 14 days)</div>
+                    <canvas id="clicksChart-{{ $currentCount }}"></canvas>
                 </div>
             </div>
 
@@ -367,18 +368,40 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="kpi-card text-center">
-                            <div class="kpi-label">Daily Average</div>
-                            <div class="kpi-number text-primary">2.4K</div>
-                            <div class="small text-muted">↑ 12% vs last week</div>
+                            <div class="kpi-label">API Views</div>
+                            <div class="kpi-number text-primary" data-final="{{ $stats['totalViews'] }}">{{ $stats['totalViews'] }}</div>
+                            <div class="small text-muted">Total project sessions</div>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="kpi-card text-center">
                             <div class="kpi-label">Conversion Rate</div>
-                            <div class="kpi-number text-success">3.2%</div>
-                            <div class="small text-muted">↑ 0.5% vs last month</div>
+                            <div class="kpi-number text-success" data-final="{{ $stats['conversionRate'] }}">{{ $stats['conversionRate'] }}%</div>
+                            <div class="small text-muted">Clicks / Total Views</div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Stats Row -->
+        <div class="row">
+            <div class="col-4">
+                <div class="kpi-card text-center">
+                    <div class="kpi-label">Product Views</div>
+                    <div class="kpi-number" style="font-size: 2rem;" data-final="{{ $stats['totalProductViews'] }}">{{ $stats['totalProductViews'] }}</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="kpi-card text-center">
+                    <div class="kpi-label">Product Clicks</div>
+                    <div class="kpi-number" style="font-size: 2rem;" data-final="{{ $stats['productClicks'] }}">{{ $stats['productClicks'] }}</div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="kpi-card text-center">
+                    <div class="kpi-label">Brand Clicks</div>
+                    <div class="kpi-number" style="font-size: 2rem;" data-final="{{ $stats['brandClicks'] }}">{{ $stats['brandClicks'] }}</div>
                 </div>
             </div>
         </div>
@@ -398,39 +421,31 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @forelse ($brandRanking as $index => $brand)
                             <tr>
-                                <td><strong>3</strong></td>
-                                <td>Mira Milano</td>
-                                <td><strong>43.300 €</strong></td>
+                                <td><strong>{{ $index + 1 }}</strong></td>
                                 <td>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 85%">85%</div>
+                                    <div style="display: flex; align-items: center; gap: 10px;">
+                                        @if($brand['logo'])
+                                            <img src="/uploads/{{ $brand['logo'] }}" alt="{{ $brand['name'] }}" style="width: 30px; height: 30px; object-fit: contain;">
+                                        @endif
+                                        <span>{{ $brand['name'] }}</span>
                                     </div>
                                 </td>
-                                <td><span class="status-indicator status-active"></span>Activo</td>
-                            </tr>
-                            <tr>
-                                <td><strong>4</strong></td>
-                                <td>Locations</td>
-                                <td><strong>20.650 €</strong></td>
+                                <td><strong>{{ number_format($brand['revenue'], 0, ',', '.') }} €</strong></td>
                                 <td>
+                                    @php $percent = $brand['totalProducts'] > 0 ? round(($brand['enabledProducts'] / $brand['totalProducts']) * 100) : 0; @endphp
                                     <div class="progress">
-                                        <div class="progress-bar bg-warning" style="width: 62%">62%</div>
+                                        <div class="progress-bar {{ $percent < 50 ? 'bg-warning' : '' }}" style="width: {{ $percent }}%">{{ $percent }}%</div>
                                     </div>
                                 </td>
-                                <td><span class="status-indicator status-warning"></span>En revisión</td>
+                                <td><span class="status-indicator status-active"></span>{{ $brand['status'] }}</td>
                             </tr>
+                            @empty
                             <tr>
-                                <td><strong>5</strong></td>
-                                <td>Dolce & Gabbana</td>
-                                <td><strong>36.075 €</strong></td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar" style="width: 92%">92%</div>
-                                    </div>
-                                </td>
-                                <td><span class="status-indicator status-active"></span>Activo</td>
+                                <td colspan="5" style="text-align: center;">No data available for this project</td>
                             </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -440,167 +455,160 @@
 </div>
 
 <script>
-	// Chart Configuration
-	const ctx = document.getElementById('clicksChart').getContext('2d');
+	(function() {
+        // Chart Configuration
+        const ctx = document.getElementById('clicksChart-{{ $currentCount }}').getContext('2d');
 
-	const chartData = {
-		labels: ['4/6/23', '4/7/23', '4/8/23', '4/9/23', '4/10/23', '4/11/23', '4/12/23', '4/13/23', '4/14/23', '4/15/23', '4/16/23', '4/17/23', '4/18/23'],
-		datasets: [
-			{
-				label: 'Clicks',
-				data: [2100, 2300, 2500, 2200, 2400, 2600, 2800, 2300, 2500, 2400, 2700, 2900, 2600],
-				borderColor: '#3498db',
-				backgroundColor: 'rgba(52, 152, 219, 0.1)',
-				tension: 0.4,
-				fill: true,
-				pointBackgroundColor: '#3498db',
-				pointBorderColor: '#2980b9',
-				pointRadius: 4,
-				pointHoverRadius: 8
-			},
-			{
-				label: 'Conversions',
-				data: [1800, 2000, 2100, 1900, 2050, 2200, 2400, 2000, 2150, 2080, 2300, 2500, 2200],
-				borderColor: '#e74c3c',
-				backgroundColor: 'rgba(231, 76, 60, 0.1)',
-				tension: 0.4,
-				fill: true,
-				borderDash: [5, 5],
-				pointBackgroundColor: '#e74c3c',
-				pointBorderColor: '#c0392b',
-				pointRadius: 4,
-				pointHoverRadius: 8
-			}
-		]
-	};
+        const chartData = {
+            labels: {!! json_encode($chartData['labels']) !!},
+            datasets: [
+                {
+                    label: 'Views',
+                    data: {!! json_encode($chartData['views']) !!},
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: '#3498db',
+                    pointBorderColor: '#2980b9',
+                    pointRadius: 4,
+                    pointHoverRadius: 8
+                },
+                {
+                    label: 'Clicks',
+                    data: {!! json_encode($chartData['clicks']) !!},
+                    borderColor: '#e74c3c',
+                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderDash: [5, 5],
+                    pointBackgroundColor: '#e74c3c',
+                    pointBorderColor: '#c0392b',
+                    pointRadius: 4,
+                    pointHoverRadius: 8
+                }
+            ]
+        };
 
-	const clicksChart = new Chart(ctx, {
-		type: 'line',
-		data: chartData,
-		options: {
-			responsive: true,
-			maintainAspectRatio: false,
-			plugins: {
-				legend: {
-					position: 'top',
-					labels: {
-						usePointStyle: true,
-						padding: 20,
-						font: {
-							family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-							size: 12
-						}
-					}
-				},
-				tooltip: {
-					backgroundColor: 'rgba(0,0,0,0.8)',
-					titleColor: 'white',
-					bodyColor: 'white',
-					borderColor: 'rgba(255,255,255,0.2)',
-					borderWidth: 1
-				}
-			},
-			scales: {
-				y: {
-					beginAtZero: false,
-					min: 1500,
-					max: 3000,
-					grid: {
-						color: 'rgba(0,0,0,0.1)',
-						drawBorder: false
-					},
-					ticks: {
-						font: {
-							family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-							size: 11
-						},
-						color: '#6c757d'
-					}
-				},
-				x: {
-					grid: {
-						display: false
-					},
-					ticks: {
-						font: {
-							family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-							size: 11
-						},
-						color: '#6c757d'
-					}
-				}
-			},
-			interaction: {
-				intersect: false,
-				mode: 'index'
-			}
-		}
-	});
+        const clicksChart = new Chart(ctx, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            font: {
+                                family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                                size: 12
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)',
+                            drawBorder: false
+                        },
+                        ticks: {
+                            precision: 0,
+                            font: {
+                                family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                                size: 11
+                            },
+                            color: '#6c757d'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            font: {
+                                family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                                size: 11
+                            },
+                            color: '#6c757d'
+                        }
+                    }
+                },
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                }
+            }
+        });
 
-	// Animations
-	document.addEventListener('DOMContentLoaded', function() {
-		// Animate numbers on load
-		const numbers = document.querySelectorAll('.kpi-number');
-		numbers.forEach(number => {
-			const finalValue = number.textContent;
-			number.textContent = '0';
-			animateNumber(number, finalValue);
-		});
+        // Animations
+        // Animate numbers on load
+        const numbers = document.querySelectorAll('.tab-{{ $currentCount }} .kpi-number');
+        numbers.forEach(number => {
+            const finalValueText = number.getAttribute('data-final') || number.textContent;
+            const finalValue = parseFloat(finalValueText.replace(/[^\d.]/g, ''));
+            const isPercent = finalValueText.includes('%');
+            
+            animateNumber(number, finalValue, isPercent);
+        });
 
-		// Animate main revenue
-		const mainRevenue = document.querySelector('.main-revenue-amount');
-		animateRevenue(mainRevenue, '824.300 €');
+        // Animate main revenue
+        const mainRevenue = document.querySelector('.tab-{{ $currentCount }} .main-revenue-amount');
+        animateRevenue(mainRevenue, {{ $projectInfo['totalRevenue'] }});
 
-		// Animate progress bars
-		setTimeout(() => {
-			const progressBars = document.querySelectorAll('.progress-bar');
-			progressBars.forEach(bar => {
-				const width = bar.style.width;
-				bar.style.width = '0%';
-				setTimeout(() => {
-					bar.style.width = width;
-				}, 100);
-			});
-		}, 500);
-	});
+        // Animate progress bars
+        setTimeout(() => {
+            const progressBars = document.querySelectorAll('.tab-{{ $currentCount }} .progress-bar');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        }, 500);
 
-	function animateNumber(element, finalValue) {
-		const numericValue = parseInt(finalValue.replace(/[^\d]/g, ''));
-		const duration = 1500;
-		const increment = numericValue / (duration / 16);
-		let current = 0;
+        function animateNumber(element, finalValue, isPercent) {
+            const duration = 1500;
+            const increment = finalValue / (duration / 16);
+            let current = 0;
 
-		const timer = setInterval(() => {
-			current += increment;
-			if (current >= numericValue) {
-				current = numericValue;
-				clearInterval(timer);
-			}
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= finalValue) {
+                    current = finalValue;
+                    clearInterval(timer);
+                }
 
-			if (finalValue.includes('%')) {
-				element.textContent = Math.round(current) + '%';
-			} else if (finalValue.includes('K')) {
-				element.textContent = (current / 1000).toFixed(1) + 'K';
-			} else {
-				element.textContent = Math.round(current);
-			}
-		}, 16);
-	}
+                if (isPercent) {
+                    element.textContent = current.toFixed(1) + '%';
+                } else if (current >= 1000) {
+                    element.textContent = (current / 1000).toFixed(1) + 'K';
+                } else {
+                    element.textContent = Math.round(current);
+                }
+            }, 16);
+        }
 
-	function animateRevenue(element, finalValue) {
-		const numericValue = 824300;
-		const duration = 2000;
-		const increment = numericValue / (duration / 16);
-		let current = 0;
+        function animateRevenue(element, finalValue) {
+            const duration = 2000;
+            const increment = finalValue / (duration / 16);
+            let current = 0;
 
-		const timer = setInterval(() => {
-			current += increment;
-			if (current >= numericValue) {
-				current = numericValue;
-				clearInterval(timer);
-			}
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= finalValue) {
+                    current = finalValue;
+                    clearInterval(timer);
+                }
 
-			element.textContent = Math.round(current).toLocaleString('es-ES') + ' €';
-		}, 16);
-	}
+                element.textContent = Math.round(current).toLocaleString('es-ES') + ' €';
+            }, 16);
+        }
+    })();
 </script>
+
