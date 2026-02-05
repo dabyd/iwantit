@@ -477,9 +477,9 @@
     .tab-content.active {
         opacity: 1;
         visibility: visible;
-            height: auto;
-            /* height: 100%; */
-            transform : unset;
+        height: auto;
+        /* height: 100%; */
+        transform : unset;
     }
 
     /* Modal Añadir Usuarios */
