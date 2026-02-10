@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IWI Video.js Player 1.0.0 - Full View Port</title>
+
+    <link href="iwi-player.css" rel="stylesheet" />
+    <script src="iwi-player.js" defer></script>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #000;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            height: 100dvh;
+            /* Mejor soporte para móviles (barra de navegación dinámica) */
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="video-container">
+        <video id="my-video" class="video-js iwi-player vjs-default-skin" controls preload="auto" playsinline
+            webkit-playsinline poster="https://vjs.zencdn.net/v/oceans.png" data-iwi-vid="25" data-iwi-key="">
+
+            <source src="https://uat.i-want-it.es/uploads/1764781320.mov" type="video/mov" />
+
+            <track kind="captions"
+                src="data:text/vtt;charset=utf-8,WEBVTT%0A%0A00%3A00%3A01.000%20--%3E%2000%3A00%3A05.000%0ASubt%C3%ADtulos%20de%20prueba."
+                srclang="es" label="Español" default>
+        </video>
+    </div>
+
+</body>
+
+</html>
