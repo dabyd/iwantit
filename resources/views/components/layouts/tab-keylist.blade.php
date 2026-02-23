@@ -16,7 +16,8 @@ $currentCount = \App\Helpers\TabCounter::incrementAndGet();
 			@else
 			<button class="btn btn-primary _disabled" id="enable_disable_lic" data-id="{{$file->id}}">Disabled</button>
 			@endif
-			<a href="/keyfile/{{$file->fn}}" id="df-{{$file->id}}" class="btn btn-primary" download="">Download keyfile</a>
+			<button class="btn btn-primary" id="generate_srt" data-id="{{$file->id}}">Generate SRT</button>
+			<button class="btn btn-primary" id="generate_keyfile" data-id="{{$file->id}}">Generate Keyfile</button>
 			<button class="btn btn-primary" id="delete_keyfile" data-id="{{$file->id}}">Delete keyfile</button>
 		</div>
 		@endforeach

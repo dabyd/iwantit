@@ -41,6 +41,25 @@ if (!function_exists('getVideoFPS')) {
     }
 }
 
+if (!function_exists('getVideoDuration')) {
+    function getVideoDuration(string $videoPath): float {
+        $ffprobe = env('FFPROBE_PATH');
+        $cmd = "$ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " . escapeshellarg($videoPath) . " 2>&1";
+        $output = shell_exec($cmd);
+        $duration = (float)trim($output);
+        return $duration > 0 ? $duration : 0.0;
+    }
+
+    function formatSrtTimestamp(float $seconds): string {
+        $ms = (int)round(($seconds - floor($seconds)) * 1000);
+        $s  = (int)floor($seconds);
+        $h  = (int)floor($s / 3600);
+        $m  = (int)floor(($s % 3600) / 60);
+        $s  = $s % 60;
+        return sprintf('%02d:%02d:%02d,%03d', $h, $m, $s, $ms);
+    }
+}
+
 if (!function_exists('getAbsoluteFileUrl')) {
     /**
      * Convierte una URL parcial en una URL absoluta, verificando la existencia del archivo.

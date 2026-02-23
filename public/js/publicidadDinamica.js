@@ -1260,13 +1260,14 @@ document.addEventListener("readystatechange", function () {
                     consultaBase(comando, function(){ location.reload(); }, function(){ location.reload(); });
                 });
             })
-            Array.prototype.forEach.call(document.querySelectorAll('#download_keyfile'), (e) => {
+            Array.prototype.forEach.call(document.querySelectorAll('#generate_srt'), (e) => {
                 e.addEventListener('click', (b) => {
-                    let comando = {
-                        action: "download_keyfile",
-                        id: b.target.dataset.id,
-                    };
-                    consultaBase(comando, function(){}, function(){});
+                    window.location = '/api-iwi?action=download_keyfile&id=' + b.target.dataset.id;
+                });
+            })
+            Array.prototype.forEach.call(document.querySelectorAll('#generate_keyfile'), (e) => {
+                e.addEventListener('click', (b) => {
+                    window.location = '/api-iwi?action=download_plain_keyfile&id=' + b.target.dataset.id;
                 });
             })
             //

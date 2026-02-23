@@ -699,11 +699,24 @@ class ProjectController extends Controller {
             ->where('versions_id', $project_id )
             ->get();
         $base = public_path() .'/keyfile/';
+
+        $project = Project::find($project_id);
+        $endTimestamp = '00:00:00,000';
+        if ($project && $project->filename) {
+            $videoPath = public_path('uploads/' . $project->filename);
+            $duration = getVideoDuration($videoPath);
+            if ($duration > 0) {
+                $endTimestamp = formatSrtTimestamp($duration);
+            }
+        }
+
         foreach( $kf as $k => $file ) {
             // $fn = md5( $file->key ) . '-iwik.xml';
             $fn = self::cleanFileName( $file->name );
             $kf[ $k ]->fn = $fn;
-            file_put_contents( $base . $fn, $file->key );
+            $keyContent = str_pad($project_id, 7, '0', STR_PAD_LEFT) . $file->key;
+            $fileContent = "1\r\n00:00:00,000 --> " . $endTimestamp . "\r\n" . $keyContent . "\r\n\r\n";
+            file_put_contents( $base . $fn, $fileContent );
         }
         return $kf;
     }
@@ -884,7 +897,7 @@ class ProjectController extends Controller {
     }
 
     static public function cleanFileName($file_name){
-        $file_name .=  '-iwik.xml';
+        $file_name .=  '-iwik.srt';
         $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
         $file_name_str = pathinfo($file_name, PATHINFO_FILENAME);
 

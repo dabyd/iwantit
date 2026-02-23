@@ -9,6 +9,8 @@ use stdClass;
 use App\Models\Hotpoint;
 use Illuminate\Support\Facades\URL;
 use App\Models\License;
+use App\Models\Project;
+use App\Models\Territory;
 use App\Models\ClickStatistic;
 use App\Http\Controllers\ProductController;
 
@@ -126,6 +128,11 @@ class IwantitController extends Controller {
                 die();
                 break;
 
+            case 'download_plain_keyfile':
+                $this->download_plain_keyfile( $request );
+                die();
+                break;
+
             case 'update_keyfile_name':
                 $this->update_keyfile_name( $request );
                 die();
@@ -238,14 +245,65 @@ class IwantitController extends Controller {
     public function download_keyfile( $request ) {
         $license = License::find($request->id);
         if ($license) {
-            $downloadFileName = 'iwantit.xml';
+            $endTimestamp = '00:00:00,000';
+            $project = Project::find($license->versions_id);
+            if ($project && $project->filename) {
+                $videoPath = public_path('uploads/' . $project->filename);
+                $duration = getVideoDuration($videoPath);
+                if ($duration > 0) {
+                    $endTimestamp = formatSrtTimestamp($duration);
+                }
+            }
+            $keyContent = str_pad($license->versions_id, 7, '0', STR_PAD_LEFT) . $license->key;
+            $fileContent = "1\r\n00:00:00,000 --> " . $endTimestamp . "\r\n" . $keyContent . "\r\n\r\n";
+
+            $downloadFileName = $project ? $this->buildDownloadFilename($project, 'srt', $license->name ?? '') : 'iwantit.srt';
             header('Content-Description: File Transfer');
-            header('Content-Type: text/csv');
+            header('Content-Type: text/plain');
+            header('Content-Disposition: attachment; filename='.$downloadFileName);
+            ob_clean();
+            flush();
+            echo $fileContent;
+        }
+    }
+
+    public function download_plain_keyfile( $request ) {
+        $license = License::find($request->id);
+        if ($license) {
+            $project = Project::find($license->versions_id);
+            $downloadFileName = $project ? $this->buildDownloadFilename($project, 'key', $license->name ?? '') : 'iwantit.key';
+            header('Content-Description: File Transfer');
+            header('Content-Type: text/plain');
             header('Content-Disposition: attachment; filename='.$downloadFileName);
             ob_clean();
             flush();
             echo $license->key;
         }
+    }
+
+    private function slugify(string $str): string {
+        $str = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str);
+        $str = strtolower($str);
+        $str = preg_replace('/[^a-z0-9]+/', '_', $str);
+        return trim($str, '_');
+    }
+
+    private function buildDownloadFilename(Project $project, string $extension, string $keyName = ''): string {
+        $base = $this->slugify($project->name);
+        if ($project->type === 'Serie') {
+            $territory = Territory::find($project->territories_id);
+            if ($territory) {
+                $base .= '_' . $this->slugify($territory->name);
+            }
+            $base .= '_s' . (int)$project->season . '_e' . (int)$project->episode;
+        }
+        if ($keyName !== '') {
+            $sluggedKey = $this->slugify($keyName);
+            if ($sluggedKey !== '') {
+                $base .= '_' . $sluggedKey;
+            }
+        }
+        return $base . '.' . $extension;
     }
 
     public function update_keyfile_name( $request ) {
