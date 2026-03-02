@@ -58,6 +58,40 @@ if (!function_exists('getVideoDuration')) {
         $s  = $s % 60;
         return sprintf('%02d:%02d:%02d,%03d', $h, $m, $s, $ms);
     }
+
+    /**
+     * Genera contenido SRT en bloques de 10 segundos, repitiendo el mismo keyContent.
+     *
+     * @param float  $totalDuration  Duración total del vídeo en segundos.
+     * @param string $keyContent     Contenido de la key (project_id + key hash).
+     * @param int    $blockSeconds   Duración de cada bloque en segundos (por defecto 10).
+     * @return string                Contenido SRT completo.
+     */
+    function generateSrtContent(float $totalDuration, string $keyContent, int $blockSeconds = 10): string {
+        $srt = '';
+        $index = 1;
+        $currentTime = 0.0;
+
+        while ($currentTime < $totalDuration) {
+            $endTime = $currentTime + $blockSeconds;
+            if ($endTime > $totalDuration) {
+                $endTime = $totalDuration;
+            }
+
+            $startTs = formatSrtTimestamp($currentTime);
+            $endTs   = formatSrtTimestamp($endTime);
+
+            $srt .= $index . "\r\n";
+            $srt .= $startTs . ' --> ' . $endTs . "\r\n";
+            $srt .= $keyContent . "\r\n";
+            $srt .= "\r\n";
+
+            $index++;
+            $currentTime += $blockSeconds;
+        }
+
+        return $srt;
+    }
 }
 
 if (!function_exists('getAbsoluteFileUrl')) {

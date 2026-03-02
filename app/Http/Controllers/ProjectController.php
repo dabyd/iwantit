@@ -701,13 +701,10 @@ class ProjectController extends Controller {
         $base = public_path() .'/keyfile/';
 
         $project = Project::find($project_id);
-        $endTimestamp = '00:00:00,000';
+        $duration = 0.0;
         if ($project && $project->filename) {
             $videoPath = public_path('uploads/' . $project->filename);
             $duration = getVideoDuration($videoPath);
-            if ($duration > 0) {
-                $endTimestamp = formatSrtTimestamp($duration);
-            }
         }
 
         foreach( $kf as $k => $file ) {
@@ -715,7 +712,11 @@ class ProjectController extends Controller {
             $fn = self::cleanFileName( $file->name );
             $kf[ $k ]->fn = $fn;
             $keyContent = str_pad($project_id, 7, '0', STR_PAD_LEFT) . $file->key;
-            $fileContent = "1\r\n00:00:00,000 --> " . $endTimestamp . "\r\n" . $keyContent . "\r\n\r\n";
+            if ($duration > 0) {
+                $fileContent = generateSrtContent($duration, $keyContent);
+            } else {
+                $fileContent = "1\r\n00:00:00,000 --> 00:00:00,000\r\n" . $keyContent . "\r\n\r\n";
+            }
             file_put_contents( $base . $fn, $fileContent );
         }
         return $kf;

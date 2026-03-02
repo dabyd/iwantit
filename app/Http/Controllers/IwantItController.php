@@ -245,17 +245,18 @@ class IwantitController extends Controller {
     public function download_keyfile( $request ) {
         $license = License::find($request->id);
         if ($license) {
-            $endTimestamp = '00:00:00,000';
             $project = Project::find($license->versions_id);
+            $duration = 0.0;
             if ($project && $project->filename) {
                 $videoPath = public_path('uploads/' . $project->filename);
                 $duration = getVideoDuration($videoPath);
-                if ($duration > 0) {
-                    $endTimestamp = formatSrtTimestamp($duration);
-                }
             }
-            $keyContent = str_pad($license->versions_id, 7, '0', STR_PAD_LEFT) . $license->key;
-            $fileContent = "1\r\n00:00:00,000 --> " . $endTimestamp . "\r\n" . $keyContent . "\r\n\r\n";
+            $keyContent = $license->versions_id . "\r\n" . $license->key;
+            if ($duration > 0) {
+                $fileContent = generateSrtContent($duration, $keyContent);
+            } else {
+                $fileContent = "1\r\n00:00:00,000 --> 00:00:00,000\r\n" . $keyContent . "\r\n\r\n";
+            }
 
             $downloadFileName = $project ? $this->buildDownloadFilename($project, 'srt', $license->name ?? '') : 'iwantit.srt';
             header('Content-Description: File Transfer');
