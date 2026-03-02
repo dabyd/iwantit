@@ -23,7 +23,7 @@ if (!function_exists('getVideoFPS')) {
     }
 
     function getVideoResolution($videoPath) {
-        $ffprobe = env('FFPROBE_PATH');
+        $ffprobe = config('FFPROBE_PATH');
         $cmd = "$ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of json " . escapeshellarg($videoPath) . " 2>&1";
         $output = shell_exec($cmd);
 
@@ -43,7 +43,7 @@ if (!function_exists('getVideoFPS')) {
 
 if (!function_exists('getVideoDuration')) {
     function getVideoDuration(string $videoPath): float {
-        $ffprobe = env('FFPROBE_PATH');
+        $ffprobe = config('FFPROBE_PATH');
         $cmd = "$ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " . escapeshellarg($videoPath) . " 2>&1";
         $output = shell_exec($cmd);
         $duration = (float)trim($output);
