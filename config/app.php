@@ -122,4 +122,14 @@ return [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | I Want It - Custom Settings
+    |--------------------------------------------------------------------------
+    */
+
+    'iwi_version' => env('IWI_VERSION', '0.0.0'),
+    'iwi_year' => env('IWI_YEAR', date('Y')),
+    'ffprobe_path' => env('FFPROBE_PATH', '/usr/bin/ffprobe'),
 ];

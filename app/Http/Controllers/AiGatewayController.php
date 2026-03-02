@@ -188,11 +188,7 @@ class AiGatewayController extends Controller
         $host = parse_url($url, PHP_URL_HOST);
         if (!$host) return false;
 
-        $allowed = config('ai.allowed_hosts');
-        if (!is_array($allowed) || empty($allowed)) {
-            $env = env('AI_ALLOWED_HOSTS', '');
-            $allowed = array_filter(array_map('trim', explode(',', $env)));
-        }
+        $allowed = config('ai.allowed_hosts', []);
 
         return in_array($host, $allowed, true);
     }
@@ -218,7 +214,7 @@ class AiGatewayController extends Controller
 
 		// whitelist opcional
 		$host = parse_url($data['target_url'], PHP_URL_HOST);
-		$allowed = config('ai.allowed_hosts') ?: array_filter(array_map('trim', explode(',', env('AI_ALLOWED_HOSTS', '13.48.27.24'))));
+		$allowed = config('ai.allowed_hosts', []);
 		if (!in_array($host, $allowed, true)) {
 			return response()->json(['message' => 'Target host is not allowed'], 403);
 		}
@@ -250,7 +246,7 @@ class AiGatewayController extends Controller
 		}
 
 		// Whitelist (opcional pero recomendable)
-		$allowed = config('ai.allowed_hosts') ?: array_filter(array_map('trim', explode(',', env('AI_ALLOWED_HOSTS', '13.48.27.24'))));
+		$allowed = config('ai.allowed_hosts', []);
 		if (!in_array($host, $allowed, true)) {
 			return ['error' => 'Target host is not allowed', 'code' => 403];
 		}

@@ -160,7 +160,7 @@
       </main>
 
       <footer class="iwt-footer">
-        <p class="copyright">I Want It &copy; <?php echo env('IWI_YEAR') . ' <i style="font-family: Roboto;font-size: 14px;">(' . env('IWI_VERSION') . ')</i>'; ?></p>
+        <p class="copyright">I Want It &copy; <?php echo config('app.iwi_year') . ' <i style="font-family: Roboto;font-size: 14px;">(' . config('app.iwi_version') . ')</i>'; ?></p>
         <a class="support" href="#" target="_blank">Support</a>
       </footer>
 

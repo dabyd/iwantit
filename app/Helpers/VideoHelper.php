@@ -2,7 +2,7 @@
 
 if (!function_exists('getVideoFPS')) {
     function getVideoFPS($videoPath) {
-        $ffprobe = env('FFPROBE_PATH');
+        $ffprobe = config('app.ffprobe_path');
         $cmd = "$ffprobe -v 0 -select_streams v:0 -show_entries stream=r_frame_rate -of default=noprint_wrappers=1:nokey=1 " . escapeshellarg($videoPath) . " 2>&1";
         $output = shell_exec($cmd);
 
@@ -113,7 +113,7 @@ if (!function_exists('getAbsoluteFileUrl')) {
         
         if ($isCli) {
             // En CLI, devolver la URL relativa o usar APP_URL del .env
-            $appUrl = env('APP_URL', 'http://localhost');
+            $appUrl = config('app.url', 'http://localhost');
             return rtrim($appUrl, '/') . '/' . ltrim($partialUrl, '/');
         }
         
