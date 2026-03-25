@@ -106,7 +106,7 @@ task('artisan:optimize', function () {
 // Task para reiniciar PHP-FPM
 desc('Restart PHP-FPM');
 task('php-fpm:restart', function () {
-    run('sudo systemctl restart php8.4-fpm');
+    run('sudo systemctl restart {{php_fpm_service}}');
 })->once();
 
 // Task para reiniciar Nginx
@@ -137,14 +137,14 @@ desc('Cleanup old releases with sudo');
 task('deploy:cleanup:sudo', function () {
     $releases = get('releases_list');
     $keep = get('keep_releases');
-    
+
     if ($keep > 0) {
         $releasesToDelete = array_slice($releases, $keep);
         foreach ($releasesToDelete as $release) {
             run("sudo rm -rf {{deploy_path}}/releases/$release");
         }
     }
-    
+
     writeln('<info>✅ Releases antiguas limpiadas</info>');
 });
 
