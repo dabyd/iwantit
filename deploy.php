@@ -13,7 +13,7 @@ set('php_version', '8.4');
 set('bin/php', '/usr/bin/php');
 
 // Stage por defecto (para que funcione `dep deploy` sin especificar stage)
-set('default_stage', 'production');
+set('default_stage', 'uat');
 
 // Usar composer del sistema (evitar descargarlo cada vez)
 set('bin/composer', 'composer');
@@ -58,10 +58,16 @@ set('composer_options', '{{composer_action}} --verbose --prefer-dist --no-progre
 set('allow_anonymous_stats', false);
 
 // Hosts (Deployer 6.x syntax)
-host('production')
+host('uat')
     ->hostname('uat.i-want-it.es')
     ->user('ubuntu')
     ->set('deploy_path', '/var/www2/iwantit')
+    ->stage('uat');
+
+host('production')
+    ->hostname('platform.i-want-it.es')
+    ->user('ubuntu')
+    ->set('deploy_path', '/var/www/iwantit')
     ->stage('production');
 
 // Sobrescribir artisan:view:cache para evitar errores de componentes Blade
@@ -169,6 +175,8 @@ after('deploy', 'deploy:success');
 
 desc('Deploy completed successfully');
 task('deploy:success', function () {
+    $stage = get('stage', 'uat');
+    $url = $stage === 'production' ? 'https://platform.i-want-it.es' : 'https://uat.i-want-it.es';
     writeln('<info>✅ Deploy completed successfully!</info>');
-    writeln('<info>🌐 URL: https://uat.i-want-it.es</info>');
+    writeln("<info>🌐 URL: $url</info>");
 });
