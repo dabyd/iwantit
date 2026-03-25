@@ -1,53 +1,58 @@
 <?php
 
 if (!function_exists('getVideoFPS')) {
-    function getVideoFPS($videoPath) {
+    /**
+     * Una sola llamada a ffprobe para obtener FPS, resolución y duración.
+     * El resultado se cachea en memoria para evitar llamadas repetidas al mismo fichero.
+     */
+    function getVideoInfo(string $videoPath): array {
+        static $cache = [];
+        if (isset($cache[$videoPath])) {
+            return $cache[$videoPath];
+        }
+
+        $info = ['fps' => 24, 'width' => null, 'height' => null, 'duration' => 0.0];
         $ffprobe = config('app.ffprobe_path');
-        $cmd = "$ffprobe -v 0 -select_streams v:0 -show_entries stream=r_frame_rate -of default=noprint_wrappers=1:nokey=1 " . escapeshellarg($videoPath) . " 2>&1";
+        $cmd = "$ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate,width,height -show_entries format=duration -of json " . escapeshellarg($videoPath) . " 2>&1";
         $output = shell_exec($cmd);
+        $data = json_decode($output, true);
 
-        if (!$output) {
-            return 24;
+        if (isset($data['streams'][0])) {
+            $stream = $data['streams'][0];
+            if (isset($stream['width'], $stream['height'])) {
+                $info['width'] = $stream['width'];
+                $info['height'] = $stream['height'];
+            }
+            if (isset($stream['r_frame_rate'])) {
+                $fps = $stream['r_frame_rate'];
+                if (str_contains($fps, '/')) {
+                    [$num, $den] = explode('/', $fps);
+                    $info['fps'] = (int)$den !== 0 ? round((float)$num / (float)$den, 4) : 24;
+                } elseif ($fps !== '') {
+                    $info['fps'] = (float)$fps;
+                }
+            }
+        }
+        if (isset($data['format']['duration'])) {
+            $d = (float)$data['format']['duration'];
+            $info['duration'] = $d > 0 ? $d : 0.0;
         }
 
-        if (str_contains($output, '/')) {
-            [$num, $den] = explode('/', trim($output));
-            return (int)$den !== 0 ? round((float)$num / (float)$den, 4) : 24;
-        }
+        $cache[$videoPath] = $info;
+        return $info;
+    }
 
-        if (is_null( $output ) || '' == $output ) {
-            $output = 24;
-        }
-
-        return (float)trim($output);
+    function getVideoFPS($videoPath) {
+        return getVideoInfo($videoPath)['fps'];
     }
 
     function getVideoResolution($videoPath) {
-        $ffprobe = config('app.ffprobe_path');
-        $cmd = "$ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of json " . escapeshellarg($videoPath) . " 2>&1";
-        $output = shell_exec($cmd);
-
-        $data = json_decode($output, true);
-
-        $ret = array(
-            'width' => null,
-            'height' => null
-        );
-        if (isset($data['streams'][0]['width']) && isset($data['streams'][0]['height'])) {
-            $ret['width']  = $data['streams'][0]['width'];
-            $ret['height'] = $data['streams'][0]['height'];
-        }
-        return $ret;
+        $info = getVideoInfo($videoPath);
+        return ['width' => $info['width'], 'height' => $info['height']];
     }
-}
 
-if (!function_exists('getVideoDuration')) {
     function getVideoDuration(string $videoPath): float {
-        $ffprobe = config('app.ffprobe_path');
-        $cmd = "$ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 " . escapeshellarg($videoPath) . " 2>&1";
-        $output = shell_exec($cmd);
-        $duration = (float)trim($output);
-        return $duration > 0 ? $duration : 0.0;
+        return getVideoInfo($videoPath)['duration'];
     }
 
     function formatSrtTimestamp(float $seconds): string {

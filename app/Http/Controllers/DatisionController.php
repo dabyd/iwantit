@@ -149,27 +149,22 @@ class DatisionController extends Controller {
      * @return \Illuminate\Http\JsonResponse
      */
     static public function getProjectObjects( $project_id ) {
-        $project = Datision::where('id_project', $project_id)->first() ?? null;
-//        $project = Datision::findOrFail( $project_id );
+        $project = Datision::where('id_project', $project_id)->first();
         $ret = [];
         if ( $project ) {
             $objects = $project->results()
-                ->select('class', DB::raw('COUNT(*) as objects_count'), DB::raw('SUM((SELECT COUNT(*) FROM datision_detections WHERE datision_detections.datision_result_id = datision_results.id)) as detections_count'))
-                ->groupBy('class')
-                ->get()
-                ->map(function ($object) {
-                    return [
-                        'class' => $object->class,
-                        'objects_count' => $object->objects_count,
-                        'detections_count' => $object->detections_count,
-                    ];
-                });
+                ->leftJoin('datision_detections', 'datision_detections.datision_result_id', '=', 'datision_results.id')
+                ->select('datision_results.class', DB::raw('COUNT(DISTINCT datision_results.id) as objects_count'), DB::raw('COUNT(datision_detections.id) as detections_count'))
+                ->groupBy('datision_results.class')
+                ->get();
 
-            $objects = $objects->toArray();
-            $ret = array();
             foreach( $objects as $object ) {
-                $object['option'] = urlencode( str_replace( '/', '-----', $object['class'] ) );
-                $ret[ $object['class'] ] = $object;
+                $ret[ $object->class ] = [
+                    'class' => $object->class,
+                    'objects_count' => $object->objects_count,
+                    'detections_count' => $object->detections_count,
+                    'option' => urlencode( str_replace( '/', '-----', $object->class ) ),
+                ];
             }
             ksort( $ret );
         }

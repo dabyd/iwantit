@@ -52,8 +52,8 @@ class ProjectController extends Controller {
                 $responses = Http::pool(fn ($pool) => 
                     collect($tasksToCheck)->map(fn ($taskId, $projectId) =>
                         $pool->as((string)$projectId)
-                            ->timeout(5)
-                            ->connectTimeout(2)
+                            ->timeout(2)
+                            ->connectTimeout(1)
                             ->acceptJson()
                             ->get($baseUrl . $taskId)
                     )->toArray()
@@ -198,6 +198,55 @@ class ProjectController extends Controller {
         }
     
         return $result;
+    }
+
+    /**
+     * Versión optimizada que recibe el proyecto ya cargado (evita query extra).
+     */
+    public function getUsersByProjectDirect(Project $project): array {
+        $users = [];
+
+        if ($project->users_id) {
+            $ownerUser = DB::table('users')
+                ->select('id as user_id', 'name as user_name', 'role as user_role')
+                ->where('id', $project->users_id)
+                ->first();
+
+            if ($ownerUser) {
+                $users[] = [
+                    'user_id' => $ownerUser->user_id,
+                    'user_name' => $ownerUser->user_name,
+                    'user_role' => $ownerUser->user_role,
+                    'owner' => 'Project owner'
+                ];
+            }
+        }
+
+        $linkedUsers = DB::table('projects_users')
+            ->join('users', 'projects_users.users_id', '=', 'users.id')
+            ->where('projects_users.projects_id', $project->id)
+            ->select(
+                'users.id as user_id',
+                'users.name as user_name',
+                'users.role as user_role',
+                'projects_users.as_owner'
+            )
+            ->get();
+
+        foreach ($linkedUsers as $lu) {
+            $ownerStatus = ($lu->as_owner === 'S') ? 'Shared owner' : 'Editor';
+            $alreadyAdded = collect($users)->contains('user_id', $lu->user_id);
+            if (!$alreadyAdded) {
+                $users[] = [
+                    'user_id' => $lu->user_id,
+                    'user_name' => $lu->user_name,
+                    'user_role' => $lu->user_role,
+                    'owner' => $ownerStatus
+                ];
+            }
+        }
+
+        return [$project->id => $users];
     }
 
     // GET: /projects/{id}/available-users
@@ -524,10 +573,10 @@ class ProjectController extends Controller {
 
         $video = URL::asset( 'uploads/' . $project->filename );
         $video_path = public_path( 'uploads/' . $project->filename );
-        $video_fps = getVideoFPS( $video_path );
-        $video_h = getVideoResolution( $video_path );
-        $video_w = $video_h[ 'width' ];
-        $video_h = $video_h[ 'height' ]; 
+        $videoInfo = getVideoInfo( $video_path );
+        $video_fps = $videoInfo['fps'];
+        $video_w = $videoInfo['width'];
+        $video_h = $videoInfo['height'];
 
         //
         // Tags vinculados y disponibles
@@ -552,13 +601,14 @@ class ProjectController extends Controller {
         }
 
         //
-        // Productos
+        // Productos (solo id y name)
         //
-        $products = DB::table('products')->get();
-        $productos = [];
-        foreach( $products->toArray() as $producto ) {
-            $productos[ $producto->id ] = [ 'id' => $producto->id, 'name' => $producto->name ];
-        }
+        $productos = DB::table('products')
+            ->select('id', 'name')
+            ->get()
+            ->keyBy('id')
+            ->map(fn ($p) => ['id' => $p->id, 'name' => $p->name])
+            ->toArray();
 
         //
         // Hotpoints
@@ -573,39 +623,28 @@ class ProjectController extends Controller {
         foreach( $territories->toArray() as $territory ) {
             $terr[ $territory->id ] = [ 'id' => $territory->id, 'name' => $territory->name ];
         }
-/*
-        //
-        // Proyectos a los que tiene acceso
-        //
-        $gp = $this->getProjects( $project->id )->get()->toArray();
-*/
-        //
-        // Usuarios por proyecto
-        //
-        $ubp = $this->getUsersByProject( $project->id );
 
         //
-        // Licencias que nos son licencias sino que son keyfile
+        // Usuarios por proyecto (sin recargar el proyecto de DB)
         //
-        $kf = self::generateFileKey( $project->id );
+        $ubp = $this->getUsersByProjectDirect( $project );
+
+        //
+        // Licencias que nos son licencias sino que son keyfile (sin reescribir ficheros)
+        //
+        $kf = self::getFileKeyList( $project->id );
 
         //
         // Detecciones de datision por proyecto
         //
         $datision = DatisionController::getProjectObjects( $project->id );
-/*
-        echo '<pre>*';
-        print_r( $datision );
-        echo '</pre>';
-        die();
-*/
+
         $distance_frames = 0;
 
-        // --- NUEVO: obtener parámetros de datision_parameters ---
+        // --- Parámetros de datision y clases IA en una sola sección ---
         $datisionParams = DB::table('datision_parameters')->first();
         $ai_url = $datisionParams->machine_url ?? null;
         $threshold_secs = $datisionParams->threshold_sec ?? null;
-        // Carga ordenada alfabéticamente por 'name' de todas las clases de objetos para la IA
         $ia_clases = DatisionObjectsIaClass::query()
             ->orderBy('name', 'asc')
             ->get(['id', 'name'])
@@ -623,6 +662,19 @@ class ProjectController extends Controller {
             }
             $objects[ $key ] = $data['time_groups']->toArray();
         }
+        // Batch: cargar todos los productos con sus brands y clases IA en 3 queries
+        $productIds = array_keys($objects);
+        $allProducts = Product::with(['brand', 'iaClasses'])
+            ->whereIn('id', $productIds)
+            ->get()
+            ->keyBy('id');
+
+        // Batch: cargar todos los HotpointsDates del proyecto en 1 query
+        $allHotpointsDates = HotpointsDate::where('project_id', $project->id)
+            ->whereIn('product_id', $productIds)
+            ->get()
+            ->keyBy('product_id');
+
         foreach( $objects as $object_id => $veces ) {
             $ttime = 0;
             foreach( $veces as $key => $data ) {
@@ -635,7 +687,7 @@ class ProjectController extends Controller {
                     'veces' => $data
                 ];
             }
-            $prd = Product::find($object_id);
+            $prd = $allProducts->get($object_id);
 
             // Si el producto no existe, saltamos esta iteración
             if (!$prd) {
@@ -643,11 +695,8 @@ class ProjectController extends Controller {
                 continue;
             }
 
-            $cls = ProductDatisionObjectsIaClass::where('products_id', $object_id)->get();
-            $brd = Brand::find($prd->brands_id);
-            $hpd = HotpointsDate::where('project_id', $project->id)
-                        ->where('product_id', $object_id)
-                        ->first();
+            $brd = $prd->brand;
+            $hpd = $allHotpointsDates->get($object_id);
             $estado = 'Enabled';
             $precio = '';
             $precio_s = '';
@@ -662,21 +711,14 @@ class ProjectController extends Controller {
                 $date_out = $hpd->get_date_out();
                 $url = $hpd->url;
             }
-            $clsname = '';
-            foreach( $cls as $c ) {
-                $clx = DatisionObjectsIaClass::find( $c->datision_objects_ia_classes_id );
-                if ( '' != $clsname ) {
-                    $clsname .= ', ';
-                }
-                $clsname .= $clx->name;
-            }
+            $clsname = $prd->iaClasses->pluck('name')->implode(', ');
             $objects[ $object_id ] = [
                 'id' => $object_id,
                 'thumbnail' => '/uploads/' . $prd->filename,
-                'thumbnail_brand' => '/uploads/' . $brd->filename,
+                'thumbnail_brand' => '/uploads/' . ($brd ? $brd->filename : ''),
                 'name' => $prd->name,
                 'family' => $clsname,
-                'brand' => $brd->name,
+                'brand' => $brd ? $brd->name : '',
                 'time' => formatSecondsToTime( $ttime ),
                 'segundos' => ceil( $ttime ),
                 'estado' => $estado,
@@ -685,7 +727,7 @@ class ProjectController extends Controller {
                 'date_in' => $date_in == '' ? '---' : $date_in,
                 'date_out' => $date_out == '' ? '---' : $date_out,
                 'url' => $url,
-                'url_brand' => $brd->url,
+                'url_brand' => $brd ? $brd->url : '',
                 'veces' => count( $veces ),
                 'data' => $veces,
             ];
@@ -718,6 +760,21 @@ class ProjectController extends Controller {
                 $fileContent = "1\r\n00:00:00,000 --> 00:00:00,000\r\n" . $keyContent . "\r\n\r\n";
             }
             file_put_contents( $base . $fn, $fileContent );
+        }
+        return $kf;
+    }
+
+    /**
+     * Versión ligera: solo devuelve los datos de licencias con el nombre de fichero,
+     * sin reescribir los ficheros SRT a disco (eso se hace al descargar).
+     */
+    static public function getFileKeyList( $project_id ) {
+        $kf = DB::table('licenses')
+            ->where('versions_id', $project_id )
+            ->get();
+
+        foreach( $kf as $k => $file ) {
+            $kf[ $k ]->fn = self::cleanFileName( $file->name );
         }
         return $kf;
     }
