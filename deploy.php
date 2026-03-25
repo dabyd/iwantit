@@ -62,12 +62,14 @@ host('uat')
     ->hostname('uat.i-want-it.es')
     ->user('ubuntu')
     ->set('deploy_path', '/var/www2/iwantit')
+    ->set('php_fpm_service', 'php8.4-fpm')
     ->stage('uat');
 
 host('production')
     ->hostname('platform.i-want-it.es')
     ->user('ubuntu')
     ->set('deploy_path', '/var/www/iwantit')
+    ->set('php_fpm_service', 'php8.3-fpm')
     ->stage('production');
 
 // Sobrescribir artisan:view:cache para evitar errores de componentes Blade
