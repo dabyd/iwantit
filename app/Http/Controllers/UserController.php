@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Options;
 use App\Models\User;
 use App\Models\UserOption;
 use Illuminate\Http\Request;
@@ -49,8 +50,8 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $controller = $this;
-        return view('users.create', compact('controller'));
+        $options = Options::all()->groupBy('type');
+        return view('users.create', compact('options'));
     }
 
     /**
@@ -60,11 +61,20 @@ class UserController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        $request->validate([
+            'name'  => 'required',
+            'email' => 'required|email|unique:users,email',
+            'role'  => 'required|in:admin,super,editor',
+        ]);
+
         $user = new User;
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->password = Hash::make( $request->input('password') );
+        $user->name     = $request->input('name');
+        $user->email    = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->role     = $request->input('role');
         $user->save();
+
+        $this->updateUserOptions($user, $request->all());
 
         return to_route('users.index');
     }
