@@ -1,21 +1,18 @@
 <?php
-    use App\Helpers\OptionHelper;
-    use Illuminate\Support\Facades\Auth;
-    use App\Models\User;
-    use App\Models\Options;
-    use App\Models\UserOption;
+use App\Models\User;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
-    // Obtener los usuarios con rol 'super'
-    $superUsers = User::where('role', 'super')->get();
-    $activeUserId = $user->client_id; // ID del usuario activo
+$superUsers = User::role('Supervisor')->get();
+$activeUserId = $user->client_id;
 
-    // Obtener las opciones agrupadas por tipo
-    $options = Options::all()->groupBy('type');
+$roles = Role::all();
 
-    // Obtener los registros de user_options para el usuario actual
-    $userOptions = UserOption::where('user_id', $user->id)->get()->keyBy('option_id');
+$userProjectPermissions = DB::table('project_user_permissions')
+    ->where('user_id', $user->id)
+    ->pluck('access_level', 'project_id');
 ?>
-<x-layouts.app title="Users: Edit user">
+<x-layouts.app title="Users">
     <div class="header">
         <div class="pull-left">
             <h2>Edit user</h2>
@@ -69,57 +66,34 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Role:</strong>
-                    <select name="role" class="form-control"{{ ( Auth::user()->role != 'admin' ) ? 'disabled read-only:' : '' }}>
-                        <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="super" {{ $user->role == 'super' ? 'selected' : '' }}>Supervisor</option>
-                        <option value="editor" {{ $user->role == 'editor' ? 'selected' : '' }}>Editor</option>
+                    <select name="role" class="form-control">
+                        @foreach($roles as $role)
+                            <option value="{{ $role->name }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>
+                                {{ $role->name }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
             </div>
-            
-            <!-- Permisos -->
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Grants:</strong>
-                    @foreach($options as $type => $typeOptions)
-                        <div class="option-group">
-                            <h4>{{ ucfirst($type) }}</h4>
-                            @foreach($typeOptions as $option)
-                                <?php
-                                    $isChecked = isset($userOptions[$option->id]) && $userOptions[$option->id]->active;
-                                ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="options[]" value="{{ $option->id }}" id="option-{{ $option->id }}" {{ $isChecked ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="option-{{ $option->id }}">
-                                        {{ $option->name }}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endforeach
-                </div>
-            </div>
 
-            <!-- Projects -->
+            <!-- Project Permissions -->
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Projects:</strong>
-                    @foreach($options as $type => $typeOptions)
-                        <div class="option-group">
-                            <h4>{{ ucfirst($type) }}</h4>
-                            @foreach($typeOptions as $option)
-                                <?php
-                                    $isChecked = isset($userOptions[$option->id]) && $userOptions[$option->id]->active;
-                                ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="options[]" value="{{ $option->id }}" id="option-{{ $option->id }}" {{ $isChecked ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="option-{{ $option->id }}">
-                                        {{ $option->name }}
-                                    </label>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endforeach
+                    <strong>Project Permissions:</strong>
+                    <small class="text-muted d-block mb-2">Note: Admin role has access to all projects automatically</small>
+                    <div class="mb-3">
+                        <input type="text" id="project-search" class="form-control" placeholder="Filter projects by name (min 3 chars)..." autocomplete="off">
+                    </div>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>Access Level</th>
+                            </tr>
+                        </thead>
+                        <tbody id="projects-tbody">
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -130,4 +104,32 @@
         </div>
 
     </form>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('project-search');
+        const tbody = document.getElementById('projects-tbody');
+        const userId = {{ $user->id }};
+        let debounceTimer;
+
+        function loadProjects(search = '') {
+            const url = '/users/' + userId + '/search-projects?search=' + encodeURIComponent(search) + '&user_id=' + userId;
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    tbody.innerHTML = data.html;
+                })
+                .catch(error => console.error('Error loading projects:', error));
+        }
+
+        loadProjects();
+
+        searchInput.addEventListener('input', function() {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(function() {
+                loadProjects(searchInput.value);
+            }, 300);
+        });
+    });
+    </script>
 </x-layouts.app>

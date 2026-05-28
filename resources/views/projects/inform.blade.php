@@ -1,4 +1,4 @@
-<x-layouts.app title=": Add new {{ $controller->getParams('singular') }}">
+<x-layouts.app title="{{ ucwords($controller->getParams('plural')) }}">
     <div class="iwt-inform row">
         <div class="header">
             <div class="pull-left">

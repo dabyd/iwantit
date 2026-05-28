@@ -49,8 +49,8 @@ function F(n, e = 100) {
 })();
 const j = {
   SERVER: {
-    URL: "https://demo2-iwi.test/",
-    URL_PUBLIC: "https://demo2-iwi.test/",
+    URL: "https://uat.i-want-it.local/",
+    URL_PUBLIC: "https://uat.i-want-it.local/",
     URL_API: "https://uat.i-want-it.es/api-iwi",
   },
 };

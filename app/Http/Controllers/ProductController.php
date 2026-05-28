@@ -19,23 +19,41 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $products = Product::latest();
+        $search = request()->get('search', '');
+        $perPage = (int) request()->get('per_page', 10);
+        $allowedPerPages = [10, 20, 50, 100, 9999];
+        if (!in_array($perPage, $allowedPerPages)) {
+            $perPage = 20;
+        }
+
+        $products = Product::query();
+
+        if (strlen($search) >= 3) {
+            $products->where('name', 'like', '%' . $search . '%');
+        }
+
         if ( isset( $_GET[ 'orderby' ] ) ) {
             $order = 'asc';
             if ( isset( $_GET[ 'ordertype' ] ) ) {
                 $order = $_GET[ 'ordertype' ];
             }
-            $products = Product::orderBy( $_GET[ 'orderby' ], $order )->latest();
+            $products->orderBy( $_GET[ 'orderby' ], $order );
         }
-        $products = $products->paginate(300);
-//        $products = Product::latest()->paginate(300);
+
+        if ($perPage === 9999) {
+            $products = $products->get();
+            $products = new \Illuminate\Pagination\LengthAwarePaginator($products, $products->count(), $products->count());
+        } else {
+            $products = $products->latest()->paginate($perPage);
+        }
+
         $controller = $this;
         $marcas = DB::table('brands')->get();
         $brands = [];
         foreach( $marcas->toArray() as $marca ) {
             $brands[ $marca->id ] = [ 'id' => $marca->id, 'name' => $marca->name ];
         }
-        return view('products.index', compact('products', 'controller','brands'))->with('i', (request()->input('page', 1) - 1) * 300);
+        return view('products.index', compact('products', 'controller','brands'))->with('i', (request()->input('page', 1) - 1) * $perPage);
     }
 
     /**

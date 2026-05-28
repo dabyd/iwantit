@@ -1,7 +1,7 @@
-@props( [ 'controller', 'data', 'video', 'video_fps', 'video_w', 'video_h', 'hotpointEditor', 'hotpoints', 'productos', 'related', 'txtrelated', 'keylist', 'ubp', 'datision', 'tabs', 'ia_selected_classes', 'ia_available_classes', 'ai_url', 'threshold_secs', 'ia_clases', 'objects' ] )
+@props( [ 'controller', 'data', 'video', 'video_fps', 'video_w', 'video_h', 'hotpointEditor', 'hotpoints', 'productos', 'related', 'txtrelated', 'keylist', 'ubp', 'datision', 'tabs', 'ia_selected_classes', 'ia_available_classes', 'ai_url', 'threshold_secs', 'ia_clases', 'objects', 'readonly' ] )
 
 @php
-    $title = ucwords($controller->getParams('plural')) . ': Edit ' . strtolower($controller->getParams('singular'));
+    $title = ucwords($controller->getParams('plural'));
 @endphp
 
 <x-layouts.app title="{{$title}}">
@@ -15,7 +15,7 @@
         \App\Helpers\TabCounter::reset();
     @endphp
 
-    @if ( isset( $objects ) )
+    @if ( isset( $objects ) && !(isset($readonly) && $readonly) )
         <x-layouts.tab-dashboard :project="$data" />
     @endif
 
@@ -33,9 +33,9 @@
     }
 @endphp
 
-    <x-layouts.tab-edit :controller="$controller" :data="$data" :related="$related" :txtrelated="$txtrelated" :video="$video" />
+    <x-layouts.tab-edit :controller="$controller" :data="$data" :related="$related" :txtrelated="$txtrelated" :video="$video" :readonly="$readonly ?? false" />
 
-    @if ( isset( $objects ) )
+    @if ( isset( $objects ) && !(isset($readonly) && $readonly) )
         <x-layouts.tab-objects :objects="$objects"/>
     @endif
 
@@ -48,15 +48,15 @@
         // <x-layouts.tags :tags="$tags" :controller="$controller" :vinculated="$vinculated" />
     @endphp
 
-    @if ( isset( $keylist ) )
+    @if ( isset( $keylist ) && !(isset($readonly) && $readonly) )
         <x-layouts.tab-keylist :data="$data" :keylist="$keylist" />
     @endif
 
-    @if ( isset( $ubp ) )
+    @if ( isset( $ubp ) && !(isset($readonly) && $readonly) )
         <x-layouts.tab-permisions :data="$data" :ubp="$ubp" />
     @endif
 
-    @if ( isset( $datision ) )
+    @if ( isset( $datision ) && !(isset($readonly) && $readonly) )
         <x-layouts.tab-aiobjects :data="$data" :ai_url="$ai_url" :datision="$datision" :threshold_secs="$threshold_secs" :ia_clases="$ia_clases" :video="$video" :video_fps="$video_fps" :video_w="$video_w" :video_h="$video_h" />
     @endif
 

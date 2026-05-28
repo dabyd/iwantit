@@ -90,7 +90,7 @@ In Laravel anonymous Blade components, variables from the parent view are **not 
 | `x-layouts.app` | `title` | — |
 | `x-layouts.table` | `controller`, `datas` | `related`, `txtrelated`, `urlrelated`, `canEdit`, `canDelete`, `canCreate`, `actions` |
 | `x-layouts.create` | `controller` | `related`, `txtrelated` |
-| `x-layouts.edit` | `controller`, `data` | `video`, `video_fps`, `video_w`, `video_h`, `hotpointEditor`, `hotpoints`, `productos`, `related`, `txtrelated`, `keylist`, `ubp`, `datision`, `tabs`, `ia_selected_classes`, `ia_available_classes`, `ai_url`, `threshold_secs`, `ia_clases`, `objects` |
+| `x-layouts.edit` | `controller`, `data` | `video`, `video_fps`, `video_w`, `video_h`, `hotpointEditor`, `hotpoints`, `productos`, `related`, `txtrelated`, `keylist`, `ubp`, `datision`, `tabs`, `ia_selected_classes`, `ia_available_classes`, `ai_url`, `threshold_secs`, `ia_clases`, `objects`, `readonly` |
 | `x-layouts.show` | `controller`, `data` | — |
 
 `x-layouts.edit` conditionally includes tab sub-components based on which optional props are set:
@@ -99,6 +99,7 @@ In Laravel anonymous Blade components, variables from the parent view are **not 
 - `$keylist` → `tab-keylist`
 - `$ubp` → `tab-permisions`
 - `$datision` → `tab-aiobjects`
+- `$readonly=true` → hides dashboard, objects, keylist, permissions, ai-objects tabs; fields become readonly/disabled; submit replaced by "Read-only mode" message
 
 `TabCounter` (`app/Helpers/TabCounter.php`) is a static counter reset at the top of `edit.blade.php` to give each tab a sequential number.
 
@@ -115,6 +116,7 @@ The schema was established before active migrations; only 3 migration files are 
 | `users` | `id`, `name`, `email`, `password`, `role`, `client_id` | `role`: admin/super/editor; `client_id` = self-referencing supervisor FK |
 | `projects` | `id`, `name`, `filename`, `users_id`, `territories_id`, `type`, `season`, `episode`, `ai_task_id` | `filename` = uploaded video; `ai_task_id` = active Celery task ID |
 | `projects_users` | `projects_id`, `users_id`, `as_owner` | Pivot; `as_owner='S'` = shared owner, null = editor |
+| `project_user_permissions` | `user_id`, `project_id`, `access_level` | Per-user per-project access: none/read/write/create |
 | `brands` | `id`, `name`, `filename`, `url`, `disabled` | Logo stored in `public/uploads/` |
 | `products` | `id`, `name`, `description`, `brands_id`, `filename`, `icono`, `url`, `disabled`, `auto_open` | `filename` = product image; `icono` = hotpoint icon overlay |
 | `hotpoints` | `versions_id`, `products_id`, `time`, `pos_x`, `pos_y` | Core shoppable-video data; `versions_id` = projects.id (legacy name) |
@@ -158,11 +160,29 @@ The codebase uses **non-standard FK names** throughout:
 
 `OptionHelper::canAccess($option, $type, $user)` delegates to `OptionController::canAccess()`. On first call for an unknown option/type pair, the option is **auto-created** in the `options` table. Admins always pass. Non-admins need a matching `user_options` row with `active=1`. This is called inside `x-layouts.app` to control page-level access.
 
+### Menu Permissions (Spatie)
+
+Permissions are seeded by `MenuPermissionsSeeder` and include: `menu`, `screen`, `list`, `create`, `edit`, `delete`, `view` for each resource (users, projects, hotpoints, tags, territories, brands, products, options, datision-parameters, roles). The Admin role gets all permissions synced.
+
+### Project-Level Permissions (`project_user_permissions`)
+
+Beyond role-based access, individual users can be granted per-project permissions:
+- `none` — no access
+- `read` — view only, fields disabled, tabs hidden (dashboard, objects, keylist, permissions, datision)
+- `write` — edit project fields, all tabs visible
+- `create` — edit + delete projects from listing
+
+`ProjectPermissionHelper::canAccess()` checks these before allowing edit/update actions. `ProjectController::edit()` aborts 403 if user lacks `read` access; `ProjectController::update()` aborts 403 if user lacks `write` access.
+
+### User Edit View Project Listing
+
+The user edit view (`resources/views/users/edit.blade.php`) lists all projects with a dropdown for access level. Project names display type info: `Film` or `Serie (S{n} E{n})`.
+
 ---
 
 ## The IWantIt API (`/api-iwi`)
 
-The core public-facing endpoint, served by `IwantItController`. No auth middleware — uses license key validation instead.
+The core public-facing endpoint, served by `IwantitController`. No auth middleware — uses license key validation instead.
 
 **`action=get`** flow:
 1. Validate `key` against `licenses` table for the given `vid` (project ID).
@@ -192,7 +212,7 @@ The external AI service runs at `datision_parameters.machine_url:5018`.
 1. If `project.ai_task_id` is already set → query `/v1/get_result/{taskId}` and return current state.
 2. Otherwise → POST to AI service with `{classes, id_project, path, threshold_sec}`.
 3. Save returned `task_id` in `projects.ai_task_id`.
-4. Path domain is rewritten: `demo2-iwi.test` → `uat.i-want-it.es` before sending to AI.
+4. Path domain is rewritten: `uat.i-want-it.local` → `uat.i-want-it.es` before sending to AI.
 
 **States**: `PENDING` / `PROGRESS` (with percent string) / `SUCCESS` (clears `ai_task_id`).
 
@@ -252,6 +272,13 @@ The visual hotpoint editor lives in the project edit view. It uses `IwantitContr
 | `formatSecondsToTime()` | `TimeHelper.php` | Format seconds as HH:MM:SS |
 | `IaProducts::byIaClass($name)` | `IaProducts.php` | Products linked to a given IA class name (exact match) |
 | `OptionHelper::canAccess()` | `OptionHelper.php` | Thin wrapper around `OptionController::canAccess()` |
+| `ProjectPermissionHelper::canAccess()` | `ProjectPermissionHelper.php` | Per-project permission checks (read/write/create) |
+| `ProjectPermissionHelper::canView()` | `ProjectPermissionHelper.php` | Shorthand for read access |
+| `ProjectPermissionHelper::canEdit()` | `ProjectPermissionHelper.php` | Shorthand for write access |
+| `ProjectPermissionHelper::canCreate()` | `ProjectPermissionHelper.php` | Shorthand for create access |
+| `ProjectPermissionHelper::getAccessLevel()` | `ProjectPermissionHelper.php` | Returns user's access level for a project |
+| `ProjectPermissionHelper::setAccessLevel()` | `ProjectPermissionHelper.php` | Set user's access level for a project |
+| `ProjectPermissionHelper::removeAccess()` | `ProjectPermissionHelper.php` | Remove user's access to a project |
 | `TabCounter::incrementAndGet()` / `reset()` | `TabCounter.php` | Sequential tab numbering in the edit layout |
 
 ---

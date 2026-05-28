@@ -7,6 +7,7 @@
     'canEdit' => true,
     'canDelete' => true,
     'canCreate' => true,
+    'canDeleteProjects' => [],
     'actions' => [],
 ])
 <?php
@@ -36,27 +37,16 @@
     $tmp = [];
     if ( $canEdit ) {
         $tmp[] = [
-            'name' => 'Edit', 
-            'color' => 'primary', 
-            'action' => $controller->getParams('view') . '.edit', 
+            'name' => 'Edit',
+            'color' => 'primary',
+            'action' => $controller->getParams('view') . '.edit',
             'url' => ''
-        ];
-    }
-
-    if ( $canDelete ) {
-        $tmp[] = [
-            'name' => 'Delete', 
-            'color' => 'danger', 
-            'action' => '',
-            'url' => '',
-            'element' => 'button',
-            'type' => 'submit'
         ];
     }
 
     $base = [
         'name' => 'no name',
-        'color' => 'primary', 
+        'color' => 'primary',
         'action' => '',
         'url' => '',
         'element' => 'a',
@@ -92,6 +82,31 @@
         </div>
     @endif
 
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <form method="GET" action="" class="d-flex gap-2">
+                <input type="text" name="search" id="searchInput" value="{{ request()->get('search', '') }}" class="form-control" placeholder="Search (min 3 chars)...">
+                <input type="hidden" name="per_page" value="{{ request()->get('per_page', 20) }}">
+                <button type="submit" class="btn btn-secondary">Search</button>
+                @if(request()->get('search'))
+                    <a href="{{ url()->current() }}?per_page={{ request()->get('per_page', 10) }}" class="btn btn-outline-secondary">Clear</a>
+                @endif
+            </form>
+        </div>
+        <div class="col-md-6 text-end">
+            <form method="GET" action="" class="d-flex justify-content-end gap-2 align-items-center">
+                <span>Show:</span>
+                <select name="per_page" onchange="this.form.submit()" class="form-select form-select-sm" style="width: auto;">
+                    <option value="10" {{ (request()->get('per_page', 10) == 10) ? 'selected' : '' }}>10</option>
+                    <option value="20" {{ request()->get('per_page') == 20 ? 'selected' : '' }}>20</option>
+                    <option value="50" {{ request()->get('per_page') == 50 ? 'selected' : '' }}>50</option>
+                    <option value="100" {{ request()->get('per_page') == 100 ? 'selected' : '' }}>100</option>
+                    <option value="9999" {{ request()->get('per_page') == 9999 ? 'selected' : '' }}>All</option>
+                </select>
+                <input type="hidden" name="search" value="{{ request()->get('search', '') }}">
+            </form>
+        </div>
+    </div>
 
     <table class="iwt-{{ $controller->getParams('plural') }} table table-bordered">
         <tr>
@@ -215,8 +230,11 @@
                             @endif
                         @endforeach
 
-                        @csrf
-                        @method('DELETE')
+                        <?php if (isset($canDeleteProjects[$data->id]) && $canDeleteProjects[$data->id]): ?>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                        <?php endif; ?>
                     </form>
                 </td>
             </tr>

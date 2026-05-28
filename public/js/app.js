@@ -153,18 +153,18 @@ document.addEventListener("readystatechange", function () {
       });
     }
 
-    // Cambio de rol
-    if (document.querySelector(".user-role-select")) {
-      document.querySelectorAll(".user-role-select").forEach((select) => {
+    // Cambio de nivel de acceso
+    if (document.querySelector(".access-level-select")) {
+      document.querySelectorAll(".access-level-select").forEach((select) => {
         select.addEventListener("change", function (event) {
           const userId = event.target.getAttribute("data-user-id");
-          const role = event.target.value;
+          const accessLevel = event.target.value;
           const projectId = document.getElementById("projectId").value;
           const csrfToken = document.querySelector(
             "input[name='_token']",
           ).value;
 
-          fetch(`/projects/${projectId}/update-role`, {
+          fetch(`/projects/${projectId}/update-access-level`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -172,20 +172,19 @@ document.addEventListener("readystatechange", function () {
             },
             body: JSON.stringify({
               user_id: userId,
-              role: role,
+              access_level: accessLevel,
             }),
           })
             .then((res) => res.json())
             .then((data) => {
               if (data.success) {
-                console.log("Role updated! 🚀");
+                console.log("Access level updated!");
               } else {
-                console.error("Update failed 😵", data);
-                alert(data.message || "Error updating role");
+                alert(data.message || "Error updating access level");
               }
             })
             .catch((err) => {
-              console.error("AJAX error 🤯", err);
+              console.error("AJAX error", err);
               alert("Something went wrong");
             });
         });

@@ -30,6 +30,9 @@ use App\Http\Controllers\HotpointsDatesController;
 
 use App\Http\Controllers\ClickStatisticController;
 
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PermissionController;
+
 /*
 $path = public_path('build/manifest.json');
 $manifestContent = file_get_contents($path);
@@ -46,10 +49,11 @@ Route::view('login', 'login', ['path_js' => './assets/index.66764821.js', 'path_
     ->middleware('guest');
 // Route::view('dashboard', 'dashboard' )->name( 'dashboard' )->middleware( 'auth' );
 
-Route::resource('users', UserController::class)->name('*', 'users')->middleware('auth');
-Route::resource('tags', TagController::class)->name('*', 'tags')->middleware('auth');
+Route::get('/users/{user}/search-projects', [UserController::class, 'searchProjects'])->name('users.search-projects')->middleware('auth');
+Route::resource('users', UserController::class)->name('*', 'users')->middleware(['auth', 'role:Admin|Supervisor']);
+Route::resource('tags', TagController::class)->name('*', 'tags')->middleware(['auth', 'permission:tags-menu']);
 Route::resource('languages', LanguageController::class)->name('*', 'languages')->middleware('auth');
-Route::resource('territories', TerritoryController::class)->name('*', 'territories')->middleware('auth');
+Route::resource('territories', TerritoryController::class)->name('*', 'territories')->middleware(['auth', 'permission:territories-menu']);
 
 // Reemplaza esta línea:
 // Route::resource('products', ProductController::class)->name('*', 'products')->middleware('auth');
@@ -59,46 +63,46 @@ Route::resource('territories', TerritoryController::class)->name('*', 'territori
 // Mostrar listado de productos (GET /products)
 Route::get('/products', [ProductController::class, 'index'])
     ->name('products.index')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-list']);
 
 // Mostrar formulario de crear producto (GET /products/create)
 Route::get('/products/create', [ProductController::class, 'create'])
     ->name('products.create')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-create']);
 
 // Guardar nuevo producto (POST /products)
 Route::post('/products', [ProductController::class, 'store'])
     ->name('products.store')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-create']);
 
 // Mostrar un producto específico (GET /products/{product})
 Route::get('/products/{product}', [ProductController::class, 'show'])
     ->name('products.show')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-view']);
 
 // Mostrar formulario de editar producto (GET /products/{product}/edit)
 Route::get('/products/{product}/edit', [ProductController::class, 'edit'])
     ->name('products.edit')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-edit']);
 
 // Actualizar producto existente (PUT/PATCH /products/{product})
 Route::put('/products/{product}', [ProductController::class, 'update'])
     ->name('products.update')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-edit']);
 
 Route::patch('/products/{product}', [ProductController::class, 'update'])
     ->name('products.update')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-edit']);
 
 // Eliminar producto (DELETE /products/{product})
 Route::delete('/products/{product}', [ProductController::class, 'destroy'])
     ->name('products.destroy')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-delete']);
 
 // Ruta adicional para IA classes (que ya tienes)
 Route::get('/products/{product}/ia-classes', [App\Http\Controllers\ProductIaClassController::class, 'index'])
     ->name('products.ia-classes')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:products-view']);
 
 // Ruta para asociar clase IA (que ya tienes al final)
 Route::post('/products/{product}/associate-ia-class', [ProductController::class, 'associateIaClass'])
@@ -108,19 +112,32 @@ Route::post('/products/{product}/associate-ia-class', [ProductController::class,
 Route::post('/products/guarda_ia', [ProductController::class, 'store'])
     ->name('products.guarda_ia');
 
-Route::resource('brands', BrandController::class)->name('*', 'brands')->middleware('auth');
+Route::resource('brands', BrandController::class)->name('*', 'brands')->middleware(['auth', 'permission:brands-menu']);
 // Route::resource('projects', ProjectController::class)->name( '*', 'projects' )->middleware( 'auth' );
-Route::resource('projects', ProjectController::class)->name('*', 'projects')->middleware('auth');
-Route::resource('options', OptionController::class);
+Route::resource('projects', ProjectController::class)->name('*', 'projects')->middleware(['auth', 'permission:projects-menu']);
+Route::resource('options', OptionController::class)->middleware(['auth', 'role:Admin']);
+
+Route::middleware(['auth', 'role:Admin'])->prefix('admin')->group(function () {
+    Route::resource('roles', RoleController::class);
+    Route::get('roles/{role}/permissions', [RoleController::class, 'permissions'])
+        ->name('roles.permissions');
+    Route::put('roles/{role}/permissions', [RoleController::class, 'updatePermissions'])
+        ->name('roles.permissions.update');
+
+    Route::get('permissions', [PermissionController::class, 'index'])
+        ->name('permissions.index');
+    Route::get('permissions/{permission}', [PermissionController::class, 'show'])
+        ->name('permissions.show');
+});
 
 
 Route::get('/projects/{id}/inform', function (string $id) {
     $pr = new ProjectController();
     return $pr->inform($id);
 })->name('projects.inform')
-    ->middleware('auth');
+    ->middleware(['auth', 'permission:projects-view']);
 
-Route::resource('hotpoints', HotpointController::class)->name('*', 'hotpoints')->middleware('auth');
+Route::resource('hotpoints', HotpointController::class)->name('*', 'hotpoints')->middleware(['auth', 'permission:hotpoints-menu']);
 
 /*
 Route::get('/users', [ UserController::class, 'index' ] )->name( 'users.index' )->middleware( 'auth' );
@@ -146,6 +163,7 @@ Route::get('/projects/{id}/available-users', [ProjectController::class, 'getAvai
 Route::post('/projects/{id}/add-user', [ProjectController::class, 'addUserToProject']);
 Route::post('/projects/{id}/remove-user', [ProjectController::class, 'removeUserFromProject']);
 Route::post('/projects/{project}/update-role', [ProjectController::class, 'updateUserRole']);
+Route::post('/projects/{project}/update-access-level', [ProjectController::class, 'updateAccessLevel']);
 
 //
 // ENDPOINTS PARA DATISION

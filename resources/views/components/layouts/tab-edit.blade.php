@@ -1,4 +1,4 @@
-@props( [ 'controller', 'data', 'related', 'txtrelated', 'video' ] )
+@props( [ 'controller', 'data', 'related', 'txtrelated', 'video', 'readonly' ] )
 @php
 	$currentCount = \App\Helpers\TabCounter::incrementAndGet();
 @endphp
@@ -46,13 +46,15 @@
 							$editable = false;
 						}
 					}
+					$inputReadonly = isset($readonly) && $readonly ? 'readonly' : '';
+					$selectDisabled = isset($readonly) && $readonly ? 'disabled' : '';
 					?>
 					@if ( $editable )
 						<div class="iwt-{{ $field[ 'type' ] }}-field elemento">
 							@if ( 'text' == $field[ 'type' ] )
 								<div class="form-group">
 									<strong>{{ $field[ 'label' ] }}:</strong>
-									<input type="{{ $field[ 'type' ] }}" name="{{ $field[ 'name' ] }}" value="{{ $v }}" class="form-control" placeholder="{{ $field[ 'label' ] }}">
+									<input type="{{ $field[ 'type' ] }}" name="{{ $field[ 'name' ] }}" value="{{ $v }}" class="form-control" placeholder="{{ $field[ 'label' ] }}" {{ $inputReadonly }}>
 								</div>
 							@elseif( 'select' == $field[ 'type' ] )
 								<?php
@@ -72,7 +74,7 @@
 								?>
 								<div class="form-group">
 									<strong>{{ $field[ 'label' ] }}:</strong>
-									<select class="form-control" name="{{ $field[ 'name' ] }}">
+									<select class="form-control" name="{{ $field[ 'name' ] }}" {{ $selectDisabled }}>
 										@if ( isset( $field[ 'format' ] ) && 'switch' == $field[ 'format' ] )
 											<option class="form-control" value="1" <?php echo ($v == '1' ? 'selected' : ''); ?>>Disabled</option>
 											<option class="form-control" value="0" <?php echo ($v == '0' ? 'selected' : ''); ?>>Enabled</option>
@@ -105,9 +107,11 @@
 										$c1 = '';
 									}
 									?>
-									<button type="button" class="form-control show_file_button btn btn-warning" <?php echo $c1; ?>>Change the video</button>
+									@if(!isset($readonly) || !$readonly)
+										<button type="button" class="form-control show_file_button btn btn-warning" <?php echo $c1; ?>>Change the video</button>
+									@endif
 									<strong <?php echo $c2; ?>>{{ $field[ 'label' ] }}:</strong>
-									<input type="{{ $field[ 'type' ] }}" name="{{ $field[ 'name' ] }}" class="form-control" placeholder="{{ $field[ 'label' ] }}" <?php echo $c2; ?>>
+									<input type="{{ $field[ 'type' ] }}" name="{{ $field[ 'name' ] }}" class="form-control" placeholder="{{ $field[ 'label' ] }}" <?php echo $c2; ?> {{ $inputReadonly }}>
 								</div>
 							@elseif ( 'image' == $field[ 'type' ] )
 								<input type="hidden" name="old_img" value="{{ $v }}" />
@@ -125,8 +129,10 @@
 									}
 									?>
 									<input type="hidden" name="field_name" value="{{ $field[ 'name' ] }}" />
-									<button type="button" class="form-control show_file_button btn btn-warning" <?php echo $c1; ?>>{{ $txt }}</button>
-									<button type="button" class="form-control remove_image_button btn btn-danger" <?php echo $c1; ?>><?php echo str_replace('Change', 'Delete', $txt); ?></button>
+									@if(!isset($readonly) || !$readonly)
+										<button type="button" class="form-control show_file_button btn btn-warning" <?php echo $c1; ?>>{{ $txt }}</button>
+										<button type="button" class="form-control remove_image_button btn btn-danger" <?php echo $c1; ?>><?php echo str_replace('Change', 'Delete', $txt); ?></button>
+									@endif
 									<strong <?php echo $c2; ?>>{{ $field[ 'label' ] }}:</strong>
 									<input type="file" name="{{ $field[ 'name' ] }}" class="form-control" placeholder="{{ $field[ 'label' ] }}" <?php echo $c2; ?>>
 								</div>
@@ -142,7 +148,7 @@
 							@elseif ( 'textarea' == $field[ 'type' ] )
 								<div class="form-group">
 									<strong>{{ $field[ 'label' ] }}:</strong>
-									<textarea name="{{ $field[ 'name' ] }}" class="form-control" placeholder="{{ $field[ 'label' ] }}">
+									<textarea name="{{ $field[ 'name' ] }}" class="form-control" placeholder="{{ $field[ 'label' ] }}" {{ $inputReadonly }}>
 									{{$v}}
 									</textarea>
 								</div>
@@ -152,7 +158,11 @@
 				@endforeach
 			@endforeach
 			<div class="col-xs-12 col-sm-12 col-md-12 text-center">
-				<button type="submit" class="btn btn-primary" id="submit_create">Submit</button>
+				@if(isset($readonly) && $readonly)
+					<div class="alert alert-info mb-0"><i class="fa-solid fa-lock"></i> Read-only mode — you don't have permission to edit this project</div>
+				@else
+					<button type="submit" class="btn btn-primary" id="submit_create">Submit</button>
+				@endif
 			</div>
 			@if ( 'file' == $field[ 'type' ] )
 			<!--

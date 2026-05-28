@@ -1,9 +1,10 @@
-<x-layouts.table 
-	:controller="$controller" 
-	:datas="$projects" 
-	:related="$terr" 
-	:txtrelated="'territory'" 
-	:urlrelated="'territories'" 
+<x-layouts.table
+	:controller="$controller"
+	:datas="$projects"
+	:related="$terr"
+	:txtrelated="'territory'"
+	:urlrelated="'territories'"
+	:canDeleteProjects="$canDeleteProjects"
     :actions="[
         ['name' => 'Inform', 'color' => 'warning', 'action' => $controller->getParams('view') . '.inform', 'url' => '' ],
         ['name' => 'Play', 'color' => 'play', 'action' => '', 'url' => '/player/?id=[$data->id]' ],

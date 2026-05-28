@@ -13,19 +13,36 @@ class BrandController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $brands = Brand::latest();
+        $search = request()->get('search', '');
+        $perPage = (int) request()->get('per_page', 10);
+        $allowedPerPages = [10, 20, 50, 100, 9999];
+        if (!in_array($perPage, $allowedPerPages)) {
+            $perPage = 20;
+        }
+
+        $brands = Brand::query();
+
+        if (strlen($search) >= 3) {
+            $brands->where('name', 'like', '%' . $search . '%');
+        }
+
         if ( isset( $_GET[ 'orderby' ] ) ) {
             $order = 'asc';
             if ( isset( $_GET[ 'ordertype' ] ) ) {
                 $order = $_GET[ 'ordertype' ];
             }
-
-            $brands = Brand::orderBy( $_GET[ 'orderby' ], $order )->latest();
+            $brands->orderBy( $_GET[ 'orderby' ], $order );
         }
-        $brands = $brands->paginate(300);
-//        $brands = Brand::latest()->paginate(5);
+
+        if ($perPage === 9999) {
+            $brands = $brands->get();
+            $brands = new \Illuminate\Pagination\LengthAwarePaginator($brands, $brands->count(), $brands->count());
+        } else {
+            $brands = $brands->latest()->paginate($perPage);
+        }
+
         $controller = $this;
-        return view('brands.index', compact('brands','controller'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('brands.index', compact('brands','controller'))->with('i', (request()->input('page', 1) - 1) * $perPage);
     }
 
     /**

@@ -12,7 +12,7 @@
     <ul class="iwt-options menu_left nav nav-pills flex-column mb-auto">
     @guest
         <li class="nav-item">
-	        <a href="{{ route( 'login' ) }}" class="nav-link text-white">
+            <a href="{{ route( 'login' ) }}" class="nav-link text-white">
                 <i class="fa-solid fa-arrow-right-to-bracket"></i>&nbsp;&nbsp;&nbsp;
                 Login
             </a>
@@ -30,49 +30,41 @@
             </a>
         </li>
         <hr/>
-        <x-layouts.option route="users.index" name="Users" icon="users" />
+        @can('projects-menu')
         <x-layouts.option route="projects.index" name="Projects" icon="file-video" />
-        <x-layouts.option route="hotpoints.index" name="Hotpoints" icon="file-video" />
-        <x-layouts.option route="tags.index" name="Tags" icon="tags" />
-        <x-layouts.option route="territories.index" name="Territories" icon="globe" />
-        <li class="nav-item">
-            <a href="#" onclick="this.closest('form').submit()" class="nav-link disabled">
-                <i class="fa-brands fa-docker"></i>&nbsp;&nbsp;&nbsp;
-                Producer
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" onclick="this.closest('form').submit()" class="nav-link disabled">
-                <i class="fa-brands fa-docker"></i>&nbsp;&nbsp;&nbsp;
-                Platforms
-            </a>
-        </li>
-        <x-layouts.option route="brands.index" name="Brands" icon="copyright" />
+        @endcan
+        @can('products-menu')
         <x-layouts.option route="products.index" name="Products" icon="box-archive" />
+        @endcan
+        @can('brands-menu')
+        <x-layouts.option route="brands.index" name="Brands" icon="copyright" />
+        @endcan
         <hr/>
+        @can('users-menu')
+        <x-layouts.option route="users.index" name="Users" icon="users" />
+        @endcan
+        @can('roles-menu')
+        <x-layouts.option route="roles.index" name="Roles" icon="shield" />
+        @endcan
+        @can('permissions-menu')
+        <x-layouts.option route="permissions.index" name="Permissions" icon="key" />
+        @endcan
+        <hr/>
+        @can('hotpoints-menu')
+        <x-layouts.option route="hotpoints.index" name="Hotpoints" icon="file-video" />
+        @endcan
+        @can('tags-menu')
+        <x-layouts.option route="tags.index" name="Tags" icon="tags" />
+        @endcan
+        @can('territories-menu')
+        <x-layouts.option route="territories.index" name="Territories" icon="globe" />
+        @endcan
+        @can('options-menu')
         <x-layouts.option route="options.index" name="Security items" icon="globe" />
-
+        @endcan
+        @can('datision-parameters-menu')
         <x-layouts.option route="datision-parameters.index" name="AI Machine CFG" icon="comment-nodes" />
-<?php
-/*
-        <x-layouts.option route="hotpoints.index" name="Hotpoints" icon="location-dot" />
-        <x-layouts.option route="languages.index" name="Languages" icon="language" />
-*/
-?>
-        <hr/>
-        <li class="nav-item">
-            <a href="#" onclick="this.closest('form').submit()" class="nav-link disabled">
-                <i class="fa-solid fa-gear"></i>&nbsp;&nbsp;&nbsp;
-                Configuration
-            </a>
-        </li>
-        <hr/>
-        <li class="nav-item">
-            <a href="/player" class="nav-link text-white" target="_blank">
-                <i class="fa-solid fa-video"></i>&nbsp;&nbsp;&nbsp;
-                Player
-            </a>
-        </li>
+        @endcan
         <hr/>
         <li class="nav-item">
             <form action="{{ route( 'logout' ) }}" method="post" style="display: inline">
@@ -83,7 +75,7 @@
                 </a>
             </form>
         </li>
-@endguest
+    @endguest
     </ul>
 <?php
 /*

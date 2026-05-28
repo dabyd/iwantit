@@ -5,7 +5,7 @@
     }
     $txtrelated = $tmp;
 ?>
-<x-layouts.app title=": Add new {{ $controller->getParams('singular') }}">
+<x-layouts.app title="{{ ucwords($controller->getParams('plural')) }}">
     <div class="row">
         <div class="header">
             <div class="pull-left">

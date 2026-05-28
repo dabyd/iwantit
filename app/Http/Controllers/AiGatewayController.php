@@ -110,7 +110,7 @@ class AiGatewayController extends Controller
             'classes'       => $data['classes'] ?? [],
             'id_project'    => $data['id_project'],
             // Normalize path domain as you asked:
-            'path'          => str_replace('demo2-iwi.test', 'uat.i-want-it.es', $data['path']),
+            'path'          => str_replace('uat.i-want-it.local', 'uat.i-want-it.es', $data['path']),
             'threshold_sec' => $data['threshold_sec'],
         ];
 

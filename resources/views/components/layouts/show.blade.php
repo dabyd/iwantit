@@ -1,4 +1,4 @@
-<x-layouts.app title="View {{ $controller->getParams('singular') }}">
+<x-layouts.app title="{{ $controller->getParams('plural') }}">
     <div class="row">
         <div class="header">
             <div class="pull-left">

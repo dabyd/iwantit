@@ -37,17 +37,16 @@
         <main class="iwt-main">
             <x-layouts.header />
             <x-layouts.nav />
-            <div class="iwt-admin container">
-                <?php
-                    use App\Helpers\OptionHelper;
-                    use Illuminate\Support\Facades\Auth;
-
-                    if ( OptionHelper::canAccess( $title, 'screen', Auth::user() ) ) {
-                        echo $slot;
-                    } else {
-                        echo '<h1>You don’t have access to this section. Please contact the administrator.</h1>';
-                    }
-                ?>
+<div class="iwt-admin container">
+                @php
+                $routeName = request()->route() ? explode('.', request()->route()->getName())[0] : null;
+                $screenPermission = $routeName ? $routeName . '-screen' : strtolower(str_replace(' ', '-', $title ?? '')) . '-screen';
+            @endphp
+            @can($screenPermission)
+                {{ $slot }}
+            @else
+                <h1>You don't have access to this section. Please contact the administrator.</h1>
+            @endcan
             </div>
             <x-layouts.footer />
             <section id="iwtModalOverlay"></section>

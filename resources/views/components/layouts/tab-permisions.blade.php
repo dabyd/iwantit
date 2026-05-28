@@ -12,6 +12,7 @@
                 <tr>
                     <th>User name</th>
                     <th>Role</th>
+                    <th>Access Level</th>
                     <th>Actions</th>
                 </tr>
                 @foreach ( $ubp[ $data->id ] as $u )
@@ -19,16 +20,20 @@
 						<td class="listado">{{ $u[ "user_name" ] }} </td>
 						<td class="listado">
 							@if ($u["owner"] !== 'Project owner')
-								@if ($u["user_role"] == 'super' && $u["owner"] !== 'Editor')
-									<select class="form-control user-role-select" data-user-id="{{ $u['user_id'] }}">
-										<option value="shared_owner" {{ $u["owner"] === 'Shared owner' ? 'selected' : '' }}>Shared owner</option>
-										<option value="NO" {{ $u["owner"] === 'Editor' ? 'selected' : '' }}>Editor</option>
-									</select>
-								@else
-									Editor
-								@endif
+								<span class="user-role-display">{{ $u["owner"] }}</span>
 							@else
 								Project owner
+							@endif
+						</td>
+						<td class="listado">
+							@if ($u["owner"] !== 'Project owner')
+								<select class="form-control access-level-select" data-user-id="{{ $u['user_id'] }}">
+									<option value="read" {{ ($u['access_level'] ?? 'read') === 'read' ? 'selected' : '' }}>Read</option>
+									<option value="write" {{ ($u['access_level'] ?? 'read') === 'write' ? 'selected' : '' }}>Write</option>
+									<option value="create" {{ ($u['access_level'] ?? 'read') === 'create' ? 'selected' : '' }}>Create</option>
+								</select>
+							@else
+								-
 							@endif
 						</td>
 						<td class="listado">
