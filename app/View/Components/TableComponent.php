@@ -7,10 +7,15 @@ use Illuminate\View\Component;
 class TableComponent extends Component
 {
     public $message;
+
     public $data;
+
     public $fields;
+
     public $actions;
+
     public $createUrl;
+
     public $createText;
 
     public function __construct($message = null, $data = [], $fields = [], $actions = [], $createUrl = '', $createText = 'Create New')

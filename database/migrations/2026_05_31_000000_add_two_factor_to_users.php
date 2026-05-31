@@ -6,23 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('role', ['admin', 'client', 'user'])->default('user')->after('password');
-            $table->foreignId('client_id')->nullable()->after('role')->constrained('users');
+            $table->text('two_factor_secret')->nullable()->after('remember_token');
+            $table->text('two_factor_recovery_codes')->nullable()->after('two_factor_secret');
+            $table->timestamp('two_factor_confirmed_at')->nullable()->after('two_factor_recovery_codes');
         });
     }
 
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign(['client_id']);
-            $table->dropColumn('client_id');
-            $table->dropColumn('role');
+            $table->dropColumn(['two_factor_secret', 'two_factor_recovery_codes', 'two_factor_confirmed_at']);
         });
     }
 };

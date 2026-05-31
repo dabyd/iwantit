@@ -1,6 +1,7 @@
 <?php
 
 // app/Models/DatisionResult.php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +23,7 @@ class DatisionResult extends Model
 
     public function detections(): HasMany
     {
-//        return $this->hasMany(DatisionDetection::class);
+        //        return $this->hasMany(DatisionDetection::class);
         return $this->hasMany(DatisionDetection::class, 'datision_result_id');
     }
 

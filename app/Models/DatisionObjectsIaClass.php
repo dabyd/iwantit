@@ -7,8 +7,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class DatisionObjectsIaClass extends Model
 {
-    protected $table   = 'datision_objects_ia_classes';   // nombre real de la tabla
-    public    $timestamps = true;                // usa created_at / updated_at
+    protected $table = 'datision_objects_ia_classes';   // nombre real de la tabla
+
+    public $timestamps = true;                // usa created_at / updated_at
 
     protected $guarded = [];                     // o $fillable = ['name'];
 

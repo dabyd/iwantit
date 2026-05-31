@@ -1,11 +1,12 @@
 <?php
 
-if (!function_exists('getVideoFPS')) {
+if (! function_exists('getVideoFPS')) {
     /**
      * Una sola llamada a ffprobe para obtener FPS, resolución y duración.
      * El resultado se cachea en memoria para evitar llamadas repetidas al mismo fichero.
      */
-    function getVideoInfo(string $videoPath): array {
+    function getVideoInfo(string $videoPath): array
+    {
         static $cache = [];
         if (isset($cache[$videoPath])) {
             return $cache[$videoPath];
@@ -13,7 +14,7 @@ if (!function_exists('getVideoFPS')) {
 
         $info = ['fps' => 24, 'width' => null, 'height' => null, 'duration' => 0.0];
         $ffprobe = config('app.ffprobe_path');
-        $cmd = "$ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate,width,height -show_entries format=duration -of json " . escapeshellarg($videoPath) . " 2>&1";
+        $cmd = "$ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate,width,height -show_entries format=duration -of json ".escapeshellarg($videoPath).' 2>&1';
         $output = shell_exec($cmd);
         $data = json_decode($output, true);
 
@@ -27,52 +28,60 @@ if (!function_exists('getVideoFPS')) {
                 $fps = $stream['r_frame_rate'];
                 if (str_contains($fps, '/')) {
                     [$num, $den] = explode('/', $fps);
-                    $info['fps'] = (int)$den !== 0 ? round((float)$num / (float)$den, 4) : 24;
+                    $info['fps'] = (int) $den !== 0 ? round((float) $num / (float) $den, 4) : 24;
                 } elseif ($fps !== '') {
-                    $info['fps'] = (float)$fps;
+                    $info['fps'] = (float) $fps;
                 }
             }
         }
         if (isset($data['format']['duration'])) {
-            $d = (float)$data['format']['duration'];
+            $d = (float) $data['format']['duration'];
             $info['duration'] = $d > 0 ? $d : 0.0;
         }
 
         $cache[$videoPath] = $info;
+
         return $info;
     }
 
-    function getVideoFPS($videoPath) {
+    function getVideoFPS($videoPath)
+    {
         return getVideoInfo($videoPath)['fps'];
     }
 
-    function getVideoResolution($videoPath) {
+    function getVideoResolution($videoPath)
+    {
         $info = getVideoInfo($videoPath);
+
         return ['width' => $info['width'], 'height' => $info['height']];
     }
 
-    function getVideoDuration(string $videoPath): float {
+    function getVideoDuration(string $videoPath): float
+    {
         return getVideoInfo($videoPath)['duration'];
     }
 
-    function formatSrtTimestamp(float $seconds): string {
-        $ms = (int)round(($seconds - floor($seconds)) * 1000);
-        $s  = (int)floor($seconds);
-        $h  = (int)floor($s / 3600);
-        $m  = (int)floor(($s % 3600) / 60);
-        $s  = $s % 60;
+    function formatSrtTimestamp(float $seconds): string
+    {
+        $ms = (int) round(($seconds - floor($seconds)) * 1000);
+        $s = (int) floor($seconds);
+        $h = (int) floor($s / 3600);
+        $m = (int) floor(($s % 3600) / 60);
+        $s = $s % 60;
+
         return sprintf('%02d:%02d:%02d,%03d', $h, $m, $s, $ms);
     }
 
     /**
      * Genera contenido SRT en bloques de 10 segundos, repitiendo el mismo keyContent.
      *
-     * @param float  $totalDuration  Duración total del vídeo en segundos.
-     * @param string $keyContent     Contenido de la key (project_id + key hash).
-     * @param int    $blockSeconds   Duración de cada bloque en segundos (por defecto 10).
-     * @return string                Contenido SRT completo.
+     * @param  float  $totalDuration  Duración total del vídeo en segundos.
+     * @param  string  $keyContent  Contenido de la key (project_id + key hash).
+     * @param  int  $blockSeconds  Duración de cada bloque en segundos (por defecto 10).
+     * @return string Contenido SRT completo.
      */
-    function generateSrtContent(float $totalDuration, string $keyContent, int $blockSeconds = 10): string {
+    function generateSrtContent(float $totalDuration, string $keyContent, int $blockSeconds = 10): string
+    {
         $srt = '';
         $index = 1;
         $currentTime = 0.0;
@@ -84,11 +93,11 @@ if (!function_exists('getVideoFPS')) {
             }
 
             $startTs = formatSrtTimestamp($currentTime);
-            $endTs   = formatSrtTimestamp($endTime);
+            $endTs = formatSrtTimestamp($endTime);
 
-            $srt .= $index . "\r\n";
-            $srt .= $startTs . ' --> ' . $endTs . "\r\n";
-            $srt .= $keyContent . "\r\n";
+            $srt .= $index."\r\n";
+            $srt .= $startTs.' --> '.$endTs."\r\n";
+            $srt .= $keyContent."\r\n";
             $srt .= "\r\n";
 
             $index++;
@@ -99,38 +108,39 @@ if (!function_exists('getVideoFPS')) {
     }
 }
 
-if (!function_exists('getAbsoluteFileUrl')) {
+if (! function_exists('getAbsoluteFileUrl')) {
     /**
      * Convierte una URL parcial en una URL absoluta, verificando la existencia del archivo.
      * Si el archivo no existe, devuelve una URL a una imagen de "No Disponible".
      *
      * 🔥 FIX: CLI-safe - No falla cuando se ejecuta en modo CLI
      *
-     * @param string $partialUrl La URL parcial (ej: "/uploads/1234.jpg").
-     * @param string $noImageUrl La URL de la imagen por defecto si el archivo no existe.
-     *                             Por defecto es "/img/No_Image_Available.jpg".
+     * @param  string  $partialUrl  La URL parcial (ej: "/uploads/1234.jpg").
+     * @param  string  $noImageUrl  La URL de la imagen por defecto si el archivo no existe.
+     *                              Por defecto es "/img/No_Image_Available.jpg".
      * @return string La URL absoluta del archivo o la URL de "No Disponible".
      */
     function getAbsoluteFileUrl(string $partialUrl, string $noImageUrl = '/img/No_Image_Available.jpg'): string
     {
         // 🔥 FIX: Detectar si estamos en CLI
-        $isCli = (php_sapi_name() === 'cli' || !isset($_SERVER['HTTP_HOST']));
-        
+        $isCli = (php_sapi_name() === 'cli' || ! isset($_SERVER['HTTP_HOST']));
+
         if ($isCli) {
             // En CLI, devolver la URL relativa o usar APP_URL del .env
             $appUrl = config('app.url', 'http://localhost');
-            return rtrim($appUrl, '/') . '/' . ltrim($partialUrl, '/');
+
+            return rtrim($appUrl, '/').'/'.ltrim($partialUrl, '/');
         }
-        
+
         // Limpiar y normalizar la URL parcial para asegurar que empiece con '/'
         // y evitar dobles barras al concatenar
-        $partialUrl = '/' . ltrim($partialUrl, '/');
-        $noImageUrl = '/' . ltrim($noImageUrl, '/');
+        $partialUrl = '/'.ltrim($partialUrl, '/');
+        $noImageUrl = '/'.ltrim($noImageUrl, '/');
 
         // 1. Construir la ruta absoluta en el sistema de archivos
         //    $_SERVER['DOCUMENT_ROOT'] es la raíz del servidor web (ej: /var/www/html)
         $documentRoot = $_SERVER['DOCUMENT_ROOT'] ?? public_path();
-        $filePath = $documentRoot . $partialUrl;
+        $filePath = $documentRoot.$partialUrl;
 
         // 2. Verificar si el archivo existe en el sistema de archivos
         if (file_exists($filePath) && is_file($filePath)) {
@@ -139,13 +149,13 @@ if (!function_exists('getAbsoluteFileUrl')) {
             $protocol = $_SERVER['REQUEST_SCHEME'] ?? 'http';
             $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 
-            return $protocol . '://' . $host . $partialUrl;
+            return $protocol.'://'.$host.$partialUrl;
         } else {
             // Si el archivo no existe, devolver la URL de la imagen de "No Disponible".
             $protocol = $_SERVER['REQUEST_SCHEME'] ?? 'http';
             $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
 
-            return $protocol . '://' . $host . $noImageUrl;
+            return $protocol.'://'.$host.$noImageUrl;
         }
     }
 }

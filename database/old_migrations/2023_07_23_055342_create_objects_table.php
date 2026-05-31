@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('objects', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger( 'brands_id' );
-            $table->bigInteger( 'tags_id' );
+            $table->bigInteger('brands_id');
+            $table->bigInteger('tags_id');
             $table->string('name');
             $table->text('description');
             $table->string('icon', 4096);
             $table->string('image', 4096);
-            $table->char('disabled',1)->default('0');
+            $table->char('disabled', 1)->default('0');
             $table->timestamps();
         });
     }

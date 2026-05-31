@@ -1,7 +1,10 @@
 <?php
 
+use App\Providers\AppServiceProvider;
+use App\Providers\HelperServiceProvider;
+
 return [
-    App\Providers\AppServiceProvider::class,
-    App\Providers\HelperServiceProvider::class,
-//    App\Providers\TelescopeServiceProvider::class,
+    AppServiceProvider::class,
+    HelperServiceProvider::class,
+    //    App\Providers\TelescopeServiceProvider::class,
 ];

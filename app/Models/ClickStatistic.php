@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-
 class ClickStatistic extends Model
 {
     use HasFactory;
@@ -61,11 +60,11 @@ class ClickStatistic extends Model
         Log::info('ClickStatistic::logView triggered', [
             'vid' => $request->vid,
             'time' => $request->time,
-            'key' => $request->key
+            'key' => $request->key,
         ]);
 
         $clientInfo = self::parseClientInfo($request);
-        
+
         $stat = self::create([
             'type' => 'view',
             'versions_id' => $request->vid ?? null,
@@ -86,7 +85,6 @@ class ClickStatistic extends Model
         return $stat;
     }
 
-
     /**
      * Registra un clic en producto o marca
      */
@@ -94,11 +92,11 @@ class ClickStatistic extends Model
     {
         Log::info("ClickStatistic::logClick triggered for $type", [
             'id' => $id,
-            'versions_id' => $versionsId
+            'versions_id' => $versionsId,
         ]);
 
         $clientInfo = self::parseClientInfo($request);
-        
+
         $data = [
             'type' => 'click',
             'versions_id' => $versionsId ?? $request->vid ?? null,
@@ -126,18 +124,17 @@ class ClickStatistic extends Model
         return $stat;
     }
 
-
     /**
      * Registra la visualización de una imagen de producto
      */
     public static function logProductView(Request $request, int $productId, ?int $versionsId = null): self
     {
         Log::info("ClickStatistic::logProductView triggered for product $productId", [
-            'versions_id' => $versionsId
+            'versions_id' => $versionsId,
         ]);
 
         $clientInfo = self::parseClientInfo($request);
-        
+
         $stat = self::create([
             'type' => 'view_p',
             'versions_id' => $versionsId ?? $request->vid ?? null,
@@ -160,7 +157,6 @@ class ClickStatistic extends Model
 
     /**
      * Parsea la información del cliente desde el Request
-
      */
     public static function parseClientInfo(Request $request): array
     {
@@ -184,7 +180,7 @@ class ClickStatistic extends Model
         } elseif (preg_match('/Chrome\/([0-9.]+)/i', $userAgent, $matches)) {
             $browser = 'Chrome';
             $browserVersion = $matches[1];
-        } elseif (preg_match('/Safari\/([0-9.]+)/i', $userAgent, $matches) && !preg_match('/Chrome/i', $userAgent)) {
+        } elseif (preg_match('/Safari\/([0-9.]+)/i', $userAgent, $matches) && ! preg_match('/Chrome/i', $userAgent)) {
             $browser = 'Safari';
             if (preg_match('/Version\/([0-9.]+)/i', $userAgent, $versionMatches)) {
                 $browserVersion = $versionMatches[1];

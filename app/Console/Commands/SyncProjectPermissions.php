@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 class SyncProjectPermissions extends Command
 {
     protected $signature = 'app:sync-project-permissions';
+
     protected $description = 'Sync projects_users to project_user_permissions';
 
     public function handle(): int

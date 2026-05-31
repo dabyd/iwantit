@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('versions_objects_position', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger( 'versions_objects_id' );
-            $table->time( 'time' );
+            $table->bigInteger('versions_objects_id');
+            $table->time('time');
             $table->float('position_x');
             $table->float('position_y');
             $table->timestamps();

@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class ProjectPermissionHelper
@@ -87,7 +88,7 @@ class ProjectPermissionHelper
             ->delete();
     }
 
-    public static function getProjectsByAccessLevel(User $user, string $level): \Illuminate\Database\Eloquent\Collection
+    public static function getProjectsByAccessLevel(User $user, string $level): Collection
     {
         if ($user->hasRole('Admin')) {
             return Project::all();

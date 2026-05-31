@@ -2,44 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\DatisionObjectsIaClass;
+use App\Helpers\ProjectPermissionHelper;
 // use App\Models\ProjectsUsers;
+use App\Models\DatisionObjectsIaClass;
 use App\Models\Hotpoint;
 use App\Models\HotpointsDate;
 use App\Models\Product;
 use App\Models\Project;
-use App\Helpers\ProjectPermissionHelper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Validation\ValidationException;
 
 class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         $search = request()->get('search', '');
         $perPage = (int) request()->get('per_page', 10);
         $allowedPerPages = [10, 20, 50, 100, 9999];
-        if (!in_array($perPage, $allowedPerPages)) {
+        if (! in_array($perPage, $allowedPerPages)) {
             $perPage = 10;
         }
 
         $projects = $this->getProjects()->distinct();
 
         if (strlen($search) >= 3) {
-            $projects = $projects->where('projects.name', 'like', '%' . $search . '%');
+            $projects = $projects->where('projects.name', 'like', '%'.$search.'%');
         }
 
         if ($perPage === 9999) {
             $projects = $projects->get();
-            $projects = new \Illuminate\Pagination\LengthAwarePaginator($projects, $projects->count(), $projects->count());
+            $projects = new LengthAwarePaginator($projects, $projects->count(), $projects->count());
         } else {
             $projects = $projects->paginate($perPage);
         }
@@ -349,7 +352,7 @@ class ProjectController extends Controller
             $validated = $request->validate([
                 'user_id' => 'required|exists:users,id',
             ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid user ID.',
@@ -385,7 +388,7 @@ class ProjectController extends Controller
                 'user_id' => 'required|exists:users,id',
                 'role' => 'required|in:shared_owner,NO',
             ]);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return response()->json([
                 'success' => false,
                 'message' => 'Invalid user ID.',
@@ -500,7 +503,7 @@ class ProjectController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -521,7 +524,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request): RedirectResponse
     {
@@ -551,8 +554,8 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Project  $project
-     * @return \Illuminate\Http\Response
+     * @param  Project  $project
+     * @return Response
      */
     public function inform($id)
     {
@@ -618,7 +621,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(Project $project)
     {
@@ -630,7 +633,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(Request $request, Project $project)
     {
@@ -878,7 +881,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     /*
         public function update(Request $request, Project $project) {
@@ -955,7 +958,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(Project $project)
     {

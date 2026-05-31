@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Project;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Project;
-use Illuminate\Support\Facades\DB;
 
 class AiGatewayController extends Controller
 {
@@ -27,25 +27,25 @@ class AiGatewayController extends Controller
     {
         // 1) Validate request
         $data = $request->validate([
-            'target_url'    => ['required', 'url'],
-            'id_project'    => ['required', 'integer', 'exists:projects,id'],
-            'path'          => ['required', 'string', 'max:2048'],
+            'target_url' => ['required', 'url'],
+            'id_project' => ['required', 'integer', 'exists:projects,id'],
+            'path' => ['required', 'string', 'max:2048'],
             'threshold_sec' => ['required', 'integer', 'min:0', 'max:3600'],
-            'classes'       => ['array'],
-            'classes.*'     => ['string', 'max:200'],
+            'classes' => ['array'],
+            'classes.*' => ['string', 'max:200'],
         ]);
 
         // 2) Whitelist check
-        if (!$this->isAllowedTarget($data['target_url'])) {
+        if (! $this->isAllowedTarget($data['target_url'])) {
             return response()->json(['message' => 'Target host is not allowed'], 403);
         }
 
         // 3) Fetch project
-        /** @var \App\Models\Project $project */
+        /** @var Project $project */
         $project = Project::query()->findOrFail($data['id_project']);
 
         // If we ALREADY have a task: query its result instead of launching a new one
-        if (!empty($project->ai_task_id)) {
+        if (! empty($project->ai_task_id)) {
             $resultUrl = $this->buildResultUrl($data['target_url'], $project->ai_task_id);
 
             $resp = Http::timeout(60)
@@ -55,13 +55,13 @@ class AiGatewayController extends Controller
             if ($resp->failed()) {
                 return response()->json([
                     'message' => 'Failed to query AI task result',
-                    'status'  => $resp->status(),
-                    'body'    => $resp->body(),
+                    'status' => $resp->status(),
+                    'body' => $resp->body(),
                 ], 502);
             }
 
             $json = $resp->json();
-            if (!$json && $resp->body()) {
+            if (! $json && $resp->body()) {
                 $maybe = json_decode($resp->body(), true);
                 if (json_last_error() === JSON_ERROR_NONE) {
                     $json = $maybe;
@@ -73,10 +73,11 @@ class AiGatewayController extends Controller
             // SUCCESS:  { "state": "SUCCESS", "result": { ... } }
             $state = $json['state'] ?? null;
             if ($state === 'PROGRESS') {
-                $percent = trim((string)($json['status'] ?? ''));
+                $percent = trim((string) ($json['status'] ?? ''));
+
                 return response()->json([
-                    'status'  => 'ok',
-                    'state'   => 'PROGRESS',
+                    'status' => 'ok',
+                    'state' => 'PROGRESS',
                     'message' => $percent ? "In progress: {$percent}" : 'In progress',
                 ]);
             }
@@ -85,15 +86,15 @@ class AiGatewayController extends Controller
                 // (Opcional) aquí podrías limpiar ai_task_id si quieres no volver a consultar
                 // $project->ai_task_id = null; $project->save();
 
-				$project->ai_task_id = null;
-	    	    if (Schema::hasColumn('projects', 'ai_last_task_at')) {
-    	    	    $project->ai_last_task_at = null;
-				}
-				$project->save();
+                $project->ai_task_id = null;
+                if (Schema::hasColumn('projects', 'ai_last_task_at')) {
+                    $project->ai_last_task_at = null;
+                }
+                $project->save();
 
                 return response()->json([
                     'status' => 'ok',
-                    'state'  => 'SUCCESS',
+                    'state' => 'SUCCESS',
                     'result' => $json['result'] ?? null,
                 ]);
             }
@@ -101,16 +102,16 @@ class AiGatewayController extends Controller
             // Any other unexpected state
             return response()->json([
                 'message' => 'Unexpected AI task state',
-                'raw'     => $json,
+                'raw' => $json,
             ], 502);
         }
 
         // If we DON'T have a task yet: launch a new one
         $payloadAi = [
-            'classes'       => $data['classes'] ?? [],
-            'id_project'    => $data['id_project'],
+            'classes' => $data['classes'] ?? [],
+            'id_project' => $data['id_project'],
             // Normalize path domain as you asked:
-            'path'          => str_replace('uat.i-want-it.local', 'uat.i-want-it.es', $data['path']),
+            'path' => str_replace('uat.i-want-it.local', 'uat.i-want-it.es', $data['path']),
             'threshold_sec' => $data['threshold_sec'],
         ];
 
@@ -122,13 +123,13 @@ class AiGatewayController extends Controller
         if ($resp->failed()) {
             return response()->json([
                 'message' => 'Failed to contact AI service',
-                'status'  => $resp->status(),
-                'body'    => $resp->body(),
+                'status' => $resp->status(),
+                'body' => $resp->body(),
             ], 502);
         }
 
         $json = $resp->json();
-        if (!$json && $resp->body()) {
+        if (! $json && $resp->body()) {
             $maybe = json_decode($resp->body(), true);
             if (json_last_error() === JSON_ERROR_NONE) {
                 $json = $maybe;
@@ -136,10 +137,10 @@ class AiGatewayController extends Controller
         }
 
         $taskId = $json['task_id'] ?? null;
-        if (!$taskId) {
+        if (! $taskId) {
             return response()->json([
                 'message' => "AI service did not return a valid 'task_id'",
-                'raw'     => $resp->body(),
+                'raw' => $resp->body(),
             ], 502);
         }
 
@@ -151,10 +152,10 @@ class AiGatewayController extends Controller
         $project->save();
 
         return response()->json([
-            'status'     => 'ok',
-            'state'      => 'QUEUED',
+            'status' => 'ok',
+            'state' => 'QUEUED',
             'project_id' => $project->id,
-            'task_id'    => $taskId,
+            'task_id' => $taskId,
         ]);
     }
 
@@ -165,10 +166,10 @@ class AiGatewayController extends Controller
     {
         $data = $request->validate([
             'project_id' => ['required', 'integer', 'exists:projects,id'],
-            'task_id'    => ['required', 'string', 'max:191'],
+            'task_id' => ['required', 'string', 'max:191'],
         ]);
 
-        /** @var \App\Models\Project $project */
+        /** @var Project $project */
         $project = Project::query()->findOrFail($data['project_id']);
         $project->ai_task_id = $data['task_id'];
         if (Schema::hasColumn('projects', 'ai_last_task_at')) {
@@ -177,16 +178,18 @@ class AiGatewayController extends Controller
         $project->save();
 
         return response()->json([
-            'status'     => 'ok',
+            'status' => 'ok',
             'project_id' => $project->id,
-            'task_id'    => $project->ai_task_id,
+            'task_id' => $project->ai_task_id,
         ]);
     }
 
     private function isAllowedTarget(string $url): bool
     {
         $host = parse_url($url, PHP_URL_HOST);
-        if (!$host) return false;
+        if (! $host) {
+            return false;
+        }
 
         $allowed = config('ai.allowed_hosts', []);
 
@@ -198,150 +201,153 @@ class AiGatewayController extends Controller
      */
     private function buildResultUrl(string $baseUrl, string $taskId): string
     {
-        $parts  = parse_url($baseUrl);
+        $parts = parse_url($baseUrl);
         $scheme = $parts['scheme'] ?? 'http';
-        $host   = $parts['host']   ?? '';
+        $host = $parts['host'] ?? '';
+
         // If target_url had a path, we ignore it; spec requires fixed path
         return sprintf('%s://%s:5018/v1/get_result/%s', $scheme, $host, $taskId);
     }
 
-	public function result(Request $request)
-	{
-		$data = $request->validate([
-			'task_id'    => ['required','string','max:191'],
-			'target_url' => ['required','url'],
-		]);
+    public function result(Request $request)
+    {
+        $data = $request->validate([
+            'task_id' => ['required', 'string', 'max:191'],
+            'target_url' => ['required', 'url'],
+        ]);
 
-		// whitelist opcional
-		$host = parse_url($data['target_url'], PHP_URL_HOST);
-		$allowed = config('ai.allowed_hosts', []);
-		if (!in_array($host, $allowed, true)) {
-			return response()->json(['message' => 'Target host is not allowed'], 403);
-		}
+        // whitelist opcional
+        $host = parse_url($data['target_url'], PHP_URL_HOST);
+        $allowed = config('ai.allowed_hosts', []);
+        if (! in_array($host, $allowed, true)) {
+            return response()->json(['message' => 'Target host is not allowed'], 403);
+        }
 
-		// construir URL http(s)://host:5018/v1/get_result/{task}
-		$scheme = parse_url($data['target_url'], PHP_URL_SCHEME) ?: 'http';
-		$base   = $scheme.'://'.$host;
-		$url    = rtrim($base, '/').':5018/v1/get_result/'.rawurlencode($data['task_id']);
+        // construir URL http(s)://host:5018/v1/get_result/{task}
+        $scheme = parse_url($data['target_url'], PHP_URL_SCHEME) ?: 'http';
+        $base = $scheme.'://'.$host;
+        $url = rtrim($base, '/').':5018/v1/get_result/'.rawurlencode($data['task_id']);
 
-		$resp = Http::timeout(30)->acceptJson()->get($url); // o ->post($url) si tu servicio exige POST
-		if ($resp->failed()) {
-			return response()->json([
-				'message' => 'Failed to query AI result',
-				'status'  => $resp->status(),
-				'body'    => $resp->body(),
-			], 502);
-		}
+        $resp = Http::timeout(30)->acceptJson()->get($url); // o ->post($url) si tu servicio exige POST
+        if ($resp->failed()) {
+            return response()->json([
+                'message' => 'Failed to query AI result',
+                'status' => $resp->status(),
+                'body' => $resp->body(),
+            ], 502);
+        }
 
-		// devolver tal cual al front
-		return response()->json($resp->json() ?? json_decode($resp->body(), true));
-	}
+        // devolver tal cual al front
+        return response()->json($resp->json() ?? json_decode($resp->body(), true));
+    }
 
-	private function queryAiResult(string $targetUrl, string $taskId, int $timeout = 30): array
-	{
-		$host   = parse_url($targetUrl, PHP_URL_HOST);
-		$scheme = parse_url($targetUrl, PHP_URL_SCHEME) ?: 'http';
-		if (!$host) {
-			return ['error' => 'Invalid target_url host'];
-		}
+    private function queryAiResult(string $targetUrl, string $taskId, int $timeout = 30): array
+    {
+        $host = parse_url($targetUrl, PHP_URL_HOST);
+        $scheme = parse_url($targetUrl, PHP_URL_SCHEME) ?: 'http';
+        if (! $host) {
+            return ['error' => 'Invalid target_url host'];
+        }
 
-		// Whitelist (opcional pero recomendable)
-		$allowed = config('ai.allowed_hosts', []);
-		if (!in_array($host, $allowed, true)) {
-			return ['error' => 'Target host is not allowed', 'code' => 403];
-		}
+        // Whitelist (opcional pero recomendable)
+        $allowed = config('ai.allowed_hosts', []);
+        if (! in_array($host, $allowed, true)) {
+            return ['error' => 'Target host is not allowed', 'code' => 403];
+        }
 
-		$base = $scheme.'://'.$host;
-		$url  = rtrim($base, '/').':5018/v1/get_result/'.rawurlencode($taskId);
+        $base = $scheme.'://'.$host;
+        $url = rtrim($base, '/').':5018/v1/get_result/'.rawurlencode($taskId);
 
-		$resp = Http::timeout($timeout)->acceptJson()->get($url); // si tu servicio es GET, cambia a ->get($url)
-		if ($resp->failed()) {
-			return [
-				'error'  => 'Failed to query AI result',
-				'code'   => 502,
-				'status' => $resp->status(),
-				'body'   => $resp->body(),
-			];
-		}
+        $resp = Http::timeout($timeout)->acceptJson()->get($url); // si tu servicio es GET, cambia a ->get($url)
+        if ($resp->failed()) {
+            return [
+                'error' => 'Failed to query AI result',
+                'code' => 502,
+                'status' => $resp->status(),
+                'body' => $resp->body(),
+            ];
+        }
 
-		return $resp->json() ?? (json_decode($resp->body(), true) ?: []);
-	}
+        return $resp->json() ?? (json_decode($resp->body(), true) ?: []);
+    }
 
-	public function progressByProject(Request $request): JsonResponse
-	{
+    public function progressByProject(Request $request): JsonResponse
+    {
 
-		$data = $request->validate([
-			'project_id' => ['required', 'integer', 'exists:projects,id'],
-			// opcional: permitir override del target_url desde el front si quieres
-			'target_url' => ['nullable', 'url'],
-		]);
+        $data = $request->validate([
+            'project_id' => ['required', 'integer', 'exists:projects,id'],
+            // opcional: permitir override del target_url desde el front si quieres
+            'target_url' => ['nullable', 'url'],
+        ]);
 
-		/** @var \App\Models\Project $project */
-		$project = Project::query()->findOrFail($data['project_id']);
+        /** @var Project $project */
+        $project = Project::query()->findOrFail($data['project_id']);
 
-		// Si no hay task en curso
-		if (empty($project->ai_task_id)) {
-			$project->ai_task_id = null;  // 👈 lo pones a null
-			$project->ai_last_task_at = null;  // 👈 lo pones a null
-			$project->save();             // 👈 lo persistes en la tabla
-			return response()->json([
-				'status'     => 'ok',
-				'state'      => 'EMPTY',
-				'message'    => 'Project has no active AI task',
-				'project_id' => $project->id,
-			]);
-		}
+        // Si no hay task en curso
+        if (empty($project->ai_task_id)) {
+            $project->ai_task_id = null;  // 👈 lo pones a null
+            $project->ai_last_task_at = null;  // 👈 lo pones a null
+            $project->save();             // 👈 lo persistes en la tabla
 
-		// target_url: del request o de la tabla datision_parameters
-		$targetUrl = $data['target_url']
-			?? (DB::table('datision_parameters')->value('machine_url') ?: null);
+            return response()->json([
+                'status' => 'ok',
+                'state' => 'EMPTY',
+                'message' => 'Project has no active AI task',
+                'project_id' => $project->id,
+            ]);
+        }
 
-		if (!$targetUrl) {
-			return response()->json([
-				'message' => 'Missing target_url (datision_parameters.machine_url not found)',
-			], 500);
-		}
+        // target_url: del request o de la tabla datision_parameters
+        $targetUrl = $data['target_url']
+            ?? (DB::table('datision_parameters')->value('machine_url') ?: null);
 
-		// Consultar resultado
-		$result = $this->queryAiResult($targetUrl, $project->ai_task_id, 30);
+        if (! $targetUrl) {
+            return response()->json([
+                'message' => 'Missing target_url (datision_parameters.machine_url not found)',
+            ], 500);
+        }
 
-		if (isset($result['error'])) {
-			return response()->json([
-				'message' => $result['error'],
-				'status'  => $result['status'] ?? null,
-				'body'    => $result['body']   ?? null,
-			], $result['code'] ?? 500);
-		}
+        // Consultar resultado
+        $result = $this->queryAiResult($targetUrl, $project->ai_task_id, 30);
 
-		$state = $result['state'] ?? null;
+        if (isset($result['error'])) {
+            return response()->json([
+                'message' => $result['error'],
+                'status' => $result['status'] ?? null,
+                'body' => $result['body'] ?? null,
+            ], $result['code'] ?? 500);
+        }
 
-		if ($state === 'PROGRESS') {
-			return response()->json([
-				'status'     => 'ok',
-				'state'      => 'PROGRESS',
-				'percent'    => $result['status'] ?? null, // p.ej. "8.29%"
-				'project_id' => $project->id,
-			]);
-		}
+        $state = $result['state'] ?? null;
 
-		if ($state === 'SUCCESS') {
-			$project->ai_task_id = null;  // 👈 lo pones a null
-			$project->ai_last_task_at = null;  // 👈 lo pones a null
-			$project->save();             // 👈 lo persistes en la tabla
-			return response()->json([
-				'status'     => 'ok',
-				'state'      => 'SUCCESS',
-				'result'     => $result['result'] ?? null,
-				'project_id' => $project->id,
-			]);
-		}
+        if ($state === 'PROGRESS') {
+            return response()->json([
+                'status' => 'ok',
+                'state' => 'PROGRESS',
+                'percent' => $result['status'] ?? null, // p.ej. "8.29%"
+                'project_id' => $project->id,
+            ]);
+        }
 
-		// Estado raro o desconocido
-		return response()->json([
-			'status'     => 'ok',
-			'state'      => $state ?? 'UNKNOWN',
-			'raw'        => $result,
-			'project_id' => $project->id,
-		]);
-	}
+        if ($state === 'SUCCESS') {
+            $project->ai_task_id = null;  // 👈 lo pones a null
+            $project->ai_last_task_at = null;  // 👈 lo pones a null
+            $project->save();             // 👈 lo persistes en la tabla
+
+            return response()->json([
+                'status' => 'ok',
+                'state' => 'SUCCESS',
+                'result' => $result['result'] ?? null,
+                'project_id' => $project->id,
+            ]);
+        }
+
+        // Estado raro o desconocido
+        return response()->json([
+            'status' => 'ok',
+            'state' => $state ?? 'UNKNOWN',
+            'raw' => $result,
+            'project_id' => $project->id,
+        ]);
+    }
 }

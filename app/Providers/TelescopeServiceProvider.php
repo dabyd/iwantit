@@ -19,7 +19,7 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
             Telescope::stopRecording();
             config(['telescope.enabled' => false]);
         }
-        
+
         // Telescope::night();
 
         $this->hideSensitiveRequestDetails();

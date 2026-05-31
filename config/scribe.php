@@ -1,11 +1,26 @@
 <?php
 
+use Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamTag;
+use Knuckles\Scribe\Extracting\Strategies\Headers\GetFromHeaderTag;
+use Knuckles\Scribe\Extracting\Strategies\Metadata\GetFromDocBlocks;
+use Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromFormRequest;
+use Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromInlineValidator;
+use Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromQueryParamTag;
+use Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldTag;
+use Knuckles\Scribe\Extracting\Strategies\Responses\UseApiResourceTags;
+use Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseAttributes;
+use Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseFileTag;
+use Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseTag;
+use Knuckles\Scribe\Extracting\Strategies\Responses\UseTransformerTags;
+use Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLaravelAPI;
+use Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromUrlParamTag;
+
 return [
     'theme' => 'default',
     'title' => 'I Want It API Documentation',
     'description' => 'API REST para consultar productos detectados en videos mediante IA',
     'base_url' => env('APP_URL', 'http://localhost'),
-    
+
     /*
     |--------------------------------------------------------------------------
     | Tipo: static generará archivos HTML
@@ -15,7 +30,7 @@ return [
 
     // AÑADIR: Personalizar los colores del tema
     'theme_color' => '#2563eb', // Azul similar a Claude
-    
+
     /*
     |--------------------------------------------------------------------------
     | Rutas a documentar - SOLO api-iwi
@@ -31,7 +46,7 @@ return [
             'exclude' => [],
         ],
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Estrategias - Deshabilitar peticiones HTTP automáticas
@@ -39,38 +54,38 @@ return [
     */
     'strategies' => [
         'metadata' => [
-            \Knuckles\Scribe\Extracting\Strategies\Metadata\GetFromDocBlocks::class,
+            GetFromDocBlocks::class,
         ],
         'urlParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromLaravelAPI::class,
-            \Knuckles\Scribe\Extracting\Strategies\UrlParameters\GetFromUrlParamTag::class,
+            GetFromLaravelAPI::class,
+            GetFromUrlParamTag::class,
         ],
         'queryParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromFormRequest::class,
-            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromInlineValidator::class,
-            \Knuckles\Scribe\Extracting\Strategies\QueryParameters\GetFromQueryParamTag::class,
+            GetFromFormRequest::class,
+            GetFromInlineValidator::class,
+            GetFromQueryParamTag::class,
         ],
         'headers' => [
-            \Knuckles\Scribe\Extracting\Strategies\Headers\GetFromHeaderTag::class,
+            GetFromHeaderTag::class,
         ],
         'bodyParameters' => [
-            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromFormRequest::class,
-            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromInlineValidator::class,
-            \Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromBodyParamTag::class,
+            Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromFormRequest::class,
+            Knuckles\Scribe\Extracting\Strategies\BodyParameters\GetFromInlineValidator::class,
+            GetFromBodyParamTag::class,
         ],
         'responses' => [
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseAttributes::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseApiResourceTags::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseTransformerTags::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseTag::class,
-            \Knuckles\Scribe\Extracting\Strategies\Responses\UseResponseFileTag::class,
+            UseResponseAttributes::class,
+            UseApiResourceTags::class,
+            UseTransformerTags::class,
+            UseResponseTag::class,
+            UseResponseFileTag::class,
             // ← NO incluir ResponseCalls para evitar peticiones HTTP reales
         ],
         'responseFields' => [
-            \Knuckles\Scribe\Extracting\Strategies\ResponseFields\GetFromResponseFieldTag::class,
+            GetFromResponseFieldTag::class,
         ],
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Directorio de salida
@@ -79,7 +94,7 @@ return [
     'static' => [
         'output_path' => 'public/docs',
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Try It Out
@@ -89,7 +104,7 @@ return [
         'enabled' => true,
         'base_url' => null,
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | Lenguajes de ejemplo
@@ -121,7 +136,6 @@ return [
         ],
     ],
 
-    
     /*
     |--------------------------------------------------------------------------
     | Postman
@@ -133,7 +147,7 @@ return [
             'info.version' => '1.0.0',
         ],
     ],
-    
+
     /*
     |--------------------------------------------------------------------------
     | OpenAPI
@@ -198,7 +212,7 @@ return [
                 ],
             ],
         ],
-    ],    
+    ],
     /*
     |--------------------------------------------------------------------------
     | Autenticación
@@ -212,29 +226,28 @@ return [
         'use_value' => env('SCRIBE_AUTH_KEY'),
         'placeholder' => '{YOUR_AUTH_KEY}',
         'extra_info' => 'Obtén tu clave desde el panel de administración.',
-    ],    
+    ],
     /*
     |--------------------------------------------------------------------------
     | Introducción desde archivo Markdown
     |--------------------------------------------------------------------------
     */
-    'intro_text' => file_exists(resource_path('docs/intro.md')) 
-        ? file_get_contents(resource_path('docs/intro.md')) 
+    'intro_text' => file_exists(resource_path('docs/intro.md'))
+        ? file_get_contents(resource_path('docs/intro.md'))
         : 'Documentación de la API I Want It',
-    
+
     /*
     |--------------------------------------------------------------------------
     | Logo
     |--------------------------------------------------------------------------
     */
-//    'logo' => asset('/img/logo_iwantit.png'),
-    'logo' => env('APP_URL', 'http://localhost') . '/img/logo_iwi_peque.jpg',
+    //    'logo' => asset('/img/logo_iwantit.png'),
+    'logo' => env('APP_URL', 'http://localhost').'/img/logo_iwi_peque.jpg',
 
-    
     /*
     |--------------------------------------------------------------------------
     | Última actualización
     |--------------------------------------------------------------------------
     */
-    'last_updated' => 'Last updated: ' . date('F j, Y'),
+    'last_updated' => 'Last updated: '.date('F j, Y'),
 ];

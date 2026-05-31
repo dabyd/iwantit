@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Models\Project;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class AiTaskController extends Controller
 {
@@ -22,10 +21,10 @@ class AiTaskController extends Controller
     {
         $data = $request->validate([
             'project_id' => ['required', 'integer', 'exists:projects,id'],
-            'task_id'    => ['required', 'string', 'max:191'],
+            'task_id' => ['required', 'string', 'max:191'],
         ]);
 
-        /** @var \App\Models\Project $project */
+        /** @var Project $project */
         $project = Project::query()->findOrFail($data['project_id']);
 
         // Ajusta el/los campos según tu esquema real:
@@ -39,9 +38,9 @@ class AiTaskController extends Controller
         $project->save();
 
         return response()->json([
-            'status'     => 'ok',
+            'status' => 'ok',
             'project_id' => $project->id,
-            'task_id'    => $project->ai_task_id,
+            'task_id' => $project->ai_task_id,
         ]);
     }
 }

@@ -11,7 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+    use HasApiTokens, HasFactory, HasRoles, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,8 +22,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', 
-        'client_id'
+        'role',
+        'client_id',
     ];
 
     /**
@@ -34,7 +34,56 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'two_factor_secret',
+        'two_factor_recovery_codes',
     ];
+
+    public function hasTwoFactorEnabled(): bool
+    {
+        return $this->two_factor_confirmed_at !== null;
+    }
+
+    public function enableTwoFactor(string $secret, array $recoveryCodes): void
+    {
+        $this->forceFill([
+            'two_factor_secret' => $secret,
+            'two_factor_recovery_codes' => json_encode($recoveryCodes),
+            'two_factor_confirmed_at' => now(),
+        ])->save();
+    }
+
+    public function disableTwoFactor(): void
+    {
+        $this->forceFill([
+            'two_factor_secret' => null,
+            'two_factor_recovery_codes' => null,
+            'two_factor_confirmed_at' => null,
+        ])->save();
+    }
+
+    public function recoveryCodes(): array
+    {
+        return json_decode($this->two_factor_recovery_codes ?? '[]', true);
+    }
+
+    public function replaceRecoveryCode(string $used): ?array
+    {
+        $codes = $this->recoveryCodes();
+
+        $index = array_search($used, $codes);
+        if ($index === false) {
+            return null;
+        }
+
+        unset($codes[$index]);
+        $codes = array_values($codes);
+
+        $this->forceFill([
+            'two_factor_recovery_codes' => json_encode($codes),
+        ])->save();
+
+        return $codes;
+    }
 
     /**
      * The attributes that should be cast.
@@ -45,7 +94,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function projects() {
+    public function projects()
+    {
         if ($this->role === 'admin') {
             return Project::query(); // admin accede a todos
         }
@@ -61,11 +111,13 @@ class User extends Authenticatable
         }
     }
 
-    public function client() {
+    public function client()
+    {
         return $this->belongsTo(User::class, 'client_id');
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->hasMany(User::class, 'client_id');
     }
 }

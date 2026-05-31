@@ -7,22 +7,25 @@ use App\Models\Project;
 use App\Models\User;
 use App\Models\UserOption;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
         $search = request()->get('search', '');
         $perPage = (int) request()->get('per_page', 10);
         $allowedPerPages = [10, 20, 50, 100, 9999];
-        if (!in_array($perPage, $allowedPerPages)) {
+        if (! in_array($perPage, $allowedPerPages)) {
             $perPage = 20;
         }
 
@@ -32,7 +35,7 @@ class UserController extends Controller
         $users = User::query();
 
         if (strlen($search) >= 3) {
-            $users->where('name', 'like', '%' . $search . '%');
+            $users->where('name', 'like', '%'.$search.'%');
         }
 
         if (isset($_GET['orderby'])) {
@@ -40,7 +43,7 @@ class UserController extends Controller
             $users->orderBy($_GET['orderby'], $order);
         }
 
-        if (!$userRole || !$userRole->can_manage_all_users) {
+        if (! $userRole || ! $userRole->can_manage_all_users) {
             if ($userRole && $userRole->can_manage_own_users) {
                 $users->where('client_id', $currentUser->id);
             } else {
@@ -50,7 +53,7 @@ class UserController extends Controller
 
         if ($perPage === 9999) {
             $users = $users->get();
-            $users = new \Illuminate\Pagination\LengthAwarePaginator($users, $users->count(), $users->count());
+            $users = new LengthAwarePaginator($users, $users->count(), $users->count());
         } else {
             $users = $users->paginate($perPage);
         }
@@ -70,7 +73,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -82,7 +85,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -108,7 +111,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show(User $user)
     {
@@ -121,7 +124,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit(User $user)
     {
@@ -136,7 +139,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, User $user)
     {
@@ -171,7 +174,7 @@ class UserController extends Controller
 
     protected function syncRoles(User $user, string $roleName): void
     {
-        $role = \Spatie\Permission\Models\Role::where('name', $roleName)->first();
+        $role = Role::where('name', $roleName)->first();
         if ($role) {
             $user->syncRoles([$role]);
         }
@@ -224,7 +227,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(User $user)
     {
@@ -298,7 +301,7 @@ class UserController extends Controller
             ->orderBy('id', 'desc');
 
         if (strlen($search) >= 3) {
-            $query->where('name', 'like', '%' . $search . '%');
+            $query->where('name', 'like', '%'.$search.'%');
         }
 
         $projects = $query->limit(20)->get();
@@ -311,17 +314,17 @@ class UserController extends Controller
         foreach ($projects as $project) {
             $typeLabel = $project->type;
             if ($project->type === 'Serie') {
-                $typeLabel .= ' (S' . ($project->season ?? '?') . ' E' . ($project->episode ?? '?') . ')';
+                $typeLabel .= ' (S'.($project->season ?? '?').' E'.($project->episode ?? '?').')';
             }
             $currentLevel = $userPermissions->get($project->id, 'none');
             $html .= '<tr>';
-            $html .= '<td>' . e($project->name) . ' <span class="text-muted">[' . e($typeLabel) . ']</span></td>';
+            $html .= '<td>'.e($project->name).' <span class="text-muted">['.e($typeLabel).']</span></td>';
             $html .= '<td>';
-            $html .= '<select name="project_permissions[' . $project->id . ']" class="form-control form-control-sm project-permission-select" data-project-id="' . $project->id . '">';
-            $html .= '<option value="none"' . ($currentLevel == 'none' ? ' selected' : '') . '>No Access</option>';
-            $html .= '<option value="read"' . ($currentLevel == 'read' ? ' selected' : '') . '>Read</option>';
-            $html .= '<option value="write"' . ($currentLevel == 'write' ? ' selected' : '') . '>Write</option>';
-            $html .= '<option value="create"' . ($currentLevel == 'create' ? ' selected' : '') . '>Create</option>';
+            $html .= '<select name="project_permissions['.$project->id.']" class="form-control form-control-sm project-permission-select" data-project-id="'.$project->id.'">';
+            $html .= '<option value="none"'.($currentLevel == 'none' ? ' selected' : '').'>No Access</option>';
+            $html .= '<option value="read"'.($currentLevel == 'read' ? ' selected' : '').'>Read</option>';
+            $html .= '<option value="write"'.($currentLevel == 'write' ? ' selected' : '').'>Write</option>';
+            $html .= '<option value="create"'.($currentLevel == 'create' ? ' selected' : '').'>Create</option>';
             $html .= '</select>';
             $html .= '</td>';
             $html .= '</tr>';

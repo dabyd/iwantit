@@ -21,10 +21,10 @@ return new class extends Migration
             $table->string('url');
             $table->boolean('estado')->default(true);
             $table->timestamps();
-            
+
             // Definir la clave primaria compuesta
             $table->primary(['project_id', 'product_id', 'id']);
-            
+
             // Índices para mejorar el rendimiento
             $table->index('date_in');
             $table->index('date_out');

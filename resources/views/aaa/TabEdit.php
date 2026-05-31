@@ -3,6 +3,7 @@
 namespace App\View\Components\Layouts;
 
 use App\Helpers\TabCounter; // Asegúrate de que esta ruta sea correcta
+use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class TabEdit extends Component
@@ -12,9 +13,13 @@ class TabEdit extends Component
 
     // Propiedades públicas para recibir los datos de Blade
     public $controller;
+
     public $data;
+
     public $related;
+
     public $txtrelated;
+
     public $video;
 
     /**
@@ -22,11 +27,11 @@ class TabEdit extends Component
      * Los parámetros del constructor deben coincidir con los atributos pasados desde Blade.
      * Se les asignan valores por defecto (null) para hacerlos opcionales.
      *
-     * @param mixed|null $controller Valor para el controlador.
-     * @param mixed|null $data Datos adicionales.
-     * @param mixed|null $related Elementos relacionados.
-     * @param mixed|null $txtrelated Texto relacionado.
-     * @param mixed|null $video URL o ID de video.
+     * @param  mixed|null  $controller  Valor para el controlador.
+     * @param  mixed|null  $data  Datos adicionales.
+     * @param  mixed|null  $related  Elementos relacionados.
+     * @param  mixed|null  $txtrelated  Texto relacionado.
+     * @param  mixed|null  $video  URL o ID de video.
      * @return void
      */
     public function __construct(
@@ -50,7 +55,7 @@ class TabEdit extends Component
     /**
      * Obtiene la vista/contenido que representa el componente.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return View|\Closure|string
      */
     public function render()
     {

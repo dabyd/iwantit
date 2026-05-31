@@ -163,7 +163,7 @@
                             @enderror
                         </p>
                         <div class="login-remember-me">
-                            <input id="login-remember-me-cb" type="checkbox"></input>
+                            <input id="login-remember-me-cb" name="remember" type="checkbox"></input>
                             <label for="login-remember-me-cb">Remember me</label>
                         </div>
                         <button class="iwt-button login-button" type="submit">LOG IN</button>

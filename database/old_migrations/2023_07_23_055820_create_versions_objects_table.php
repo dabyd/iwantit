@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('versions_objects', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger( 'versions_id' );
-            $table->bigInteger( 'objects_id' );
-            $table->char('disabled',1)->default('0');
-            $table->string('url',4096);
+            $table->bigInteger('versions_id');
+            $table->bigInteger('objects_id');
+            $table->char('disabled', 1)->default('0');
+            $table->string('url', 4096);
             $table->timestamps();
         });
     }

@@ -7,31 +7,42 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
-class LoginController extends Controller {
-
-    public function login( Request $request ) {
+class LoginController extends Controller
+{
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
-            'email' => [ 'required', 'email', 'string' ],
-            'password' => [ 'required', 'string' ]
+            'email' => ['required', 'email', 'string'],
+            'password' => ['required', 'string'],
         ]);
 
-        $remember = $request->filled( 'remember' );
+        $remember = $request->filled('remember');
 
-        if ( Auth::attempt( $credentials, $remember ) ) {
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-//            return redirect()->intended('/projects')->with('status', 'You are logged in');
-            return redirect()->to('/projects')->with('status', 'You are logged in');
+            $user = Auth::user();
+
+            if ($user->hasTwoFactorEnabled()) {
+                session()->put('two_factor.login_id', $user->id);
+                session()->put('two_factor.remember', $remember);
+
+                Auth::logout();
+
+                return redirect()->route('two-factor.challenge');
+            }
+
+            return redirect()->intended('/projects')->with('status', 'You are logged in');
         }
 
-
         throw ValidationException::withMessages([
-            'email' => __( 'auth.failed' )
+            'email' => __('auth.failed'),
         ]);
 
     }
 
-    public function logout( Request $request ) {
+    public function logout(Request $request)
+    {
         Auth::logout();
 
         $request->session()->invalidate();

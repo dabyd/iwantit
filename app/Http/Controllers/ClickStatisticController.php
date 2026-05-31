@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\ClickStatistic;
 use App\Models\Product;
-use App\Models\Brand;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ClickStatisticController extends Controller
 {
     /**
      * Redirige al destino final tras registrar el clic en estadísticas.
-     * 
+     *
      * GET /track/{type}/{id}?vid=X&time=Y
-     * 
-     * @param Request $request
-     * @param string $type 'product' o 'brand'
-     * @param int $id ID del producto o marca
-     * @return \Illuminate\Http\RedirectResponse
+     *
+     * @param  string  $type  'product' o 'brand'
+     * @param  int  $id  ID del producto o marca
+     * @return RedirectResponse
      */
     public function redirect(Request $request, string $type, int $id)
     {
@@ -47,21 +49,21 @@ class ClickStatisticController extends Controller
             ClickStatistic::logClick($request, $type, $id, $versionsId);
         } catch (\Exception $e) {
             // Log error but don't fail the redirect
-            Log::error('Error logging click statistic: ' . $e->getMessage());
+            Log::error('Error logging click statistic: '.$e->getMessage());
         }
 
         // Redirigir al destino final
         return redirect()->away($url);
     }
+
     /**
      * Rastrea la visualización de la imagen del producto y la devuelve.
      * Si no existe, devuelve un píxel blanco de 1x1.
-     * 
+     *
      * GET /track/image/{id}?vid=X
-     * 
-     * @param Request $request
-     * @param int $id ID del producto
-     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|\Illuminate\Http\Response
+     *
+     * @param  int  $id  ID del producto
+     * @return BinaryFileResponse|Response
      */
     public function showProductImage(Request $request, int $id)
     {
@@ -72,12 +74,12 @@ class ClickStatisticController extends Controller
         try {
             ClickStatistic::logProductView($request, $id, $versionsId);
         } catch (\Exception $e) {
-            Log::error('Error logging product image view statistic: ' . $e->getMessage());
+            Log::error('Error logging product image view statistic: '.$e->getMessage());
         }
 
         // Devolver la imagen si existe
         if ($product && $product->filename) {
-            $path = public_path('uploads/' . $product->filename);
+            $path = public_path('uploads/'.$product->filename);
             if (file_exists($path)) {
                 return response()->file($path);
             }
@@ -85,6 +87,7 @@ class ClickStatisticController extends Controller
 
         // Devolver píxel blanco 1x1 si no hay imagen (GIF)
         $pixel = base64_decode('R0lGODlhAQABAIAAAP///wAAACwAAAAAAQABAAACAkQBADs=');
+
         return response($pixel, 200, [
             'Content-Type' => 'image/gif',
             'Cache-Control' => 'no-cache, no-store, must-revalidate',
@@ -93,4 +96,3 @@ class ClickStatisticController extends Controller
         ]);
     }
 }
-

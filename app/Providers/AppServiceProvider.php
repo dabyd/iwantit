@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\App;
+use Knuckles\Scribe\ScribeServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,10 +13,11 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Solo registrar Scribe si la clase existe (no está en producción)
-        if (class_exists(\Knuckles\Scribe\ScribeServiceProvider::class)) {
-            $this->app->register(\Knuckles\Scribe\ScribeServiceProvider::class);
+        if (class_exists(ScribeServiceProvider::class)) {
+            $this->app->register(ScribeServiceProvider::class);
         }
     }
+
     /**
      * Bootstrap any application services.
      */

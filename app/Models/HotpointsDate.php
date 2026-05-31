@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Models;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
 
 class HotpointsDate extends Model
 {
@@ -17,7 +19,7 @@ class HotpointsDate extends Model
      * Clave primaria compuesta
      */
     protected $primaryKey = ['project_id', 'product_id', 'id'];
-    
+
     /**
      * Indica que la clave primaria no es auto-incremental
      */
@@ -69,6 +71,7 @@ class HotpointsDate extends Model
         foreach ($this->primaryKey as $keyName) {
             $key[$keyName] = $this->getAttribute($keyName);
         }
+
         return $key;
     }
 
@@ -80,6 +83,7 @@ class HotpointsDate extends Model
         foreach ($this->primaryKey as $key) {
             $query->where($key, '=', $this->getAttribute($key));
         }
+
         return $query;
     }
 
@@ -92,7 +96,7 @@ class HotpointsDate extends Model
             [
                 'project_id' => $project_id,
                 'product_id' => $product_id,
-                'id'         => $id,                
+                'id' => $id,
             ],
             $data
         );
@@ -145,6 +149,7 @@ class HotpointsDate extends Model
         if ($this->date_in && $this->date_out) {
             return Carbon::parse($this->date_in)->diffInDays(Carbon::parse($this->date_out));
         }
+
         return 0;
     }
 

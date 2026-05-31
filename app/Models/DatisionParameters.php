@@ -50,8 +50,8 @@ class DatisionParameters extends Model
     public function scopeWithPrices($query)
     {
         return $query->whereNotNull('low_price')
-                    ->whereNotNull('medium_price')
-                    ->whereNotNull('high_price');
+            ->whereNotNull('medium_price')
+            ->whereNotNull('high_price');
     }
 
     /**
@@ -84,7 +84,7 @@ class DatisionParameters extends Model
      */
     public function getHasCoordinatesAttribute()
     {
-        return !is_null($this->x1) && !is_null($this->y1);
+        return ! is_null($this->x1) && ! is_null($this->y1);
     }
 
     /**
@@ -92,7 +92,7 @@ class DatisionParameters extends Model
      */
     public function getHasFramesAttribute()
     {
-        return !is_null($this->frames) && $this->frames > 0;
+        return ! is_null($this->frames) && $this->frames > 0;
     }
 
     /**
@@ -119,6 +119,7 @@ class DatisionParameters extends Model
                 'y1' => $this->y1,
             ];
         }
+
         return null;
     }
 
@@ -128,12 +129,12 @@ class DatisionParameters extends Model
      */
     public function getPriceByType($type)
     {
-        $priceField = $type . '_price';
-        
+        $priceField = $type.'_price';
+
         if (in_array($priceField, ['low_price', 'medium_price', 'high_price', 'extra_price'])) {
             return $this->{$priceField};
         }
-        
+
         return null;
     }
 
@@ -153,6 +154,7 @@ class DatisionParameters extends Model
         if ($this->isValidMachineUrl()) {
             return parse_url($this->machine_url, PHP_URL_HOST);
         }
+
         return null;
     }
 }

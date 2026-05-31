@@ -9,18 +9,19 @@ use Illuminate\Support\Collection; // Importa Collection
 class Hotpoint extends Model
 {
     use HasFactory;
+
     protected $fillable = ['versions_id', 'products_id', 'time', 'pos_x', 'pos_y'];
 
     /**
      * Obtiene hotpoints agrupados por tiempo sensible a la distancia.
      * Si $productId es null, agrupa primero por products_id y luego aplica la lógica de tiempo.
      *
-     * @param int $versionId ID de la versión.
-     * @param int|null $productId ID del producto (opcional).
-     * @param float $timeDistance Umbral de tiempo para agrupar (en segundos). Por defecto 0.5.
+     * @param  int  $versionId  ID de la versión.
+     * @param  int|null  $productId  ID del producto (opcional).
+     * @param  float  $timeDistance  Umbral de tiempo para agrupar (en segundos). Por defecto 0.5.
      * @return Collection Un array de grupos.
      */
-    public static function getGroupedHotpoints( $versionId, ?int $productId = null, float $timeDistance = 0.5): Collection
+    public static function getGroupedHotpoints($versionId, ?int $productId = null, float $timeDistance = 0.5): Collection
     {
         // 1. Construir la consulta base
         $query = self::where('versions_id', $versionId);
@@ -52,12 +53,11 @@ class Hotpoint extends Model
         }
     }
 
-
     /**
      * Lógica de agrupación de hotpoints sensible a la distancia en el tiempo.
      *
-     * @param Collection $hotpoints Colección de hotpoints ya filtrados y ordenados.
-     * @param float $timeDistance Umbral de tiempo para agrupar.
+     * @param  Collection  $hotpoints  Colección de hotpoints ya filtrados y ordenados.
+     * @param  float  $timeDistance  Umbral de tiempo para agrupar.
      * @return Collection Un array de grupos de hotpoints.
      */
     protected static function groupHotpointsByTime(Collection $hotpoints, float $timeDistance): Collection
@@ -87,12 +87,11 @@ class Hotpoint extends Model
         return $groupedHotpoints;
     }
 
-
     /**
      * Agrupa hotpoints primero por products_id y luego aplica la lógica de tiempo dentro de cada producto.
      *
-     * @param Collection $hotpoints Colección de hotpoints ya filtrados y ordenados por product_id y time.
-     * @param float $timeDistance Umbral de tiempo para agrupar.
+     * @param  Collection  $hotpoints  Colección de hotpoints ya filtrados y ordenados por product_id y time.
+     * @param  float  $timeDistance  Umbral de tiempo para agrupar.
      * @return Collection Una colección de arrays, donde cada array representa los grupos de un producto.
      */
     protected static function groupHotpointsByProductAndThenByTime(Collection $hotpoints, float $timeDistance): Collection
@@ -109,7 +108,7 @@ class Hotpoint extends Model
             if ($timeBasedGroupsForProduct->isNotEmpty()) {
                 $finalGroupedOutput->push([
                     'products_id' => $productIdKey,
-                    'time_groups' => $timeBasedGroupsForProduct
+                    'time_groups' => $timeBasedGroupsForProduct,
                 ]);
             }
         }

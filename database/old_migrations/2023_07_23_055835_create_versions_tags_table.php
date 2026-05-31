@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('versions_tags', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger( 'versions_id' );
-            $table->bigInteger( 'tags_id' );
-            $table->char('disabled',1)->default('0');
+            $table->bigInteger('versions_id');
+            $table->bigInteger('tags_id');
+            $table->char('disabled', 1)->default('0');
             $table->timestamps();
         });
     }

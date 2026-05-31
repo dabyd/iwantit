@@ -65,6 +65,15 @@
         @can('datision-parameters-menu')
         <x-layouts.option route="datision-parameters.index" name="AI Machine CFG" icon="comment-nodes" />
         @endcan
+        @if(!$user->hasTwoFactorEnabled())
+        <hr/>
+        <li class="nav-item">
+            <a href="{{ route('two-factor.setup') }}" class="nav-link d-flex align-items-center text-warning fw-bold" style="background: rgba(255,193,7,0.12); border-left: 3px solid #ffc107;">
+                <i class="fa-solid fa-shield-halved"></i>&nbsp;&nbsp;&nbsp;
+                Activate your 2FA now
+            </a>
+        </li>
+        @endif
         <hr/>
         <li class="nav-item">
             <form action="{{ route( 'logout' ) }}" method="post" style="display: inline">

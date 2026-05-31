@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigInteger('territories_id');
             $table->bigInteger('languages_id');
             $table->bigInteger('type_of_versions_id');
-            $table->string('filename',4096);
+            $table->string('filename', 4096);
             $table->timestamps();
         });
     }

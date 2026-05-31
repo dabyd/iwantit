@@ -2,31 +2,39 @@
 
 namespace App\View\Components\Layouts;
 
-use App\Models\Project;
+use App\Helpers\TabCounter;
 use App\Models\ClickStatistic;
 use App\Models\Hotpoint;
 use App\Models\HotpointsDate;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
+use App\Models\Project;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
 class TabDashboard extends Component
 {
     public int $currentCount;
+
     public Project $project;
+
     public array $stats = [];
+
     public array $chartData = [];
+
     public array $projectInfo = [];
+
     public array $brandRanking = [];
 
-    public function __construct(Project $project) {
+    public function __construct(Project $project)
+    {
         $this->project = $project;
-        $this->currentCount = \App\Helpers\TabCounter::incrementAndGet();
+        $this->currentCount = TabCounter::incrementAndGet();
         $this->calculateStats();
     }
 
-    private function calculateStats() {
+    private function calculateStats()
+    {
         $vid = $this->project->id;
 
         // 1. Estadísticas básicas de ClickStatistic
@@ -35,9 +43,9 @@ class TabDashboard extends Component
         $this->stats['totalClicks'] = ClickStatistic::where('versions_id', $vid)->where('type', 'click')->count();
         $this->stats['productClicks'] = ClickStatistic::where('versions_id', $vid)->where('type', 'click')->whereNotNull('products_id')->count();
         $this->stats['brandClicks'] = ClickStatistic::where('versions_id', $vid)->where('type', 'click')->whereNotNull('brands_id')->count();
-        
-        $this->stats['conversionRate'] = $this->stats['totalViews'] > 0 
-            ? round(($this->stats['totalClicks'] / $this->stats['totalViews']) * 100, 1) 
+
+        $this->stats['conversionRate'] = $this->stats['totalViews'] > 0
+            ? round(($this->stats['totalClicks'] / $this->stats['totalViews']) * 100, 1)
             : 0;
 
         // 2. Información del Proyecto (Productos, Marcas, Revenue)
@@ -47,7 +55,7 @@ class TabDashboard extends Component
             ->pluck('products_id');
 
         $this->projectInfo['productsCount'] = $productsInProject->count();
-        
+
         $this->projectInfo['brandsCount'] = DB::table('products')
             ->whereIn('id', $productsInProject)
             ->distinct()
@@ -61,14 +69,14 @@ class TabDashboard extends Component
 
         // Obtener tiempos de visualización agrupados por producto
         $groupedHotpoints = Hotpoint::getGroupedHotpoints($vid);
-        
+
         // Cargar todos los productos del proyecto con sus marcas de una vez
         $products = Product::with('brand')->whereIn('id', $productsInProject)->get()->keyBy('id');
 
         foreach ($groupedHotpoints as $data) {
             $productId = $data['products_id'];
             $veces = $data['time_groups'];
-            
+
             $ttime = 0;
             foreach ($veces as $group) {
                 $last = $group->last();
@@ -95,7 +103,7 @@ class TabDashboard extends Component
             $product = $products->get($productId);
             if ($product && $product->brand) {
                 $brandId = $product->brand->id;
-                if (!isset($brandStats[$brandId])) {
+                if (! isset($brandStats[$brandId])) {
                     $brandStats[$brandId] = [
                         'id' => $brandId,
                         'name' => $product->brand->name,
@@ -103,7 +111,7 @@ class TabDashboard extends Component
                         'revenue' => 0,
                         'totalProducts' => 0,
                         'enabledProducts' => 0,
-                        'status' => 'Activo'
+                        'status' => 'Activo',
                     ];
                 }
                 $brandStats[$brandId]['revenue'] += $productRevenue;
@@ -114,14 +122,13 @@ class TabDashboard extends Component
             }
         }
 
-
         $this->projectInfo['totalRevenue'] = $totalRevenue;
         $this->projectInfo['productsEnabledPercent'] = $this->projectInfo['productsCount'] > 0
             ? round(($enabledProducts / $this->projectInfo['productsCount']) * 100)
             : 0;
 
         // Preparar Ranking de Marcas
-        usort($brandStats, fn($a, $b) => $b['revenue'] <=> $a['revenue']);
+        usort($brandStats, fn ($a, $b) => $b['revenue'] <=> $a['revenue']);
         $this->brandRanking = array_slice($brandStats, 0, 10);
 
         // 3. Datos del Gráfico (Últimos 14 días)
@@ -132,12 +139,12 @@ class TabDashboard extends Component
         for ($i = 13; $i >= 0; $i--) {
             $date = Carbon::now()->subDays($i)->format('Y-m-d');
             $days[] = Carbon::now()->subDays($i)->format('d/m');
-            
+
             $viewData[] = ClickStatistic::where('versions_id', $vid)
                 ->where('type', 'view')
                 ->whereDate('created_at', $date)
                 ->count();
-                
+
             $clickData[] = ClickStatistic::where('versions_id', $vid)
                 ->where('type', 'click')
                 ->whereDate('created_at', $date)

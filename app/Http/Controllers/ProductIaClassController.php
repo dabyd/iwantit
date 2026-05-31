@@ -1,10 +1,11 @@
 <?php
+
 // app/Http/Controllers/ProductIaClassController.php
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\DatisionObjectsIaClass;
+use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 
 class ProductIaClassController extends Controller
@@ -23,9 +24,9 @@ class ProductIaClassController extends Controller
         /* --- Todas las clases + campo boolean “selected” --- */
         $classes = DatisionObjectsIaClass::select('id', 'name')
             ->get()
-            ->map(fn($c) => [
-                'id'       => $c->id,
-                'name'     => $c->name,
+            ->map(fn ($c) => [
+                'id' => $c->id,
+                'name' => $c->name,
                 'selected' => in_array($c->id, $activeIds),
             ]);
 

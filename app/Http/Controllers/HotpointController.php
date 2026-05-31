@@ -3,105 +3,112 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotpoint;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\URL;
 use App\Models\Project;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 
-class HotpointController extends Controller {
+class HotpointController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function index() {
-//        $hotpoints = Hotpoint::latest()->paginate(300);
+    public function index()
+    {
+        //        $hotpoints = Hotpoint::latest()->paginate(300);
         $hotpoints = Hotpoint::latest()->get();
         $pelis = [];
-        foreach( $hotpoints as $hotpoint ) {
+        foreach ($hotpoints as $hotpoint) {
             $hp = $hotpoint->toArray();
             $hp = (object) $hp;
-            if ( !isset( $pelis[ $hp->versions_id ] ) ) {
-                $pelis[ $hp->versions_id ] = [];
+            if (! isset($pelis[$hp->versions_id])) {
+                $pelis[$hp->versions_id] = [];
             }
-            if ( !isset( $pelis[ $hp->versions_id ][ $hp->products_id ] ) ) {
-                $pelis[ $hp->versions_id ][ $hp->products_id ] = [];
+            if (! isset($pelis[$hp->versions_id][$hp->products_id])) {
+                $pelis[$hp->versions_id][$hp->products_id] = [];
             }
-            $pelis[ $hp->versions_id ][ $hp->products_id ][] = $hp;
+            $pelis[$hp->versions_id][$hp->products_id][] = $hp;
         }
         $projects = [];
-        foreach( $pelis as $id => $nada ) {
-            $projects[ $id ] = Project::where('id', $id)->value('name');
+        foreach ($pelis as $id => $nada) {
+            $projects[$id] = Project::where('id', $id)->value('name');
         }
         $controller = $this;
 
         $pr = request()->get('pr'); // Obtiene el parámetro 'pr' de la URL
         // Si hay un parámetro 'pr', filtramos los hotpoints, si no, obtenemos todos
         $hotpoints = Hotpoint::latest()
-            ->when($pr, fn($query) => $query->where('versions_id', $pr))
+            ->when($pr, fn ($query) => $query->where('versions_id', $pr))
             ->get();
 
-//        dd( $pelis );
+        //        dd( $pelis );
 
-        return view('hotpoints.index', compact('projects','hotpoints', 'pelis', 'controller'))->with('i', (request()->input('page', 1) - 1) * 300);
+        return view('hotpoints.index', compact('projects', 'hotpoints', 'pelis', 'controller'))->with('i', (request()->input('page', 1) - 1) * 300);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function create() {
+    public function create()
+    {
         $controller = $this;
+
         return view('hotpoints.create', compact('controller'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function store(Request $request): RedirectResponse {
+    public function store(Request $request): RedirectResponse
+    {
         $max_size = (int) ini_get('upload_max_filesize') * 1024 * 1024;
         $request->validate([
             'name' => 'required',
             'filename' => [
                 'required',
                 'max:'.$max_size,
-            ]
+            ],
         ]);
 
         $file = $request->file('filename');
-        $file_name = time() . '.' . $file->extension();
-        $file->move( public_path('uploads'), $file_name );
+        $file_name = time().'.'.$file->extension();
+        $file->move(public_path('uploads'), $file_name);
         $prj = $request->all();
-        $prj[ 'original_filename' ] = $prj[ 'filename' ];
-        $prj[ 'filename' ] = $file_name;
+        $prj['original_filename'] = $prj['filename'];
+        $prj['filename'] = $file_name;
         unset($prj['_token']);
         Hotpoint::create($prj);
+
         return redirect()->route('hotpoints.index')->with('success', 'Hotpoint created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Hotpoint  $hotpoint
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function show(Hotpoint $hotpoint) {
+    public function show(Hotpoint $hotpoint)
+    {
         $controller = $this;
+
         return view('hotpoints.show', compact('hotpoint', 'controller'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Hotpoint  $hotpoint
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function edit(Request $request, Hotpoint $hotpoint) {
+    public function edit(Request $request, Hotpoint $hotpoint)
+    {
         /*
         $url = $request->url();
         if ( isset( $_GET[ 'add' ] ) ) {
@@ -161,107 +168,113 @@ class HotpointController extends Controller {
         }
         */
         $controller = $this;
-        return view('hotpoints.edit', compact('hotpoint','controller'));
+
+        return view('hotpoints.edit', compact('hotpoint', 'controller'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hotpoint  $hotpoint
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function update(Request $request, Hotpoint $hotpoint) {
+    public function update(Request $request, Hotpoint $hotpoint)
+    {
         $request->validate([
             'name' => 'required',
         ]);
         $prj = $request->all();
 
-        if ( isset( $prj[ 'filename' ] ) ) {
+        if (isset($prj['filename'])) {
             // Sube nuevo vídeo
-            unlink( public_path('uploads') . '/' . $prj[ 'old_video' ] );
+            unlink(public_path('uploads').'/'.$prj['old_video']);
             $file = $request->file('filename');
-            $file_name = time() . '.' . $file->extension();
-            $file->move( public_path('uploads'), $file_name );
-            $prj[ 'original_filename' ] = $prj[ 'filename' ];
-            $prj[ 'filename' ] = $file_name;
+            $file_name = time().'.'.$file->extension();
+            $file->move(public_path('uploads'), $file_name);
+            $prj['original_filename'] = $prj['filename'];
+            $prj['filename'] = $file_name;
         }
-        unset( $prj['_token'] );
+        unset($prj['_token']);
         $hotpoint->update($prj);
+
         return redirect()->route('hotpoints.index')->with('success', 'Hotpoint updated successfully');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hotpoint  $hotpoint
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function destroy(Hotpoint $hotpoint) {
+    public function destroy(Hotpoint $hotpoint)
+    {
         $hotpoint->delete();
+
         return redirect()->route('hotpoints.index')->with('success', 'Hotpoint deleted successfully');
     }
 
-    public function getParams( $data = '' ) {
+    public function getParams($data = '')
+    {
         $params = [];
-        $params[ 'view' ] = 'hotpoints';
-        $params[ 'singular' ] = 'Hotpoint';
-        $params[ 'plural' ] = 'hotpoints';
-        $params[ 'fields' ] = [
+        $params['view'] = 'hotpoints';
+        $params['singular'] = 'Hotpoint';
+        $params['plural'] = 'hotpoints';
+        $params['fields'] = [
             [
                 'label' => 'ID',
                 'name' => 'id',
-                'editable' => false
+                'editable' => false,
             ],
             [
                 'label' => 'Product',
                 'name' => 'products_id',
                 'editable' => true,
-                'type' => 'text'
+                'type' => 'text',
             ],
             [
                 'label' => 'Version',
                 'name' => 'versions_id',
                 'editable' => true,
-                'type' => 'text'
+                'type' => 'text',
             ],
             [
                 'label' => 'Position X',
                 'name' => 'pos_x',
                 'editable' => false,
-                'type' => 'text'
+                'type' => 'text',
             ],
             [
                 'label' => 'Position Y',
                 'name' => 'pos_y',
                 'editable' => false,
-                'type' => 'text'
+                'type' => 'text',
             ],
             [
                 'label' => 'Time',
                 'name' => 'time',
                 'editable' => false,
-                'type' => 'text'
-            ]
+                'type' => 'text',
+            ],
 
         ];
         $ret = $params;
-        if ( '' != $data && isset( $params[ $data ] ) ) {
-            $ret = $params[ $data ];
+        if ($data != '' && isset($params[$data])) {
+            $ret = $params[$data];
         }
+
         return $ret;
     }
 
-    public function getText( $id = '' ) {
+    public function getText($id = '')
+    {
         $text = [
             'left_column' => 'Available tags',
             'left_column_button' => 'Add tag to hotpoint',
             'right_column' => 'Tag related to this hotpoint',
             'right_column_button' => 'Remove tag from hotpoint',
         ];
-        if  ( '' != $id ) {
-            $text = $text[ $id ];
+        if ($id != '') {
+            $text = $text[$id];
         }
+
         return $text;
     }
 }

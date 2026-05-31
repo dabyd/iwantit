@@ -1,11 +1,11 @@
 <?php
+
 //  app/Helpers/IaProducts.php   (o en el lugar que prefieras)
 
 namespace App\Helpers;
 
-use App\Models\Product;
 use App\Models\DatisionObjectsIaClass;
-use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class IaProducts
 {
@@ -13,19 +13,19 @@ class IaProducts
      * Devuelve todos los productos que poseen la clase IA indicada.
      *
      * @param  string  $className  Nombre (o parte del nombre) de la clase IA, ej. "cup"
-     * @return array   Formato: [ ['id' => 14, 'name' => 'Pamela France Fucsia'], … ]
+     * @return array Formato: [ ['id' => 14, 'name' => 'Pamela France Fucsia'], … ]
      */
     public static function byIaClass(string $className): array
     {
-		// 1) localizar la clase IA por coincidencia exacta
-		$iaClass = DatisionObjectsIaClass::where('name', $className)->first();
-/*
-        // 1) localizar la clase IA (case-insensitive, primer match)
-        $iaClass = DatisionObjectsIaClass::whereRaw('LOWER(name) LIKE ?', [ '%' . strtolower($className) . '%' ])
-                    ->first();
-*/
+        // 1) localizar la clase IA por coincidencia exacta
+        $iaClass = DatisionObjectsIaClass::where('name', $className)->first();
+        /*
+                // 1) localizar la clase IA (case-insensitive, primer match)
+                $iaClass = DatisionObjectsIaClass::whereRaw('LOWER(name) LIKE ?', [ '%' . strtolower($className) . '%' ])
+                            ->first();
+        */
 
-        if (!$iaClass) {
+        if (! $iaClass) {
             return [];                         // no existe la clase → lista vacía
         }
 

@@ -5,7 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use App\Models\DatisionObjectsIaClass;   // <<–– IMPORTANTE
+
+// <<–– IMPORTANTE
 
 class Product extends Model
 {
@@ -15,7 +16,6 @@ class Product extends Model
     {
         return $this->belongsTo(Brand::class, 'brands_id');
     }
-
 
     /** Campos que se pueden rellenar en masa */
     protected $fillable = [

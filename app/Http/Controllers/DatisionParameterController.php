@@ -15,8 +15,9 @@ class DatisionParameterController extends Controller
     {
         $items = DatisionParameter::latest()->paginate(15);
         $controller = $this;
-        return view('datision_parameters.index', compact('items','controller'));
-//        return view('datision_parameters.index', compact('items'));
+
+        return view('datision_parameters.index', compact('items', 'controller'));
+        //        return view('datision_parameters.index', compact('items'));
     }
 
     public function create(): View
@@ -27,6 +28,7 @@ class DatisionParameterController extends Controller
     public function store(DatisionParameterRequest $request): RedirectResponse
     {
         DatisionParameter::create($request->validated());
+
         return redirect()
             ->route('datision-parameters.index')
             ->with('success', __('datision.flash.created'));
@@ -40,13 +42,15 @@ class DatisionParameterController extends Controller
     public function edit(DatisionParameter $datision_parameter): View
     {
         $controller = $this;
-        return view('datision_parameters.edit', compact('datision_parameter','controller'));
-//        return view('datision_parameters.edit', ['item' => $datision_parameter]);
+
+        return view('datision_parameters.edit', compact('datision_parameter', 'controller'));
+        //        return view('datision_parameters.edit', ['item' => $datision_parameter]);
     }
 
     public function update(DatisionParameterRequest $request, DatisionParameter $datision_parameter): RedirectResponse
     {
         $datision_parameter->update($request->validated());
+
         return redirect()
             ->route('datision-parameters.index')
             ->with('success', __('datision.flash.updated'));
@@ -55,6 +59,7 @@ class DatisionParameterController extends Controller
     public function destroy(DatisionParameter $datision_parameter): RedirectResponse
     {
         $datision_parameter->delete();
+
         return redirect()
             ->route('datision-parameters.index')
             ->with('success', __('datision.flash.deleted'));
@@ -62,105 +67,107 @@ class DatisionParameterController extends Controller
 
     /**
      * Devuelve el valor de un campo de DatisionParameter
-     * 
-     * @param string $field Nombre de la columna en la tabla
-     * @return mixed|null   Valor del campo o null si no existe
+     *
+     * @param  string  $field  Nombre de la columna en la tabla
+     * @return mixed|null Valor del campo o null si no existe
      */
     public static function getValue(string $field)
     {
         $record = DatisionParameter::query()->first();
 
-        if (!$record) {
+        if (! $record) {
             return null; // no hay registros en la tabla
         }
 
-        if (!array_key_exists($field, $record->getAttributes())) {
+        if (! array_key_exists($field, $record->getAttributes())) {
             return null; // el campo no existe en el modelo
         }
 
         return $record->$field;
     }
 
-    public function getParams( $data = '' ) {
+    public function getParams($data = '')
+    {
         $params = [];
-        $params[ 'view' ] = 'datision-parameters';
-        $params[ 'singular' ] = 'Datision pamareter';
-        $params[ 'plural' ] = 'Datision pamareters';
-        $params[ 'fields' ] = [
+        $params['view'] = 'datision-parameters';
+        $params['singular'] = 'Datision pamareter';
+        $params['plural'] = 'Datision pamareters';
+        $params['fields'] = [
             [
                 'label' => 'ID',
                 'name' => 'id',
                 'editable' => false,
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'URL',
                 'name' => 'machine_url',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Threshold Secs',
                 'name' => 'threshold_sec',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Default frames tolerance',
                 'name' => 'frames',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Default X-axis tolerance',
                 'name' => 'x1',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Default Y-axis tolerance',
                 'name' => 'y1',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Price per second low',
                 'name' => 'low_price',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Price per second medium',
                 'name' => 'medium_price',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Price per second high',
                 'name' => 'high_price',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
             [
                 'label' => 'Price per second extra',
                 'name' => 'extra_price',
                 'editable' => true,
                 'type' => 'text',
-                'orderby' => false
+                'orderby' => false,
             ],
         ];
         $ret = $params;
-        if ( '' != $data && isset( $params[ $data ] ) ) {
-            $ret = $params[ $data ];
+        if ($data != '' && isset($params[$data])) {
+            $ret = $params[$data];
         }
+
         return $ret;
     }
 }

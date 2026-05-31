@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use stdClass;
+use App\Models\ClickStatistic;
 use App\Models\Hotpoint;
-use Illuminate\Support\Facades\URL;
 use App\Models\License;
 use App\Models\Project;
 use App\Models\Territory;
-use App\Models\ClickStatistic;
-use App\Http\Controllers\ProductController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\URL;
+use stdClass;
 
-class IwantitController extends Controller {
+class IwantitController extends Controller
+{
     /**
-    * @hideFromAPIDocumentation
-    */
-    public function api_iwi_post( Request $request ) {
-        $this->api_iwi_get( $request );
+     * @hideFromAPIDocumentation
+     */
+    public function api_iwi_post(Request $request)
+    {
+        $this->api_iwi_get($request);
     }
 
     /**
@@ -63,19 +64,15 @@ class IwantitController extends Controller {
      *     }
      *   ]
      * }
-     *
      * @response 401 {
      *   "error": "The key does not exist or is incorrect"
      * }
-     *
      * @response 403 {
      *   "error": "The key has been disabled, please contact the administrator"
      * }
-     *
      * @response 403 scenario="Key not valid for project" {
      *   "error": "This key is not valid for this project, please contact the administrator"
      * }
-     *
      * @response 403 scenario="Key expired" {
      *   "error": "The key has expired, please contact the administrator"
      * }
@@ -87,103 +84,106 @@ class IwantitController extends Controller {
      * - "invalidKeyForProjectForTestingOnly": Key not valid for the requested project (403 error)
      * - "expiredProjectKeyForTestingOnly": Key has expired (403 error)
      */
-
-    public function api_iwi_get( Request $request ) {
-        switch( $request->action ) {
+    public function api_iwi_get(Request $request)
+    {
+        switch ($request->action) {
             case 'load':
-                echo $this->load_hotpoints( $request->id );
-                die();
+                echo $this->load_hotpoints($request->id);
+                exit();
                 break;
 
             case 'save':
-                echo $this->save_hotpoints( $request->id, $request->data );
-                die();
+                echo $this->save_hotpoints($request->id, $request->data);
+                exit();
                 break;
 
             case 'get':
-                $this->get_hotpoints( $request );
+                $this->get_hotpoints($request);
                 break;
 
             case 'get_projects':
-                $this->get_projects( $request );
+                $this->get_projects($request);
                 break;
 
             case 'create_keyfile':
-                $this->create_keyfile( $request );
-                die();
+                $this->create_keyfile($request);
+                exit();
                 break;
 
             case 'enable_disable_keyfile':
-                $this->enable_disable_keyfile( $request );
-                die();
+                $this->enable_disable_keyfile($request);
+                exit();
                 break;
 
             case 'delete_keyfile':
-                $this->delete_keyfile( $request );
-                die();
+                $this->delete_keyfile($request);
+                exit();
                 break;
 
             case 'download_keyfile':
-                $this->download_keyfile( $request );
-                die();
+                $this->download_keyfile($request);
+                exit();
                 break;
 
             case 'download_plain_keyfile':
-                $this->download_plain_keyfile( $request );
-                die();
+                $this->download_plain_keyfile($request);
+                exit();
                 break;
 
             case 'update_keyfile_name':
-                $this->update_keyfile_name( $request );
-                die();
+                $this->update_keyfile_name($request);
+                exit();
                 break;
 
             default:
                 echo '<h1>default</h1>';
-                $this->not_allowed( $request );
+                $this->not_allowed($request);
                 break;
         }
     }
 
-    static public function load_hotpoints( $id ) {
-        $data = DB::table( 'datos_editor_hotpoints' )
-                    ->where( 'versiones_id', '=', $id )
-                    ->get();
+    public static function load_hotpoints($id)
+    {
+        $data = DB::table('datos_editor_hotpoints')
+            ->where('versiones_id', '=', $id)
+            ->get();
         $ret = 'bad';
-        if ( count( $data ) > 0 ) {
-            $ret = json_decode( $data->toArray()[ 0 ]->data );
+        if (count($data) > 0) {
+            $ret = json_decode($data->toArray()[0]->data);
         }
-        return json_encode( $ret );
+
+        return json_encode($ret);
     }
 
-    static public function save_hotpoints( $id, $data ) {
-        $tmp = DB::table( 'datos_editor_hotpoints' )
-                ->where( 'versiones_id', '=', $id )
-                ->get()
-                ->toArray();
-        if ( count( $tmp ) > 0 ) {
-            $tmp = DB::table( 'datos_editor_hotpoints' )
-                        ->where( 'versiones_id', '=', $id )
-                        ->update( [ 'data' => $data ] );
+    public static function save_hotpoints($id, $data)
+    {
+        $tmp = DB::table('datos_editor_hotpoints')
+            ->where('versiones_id', '=', $id)
+            ->get()
+            ->toArray();
+        if (count($tmp) > 0) {
+            $tmp = DB::table('datos_editor_hotpoints')
+                ->where('versiones_id', '=', $id)
+                ->update(['data' => $data]);
         } else {
-            DB::insert('insert into datos_editor_hotpoints (versiones_id, data) values (?, ?)', [ $id, $data ]);
+            DB::insert('insert into datos_editor_hotpoints (versiones_id, data) values (?, ?)', [$id, $data]);
         }
 
-        $data = json_decode( $data );
+        $data = json_decode($data);
 
         $productos = [];
-        foreach( $data as $producto ) {
-            if ( !isset( $productos[ $producto->producto ] ) ) {
-                $productos[ $producto->producto ] = '*';
-                DB::table( 'hotpoints' )
-                    ->where( [
-                        [ 'versions_id', '=', $id ],
-                        [ 'products_id', '=', $producto->producto ]
-                    ] )
+        foreach ($data as $producto) {
+            if (! isset($productos[$producto->producto])) {
+                $productos[$producto->producto] = '*';
+                DB::table('hotpoints')
+                    ->where([
+                        ['versions_id', '=', $id],
+                        ['products_id', '=', $producto->producto],
+                    ])
                     ->delete();
             }
-            foreach( $producto->segmentos_precalculados as $segmento ) {
-                $hotpoint = new Hotpoint();
+            foreach ($producto->segmentos_precalculados as $segmento) {
+                $hotpoint = new Hotpoint;
                 $hotpoint->versions_id = $id;
                 $hotpoint->products_id = $producto->producto;
                 $hotpoint->time = $segmento->time;
@@ -192,11 +192,9 @@ class IwantitController extends Controller {
                 $hotpoint->save();
             }
         }
-        echo json_encode("OK");
-//                else echo json_encode("BAD");
-        die();
-
-
+        echo json_encode('OK');
+        //                else echo json_encode("BAD");
+        exit();
 
         /*
     $result = mysqli_query($conn, "replace into datos_editor_hotpoints (nombre, data) values ('".addslashes(trim($nombre))."', '".addslashes(trim($data))."')");
@@ -208,25 +206,29 @@ class IwantitController extends Controller {
 */
     }
 
-    public static function getQueryWithBindings($query): string {
+    public static function getQueryWithBindings($query): string
+    {
         return vsprintf(str_replace('?', '%s', $query->toSql()), collect($query->getBindings())->map(function ($binding) {
             $binding = addslashes($binding);
+
             return is_numeric($binding) ? $binding : "'{$binding}'";
         })->toArray());
     }
 
-    public function create_keyfile( $request ) {
-        $license = new License();
+    public function create_keyfile($request)
+    {
+        $license = new License;
         $license->versions_id = $request->id;
         $license->disabled = '0';
         $license->key = $this->keyGenerator();
         $license->save();
     }
 
-    public function enable_disable_keyfile( $request ) {
+    public function enable_disable_keyfile($request)
+    {
         $license = License::find($request->id);
         if ($license) {
-            if ( '0' == $license->disabled ) {
+            if ($license->disabled == '0') {
                 $license->disabled = '1';
             } else {
                 $license->disabled = '0';
@@ -235,27 +237,29 @@ class IwantitController extends Controller {
         }
     }
 
-    public function delete_keyfile( $request ) {
+    public function delete_keyfile($request)
+    {
         $license = License::find($request->id);
         if ($license) {
             $license->delete();
         }
     }
 
-    public function download_keyfile( $request ) {
+    public function download_keyfile($request)
+    {
         $license = License::find($request->id);
         if ($license) {
             $project = Project::find($license->versions_id);
             $duration = 0.0;
             if ($project && $project->filename) {
-                $videoPath = public_path('uploads/' . $project->filename);
+                $videoPath = public_path('uploads/'.$project->filename);
                 $duration = getVideoDuration($videoPath);
             }
-            $keyContent = $license->versions_id . "\r\n" . $license->key;
+            $keyContent = $license->versions_id."\r\n".$license->key;
             if ($duration > 0) {
                 $fileContent = generateSrtContent($duration, $keyContent);
             } else {
-                $fileContent = "1\r\n00:00:00,000 --> 00:00:00,000\r\n" . $keyContent . "\r\n\r\n";
+                $fileContent = "1\r\n00:00:00,000 --> 00:00:00,000\r\n".$keyContent."\r\n\r\n";
             }
 
             $downloadFileName = $project ? $this->buildDownloadFilename($project, 'srt', $license->name ?? '') : 'iwantit.srt';
@@ -268,7 +272,8 @@ class IwantitController extends Controller {
         }
     }
 
-    public function download_plain_keyfile( $request ) {
+    public function download_plain_keyfile($request)
+    {
         $license = License::find($request->id);
         if ($license) {
             $project = Project::find($license->versions_id);
@@ -282,77 +287,84 @@ class IwantitController extends Controller {
         }
     }
 
-    private function slugify(string $str): string {
+    private function slugify(string $str): string
+    {
         $str = iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', $str);
         $str = strtolower($str);
         $str = preg_replace('/[^a-z0-9]+/', '_', $str);
+
         return trim($str, '_');
     }
 
-    private function buildDownloadFilename(Project $project, string $extension, string $keyName = ''): string {
+    private function buildDownloadFilename(Project $project, string $extension, string $keyName = ''): string
+    {
         $base = $this->slugify($project->name);
         if ($project->type === 'Serie') {
             $territory = Territory::find($project->territories_id);
             if ($territory) {
-                $base .= '_' . $this->slugify($territory->name);
+                $base .= '_'.$this->slugify($territory->name);
             }
-            $base .= '_s' . (int)$project->season . '_e' . (int)$project->episode;
+            $base .= '_s'.(int) $project->season.'_e'.(int) $project->episode;
         }
         if ($keyName !== '') {
             $sluggedKey = $this->slugify($keyName);
             if ($sluggedKey !== '') {
-                $base .= '_' . $sluggedKey;
+                $base .= '_'.$sluggedKey;
             }
         }
-        return $base . '.' . $extension;
+
+        return $base.'.'.$extension;
     }
 
-    public function update_keyfile_name( $request ) {
+    public function update_keyfile_name($request)
+    {
         $license = License::find($request->id);
         if ($license) {
             $license->name = $request->name;
             $license->save();
-            $kf = ProjectController::generateFileKey( $license->versions_id );
+            $kf = ProjectController::generateFileKey($license->versions_id);
             $fn = '';
-            foreach( $kf as $f ) {
-                if ( $f->id == $request->id ) {
+            foreach ($kf as $f) {
+                if ($f->id == $request->id) {
                     $fn = $f->fn;
                 }
             }
-            echo json_encode( [ 'id' => $request->id, 'fn' => $fn ] );
+            echo json_encode(['id' => $request->id, 'fn' => $fn]);
         }
-        die();
+        exit();
     }
 
-    public function get_projects( $request ) {
+    public function get_projects($request)
+    {
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: *');
         header('Access-Control-Allow-Headers: *');
-        $prjs = DB::table( 'projects' )
+        $prjs = DB::table('projects')
             ->get()
             ->toArray();
         $obj = [];
-        foreach( $prjs as $pr ) {
+        foreach ($prjs as $pr) {
             $movie = [
                 'id' => $pr->id,
                 'name' => $pr->name,
-                'url' => '/uploads/' . $pr->filename,
+                'url' => '/uploads/'.$pr->filename,
             ];
             $obj[] = $movie;
         }
-        echo json_encode( $obj );
-        die();
+        echo json_encode($obj);
+        exit();
     }
 
-    public function get_hotpoints( $request ) {
+    public function get_hotpoints($request)
+    {
         $debug = false;
         //
         // Comrpruebo que la licencia pasada es correcta
         //
-        $license = DB::table( 'licenses' )
-            ->where( [
-                [ 'versions_id', '=', $request->vid ],
-                [ 'key', '=', $request->key ],
+        $license = DB::table('licenses')
+            ->where([
+                ['versions_id', '=', $request->vid],
+                ['key', '=', $request->key],
             ])
             ->get()
             ->toArray();
@@ -361,46 +373,46 @@ class IwantitController extends Controller {
             'name' => 'Emilys_demo1',
             'versions_id' => '12',
             'disabled' => 0,
-            'key' => 'xxxx'
+            'key' => 'xxxx',
         ];
 
-        switch ( $request->key ) {
+        switch ($request->key) {
             case 'validKeyForTestingOnly':
-                $license = [ (object) $tmp ];
+                $license = [(object) $tmp];
                 break;
-            
+
             case 'disabledKeyForTestingOnly':
-                $license = [ (object) $tmp ];
+                $license = [(object) $tmp];
                 $license[0]->disabled = 1;
                 break;
 
-             case 'invalidKeyForTestingOnly':
+            case 'invalidKeyForTestingOnly':
                 $license = [];
                 break;
-                
+
             case 'invalidKeyForProjectForTestingOnly':
-                echo json_encode( [ 'error' => 'This key is not valid for this project, please contact with the administrator' ] );
-                die();
+                echo json_encode(['error' => 'This key is not valid for this project, please contact with the administrator']);
+                exit();
                 break;
 
             case 'expiredProjectKeyForTestingOnly':
-                echo json_encode( [ 'error' => 'The key has expired, please contact with the administrator' ] );
-                die();
+                echo json_encode(['error' => 'The key has expired, please contact with the administrator']);
+                exit();
                 break;
         }
 
-        if ( '25' == $request->vid ) {
-            $license = [ (object) $tmp ];
+        if ($request->vid == '25') {
+            $license = [(object) $tmp];
         }
 
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: *');
         header('Access-Control-Allow-Headers: *');
-        if ( count( $license ) > 0 ) {
+        if (count($license) > 0) {
             //
             // La licencia existe
             //
-            if ( '0' == $license[ 0 ]->disabled ) {
+            if ($license[0]->disabled == '0') {
                 //
                 // La licencia, a parte de existir, está habilitada
                 //
@@ -410,9 +422,9 @@ class IwantitController extends Controller {
                     ClickStatistic::logView($request);
                 } catch (\Exception $e) {
                     // Log error but don't fail the request
-                    \Log::error('Error logging view statistic: ' . $e->getMessage(), [
+                    \Log::error('Error logging view statistic: '.$e->getMessage(), [
                         'exception' => $e,
-                        'request' => $request->all()
+                        'request' => $request->all(),
                     ]);
                 }
 
@@ -439,49 +451,49 @@ class IwantitController extends Controller {
                     // Filter: Product and Brand global disabled status
                     // products.disabled = '1' means disabled
                     ->where('products.disabled', '0')
-                    ->where(function($q) {
+                    ->where(function ($q) {
                         $q->whereNull('brands.id') // Allow products without brands (if desired, otherwise use join)
-                          ->orWhere('brands.disabled', '0');
+                            ->orWhere('brands.disabled', '0');
                     })
                     // Filter: Per-project product status (hotpoints_dates)
                     // We exclude if a record exists with estado = '0' (Disabled)
                     ->whereNotExists(function ($q) use ($request) {
                         $q->select(DB::raw(1))
-                          ->from('hotpoints_dates')
-                          ->whereRaw('hotpoints_dates.product_id = hotpoints.products_id')
-                          ->where('hotpoints_dates.project_id', $request->vid)
-                          ->where('hotpoints_dates.estado', '0');
+                            ->from('hotpoints_dates')
+                            ->whereRaw('hotpoints_dates.product_id = hotpoints.products_id')
+                            ->where('hotpoints_dates.project_id', $request->vid)
+                            ->where('hotpoints_dates.estado', '0');
                     })
                     // Filter: Tags (exclude products if any of their tags are disabled)
                     ->whereNotExists(function ($q) {
                         $q->select(DB::raw(1))
-                          ->from('products_tags')
-                          ->join('tags', 'products_tags.tags_id', '=', 'tags.id')
-                          ->whereRaw('products_tags.products_id = hotpoints.products_id')
-                          ->where('tags.disabled', '1');
+                            ->from('products_tags')
+                            ->join('tags', 'products_tags.tags_id', '=', 'tags.id')
+                            ->whereRaw('products_tags.products_id = hotpoints.products_id')
+                            ->where('tags.disabled', '1');
                     })
                     // Filter: Disabled product-tag links
                     ->whereNotExists(function ($q) {
                         $q->select(DB::raw(1))
-                          ->from('products_tags')
-                          ->whereRaw('products_tags.products_id = hotpoints.products_id')
-                          ->where('products_tags.disabled', '1');
+                            ->from('products_tags')
+                            ->whereRaw('products_tags.products_id = hotpoints.products_id')
+                            ->where('products_tags.disabled', '1');
                     })
                     // Filter: Territory tags (exclusion list)
-                    ->when($request->tid, function($q, $tid) {
+                    ->when($request->tid, function ($q, $tid) {
                         $q->whereNotExists(function ($sq) use ($tid) {
                             $sq->select(DB::raw(1))
-                               ->from('products_tags')
-                               ->join('territories_tags', 'products_tags.tags_id', '=', 'territories_tags.tags_id')
-                               ->whereRaw('products_tags.products_id = hotpoints.products_id')
-                               ->where('territories_tags.territories_id', $tid);
+                                ->from('products_tags')
+                                ->join('territories_tags', 'products_tags.tags_id', '=', 'territories_tags.tags_id')
+                                ->whereRaw('products_tags.products_id = hotpoints.products_id')
+                                ->where('territories_tags.territories_id', $tid);
                         });
                     })
                     ->where('hotpoints.versions_id', $request->vid)
                     ->whereRaw('ROUND(hotpoints.time, 4) = ROUND(?, 4)', [$request->time]);
 
                 if ($debug) {
-                    echo '<pre><h1>Sentencia SQL Optimizada</h1><h3>' . $this->getQueryWithBindings($query) . '</h3></pre>';
+                    echo '<pre><h1>Sentencia SQL Optimizada</h1><h3>'.$this->getQueryWithBindings($query).'</h3></pre>';
                 }
 
                 $datos = $query->get();
@@ -503,63 +515,63 @@ class IwantitController extends Controller {
                         $dato->pos_y = $item->pos_y;
                         $dato->nombre = $item->product_name;
                         $dato->descripcion = $item->product_description;
-                        $dato->imagen = route('track.image', ['id' => $item->products_id]) . '?vid=' . $request->vid . '&time=' . $request->time;
+                        $dato->imagen = route('track.image', ['id' => $item->products_id]).'?vid='.$request->vid.'&time='.$request->time;
                         // URLs envueltas con endpoint de tracking
-                        $dato->url = route('track.click', ['type' => 'product', 'id' => $item->products_id]) . '?vid=' . $request->vid . '&time=' . $request->time;
+                        $dato->url = route('track.click', ['type' => 'product', 'id' => $item->products_id]).'?vid='.$request->vid.'&time='.$request->time;
                         $dato->url_original = $item->product_url;
                         $dato->auto_open = $item->product_auto_open;
                         $dato->marca = $item->brand_name;
-                        $dato->logo = $item->brand_logo ? URL::asset('uploads/' . $item->brand_logo) : null;
-                        $dato->url_marca = $item->brand_id ? route('track.click', ['type' => 'brand', 'id' => $item->brand_id]) . '?vid=' . $request->vid : null;
+                        $dato->logo = $item->brand_logo ? URL::asset('uploads/'.$item->brand_logo) : null;
+                        $dato->url_marca = $item->brand_id ? route('track.click', ['type' => 'brand', 'id' => $item->brand_id]).'?vid='.$request->vid : null;
                         $dato->url_marca_original = $item->brand_url;
-                        if (!empty($item->product_icon)) {
-                            $dato->hotpoint_icon = URL::asset('uploads/' . $item->product_icon);
+                        if (! empty($item->product_icon)) {
+                            $dato->hotpoint_icon = URL::asset('uploads/'.$item->product_icon);
                         }
                         $ret->objetos[] = $dato;
                     }
                 }
 
-                if ( $debug ) {
+                if ($debug) {
                     echo '<h1>Lo que se envía (sin formato json)</h1>';
                     echo '<pre>';
-                    print_r( $ret );
+                    print_r($ret);
                     echo '</pre>';
                 } else {
-                    echo json_encode( $ret );
+                    echo json_encode($ret);
                 }
             } else {
                 // Licencia desabilitada
-               echo json_encode( [ 'error' => 'The key has been disabled, please contact with the administrator' ] );
+                echo json_encode(['error' => 'The key has been disabled, please contact with the administrator']);
             }
         } else {
             // Licencia no válida o inexistente
-            echo json_encode( [ 'error' => 'The key does not exist or is incorrect'] );
+            echo json_encode(['error' => 'The key does not exist or is incorrect']);
         }
-        die();
+        exit();
     }
 
-
-    public function not_allowed( Request $request ) {
-/*
-        echo '<pre>';
-        echo '<h1>_REQUEST</h1>';
-        print_r( $_REQUEST );
-        echo '<h1>_GET</h1>';
-        print_r( $_GET );
-        echo '<h1>_POST</h1>';
-        print_r( $_POST );
-*/
+    public function not_allowed(Request $request)
+    {
+        /*
+                echo '<pre>';
+                echo '<h1>_REQUEST</h1>';
+                print_r( $_REQUEST );
+                echo '<h1>_GET</h1>';
+                print_r( $_GET );
+                echo '<h1>_POST</h1>';
+                print_r( $_POST );
+        */
         echo '<h1>I Want It. API Rest Interface. Service not available</h1>';
-        die();
+        exit();
     }
 
-    public function keyGenerator( $length = 20 ) {
+    public function keyGenerator($length = 20)
+    {
         // Generar una secuencia de bytes aleatoria (20 bytes = 40 caracteres hexadecimales)
         $randomBytes = openssl_random_pseudo_bytes($length);
         // Convertir la secuencia de bytes en una cadena hexadecimal
         $sshKey = bin2hex($randomBytes);
+
         return $sshKey;
     }
-
-
 }

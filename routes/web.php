@@ -1,37 +1,31 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\AiGatewayController;
 // use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AiTaskController;
 // use Illuminate\Validation\ValidationException;
 // use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\TerritoryController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use App\Http\Controllers\BrandController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\HotpointController;
-
-use App\Http\Controllers\IwantItController;
-use App\Models\Project;
-use App\Http\Controllers\OptionController;
-use App\Http\Controllers\DatisionController;
-
-use App\Http\Controllers\ProductIaClassAjax;
-
-use App\Http\Controllers\DatisionParameterController;
-
-use App\Http\Controllers\AiTaskController;
-use App\Http\Controllers\AiGatewayController;
-
-use App\Http\Controllers\HotpointsDatesController;
-
 use App\Http\Controllers\ClickStatisticController;
-
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\DatisionController;
+use App\Http\Controllers\DatisionParameterController;
+use App\Http\Controllers\HotpointController;
+use App\Http\Controllers\HotpointsDatesController;
+use App\Http\Controllers\IwantItController;
+use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\OptionController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductIaClassAjax;
+use App\Http\Controllers\ProductIaClassController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\TerritoryController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 $path = public_path('build/manifest.json');
@@ -43,7 +37,7 @@ $manifest = json_decode($manifestContent, true);
 Route::get('/', function () {
     return redirect('/projects');
 });
-//Route::view('login', 'login', ['path_js' => $manifest['resources/js/app.js']['file'], 'path_css' => $manifest['resources/sass/app.scss']['file']])
+// Route::view('login', 'login', ['path_js' => $manifest['resources/js/app.js']['file'], 'path_css' => $manifest['resources/sass/app.scss']['file']])
 Route::view('login', 'login', ['path_js' => './assets/index.66764821.js', 'path_css' => './assets/index.de6c802a.css'])
     ->name('login')
     ->middleware('guest');
@@ -100,7 +94,7 @@ Route::delete('/products/{product}', [ProductController::class, 'destroy'])
     ->middleware(['auth', 'permission:products-delete']);
 
 // Ruta adicional para IA classes (que ya tienes)
-Route::get('/products/{product}/ia-classes', [App\Http\Controllers\ProductIaClassController::class, 'index'])
+Route::get('/products/{product}/ia-classes', [ProductIaClassController::class, 'index'])
     ->name('products.ia-classes')
     ->middleware(['auth', 'permission:products-view']);
 
@@ -130,9 +124,9 @@ Route::middleware(['auth', 'role:Admin'])->prefix('admin')->group(function () {
         ->name('permissions.show');
 });
 
-
 Route::get('/projects/{id}/inform', function (string $id) {
-    $pr = new ProjectController();
+    $pr = new ProjectController;
+
     return $pr->inform($id);
 })->name('projects.inform')
     ->middleware(['auth', 'permission:projects-view']);
@@ -149,11 +143,17 @@ Route::post('/users/', [ UserController::class, 'store' ] )->name( 'users.store'
 Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/two-factor/challenge', [TwoFactorController::class, 'showChallenge'])->name('two-factor.challenge');
+Route::post('/two-factor/verify', [TwoFactorController::class, 'verify'])->name('two-factor.verify');
+Route::get('/two-factor/setup', [TwoFactorController::class, 'showSetup'])->name('two-factor.setup')->middleware('auth');
+Route::post('/two-factor/setup', [TwoFactorController::class, 'store'])->name('two-factor.store')->middleware('auth');
+Route::delete('/two-factor', [TwoFactorController::class, 'destroy'])->name('two-factor.disable')->middleware('auth');
+
 /**
  * Api REST Routing
  */
-Route::post('api-iwi', [IwantitController::class, 'api_iwi_post'])->name('api-iwi');
-Route::get('api-iwi', [IwantitController::class, 'api_iwi_get'])->name('api-iwi');
+Route::post('api-iwi', [IwantItController::class, 'api_iwi_post'])->name('api-iwi');
+Route::get('api-iwi', [IwantItController::class, 'api_iwi_get'])->name('api-iwi');
 // Route::get('api-iwi', [ IwantitController::class, 'not_allowed' ] )->name('api-iwi');
 
 //
@@ -184,13 +184,12 @@ Route::get('/datision-csrf', [DatisionController::class, 'getCsrfToken'])->name(
 Route::get('/datision-get-projects', [DatisionController::class, 'getProjects']);
 
 // routes/web.php
-Route::get('/products/{product}/ia-classes', [App\Http\Controllers\ProductIaClassController::class, 'index'] )->name('products.ia-classes');
+Route::get('/products/{product}/ia-classes', [ProductIaClassController::class, 'index'])->name('products.ia-classes');
 
 // …
-Route::post( '/products/{product}/ia-classes', [ProductIaClassAjax::class, 'update'] )->name('products.ia-classes.update');
+Route::post('/products/{product}/ia-classes', [ProductIaClassAjax::class, 'update'])->name('products.ia-classes.update');
 
-
-Route::middleware(['web'/*, 'auth'*/])->group(function () {
+Route::middleware(['web'/* , 'auth' */])->group(function () {
     Route::resource('datision-parameters', DatisionParameterController::class);
 });
 
@@ -206,7 +205,6 @@ Route::middleware(['web'])->group(function () {
     Route::post('/ai/progress', [AiGatewayController::class, 'progressByProject'])->name('ai.progress');
 });
 
-
 // Ruta para actualizar hotpoints via AJAX
 Route::post('/hotpoints/update', [HotpointsDatesController::class, 'updateHotpoints'])->name('hotpoints.update');
 
@@ -214,10 +212,18 @@ Route::post('/hotpoints/update', [HotpointsDatesController::class, 'updateHotpoi
 Route::get('/hotpoints/project/{projectId}', [HotpointsDatesController::class, 'getHotpointsByProject'])->name('hotpoints.by-project');
 
 // Ruta para la documentación de la API
-Route::get('/api-docs', function () { return view('api-docs-scalar'); })->name('api.docs');
-Route::get('/api-docs-stoplight', function () { return view('api-docs-stoplight'); });
-Route::get('/api-docs-redoc', function () { return view('api-docs-redoc'); });
-Route::get('/api-docs-rapidoc', function () {   return view('api-docs-rapidoc'); });
+Route::get('/api-docs', function () {
+    return view('api-docs-scalar');
+})->name('api.docs');
+Route::get('/api-docs-stoplight', function () {
+    return view('api-docs-stoplight');
+});
+Route::get('/api-docs-redoc', function () {
+    return view('api-docs-redoc');
+});
+Route::get('/api-docs-rapidoc', function () {
+    return view('api-docs-rapidoc');
+});
 
 // Ruta para tracking de clics (estadísticas)
 Route::get('/track/{type}/{id}', [ClickStatisticController::class, 'redirect'])
