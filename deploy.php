@@ -158,7 +158,7 @@ task('artisan:migrate', function () {
 desc('Fix shared directories permissions');
 task('deploy:fix-shared-permissions', function () {
     run('sudo chown -R www-data:www-data {{deploy_path}}/shared/storage');
-    run('sudo chown -R www-data:www-data {{deploy_path}}/shared/uploads');
+    run('[ -d {{deploy_path}}/shared/public/uploads ] && sudo chown -R www-data:www-data {{deploy_path}}/shared/public/uploads || true');
     writeln('<info>✅ Permisos de shared/ corregidos (www-data:www-data)</info>');
 });
 
