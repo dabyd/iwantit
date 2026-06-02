@@ -148,18 +148,33 @@ task('deploy:cleanup:sudo', function () {
     writeln('<info>✅ Releases antiguas limpiadas</info>');
 });
 
-// Task para ejecutar migraciones
+// Task para ejecutar migraciones (después de composer install)
 desc('Run database migrations');
 task('artisan:migrate', function () {
     run('{{bin/php}} {{release_path}}/artisan migrate --force');
 });
 
+// Task para corregir permisos de shared/ (los symlinks se rompen con chown -R)
+desc('Fix shared directories permissions');
+task('deploy:fix-shared-permissions', function () {
+    run('sudo chown -R www-data:www-data {{deploy_path}}/shared/storage');
+    run('sudo chown -R www-data:www-data {{deploy_path}}/shared/uploads');
+    writeln('<info>✅ Permisos de shared/ corregidos (www-data:www-data)</info>');
+});
+
 // Hooks - añadir tareas al flujo de deploy
+
 // Reiniciar servicios después del symlink
 after('deploy:symlink', 'services:restart');
 
 // Ejecutar fix-permissions después de reiniciar servicios
 after('services:restart', 'deploy:fix-permissions');
+
+// Corregir permisos de shared/ (se rompen con chown -R del paso anterior)
+after('deploy:fix-permissions', 'deploy:fix-shared-permissions');
+
+// Ejecutar migraciones DESPUÉS de composer install y shared symlinks
+after('deploy:vendors', 'artisan:migrate');
 
 // Usar cleanup con sudo en lugar del cleanup normal
 after('deploy:fix-permissions', 'deploy:cleanup:sudo');

@@ -8,6 +8,9 @@ $currentCount = \App\Helpers\TabCounter::incrementAndGet();
 	<div class="tab-{{ $currentCount }}">
 		<h2>Key File list</h2>
 		<h3>({{ $data->name }})</h3>
+		<div id="token_ajax" style="display: none;">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+		</div>
 		@foreach ($keylist as $file)
 		<div class="licenses-list">
 			<input type="text" value="{{$file->name}}" placeholder="Unnamed key file" id="keyfile_name" data-id="{{$file->id}}" />

@@ -15,7 +15,7 @@ use App\Http\Controllers\DatisionController;
 use App\Http\Controllers\DatisionParameterController;
 use App\Http\Controllers\HotpointController;
 use App\Http\Controllers\HotpointsDatesController;
-use App\Http\Controllers\IwantItController;
+use App\Http\Controllers\IwantitController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\OptionController;
 use App\Http\Controllers\ProductController;
@@ -152,8 +152,8 @@ Route::delete('/two-factor', [TwoFactorController::class, 'destroy'])->name('two
 /**
  * Api REST Routing
  */
-Route::post('api-iwi', [IwantItController::class, 'api_iwi_post'])->name('api-iwi');
-Route::get('api-iwi', [IwantItController::class, 'api_iwi_get'])->name('api-iwi');
+Route::post('api-iwi', [IwantitController::class, 'api_iwi_post'])->name('api-iwi');
+Route::get('api-iwi', [IwantitController::class, 'api_iwi_get'])->name('api-iwi');
 // Route::get('api-iwi', [ IwantitController::class, 'not_allowed' ] )->name('api-iwi');
 
 //
