@@ -49,8 +49,8 @@ function F(n, e = 100) {
 })();
 const j = {
   SERVER: {
-    URL: "https://uat.i-want-it.local/",
-    URL_PUBLIC: "https://uat.i-want-it.local/",
+    get URL() { return window.location.origin + "/"; },
+    get URL_PUBLIC() { return window.location.origin + "/"; },
     URL_API: "https://uat.i-want-it.es/api-iwi",
   },
 };

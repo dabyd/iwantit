@@ -347,7 +347,7 @@ class IwantitController extends Controller
             $movie = [
                 'id' => $pr->id,
                 'name' => $pr->name,
-                'url' => '/uploads/'.$pr->filename,
+                'url' => 'uploads/'.$pr->filename,
             ];
             $obj[] = $movie;
         }

@@ -809,8 +809,8 @@ class ProjectController extends Controller
             $clsname = $prd->iaClasses->pluck('name')->implode(', ');
             $objects[$object_id] = [
                 'id' => $object_id,
-                'thumbnail' => '/uploads/'.$prd->filename,
-                'thumbnail_brand' => '/uploads/'.($brd ? $brd->filename : ''),
+                'thumbnail' => 'uploads/'.$prd->filename,
+                'thumbnail_brand' => 'uploads/'.($brd ? $brd->filename : ''),
                 'name' => $prd->name,
                 'family' => $clsname,
                 'brand' => $brd ? $brd->name : '',
