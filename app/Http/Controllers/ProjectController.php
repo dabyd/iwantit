@@ -12,6 +12,7 @@ use App\Models\Project;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -538,12 +539,24 @@ class ProjectController extends Controller
 
         $file = $request->file('filename');
         $prj = $request->all();
-        if (! is_null($file)) {
+        if ($file && $file->isValid()) {
             $file_name = time().'.'.$file->extension();
             $file->move(public_path('uploads'), $file_name);
             $prj['original_filename'] = $prj['filename'];
             $prj['filename'] = $file_name;
+        } else {
+            unset($prj['filename']);
         }
+
+        $coverFile = $request->file('cover');
+        if ($coverFile && $coverFile->isValid()) {
+            $cover_name = 'cover_'.time().'.'.$coverFile->extension();
+            $coverFile->move(public_path('uploads'), $cover_name);
+            $prj['cover'] = $cover_name;
+        } else {
+            unset($prj['cover']);
+        }
+
         $prj['users_id'] = auth()->user()->id;
         unset($prj['_token']);
         Project::create($prj);
@@ -641,6 +654,9 @@ class ProjectController extends Controller
             abort(403, 'You do not have permission to access this project.');
         }
         $url = $request->url();
+        if ($request->field_to_delete != '') {
+            $project->update([$request->field_to_delete => null]);
+        }
         if (isset($_GET['add'])) {
             DB::table('versions_tags')->insert(
                 ['versions_id' => $project->id, 'tags_id' => $_GET['add']]
@@ -919,6 +935,13 @@ class ProjectController extends Controller
         // Copia editable de los datos, sin el _token
         $prj = $request->except('_token');
 
+        // Quitar UploadedFiles no válidos (inputs file enviados vacíos por el navegador)
+        foreach ($prj as $key => $value) {
+            if ($value instanceof UploadedFile && ! $value->isValid()) {
+                unset($prj[$key]);
+            }
+        }
+
         // ¿Subieron vídeo nuevo?
         if ($request->hasFile('filename') && $request->file('filename')->isValid()) {
 
@@ -947,8 +970,41 @@ class ProjectController extends Controller
             $prj['filename'] = $fileName;
         }
 
+        // ¿Subieron imagen de cover nueva?
+        if ($request->hasFile('cover') && $request->file('cover')->isValid()) {
+            try {
+                if (! empty($prj['old_img'])) {
+                    $oldPath = public_path('uploads/'.$prj['old_img']);
+                    if (is_file($oldPath)) {
+                        @unlink($oldPath);
+                    }
+                }
+                $coverFile = $request->file('cover');
+                $coverExt = $coverFile->getClientOriginalExtension();
+                $coverName = 'cover_'.time().'.'.strtolower($coverExt);
+                $coverFile->move(public_path('uploads'), $coverName);
+                $prj['cover'] = $coverName;
+            } catch (\Exception $e) {
+                \Log::error('Error al procesar cover: '.$e->getMessage(), [
+                    'exception' => get_class($e),
+                    'project_id' => $project->id,
+                ]);
+                throw $e;
+            }
+        }
+
         // Aplicar cambios al modelo
-        $project->update($prj);
+        try {
+            $project->update($prj);
+        } catch (\Exception $e) {
+            \Log::error('Error al actualizar proyecto ID '.$project->id.': '.$e->getMessage(), [
+                'exception' => get_class($e),
+                'trace' => $e->getTraceAsString(),
+                'prj_keys' => array_keys($prj),
+                'cover' => $prj['cover'] ?? 'no cover',
+            ]);
+            throw $e;
+        }
 
         return redirect()
             ->route('projects.index')
@@ -994,6 +1050,14 @@ class ProjectController extends Controller
                 'type' => 'text',
                 'orderby' => true,
                 'nbsp' => true,
+            ],
+            [
+                'label' => 'Demo Code',
+                'name' => 'demo_code',
+                'editable' => true,
+                'type' => 'text',
+                'orderby' => false,
+                'hide_on_index' => false,
             ],
             [
                 'label' => 'Territories',
@@ -1042,6 +1106,14 @@ class ProjectController extends Controller
                 'editable' => true,
                 'type' => 'file',
                 'hide_on_index' => true,
+            ],
+            [
+                'label' => 'Cover Image',
+                'name' => 'cover',
+                'editable' => true,
+                'type' => 'image',
+                'hide_on_index' => true,
+                'txt_button' => 'Change the demo cover',
             ],
         ];
         $ret = $params;

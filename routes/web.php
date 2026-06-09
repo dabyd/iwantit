@@ -13,6 +13,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ClickStatisticController;
 use App\Http\Controllers\DatisionController;
 use App\Http\Controllers\DatisionParameterController;
+use App\Http\Controllers\DemoController;
 use App\Http\Controllers\HotpointController;
 use App\Http\Controllers\HotpointsDatesController;
 use App\Http\Controllers\IwantitController;
@@ -157,6 +158,14 @@ Route::get('api-iwi', [IwantitController::class, 'api_iwi_get'])->name('api-iwi'
 // Route::get('api-iwi', [ IwantitController::class, 'not_allowed' ] )->name('api-iwi');
 
 //
+// DEMO UNIVERSAL
+//
+Route::get('/demo/{code}', [DemoController::class, 'index'])->name('demo.index');
+Route::get('/demo/{code}/1', [DemoController::class, 'fullscreen'])->name('demo.fullscreen');
+Route::get('/demo/{code}/2', [DemoController::class, 'grid'])->name('demo.grid');
+Route::get('/demo/{code}/3', [DemoController::class, 'grid3x3'])->name('demo.grid-3x3');
+
+//
 // Ajax para sacar el listado de usuarios de un proyecto
 //
 Route::get('/projects/{id}/available-users', [ProjectController::class, 'getAvailableUsers']);
@@ -232,3 +241,14 @@ Route::get('/track/{type}/{id}', [ClickStatisticController::class, 'redirect'])
 // Ruta para tracking de visualización de imágenes de productos
 Route::get('/track/image/{id}', [ClickStatisticController::class, 'showProductImage'])
     ->name('track.image');
+
+// OPcache clear (admin only, for dev debugging)
+Route::get('/admin/opcache-reset', function () {
+    if (function_exists('opcache_reset')) {
+        opcache_reset();
+
+        return 'OPcache reset OK';
+    }
+
+    return 'OPcache not available';
+})->middleware(['auth', 'role:Admin']);

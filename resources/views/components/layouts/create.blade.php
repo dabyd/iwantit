@@ -1,9 +1,9 @@
 <?php
-    $tmp = 'brands';
-    if ( isset( $txtrelated ) ) {
-        $tmp = $txtrelated;
-    }
-    $txtrelated = $tmp;
+$tmp = 'brands';
+if (isset($txtrelated)) {
+    $tmp = $txtrelated;
+}
+$txtrelated = $tmp;
 ?>
 <x-layouts.app title="{{ ucwords($controller->getParams('plural')) }}">
     <div class="row">
@@ -59,10 +59,10 @@
                                     @endif
                                 </select>
                             </div>
-                        @elseif ( 'file' == $field[ 'type' ] )
+                        @elseif ( 'file' == $field[ 'type' ] || 'image' == $field[ 'type' ] )
                             <div class="form-group">
                                 <strong>{{ $field[ 'label' ] }}:</strong>
-                                <input type="{{ $field[ 'type' ] }}" name="{{ $field[ 'name' ] }}" class="form-control" placeholder="{{ $field[ 'label' ] }}">
+                                <input type="file" name="{{ $field[ 'name' ] }}" class="form-control" placeholder="{{ $field[ 'label' ] }}">
                             </div>
                         @endif
 <!--
