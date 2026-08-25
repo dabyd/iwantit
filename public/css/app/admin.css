@@ -403,6 +403,38 @@ input::placeholder {
     display: block;
  }
 
+/* AI Auto-Export Panel */
+.ai-auto-export-panel {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-border-admin);
+    border-radius: 16px;
+    padding: 16px;
+    background: var(--color-table-cell-background);
+}
+
+.ai-auto-export-panel .ai-params-row {
+    display: flex;
+    gap: 15px;
+    align-items: end;
+    flex-wrap: wrap;
+}
+
+.ai-auto-export-panel .ai-params-row label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.ai-auto-export-panel .ai-status {
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+.ai-auto-export-panel .ai-param-input {
+    width: 90px;
+}
+
  .iwi-rotated {
   transform: rotate(180deg);
   display: inline-block; /* necesario si el texto es inline */

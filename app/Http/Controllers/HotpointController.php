@@ -253,6 +253,13 @@ class HotpointController extends Controller
                 'editable' => false,
                 'type' => 'text',
             ],
+            [
+                'label' => 'Status',
+                'name' => 'status',
+                'editable' => false,
+                'type' => 'text',
+                'format' => 'status',
+            ],
 
         ];
         $ret = $params;

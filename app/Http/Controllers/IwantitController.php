@@ -189,6 +189,7 @@ class IwantitController extends Controller
                 $hotpoint->time = $segmento->time;
                 $hotpoint->pos_x = $segmento->pcx;
                 $hotpoint->pos_y = $segmento->pcy;
+                $hotpoint->status = 'published';
                 $hotpoint->save();
             }
         }
@@ -490,6 +491,7 @@ class IwantitController extends Controller
                         });
                     })
                     ->where('hotpoints.versions_id', $request->vid)
+                    ->where('hotpoints.status', 'published')
                     ->whereRaw('ROUND(hotpoints.time, 4) = ROUND(?, 4)', [$request->time]);
 
                 if ($debug) {

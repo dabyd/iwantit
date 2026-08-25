@@ -352,15 +352,18 @@ function lanza_ajax_deteccion(e) {
         if (distance > 0) {
           // Fila-cabecera del grupo
           let todoelgrupo = "";
+          let groupIds = "";
           lista.forEach((det) => {
             if ("" != todoelgrupo) {
               todoelgrupo += "|";
+              groupIds += ",";
             }
             todoelgrupo += det.frame;
+            groupIds += det.id;
           });
           html += `<tr class="table-secondary fw-bold detected_item_group" data-grupo="${groupId}">
                             <td colspan="6">
-                                <input name="detection_id" type="checkbox" value="${todoelgrupo}"> ${clase} #${groupId}
+                                <input name="detection_id" type="checkbox" value="${todoelgrupo}" data-ids="${groupIds}"> ${clase} #${groupId}
                                 (TC ${frameInicio}-${frameFin} · ${total} elements)
                                 <span class="detected_group_see_more">(show detections)</span>
                             </td>

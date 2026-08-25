@@ -10,7 +10,12 @@ class Hotpoint extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['versions_id', 'products_id', 'time', 'pos_x', 'pos_y'];
+    protected $fillable = ['versions_id', 'products_id', 'time', 'pos_x', 'pos_y', 'status', 'datision_result_id', 'ai_import_batch_id'];
+
+    public function scopePublished($query)
+    {
+        return $query->where('status', 'published');
+    }
 
     /**
      * Obtiene hotpoints agrupados por tiempo sensible a la distancia.

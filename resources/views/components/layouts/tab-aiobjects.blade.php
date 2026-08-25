@@ -256,6 +256,39 @@
                 <input type="hidden" id="video_h" value="{{ $video_h }}" />
                 <input type="hidden" id="video_w" value="{{ $video_w }}" />
                 <input type="hidden" id="video_fps" value="{{ $video_fps }}" />
+                <div class="ai-auto-export-panel">
+                    <div class="ai-params-row">
+                        <div>
+                            <label for="proximity_frames">Frame gap</label>
+                            <input type="number" id="proximity_frames" value="2" min="0" class="ai-param-input" />
+                        </div>
+                        <div>
+                            <label for="proximity_x">X range (px)</label>
+                            <input type="number" id="proximity_x" value="10" min="0" class="ai-param-input" />
+                        </div>
+                        <div>
+                            <label for="proximity_y">Y range (px)</label>
+                            <input type="number" id="proximity_y" value="10" min="0" class="ai-param-input" />
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-primary" id="autoExportBtn">
+                                <i class="fas fa-magic"></i> Transfer ALL objects to hotpoints
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn btn-warning" id="undoExportBtn">
+                                <i class="fas fa-undo"></i> Undo last auto-transfer
+                            </button>
+                        </div>
+                    </div>
+                    <div id="autoExportStatus" class="ai-status"></div>
+                </div>
+                <div style="margin-top: 10px; margin-bottom: 10px;">
+                    <button type="button" class="btn btn-success" id="exportHotpointsBtn" disabled>
+                        <i class="fas fa-upload"></i> Export selected to hotpoints
+                    </button>
+                    <span id="exportStatus" style="margin-left: 10px;"></span>
+                </div>
                 <div class="detection_list">
                     <div id="detections_table"></div>
                     <div class="video_and_objects">
@@ -357,6 +390,88 @@
         const form = document.getElementById('newProductForm');
         const detectionSelect = document.getElementById('detection_objects');
         const selectedClassSpan = document.getElementById('selectedDetectionClass');
+        const exportBtn = document.getElementById('exportHotpointsBtn');
+        const exportStatus = document.getElementById('exportStatus');
+
+        function updateExportButton() {
+            const checked = document.querySelectorAll('#detections_table input[name="detection_id"]:checked');
+            let hasGroup = false;
+            checked.forEach(function(cb) {
+                if (cb.hasAttribute('data-ids')) {
+                    hasGroup = true;
+                }
+            });
+            exportBtn.disabled = !hasGroup;
+        }
+
+        document.addEventListener('change', function(e) {
+            if (e.target && e.target.matches('#detections_table input[name="detection_id"]')) {
+                updateExportButton();
+            }
+        });
+
+        exportBtn.addEventListener('click', function() {
+            const checkedGroups = document.querySelectorAll('#detections_table input[name="detection_id"]:checked[data-ids]');
+            const projectId = document.getElementById('project_id').value;
+            const classVal = detectionSelect.value;
+
+            if (checkedGroups.length === 0 || !classVal || classVal === 'Choose one') {
+                alert('Please select at least one detection group and a class.');
+                return;
+            }
+
+            const groups = [];
+            checkedGroups.forEach(function(cb) {
+                const ids = cb.getAttribute('data-ids').split(',').map(Number);
+                if (ids.length > 0) {
+                    groups.push({ detection_ids: ids });
+                }
+            });
+
+            if (groups.length === 0) {
+                alert('No valid groups selected.');
+                return;
+            }
+
+            exportBtn.disabled = true;
+            exportBtn.textContent = 'Exporting...';
+            exportStatus.textContent = '';
+
+            fetch('{{ route("datision.exportHotpoints") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('input[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    project_id: parseInt(projectId),
+                    class: decodeURIComponent(classVal.replace(/-----/g, '/')),
+                    groups: groups
+                })
+            })
+            .then(function(r) {
+                if (!r.ok) throw new Error('Export failed');
+                return r.json();
+            })
+            .then(function(data) {
+                if (data.success) {
+                    exportStatus.textContent = data.message;
+                    exportStatus.style.color = 'green';
+                } else {
+                    exportStatus.textContent = data.message || 'Export failed';
+                    exportStatus.style.color = 'red';
+                }
+            })
+            .catch(function(err) {
+                console.error('Export error:', err);
+                exportStatus.textContent = 'Error: ' + err.message;
+                exportStatus.style.color = 'red';
+            })
+            .finally(function() {
+                exportBtn.disabled = false;
+                exportBtn.textContent = 'Export selected to hotpoints';
+            });
+        });
 
         // Abrir modal
         btnNewProduct.addEventListener('click', function() {
@@ -463,6 +578,107 @@
             .finally(() => {
                 saveProduct.disabled = false;
                 saveProduct.textContent = 'Save Product';
+            });
+        });
+
+        // --- Auto-export ALL objects ---
+        const autoExportBtn = document.getElementById('autoExportBtn');
+        const undoExportBtn = document.getElementById('undoExportBtn');
+        const autoExportStatus = document.getElementById('autoExportStatus');
+        const projectId = document.getElementById('project_id').value;
+
+        autoExportBtn.addEventListener('click', function() {
+            const proximityFrames = document.getElementById('proximity_frames').value || 2;
+            const proximityX = document.getElementById('proximity_x').value || 10;
+            const proximityY = document.getElementById('proximity_y').value || 10;
+
+            if (!confirm('This will transfer ALL detected AI objects to hotpoints. Continue?')) {
+                return;
+            }
+
+            autoExportBtn.disabled = true;
+            autoExportBtn.textContent = 'Transferring...';
+            autoExportStatus.textContent = '';
+            autoExportStatus.style.color = '';
+
+            fetch('{{ route("datision.autoExport") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('input[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    project_id: parseInt(projectId),
+                    proximity_frames: parseInt(proximityFrames),
+                    proximity_x: parseInt(proximityX),
+                    proximity_y: parseInt(proximityY),
+                })
+            })
+            .then(function(r) {
+                if (!r.ok) throw new Error('Auto-export failed');
+                return r.json();
+            })
+            .then(function(data) {
+                if (data.success) {
+                    autoExportStatus.textContent = data.message;
+                    autoExportStatus.style.color = 'green';
+                } else {
+                    autoExportStatus.textContent = data.message || 'Auto-export failed';
+                    autoExportStatus.style.color = 'red';
+                }
+            })
+            .catch(function(err) {
+                console.error('Auto-export error:', err);
+                autoExportStatus.textContent = 'Error: ' + err.message;
+                autoExportStatus.style.color = 'red';
+            })
+            .finally(function() {
+                autoExportBtn.disabled = false;
+                autoExportBtn.textContent = 'Transfer ALL objects to hotpoints';
+            });
+        });
+
+        undoExportBtn.addEventListener('click', function() {
+            if (!confirm('This will undo the last auto-transfer, deleting hotpoints, products, and brands created. Continue?')) {
+                return;
+            }
+
+            undoExportBtn.disabled = true;
+            undoExportBtn.textContent = 'Undoing...';
+            autoExportStatus.textContent = '';
+            autoExportStatus.style.color = '';
+
+            fetch('{{ route("datision.undoExport") }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('input[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    project_id: parseInt(projectId),
+                })
+            })
+            .then(function(r) {
+                if (!r.ok) throw new Error('Undo failed');
+                return r.json();
+            })
+            .then(function(data) {
+                if (data.success) {
+                    autoExportStatus.textContent = data.message;
+                    autoExportStatus.style.color = 'green';
+                } else {
+                    autoExportStatus.textContent = data.message || 'Undo failed';
+                    autoExportStatus.style.color = 'red';
+                }
+            })
+            .catch(function(err) {
+                console.error('Undo error:', err);
+                autoExportStatus.textContent = 'Error: ' + err.message;
+                autoExportStatus.style.color = 'red';
+            })
+            .finally(function() {
+                undoExportBtn.disabled = false;
+                undoExportBtn.textContent = 'Undo last auto-transfer';
             });
         });
     });

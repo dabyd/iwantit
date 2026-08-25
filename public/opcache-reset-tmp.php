@@ -1,1 +1,3 @@
-<?php opcache_reset(); unlink(__FILE__); echo "OK";
+<?php opcache_reset();
+unlink(__FILE__);
+echo 'OK';

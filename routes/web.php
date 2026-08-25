@@ -181,6 +181,9 @@ Route::post('/projects/{project}/update-access-level', [ProjectController::class
 // Obtener detecciones de un objeto
 Route::get('/datision-detections/{project_id}/{object_class}/{distance_frames}', [DatisionController::class, 'getObjectDetections']);
 Route::get('/datision-link-detections/{projectId}/{detection_id}/{product_id}', [DatisionController::class, 'updateLinkDetections']);
+Route::post('/datision-export-hotpoints', [DatisionController::class, 'exportToHotpoints'])->name('datision.exportHotpoints');
+Route::post('/datision-auto-export', [DatisionController::class, 'autoExportToHotpoints'])->name('datision.autoExport');
+Route::post('/datision-undo-export', [DatisionController::class, 'undoAutoExport'])->name('datision.undoExport');
 
 // Endpoints legacy para compatibilidad con servicios externos
 // Endpoint para recibir datos de Datision upgrade
