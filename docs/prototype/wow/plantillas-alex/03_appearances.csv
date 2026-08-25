@@ -1,0 +1,3 @@
+appearance_id_ref,element_id_ref,scene_id_ref,start_time,end_time,pos_x,pos_y,w,h,source,relevant_for,notes
+A01,E01,S01,00:00:20.500,00:00:28.000,50,60,10,8,manual,"Advertising","EJEMPLO - borra esta fila y rellena con la primera aparicion real"
+A02,E02,S01,00:00:14.180,00:01:30.000,40,50,20,30,manual,"Advertising, Interactive","EJEMPLO - Emily en pantalla durante toda la escena"

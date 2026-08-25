@@ -1,0 +1,76 @@
+version: 1.0
+status: hash-pinned-for-d0
+date: 2026-08-25
+sources:
+  - id: GUIDE
+    filename: "IwantIt_Guia_Maestra_v2.22_FROZEN(1).pdf"
+    title: "IwantIt Guía Maestra v2.22 FROZEN"
+    tier: 1
+    sha256: "80fd3eff7d12996a6d747018fc88c12b990be188838afd170dcc7667231dae05"
+    role: "Normative product/domain source"
+  - id: GREENFIELD
+    filename: "IwantIt_M0_Greenfield_Development_Execution_Pack_v1.1(1).pdf"
+    title: "M0 Greenfield Development Execution Pack v1.1"
+    tier: 3
+    sha256: "61cf9e8cc5dd028d303fdf0be1b1f99d9f9497fc1bcbd606f99a2e4f9cc75b43"
+    role: "Normative implementation contract; includes Architecture Freeze and canonical registries"
+  - id: SCREEN
+    filename: "IwantIt_M0_Screen_Contract_Matrix_v1.0(1).pdf"
+    title: "M0 Screen Contract Matrix v1.0"
+    tier: 4
+    sha256: "43669fe2b3aee2a23fc0464bf873240f9cb0ade599ccfe1569cae381ede15b2e"
+    role: "Normative screen implementation contract"
+  - id: TRACE
+    filename: "IwantIt_M0_Correction_Register_and_Traceability_v1.0(1).pdf"
+    title: "M0 Correction Register & Traceability Matrix v1.0"
+    tier: 6
+    sha256: "a85fb0e13cc34cfdcbbfc93a8a3e755ac1175c691303daf806edf62a489a7d8b"
+    role: "Closure evidence / decision and traceability register; use to verify lineage, not to override higher-order semantics"
+  - id: FRZ16
+    filename: "IwantIt_FRZ16_Final_External_PreFreeze_Audit_v1.0(1).pdf"
+    title: "FRZ-16 Final External Pre-Freeze Audit v1.0"
+    tier: 6
+    sha256: "10167556d73de379100aed0b2f14b25686c4559497d71b9807c3e7230b6304b7"
+    role: "Freeze evidence: PASS / P0=0; not a replacement product specification"
+  - id: UI
+    filename: "IWI_Product_2.0_Wireframes.html"
+    title: "Approved Wireframe Baseline v1.0"
+    tier: 7
+    sha256: "9aca99f963646adfff65c371879b20bea4f4fe0904ceae954dfb49884de3ad1f"
+    role: "Reference UI/composition only; written contracts prevail"
+  - id: D0_OVERLAY
+    filename: "D0_EXECUTION_OVERLAY_v0.1.md"
+    title: "D0 Execution Overlay v0.1"
+    tier: 8
+    sha256: "73a2f463fe81384570eec6248744e23a666d3cebdff623e9b15565615439113f"
+    role: "D0 acceleration/execution overlay; cannot override frozen semantics"
+  - id: D0_SCOPE
+    filename: "D0_SCOPE_FREEZE_v0.1.md"
+    title: "D0 Scope Freeze v0.1"
+    tier: 8
+    sha256: "629144211de7612c15d297c88d88ba155834cadb79ddd38a92657ad7124ef9e9"
+    role: "D0 timebox and scope control"
+  - id: D0_REGISTER
+    filename: "D0_PACKET_REGISTER_v0.1.md"
+    title: "D0 Packet Register v0.1"
+    tier: 8
+    sha256: "1c3f76c66337655b2b6ec28054ff72b720eafebc40d545020748e6df00ad08fe"
+    role: "D0 packet plan and risk classes"
+  - id: D0_DATA
+    filename: "D0_GOLDEN_DATASET_CONTRACT_v0.1.md"
+    title: "D0 Golden Dataset Contract v0.1"
+    tier: 8
+    sha256: "014b3a3b8b49b358e10821bca7ddadc246555cb4e74b127ed7ab6e7fc1a90ddc"
+    role: "D0 demo dataset contract"
+  - id: D0_AI_V01
+    filename: "AI_AGENT_CONSTITUTION_v0.1.md"
+    title: "AI Agent Constitution v0.1"
+    tier: 9
+    sha256: "67e9351c9e568bc765df8cfad71ff051ef25f81e67410e79bc0d8d920807458d"
+    role: "Upstream draft superseded by this D0-000 v1.0 control plane"
+  - id: D0_TESTS
+    filename: "D0_DEMO_ACCEPTANCE_TESTS_v0.1.md"
+    title: "D0 Demo Acceptance Tests v0.1"
+    tier: 8
+    sha256: "7e78e415f61ee9c140d4c14db48a3feed7a6c3f0a693f6877ae498c1f9d64983"
+    role: "D0 release acceptance overlay"

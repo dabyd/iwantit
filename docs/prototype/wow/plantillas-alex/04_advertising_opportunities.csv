@@ -1,0 +1,3 @@
+opportunity_id_ref,scene_id_ref,appearance_id_ref,value_level,elements_involved,contexts,rationale
+OP01,S01,A01,high,"E01","Food & Beverage","EJEMPLO - producto protagonista en plano central durante 8 segundos, asociable a una marca de alimentacion"
+OP02,S02,,medium,"E02","Fashion","EJEMPLO - vestuario relevante pero no protagonista; escribe tu justificacion real"
