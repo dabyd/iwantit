@@ -7,6 +7,7 @@
 
 - Backend Laravel + Blade; Oscar consume JSON vía fetch desde las vistas.
 - Toda ruta requiere **autorización por capability** en backend (sin bypass).
+  - Capability: `analysis-screen` (vía `permission:analysis-screen`). Además se exige acceso al proyecto (`ProjectPermissionHelper::canView`).
 - Timecodes devueltos en **milisegundos** (`start_ms`, `end_ms`).
 - El frontend mockea contra estas formas hasta que existan los endpoints reales.
 
@@ -46,11 +47,12 @@
       "id": 1,
       "value_level": "high",
       "scene": { "id": 3, "name": "Oficina Savoir" },
-      "elements": [ { "id": 12, "name": "Café", "type": "product" } ],
+      "elements": [ { "id": 12, "name": "Café", "type": "product", "time_on_screen_ms": 8000 } ],
       "contexts": [ "Food & Beverage" ],
       "rationale": "Producto protagonista en plano central durante 8s.",
       "start_ms": 842000,
-      "end_ms": 850000
+      "end_ms": 850000,
+      "duration_ms": 8000
     }
   ]
 }
@@ -74,4 +76,6 @@ Mismo shape, filtrado por `value_level`.
 
 - Los conteos del Overview son **derivados en backend** (COUNT sobre BD), nunca hardcodeados.
 - `time-on-screen` se calcula (suma de intervalos), no se almacena.
+- `time_on_screen_ms` por elemento = **unión temporal** de todas sus Appearances (los solapamientos se cuentan una sola vez).
+- `duration_ms` de la oportunidad = `end_ms - start_ms`.
 - Sin datos demo hardcodeados en frontend: Oscar usa el mock solo hasta conectar al endpoint real (O-05).

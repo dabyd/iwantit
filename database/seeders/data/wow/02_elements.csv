@@ -1,0 +1,4 @@
+element_id_ref,name,type,brand,notes
+E01,"EJEMPLO - Taza de café","product","","EJEMPLO - borra esta fila y rellena con el primer elemento real"
+E02,"EJEMPLO - Emily","person","","EJEMPLO - personaje principal (la resolución Person->Character es posterior, solo marca person)"
+E03,"EJEMPLO - Marca de bolso","brand","","EJEMPLO - si es una marca, type=brand y en brand puedes dejar el nombre"

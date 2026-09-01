@@ -1,0 +1,7 @@
+appearance_id_ref,element_id_ref,scene_id_ref,start_time,end_time,pos_x,pos_y,w,h,source,relevant_for,notes
+A01,E01,S01,00:00:14.180,00:01:30.000,45,50,20,35,manual,"Advertising, Interactive",
+A02,E02,S02,00:01:32.000,00:01:45.000,55,60,12,10,manual,"Advertising",
+A03,E04,S01,00:00:40.000,00:01:10.000,30,55,15,20,manual,"Advertising",
+A04,E03,S04,00:05:00.000,00:05:40.000,50,45,10,25,manual,"Advertising, Interactive",
+A05,E05,S03,00:03:10.000,00:04:20.000,40,50,18,30,manual,"Advertising",
+A06,E01,S04,00:05:00.000,00:06:20.000,45,50,20,35,manual,"Interactive",

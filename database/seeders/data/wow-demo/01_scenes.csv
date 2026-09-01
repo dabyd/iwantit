@@ -1,0 +1,5 @@
+scene_id_ref,position,name,start_time,end_time,key_contexts,notes
+S01,1,Savoir Office,00:00:14.180,00:01:30.000,"Fashion, Luxury",
+S02,2,Café de Flore,00:01:30.000,00:03:00.000,"Food & Beverage, Travel",
+S03,3,Fashion atelier,00:03:00.000,00:04:45.000,"Fashion, Beauty",
+S04,4,Rooftop party,00:04:45.000,00:06:20.000,"Luxury, Food & Beverage",

@@ -15,30 +15,9 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
 
 class DatisionController extends Controller
 {
-    /**
-     * Display the main Datision index view.
-     */
-    public function index(): View
-    {
-        $projects = $this->getProjects();
-
-        // Paginamos al final
-        $projects = $projects->distinct()->paginate(300);
-        $controller = $this;
-
-        $territorios = DB::table('territories')->get();
-        $terr = [];
-        foreach ($territorios->toArray() as $territory) {
-            $terr[$territory->id] = ['id' => $territory->id, 'name' => $territory->name];
-        }
-
-        return view('projects.index', compact('projects', 'controller', 'terr'))->with('i', (request()->input('page', 1) - 1) * 300);
-    }
-
     /**
      * Handle the incoming Datision upgrade request.
      */

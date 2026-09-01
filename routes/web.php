@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\AiGatewayController;
 // use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AiTaskController;
+use App\Http\Controllers\AnalysisController;
 // use Illuminate\Validation\ValidationException;
 // use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\Auth\LoginController;
@@ -222,6 +223,12 @@ Route::post('/hotpoints/update', [HotpointsDatesController::class, 'updateHotpoi
 
 // Ruta opcional para obtener hotpoints (debugging)
 Route::get('/hotpoints/project/{projectId}', [HotpointsDatesController::class, 'getHotpointsByProject'])->name('hotpoints.by-project');
+
+// Endpoints de análisis (slice wow)
+Route::middleware(['auth', 'permission:analysis-screen'])->group(function () {
+    Route::get('/projects/{project}/analysis/overview', [AnalysisController::class, 'overview'])->name('projects.analysis.overview');
+    Route::get('/projects/{project}/advertising-opportunities', [AnalysisController::class, 'advertisingOpportunities'])->name('projects.advertising-opportunities');
+});
 
 // Ruta para la documentación de la API
 Route::get('/api-docs', function () {

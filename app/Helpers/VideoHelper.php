@@ -61,6 +61,15 @@ if (! function_exists('getVideoFPS')) {
         return getVideoInfo($videoPath)['duration'];
     }
 
+    /**
+     * Ruta al SRT de subtítulos de un proyecto.
+     * Convención: storage/app/srt/{project_id}.srt
+     */
+    function projectSrtPath(int|string $projectId): string
+    {
+        return storage_path("app/srt/{$projectId}.srt");
+    }
+
     function formatSrtTimestamp(float $seconds): string
     {
         $ms = (int) round(($seconds - floor($seconds)) * 1000);

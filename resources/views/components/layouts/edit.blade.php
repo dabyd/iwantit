@@ -60,6 +60,10 @@
         <x-layouts.tab-aiobjects :data="$data" :ai_url="$ai_url" :datision="$datision" :threshold_secs="$threshold_secs" :ia_clases="$ia_clases" :video="$video" :video_fps="$video_fps" :video_w="$video_w" :video_h="$video_h" />
     @endif
 
+    @can('analysis-screen')
+        <x-layouts.tab-analysis :data="$data" />
+    @endcan
+
     @isset($ia_selected_classes)
         {!! view('partials.ia-classes-container', [
         'data' => $data,

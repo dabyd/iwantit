@@ -9,6 +9,7 @@
 - **Timecode**: Alex escribe en formato SRT `HH:MM:SS,mmm` (también vale `HH:MM:SS.mmm`). David lo convierte a **milisegundos** (`start_ms`, `end_ms`, rango `[start, end)`).
 - **Coordenadas**: posición aproximada en % de la pantalla (0–100). Origen `(0,0)` = esquina superior izquierda. `pos_x`/`pos_y` = centro del objeto; `w`/`h` = ancho/alto del objeto en %.
 - **IDs**: Alex usa referencias cortas (`S01`, `E01`, `A01`, `OP01`) en las plantillas; David las resuelve a IDs reales en BD.
+- **SRT de referencia**: el subtítulo del episodio vive en `storage/app/srt/{project_id}.srt` (helper `projectSrtPath()`). Es la fuente de verdad de los timecodes para validar contra el vídeo (A-07).
 
 ## Enums cerrados
 

@@ -66,6 +66,11 @@ class MenuPermissionsSeeder extends Seeder
                 'label' => 'Permissions',
                 'permissions' => ['menu', 'screen', 'list', 'view'],
             ],
+            [
+                'name' => 'analysis',
+                'label' => 'Analysis',
+                'permissions' => ['menu', 'screen', 'list', 'view'],
+            ],
         ];
 
         foreach ($menuItems as $item) {

@@ -132,4 +132,5 @@ return [
     'iwi_version' => env('IWI_VERSION', '0.0.0'),
     'iwi_year' => env('IWI_YEAR', date('Y')),
     'ffprobe_path' => env('FFPROBE_PATH', '/usr/bin/ffprobe'),
+    'ffmpeg_path' => env('FFMPEG_PATH', '/usr/bin/ffmpeg'),
 ];
