@@ -14,8 +14,10 @@ Mostrar, con datos reales, la historia central del producto:
 
 Dos pantallas dentro de la pestaña **Analysis** del proyecto:
 
-1. **Analysis Overview** (pantalla héroe) — datos agregados del proyecto.
-2. **Advertising MVP** — listado de oportunidades de publicidad H/M/L.
+1. **Analysis Overview** (pantalla héroe) — datos agregados del proyecto. → wireframe **`ANL-01`** (`#wf-018`).
+2. **Advertising MVP** — listado de oportunidades de publicidad H/M/L. → wireframe **`ADV-01`** (`#wf-032`).
+
+Los wireframes están en **`docs/prototype/wow/IWI_Product_2.0_Wireframes.html`** (ábrelo en el navegador y salta a `#wf-018` y `#wf-032`).
 
 **Activo de demo:** Emily in Paris S3E2 (uso interno/privado). Proyecto **12** en BD.
 
@@ -45,8 +47,8 @@ Dos pantallas dentro de la pestaña **Analysis** del proyecto:
 |---|---|---|
 | O-01 | Mock JSON estático | ❌ Ya no hace falta: los endpoints reales están listos. |
 | O-02 | Navegación tab "Analysis" | ✅ Ya existe (backend + tab básico). Puedes pulirla. |
-| O-03 | **Analysis Overview (héroe)** | 🟡 Tú: diseñar y montar el contenido. |
-| O-04 | **Advertising MVP (H/M/L)** | 🟡 Tú: diseñar y montar la tabla/cards. |
+| O-03 | **Analysis Overview (héroe)** — wireframe `ANL-01` (`#wf-018`) | 🟡 Tú: diseñar y montar el contenido. |
+| O-04 | **Advertising MVP (H/M/L)** — wireframe `ADV-01` (`#wf-032`) | 🟡 Tú: diseñar y montar la tabla/cards. |
 | O-05 | Conectar a endpoints reales | ✅ Ya conectado con `fetch`. Puedes refinar. |
 | O-06 | Polish visual | 🟡 Tú. |
 
@@ -203,7 +205,9 @@ Devuelve el listado de oportunidades. `level` es un filtro opcional.
 
 ## 7. Tus tareas, en detalle (O-03, O-04, O-06)
 
-### O-03 — Analysis Overview (pantalla héroe)
+> **Referencia visual:** usa los wireframes como especificación de diseño. `ANL-01` (`#wf-018`) y `ADV-01` (`#wf-032`) en `docs/prototype/wow/IWI_Product_2.0_Wireframes.html`. Son dos pantallas separadas: si las separas, usa sub-navegación dentro de la pestaña Analysis (Overview | Advertising).
+
+### O-03 — Analysis Overview (pantalla héroe) · wireframe `ANL-01` (`#wf-018`)
 
 Consume `GET /projects/{id}/analysis/overview`. Debe mostrar, como mínimo:
 
@@ -213,7 +217,7 @@ Consume `GET /projects/{id}/analysis/overview`. Debe mostrar, como mínimo:
 
 Sugerencia visual: usa el badge de color según nivel (`high` → verde/success, `medium` → ámbar/warning, `low` → gris/secondary).
 
-### O-04 — Advertising MVP
+### O-04 — Advertising MVP · wireframe `ADV-01` (`#wf-032`)
 
 Consume `GET /projects/{id}/advertising-opportunities`. Muestra un listado (tabla o cards) con:
 
