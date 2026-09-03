@@ -1,0 +1,6 @@
+opportunity_id_ref,scene_id_ref,appearance_id_ref,value_level,elements_involved,contexts,rationale
+OP01,S01,A03,high,"E04","Luxury, Fashion","Handbag protagonista en plano central durante 30 segundos, asociable a una marca de lujo"
+OP02,S04,A04,high,"E03","Luxury, Food & Beverage","Champagne en primer plano en la fiesta, marca visible durante 40 segundos"
+OP03,S02,A02,medium,"E02","Food & Beverage","Café crème en la mesa del café, plano medio"
+OP04,S03,A05,medium,"E05","Fashion, Beauty","Vestido de seda protagonista en el atelier"
+OP05,S01,A01,low,"E01","Fashion","Emily con vestuario de marca en la oficina"
