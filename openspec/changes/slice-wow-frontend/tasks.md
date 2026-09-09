@@ -35,7 +35,7 @@
 
 ## 5. Verify the slice
 
-- [ ] Run the relevant Laravel feature tests.
-- [ ] Import the WOW demo data into project 12 and exercise both panels as an authorised user.
-- [ ] Verify lazy network timing, independent error/retry behaviour, all Advertising filter values, empty states, and safe literal rendering of HTML-like strings.
-- [ ] Confirm no unrelated files or legacy tabs regress.
+- [x] Run the relevant Laravel feature tests.
+- [x] Import the WOW demo data into project 12 and exercise both panels as an authorised user.
+- [x] Verify lazy network timing, independent error/retry behaviour, all Advertising filter values, empty states, and safe literal rendering of HTML-like strings.
+- [x] Confirm no unrelated files or legacy tabs regress.
