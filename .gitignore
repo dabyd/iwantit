@@ -29,3 +29,5 @@ yarn-error.log
 .clinerules/
 .continue/
 /demo-vision/mp4
+/demo-vision/frames
+/demo-vision/01_RAW/vision
