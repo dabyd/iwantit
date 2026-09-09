@@ -342,7 +342,7 @@
             const body = root.querySelector('.opportunities-body');
             body.replaceChildren();
 
-            const items = Array.isArray(data) ? data : (data && Array.isArray(data.opportunities) ? data.opportunities : []);
+            const items = data && Array.isArray(data.items) ? data.items : [];
 
             if (items.length === 0) {
                 const tr = el('tr');
@@ -356,29 +356,33 @@
             items.forEach(item => {
                 const tr = el('tr');
 
-                // Level
+                // Level (fallback value_level -> level)
                 const tdLevel = el('td');
-                tdLevel.append(makeLevelBadge(item.level));
+                const levelValue = item.value_level || item.level;
+                tdLevel.append(makeLevelBadge(levelValue));
 
-                // Scene
-                const tdScene = el('td', '', item.scene || item.scene_name || '-');
+                // Scene (soporta objeto, string directo o scene_name)
+                const sceneName = (typeof item.scene === 'object' ? item.scene?.name : item.scene) || item.scene_name || '—';
+                const tdScene = el('td', '', sceneName);
 
-                // Elements
+                // Elements (soporta array de objetos o array de strings)
                 const tdElements = el('td');
-                tdElements.textContent = Array.isArray(item.elements) ? item.elements.join(', ') : (item.elements || '-');
+                const elementNames = Array.isArray(item.elements)
+                    ? item.elements.map(e => (typeof e === 'object' ? e?.name : e)).filter(Boolean).join(', ')
+                    : '';
+                tdElements.textContent = elementNames || '—';
 
                 // Contexts
                 const tdContexts = el('td');
-                tdContexts.textContent = Array.isArray(item.contexts) ? item.contexts.join(', ') : (item.contexts || '-');
+                tdContexts.textContent = Array.isArray(item.contexts) ? item.contexts.join(', ') : '—';
 
                 // Time
-                const startMs = item.start_ms ?? item.timestamp_ms;
-                const start = formatTimestamp(startMs);
-                const end = item.end_ms ? ` - ${formatTimestamp(item.end_ms)}` : '';
+                const start = formatTimestamp(item.start_ms);
+                const end = item.end_ms != null ? ` - ${formatTimestamp(item.end_ms)}` : '';
                 const tdTime = el('td', 'text-nowrap', `${start}${end}`);
 
                 // Rationale
-                const tdRationale = el('td', '', item.rationale || item.description || '-');
+                const tdRationale = el('td', '', item.rationale || '—');
 
                 tr.append(tdLevel, tdScene, tdElements, tdContexts, tdTime, tdRationale);
                 body.append(tr);
