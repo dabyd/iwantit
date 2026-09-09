@@ -56,10 +56,10 @@
 
             <div class="advertising-content" hidden>
                 <div class="btn-group mb-3" role="group" aria-label="Advertising opportunity level filter">
-                    <button type="button" class="btn btn-outline-primary active" data-level="all">All</button>
-                    <button type="button" class="btn btn-outline-primary" data-level="high">High</button>
-                    <button type="button" class="btn btn-outline-primary" data-level="medium">Medium</button>
-                    <button type="button" class="btn btn-outline-primary" data-level="low">Low</button>
+                    <button type="button" class="btn btn-primary active" data-level="all" aria-pressed="true">All</button>
+                    <button type="button" class="btn btn-outline-primary" data-level="high" aria-pressed="false">High</button>
+                    <button type="button" class="btn btn-outline-primary" data-level="medium" aria-pressed="false">Medium</button>
+                    <button type="button" class="btn btn-outline-primary" data-level="low" aria-pressed="false">Low</button>
                 </div>
 
                 <div class="table-responsive">
@@ -80,6 +80,37 @@
             </div>
         </section>
     </div>
+
+    <style>
+        /* Scoped to this Analysis component instance; restores visible keyboard
+           focus that the global `button { outline: none }` otherwise removes. */
+        .tab-{{ $currentCount }} .analysis-subnav .nav-link:focus-visible,
+        .tab-{{ $currentCount }} .advertising-content [data-level]:focus-visible {
+            outline: 2px solid #0d6efd;
+            outline-offset: 2px;
+        }
+
+        /* KPI cards: distribute into 4 columns when space allows and drop to 2 or 1
+           as the container narrows, independent of Bootstrap breakpoints. */
+        .tab-{{ $currentCount }} .content-intelligence,
+        .tab-{{ $currentCount }} .business-opportunities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        /* Advertising table: keep columns legible on small screens by enforcing a
+           minimum table width (horizontal scroll via .table-responsive) instead of
+           compressing them before the scroll behaviour activates. */
+        .tab-{{ $currentCount }} .table-responsive table {
+            min-width: 850px;
+        }
+        .tab-{{ $currentCount }} .table th,
+        .tab-{{ $currentCount }} .table td {
+            white-space: normal;
+            word-break: break-word;
+        }
+    </style>
 
     <script>
     (function () {
@@ -238,7 +269,11 @@
             if (LEVELS.indexOf(level) === -1) return;
             advertising.level = level;
             filterButtons.forEach(function (btn) {
-                btn.classList.toggle('active', btn.dataset.level === level);
+                const selected = btn.dataset.level === level;
+                btn.classList.toggle('active', selected);
+                btn.classList.toggle('btn-primary', selected);
+                btn.classList.toggle('btn-outline-primary', !selected);
+                btn.setAttribute('aria-pressed', selected ? 'true' : 'false');
             });
             ensureAdvertisingLoaded();
         }
@@ -279,7 +314,7 @@
         }
 
         function kpiCard(value, label, badgeClass) {
-            const col = el('div', 'col-6 col-lg-3');
+            const col = el('div');
             const card = el('div', 'card h-100 text-center');
             const body = el('div', 'card-body');
             body.appendChild(el('div', 'h3 mb-0', String(value == null ? 0 : value)));

@@ -28,10 +28,10 @@
 
 ## 4. Integrate with the existing backoffice visual system
 
-- [ ] Use Bootstrap grid, cards, badges, alerts, buttons, list groups, progress bars, and responsive tables.
-- [ ] Add only scoped CSS necessary for subview presentation and preserve existing global tab behaviour.
-- [ ] Verify desktop density and small-screen stacking/scrolling.
-- [ ] Verify visible keyboard focus, semantic table headers, and accessible status feedback.
+- [x] Use Bootstrap grid, cards, badges, alerts, buttons, list groups, progress bars, and responsive tables.
+- [x] Add only scoped CSS necessary for subview presentation and preserve existing global tab behaviour.
+- [x] Verify desktop density and small-screen stacking/scrolling.
+- [x] Verify visible keyboard focus, semantic table headers, and accessible status feedback.
 
 ## 5. Verify the slice
 
