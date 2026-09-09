@@ -1,0 +1,35 @@
+products_id,producto,marca,n_hp,t_start,t_end,family_L1,needs_family_review,nota
+21,Place de l ´estrapade,Locations,531,12.00000000000000000000,65.00000000000000000000,plaza,0,Place de l'Estrapade; location/clearance
+20,Restaurant Terra Nera,Restaurants,571,12.00000000000000000000,69.00000000000000000000,restaurante_bar,0,local restaurante; clearance geo
+72,GTS,Mclaren,363,13.80547237396240200000,90.25691986083984000000,coche,0,McLaren GTS
+16,Neon Check Blazer,Mira Mikati,1985,17.00000000000000000000,300.00000000000000000000,blazer,0,
+19,Guess GU8234-32E,Guess,239,17.00000000000000000000,40.79999923706055000000,gafas,0,modelo GU8234
+17,Delvaux for Gucci,Gucci,801,17.00000000000000000000,97.00000000000000000000,bolso,0,Delvaux/Gucci handbag
+18,Alpha Handbag,Pierre Hardy,542,18.00000000000000000000,286.00000000000000000000,bolso,0,
+103,[AI] Flower,AI Generated,464,32.53253173828125000000,285.99432373046875000000,NEEDS_FAMILY_REVIEW,1,candidata: planta_interior/flor; [AI] genérico
+101,[AI] Necklace,AI Generated,53,32.57424163818359400000,34.74307632446289000000,joya,0,[AI] collar
+104,[AI] Vase,AI Generated,304,61.72839355468750000000,162.53753662109375000000,NEEDS_FAMILY_REVIEW,1,candidata: jarra/jarrón decorativo; [AI] vase
+26,Lampara Liam,H&M,896,102.39405822753906000000,258.46679687500000000000,lampara,0,
+34,Sunglasses Panthere,Cartier,174,107.19999694824219000000,287.79998779296875000000,gafas,0,Cartier Panthere
+27,Capotto in yellow,Dolce & Gabbana,779,107.80000305175781000000,298.39999389648440000000,abrigo,0,capotto = abrigo
+105,[AI] Desk,AI Generated,1097,109.19252777099610000000,274.56622314453125000000,mesa,0,[AI] desk/escritorio
+106,[AI] Cup,AI Generated,875,110.65232086181640000000,274.56622314453125000000,taza,0,[AI] cup
+23,Carasky Crossbody,Christian Louboutin,207,113.19999694824219000000,297.70001220703125000000,bolso,0,crossbody
+107,[AI] Handbag/Satchel,AI Generated,76,124.33266448974610000000,127.46079254150390000000,bolso,0,[AI] handbag/satchel
+9,Vestido acampanado de popelina con estampado de amapolas,Dolce & Gabbana,327,124.54120635986328000000,173.42341613769530000000,vestido,0,
+108,[AI] Cabinet/shelf,AI Generated,336,133.00801086425780000000,164.62295532226562000000,NEEDS_FAMILY_REVIEW,1,candidata: mueble (aparador/estantería); [AI] cabinet/shelf no está en Guía
+15,Daily8 Water Jug,Bluewave Lifestyle,291,148.00000000000000000000,297.70001220703125000000,jarra,0,water jug
+6,Coca-cola,Coca-Cola,116,157.74107360839844000000,162.53753662109375000000,lata,1,confirmar en frame: lata vs botella Coca-Cola
+25,Galaxy S23 Ultra Rosa,Samsung,143,165.60000610351562000000,207.39999389648438000000,movil,0,
+102,[AI] Chair,AI Generated,229,167.25057983398438000000,298.50683593750000000000,silla,0,[AI] chair
+24,Galaxy S23 Ultra Negro,Samsung,204,167.60000610351562000000,245.66232299804688000000,movil,0,
+36,Velvet fuchsia jacket & pants,Elie Saab,134,167.89999389648438000000,207.80000305175780000000,chaqueta,0,conjunto chaqueta+pantalón fucsia
+31,MacBook Air,Apple,243,179.97163391113280000000,234.39999389648438000000,portatil,0,MacBook Air
+29,iPhone Pro 14,Apple,614,215.69999694824220000000,259.89999389648440000000,movil,0,iPhone
+33,Traje Slimfit de lana Virgen,Hugo Boss,222,229.00000000000000000000,257.60000610351560000000,NEEDS_FAMILY_REVIEW,1,traje completo; lista no tiene 'traje'; Hugo Boss
+28,Datejust white sphere,Rolex,226,229.30000305175780000000,258.20001220703125000000,reloj,0,Rolex Datejust
+30,Corbata Londres,Barlovento de Biar,511,229.69999694824220000000,257.60000610351560000000,accesorio_moda,0,corbata
+109,[AI] Glasses,AI Generated,109,261.88690185546875000000,269.97830200195310000000,gafas,0,[AI] glasses
+11,Chal mariposas y flores blanco,Bimba y Lola,61,277.06872558593750000000,279.57122802734375000000,accesorio_moda,0,chal Bimba y Lola
+35,Tiffany & Co - Champs Elisses,Locations,21,279.79998779296875000000,281.79998779296875000000,escaparate,0,boutique Tiffany Champs-Elysées; location
+110,[AI] Picture/Frame,AI Generated,199,281.74008178710940000000,286.03604125976560000000,artwork,0,[AI] picture/frame; clearance detectable
