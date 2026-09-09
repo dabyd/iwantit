@@ -88,7 +88,34 @@ Ventanas MISS (id_crop): plaza_12-65 · restaurante_12-69 · taza_111-275 ·
 jarra_148-298 · lata_coca_158-163 · movil_rosa_166-207 · chaqueta_fucsia_168-208 ·
 portatil_180-234 · reloj_229-258 · gafas_262-270.
 
-## 10. Coste y próximos pasos
+## 10. Resultados fase 4 (Prompt 2, marca sobre crops 1080p) — 2026-09-09
+
+Lote `scripts/run_brand_batch.sh`: 10/10 OK, 0 fallos. Salidas en `01_RAW/brand_*.txt`.
+
+| Item | Marca GT | Respuesta AI | Conf | Veredicto |
+|---|---|---|---|---|
+| plaza | — | UNKNOWN | 0,0 | correcto (no hay marca) |
+| restaurante | Restaurants | UNKNOWN | 0,0 | MISS L2 (cartel no legible en crops) |
+| taza | — | UNKNOWN | 0,0 | correcto (genérico [AI]) |
+| jarra | Bluewave | UNKNOWN | 0,0 | MISS L2 |
+| lata Coca-Cola | Coca-Cola | UNKNOWN | 0,0 | MISS L2 (lata pequeña/fondo ni a 1080p) |
+| móvil rosa | Samsung | **Samsung** | 0,85 contexto | **HIT L2** (triple cámara vertical; modelo no resuelto) |
+| chaqueta fucsia | Elie Saab | UNKNOWN | 0,0 | MISS L2 esperado (sin logo) |
+| portátil | Apple | UNKNOWN | 0,0 | MISS L2 (cerrado, sin logo visible) |
+| reloj | Rolex | UNKNOWN | 0,0 | MISS L2 |
+| gafas | — | UNKNOWN | 0,0 | correcto (genérico [AI]) |
+
+**Tasa L2 en set difícil: 1/10 con 0 alucinaciones.** El modelo prefiere UNKNOWN honesto antes que inventar — comportamiento correcto para el pipeline `AI → candidato → humano`.
+Pendiente: L2 sobre los 16 MATCH fáciles (logo/texto visible) para medir el techo de marca.
+
+## 11. Veredicto final de viabilidad (responde al doc v0.1 §17)
+
+- **Benchmark 1 (capacidad):** el stack GCP extrae familias L1 (66,7 % recall), texto/OCR, entidades clearance con conteo (2 puentes) y marcas solo con evidencia clara. No extrae identidad de producto pequeño/fondo ni personajes automáticos.
+- **Benchmark 2 (calidad vs 120 h manuales):** por debajo en identidad fina, por encima en cobertura de escena (34 descubrimientos fuera de GT) y en velocidad. El manual sigue siendo la verdad para marca/modelo.
+- **Benchmark 3 (economía):** pendiente de medir coste GCP real del lote (revisar Billing) vs 120 h. El pipeline propuesto es `AI detecta L1 → humano valida/asigna marca → Core`, con el 85 % del GT-0-300 mapeable a L1 directa.
+- **Modelo IwantIt técnicamente alcanzable:** sí, en modo asistido; no, en modo automático total.
+
+## 12. Coste y próximos pasos
 
 - Revisar gasto real en Billing → Budgets & alerts (alertas 25/50/80 % creadas en Fase 0).
 - Pendiente: STT + diarización (menciones audibles de marca), embeddings (movido a Fase 3), episodio completo 32 min, mapa final AUTOMATIC/ASSISTED/MANUAL.

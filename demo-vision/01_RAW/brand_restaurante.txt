@@ -1,0 +1,1 @@
+{"family":"restaurante_bar","brand":"UNKNOWN","model":null,"l2_conf":0.0,"evidence_type":"none","evidence":"No se puede leer ninguna marca de restaurante o bar en la imagen."}
