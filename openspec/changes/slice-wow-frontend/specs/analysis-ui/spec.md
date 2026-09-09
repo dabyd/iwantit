@@ -56,7 +56,7 @@ The Analysis UI SHALL not request Analysis API data while its parent project tab
 
 ### Requirement: Analysis API values render as safe text
 
-The Analysis UI SHALL treat all dynamic values returned by the Overview and Advertising endpoints as untrusted presentation data. It SHALL construct dynamic content with DOM APIs and assign API-provided strings through `textContent` or an equivalent escaping DOM API. It SHALL not interpolate API-provided values through `innerHTML`. CSS classes for value-level badges SHALL be selected only from a fixed `high`, `medium`, and `low` mapping.
+The Analysis UI SHALL treat all dynamic values returned by the Overview and Advertising endpoints as untrusted presentation data. It SHALL construct dynamic content with DOM APIs and assign API-provided strings through `textContent` or an equivalent escaping DOM API. It SHALL not interpolate API-provided values through `innerHTML`. CSS classes for value-level badges SHALL be selected only from a single configuration map (for example `LEVEL_CONFIG`) whose keys are restricted to `high`, `medium`, and `low`; no API-provided value may be used to construct a CSS class, and badge presentation SHALL NOT duplicate or desynchronise that mapping. The value-level colour convention for advertising opportunities is: `High` → `bg-success` (green), `Medium` → `bg-warning` (amber), `Low` → `bg-secondary` (gray).
 
 #### Scenario: An opportunity rationale contains markup-like text
 
@@ -78,3 +78,14 @@ The Analysis UI SHALL treat all dynamic values returned by the Overview and Adve
 - **WHEN** the item is rendered
 - **THEN** the UI uses only its neutral, predefined badge presentation
 - **AND** no API-provided value is used to construct a CSS class or HTML markup
+
+### Requirement: Analysis UI identifiers are component-scoped and collision-safe
+
+The Analysis UI SHALL be safe to render alongside the other project tabs and reusable components. Interactive regions and script targets SHALL use CSS classes or dynamically scoped identifiers derived from the existing `TabCounter` (for example `analysis-overview-pane-{{ $currentCount }}`) instead of static `id` attributes. Client-side selectors SHALL be scoped to the component root (`.tab-N`) and SHALL NOT assume a single on-screen instance.
+
+#### Scenario: No duplicate identifiers within a rendered project
+
+- **GIVEN** the Analysis component is rendered within the global `.tab-N` system
+- **WHEN** the page reaches its ready state
+- **THEN** no `id` attribute inside the Analysis pane collides with another element on the page
+- **AND** the component script resolves its DOM targets only within its own `.tab-N` root

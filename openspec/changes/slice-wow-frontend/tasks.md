@@ -19,12 +19,12 @@
 
 ## 3. Render API data safely and faithfully
 
-- [ ] Render Overview KPI cards from the four content-intelligence values.
-- [ ] Render the Advertising H/M/L and Clearance-total cards using only returned values.
-- [ ] Render Key Contexts ordered by the API, with a client-derived percentage only when total scenes is non-zero.
-- [ ] Render the Advertising table from the documented item shape, including nullable values and time formatting.
-- [ ] Replace dynamic `innerHTML` with DOM creation, `textContent`, and `replaceChildren`.
-- [ ] Restrict badge classes to the known value-level map.
+- [x] Render Overview KPI cards from the four content-intelligence values.
+- [x] Render the Advertising H/M/L and Clearance-total cards using only returned values.
+- [x] Render Key Contexts ordered by the API, with a client-derived percentage only when total scenes is non-zero.
+- [x] Render the Advertising table from the documented item shape, including nullable values and time formatting.
+- [x] Replace dynamic `innerHTML` with DOM creation, `textContent`, and `replaceChildren`.
+- [x] Restrict badge classes to the known value-level map.
 
 ## 4. Integrate with the existing backoffice visual system
 
