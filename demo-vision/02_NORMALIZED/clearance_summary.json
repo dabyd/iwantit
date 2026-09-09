@@ -1,0 +1,62 @@
+[
+ {
+  "summary": "monumento",
+  "distinct_count": 2,
+  "note": "Eiffel Tower and Pantheon"
+ },
+ {
+  "summary": "iglesia",
+  "distinct_count": 1,
+  "note": "Sacré-Cœur Basilica"
+ },
+ {
+  "summary": "calle",
+  "distinct_count": 2,
+  "note": "Ground level Parisian street and aerial Parisian streets"
+ },
+ {
+  "summary": "edificio",
+  "distinct_count": 4,
+  "note": "General Parisian buildings, Galerie Patrick Fourtin, aerial Parisian buildings, Tiffany & Co. building"
+ },
+ {
+  "summary": "escaparate",
+  "distinct_count": 2,
+  "note": "Flower shop facade and Tiffany & Co. window display"
+ },
+ {
+  "summary": "logo_marca",
+  "distinct_count": 10,
+  "note": "Multiple brands visible on signs and products"
+ },
+ {
+  "summary": "packaging",
+  "distinct_count": 4,
+  "note": "Flower wraps, baby car seat, gift box, water bottle"
+ },
+ {
+  "summary": "puente",
+  "distinct_count": 2,
+  "note": "Pont de Bir-Hakeim and other bridges in aerial view"
+ },
+ {
+  "summary": "interior_reconocible",
+  "distinct_count": 5,
+  "note": "Madeline's office, Sylvie's office, Emily's office, Alfie's office, Tiffany & Co. interior"
+ },
+ {
+  "summary": "artwork",
+  "distinct_count": 2,
+  "note": "Painting in Madeline's office and paintings in Tiffany & Co."
+ },
+ {
+  "summary": "identificador_personal",
+  "distinct_count": 1,
+  "note": "Baby Jack"
+ },
+ {
+  "summary": "pantalla_con_contenido",
+  "distinct_count": 2,
+  "note": "Emily's phone screen and Alfie's phone screen"
+ }
+]
