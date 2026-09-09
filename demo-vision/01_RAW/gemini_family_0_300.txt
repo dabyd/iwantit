@@ -1,0 +1,95 @@
+```json
+{"family":"texto_visible","start_s":5.7,"end_s":8.0,"l1_conf":1.0,"evidence":"Text 'A NETFLIX SERIES' on black screen"}
+{"family":"monumento","start_s":9.0,"end_s":10.0,"l1_conf":1.0,"evidence":"Eiffel Tower visible in the background"}
+{"family":"edificio","start_s":9.0,"end_s":15.0,"l1_conf":1.0,"evidence":"Buildings in Paris street scene"}
+{"family":"planta_interior","start_s":9.0,"end_s":15.0,"l1_conf":1.0,"evidence":"Greenery and trees on the street"}
+{"family":"escaparate","start_s":10.0,"end_s":15.0,"l1_conf":1.0,"evidence":"Flower shop exterior with various flowers"}
+{"family":"texto_visible","start_s":10.0,"end_s":15.0,"l1_conf":1.0,"evidence":"Text 'FLEURISTE MARGUERITE et CAPUCINE' on shop sign"}
+{"family":"persona","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Emily and Mindy walking and talking"}
+{"family":"cara","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Faces of Emily and Mindy visible"}
+{"family":"blazer","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Emily's plaid blazer and Mindy's pastel blazer"}
+{"family":"pantalon","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Emily's blue pants and Mindy's shorts"}
+{"family":"camiseta","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Emily's striped shirt and Mindy's yellow top"}
+{"family":"bolso","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Emily's white bag and Mindy's striped bag"}
+{"family":"joya","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Necklaces and earrings worn by Emily and Mindy"}
+{"family":"gafas","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Mindy's sunglasses"}
+{"family":"planta_interior","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Flowers held by Mindy and displayed in shop"}
+{"family":"calle","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Cobblestone street in Paris"}
+{"family":"coche","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Cars parked on the street"}
+{"family":"edificio","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"Buildings lining the street"}
+{"family":"grupo_personas","start_s":15.0,"end_s":135.0,"l1_conf":1.0,"evidence":"People walking in the background"}
+{"family":"texto_visible","start_s":136.0,"end_s":139.0,"l1_conf":1.0,"evidence":"Title card 'EMILY IN PARIS'"}
+{"family":"escaparate","start_s":136.0,"end_s":139.0,"l1_conf":1.0,"evidence":"Flower shop exterior with various flowers"}
+{"family":"planta_interior","start_s":136.0,"end_s":139.0,"l1_conf":1.0,"evidence":"Flowers displayed outside the shop"}
+{"family":"texto_visible","start_s":136.0,"end_s":139.0,"l1_conf":1.0,"evidence":"Text 'FLEURISTE MARGUERITE et CAPUCINE' on shop sign"}
+{"family":"persona","start_s":136.0,"end_s":139.0,"l1_conf":1.0,"evidence":"Woman riding a bicycle"}
+{"family":"bicicleta","start_s":136.0,"end_s":139.0,"l1_conf":1.0,"evidence":"Bicycle ridden by a woman"}
+{"family":"NEEDS_FAMILY_REVIEW","candidate":"tren","start_s":140.0,"end_s":141.0,"l1_conf":0.8,"evidence":"Green train on a bridge"}
+{"family":"puente","start_s":140.0,"end_s":142.0,"l1_conf":1.0,"evidence":"Arch bridge over water"}
+{"family":"edificio","start_s":141.0,"end_s":145.0,"l1_conf":1.0,"evidence":"Rooftops of Paris buildings"}
+{"family":"edificio","start_s":145.0,"end_s":149.0,"l1_conf":1.0,"evidence":"Buildings in a Parisian square"}
+{"family":"grupo_personas","start_s":145.0,"end_s":149.0,"l1_conf":1.0,"evidence":"People walking in the square"}
+{"family":"texto_visible","start_s":145.0,"end_s":149.0,"l1_conf":1.0,"evidence":"Text 'GALERIE PATRICK FOURTIN' on building"}
+{"family":"texto_visible","start_s":145.0,"end_s":149.0,"l1_conf":1.0,"evidence":"Text overlay 'STARRING LILY COLLINS'"}
+{"family":"persona","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Emily, Madeline, and Josette in the office"}
+{"family":"cara","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Faces of Emily, Madeline, and Josette visible"}
+{"family":"blazer","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Emily's plaid blazer, Madeline's yellow blazer, Josette's dark blazer"}
+{"family":"camiseta","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Emily's striped shirt, Madeline's patterned shirt, Josette's light blue shirt"}
+{"family":"vestido","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Madeline's pink/silver dress"}
+{"family":"gafas","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Madeline's sunglasses"}
+{"family":"joya","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Necklaces, earrings, bracelets worn by Emily and Madeline"}
+{"family":"bolso","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Madeline's yellow bag"}
+{"family":"NEEDS_FAMILY_REVIEW","candidate":"silla_bebe","start_s":149.0,"end_s":234.0,"l1_conf":0.8,"evidence":"Baby carrier on the desk"}
+{"family":"persona","start_s":157.0,"end_s":169.0,"l1_conf":1.0,"evidence":"Baby in the carrier"}
+{"family":"mesa","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Glass desk in the office"}
+{"family":"planta_interior","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Bouquet of flowers on the desk"}
+{"family":"libro_revista","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Books and notebooks on the desk"}
+{"family":"lampara","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Desk lamps"}
+{"family":"botella","start_s":149.0,"end_s":234.0,"l1_conf":1.0,"evidence":"Various bottles and containers on the desk"}
+{"family":"texto_visible","start_s":149.0,"end_s":154.0,"l1_conf":1.0,"evidence":"Text overlay 'PHILIPPINE LEROY-BEAULIEU'"}
+{"family":"texto_visible","start_s":155.0,"end_s":159.0,"l1_conf":1.0,"evidence":"Text overlay 'ASHLEY PARK'"}
+{"family":"texto_visible","start_s":160.0,"end_s":164.0,"l1_conf":1.0,"evidence":"Text overlay 'LUCAS BRAVO'"}
+{"family":"texto_visible","start_s":165.0,"end_s":169.0,"l1_conf":1.0,"evidence":"Text overlay 'SAMUEL ARNOLD'"}
+{"family":"texto_visible","start_s":170.0,"end_s":174.0,"l1_conf":1.0,"evidence":"Text overlay 'BRUNO GOUERY'"}
+{"family":"texto_visible","start_s":175.0,"end_s":179.0,"l1_conf":1.0,"evidence":"Text overlay 'WILLIAM ABADIE'"}
+{"family":"texto_visible","start_s":180.0,"end_s":184.0,"l1_conf":1.0,"evidence":"Text overlay 'LUCIEN LAVISCOUNT'"}
+{"family":"texto_visible","start_s":185.0,"end_s":189.0,"l1_conf":1.0,"evidence":"Text overlay 'SUPERVISING PRODUCER JOE MURPHY'"}
+{"family":"botella","start_s":190.0,"end_s":194.0,"l1_conf":1.0,"evidence":"Madeline holding a lotion bottle"}
+{"family":"texto_visible","start_s":190.0,"end_s":194.0,"l1_conf":1.0,"evidence":"Text overlay 'CO-EXECUTIVE PRODUCER GRANT SLOSS'"}
+{"family":"texto_visible","start_s":195.0,"end_s":199.0,"l1_conf":1.0,"evidence":"Text overlay 'EXECUTIVE PRODUCER ROBIN SCHIFF'"}
+{"family":"texto_visible","start_s":200.0,"end_s":204.0,"l1_conf":1.0,"evidence":"Text overlay 'EXECUTIVE PRODUCER ALISON BROWN'"}
+{"family":"texto_visible","start_s":205.0,"end_s":209.0,"l1_conf":1.0,"evidence":"Text overlay 'EXECUTIVE PRODUCERS TONY HERNANDEZ LILLY BURNS'"}
+{"family":"texto_visible","start_s":210.0,"end_s":214.0,"l1_conf":1.0,"evidence":"Text overlay 'CREATED BY DARREN STAR'"}
+{"family":"texto_visible","start_s":215.0,"end_s":219.0,"l1_conf":1.0,"evidence":"Text overlay 'WRITTEN BY ALISON BROWN'"}
+{"family":"texto_visible","start_s":220.0,"end_s":224.0,"l1_conf":1.0,"evidence":"Text overlay 'DIRECTED BY ANDREW FLEMING'"}
+{"family":"movil","start_s":225.0,"end_s":229.0,"l1_conf":1.0,"evidence":"Madeline looking at her phone"}
+{"family":"persona","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Sylvie and her team in the office"}
+{"family":"cara","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Faces of Sylvie and team members visible"}
+{"family":"camiseta","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Sylvie's red shirt and other team members' shirts"}
+{"family":"pantalon","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Sylvie's purple pants"}
+{"family":"joya","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Rings and earrings worn by Sylvie"}
+{"family":"packaging","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Open gift box on the table"}
+{"family":"maleta","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Red luggage tag in the gift box"}
+{"family":"movil","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Phone case in the gift box"}
+{"family":"botella","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Perfume bottle in the gift box"}
+{"family":"accesorio_moda","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Keychain in the gift box"}
+{"family":"NEEDS_FAMILY_REVIEW","candidate":"tarjeta","start_s":235.0,"end_s":295.0,"l1_conf":0.8,"evidence":"Hotel key card and 'VOUS' card in the gift box"}
+{"family":"mesa","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Round wooden table in the office"}
+{"family":"planta_interior","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Pink flowers in a vase on the table"}
+{"family":"libro_revista","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Stacked books/folders on the floor"}
+{"family":"texto_visible","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Text 'AGENCE GRATEAU', 'RIMOVA', 'PIERRE CADEAU', 'MAISON LAVAUX', 'ZIMMER HOTELS', 'VOUS' in box"}
+{"family":"grupo_personas","start_s":235.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Group of people in the office"}
+{"family":"blazer","start_s":245.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Julien's blue blazer and Luc's white/silver blazer"}
+{"family":"NEEDS_FAMILY_REVIEW","candidate":"funda_ropa","start_s":260.0,"end_s":295.0,"l1_conf":0.8,"evidence":"Garment bag with 'Pierre Cadault' logo"}
+{"family":"texto_visible","start_s":260.0,"end_s":295.0,"l1_conf":1.0,"evidence":"Text 'Pierre Cadault' on garment bag"}
+{"family":"persona","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Emily sitting at a desk"}
+{"family":"cara","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Emily's face visible"}
+{"family":"blazer","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Emily's plaid blazer"}
+{"family":"camiseta","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Emily's striped shirt"}
+{"family":"joya","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Emily's necklace"}
+{"family":"movil","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Emily holding her phone"}
+{"family":"mesa","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Wooden desk"}
+{"family":"lampara","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Desk lamp"}
+{"family":"NEEDS_FAMILY_REVIEW","candidate":"vela","start_s":295.0,"end_s":300.0,"l1_conf":0.8,"evidence":"Candle on the desk"}
+{"family":"texto_visible","start_s":295.0,"end_s":300.0,"l1_conf":1.0,"evidence":"Text overlay 'HEY, HOPE YOU'RE WELL...'"}
+```
