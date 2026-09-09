@@ -30,4 +30,5 @@ yarn-error.log
 .continue/
 /demo-vision/mp4
 /demo-vision/frames
+/demo-vision/crops
 /demo-vision/01_RAW/vision
