@@ -2,20 +2,20 @@
 
 ## 1. Establish the Analysis subview shell
 
-- [ ] Preserve the existing `TabCounter`, `.tab-N` wrapper, and `h2` contract.
-- [ ] Replace the single mixed layout with Bootstrap-native Overview and Advertising panels.
-- [ ] Add accessible, button-based sub-navigation for Overview and Advertising without adding global project tabs.
-- [ ] Add separate status containers for each panel.
+- [x] Preserve the existing `TabCounter`, `.tab-N` wrapper, and `h2` contract.
+- [x] Replace the single mixed layout with Bootstrap-native Overview and Advertising panels.
+- [x] Add accessible, button-based sub-navigation for Overview and Advertising without adding global project tabs.
+- [x] Add separate status containers for each panel.
 
 ## 2. Implement activation-aware, independent data loading
 
-- [ ] Detect when the parent Analysis pane becomes active through its existing `.active` class.
-- [ ] Do not request either endpoint while that parent pane is inactive.
-- [ ] Fetch Overview only when Analysis first becomes active.
-- [ ] Fetch Advertising only when its subview is selected.
-- [ ] Maintain independent loading, ready, error, cache, and retry states.
-- [ ] Build the validated `level` query parameter for All, High, Medium, and Low without using `Promise.all`.
-- [ ] Handle non-JSON and non-success responses as local, actionable errors.
+- [x] Detect when the parent Analysis pane becomes active through its existing `.active` class.
+- [x] Do not request either endpoint while that parent pane is inactive.
+- [x] Fetch Overview only when Analysis first becomes active.
+- [x] Fetch Advertising only when its subview is selected.
+- [x] Maintain independent loading, ready, error, cache, and retry states.
+- [x] Build the validated `level` query parameter for All, High, Medium, and Low without using `Promise.all`.
+- [x] Handle non-JSON and non-success responses as local, actionable errors.
 
 ## 3. Render API data safely and faithfully
 
