@@ -1,0 +1,3 @@
+```json
+{"family":"movil","brand":"Samsung","model":null,"l2_conf":0.85,"evidence_type":"contexto","evidence":"Distinctive vertical triple camera array and flash on the back of the pink phone."}
+```

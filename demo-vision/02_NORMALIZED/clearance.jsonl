@@ -1,0 +1,372 @@
+family,candidate,brand,start_s,end_s,x,y,l1_conf,l2_conf,provider,model,evidence,source_ref,clearance_relevant,needs_family_review
+monumento,,UNKNOWN,5.0,9.0,,,0.9,,gemini,gemini-2.5-flash,[monumento_1] Eiffel Tower visible,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+iglesia,,UNKNOWN,9.0,10.0,,,0.9,,gemini,gemini-2.5-flash,[iglesia_1] Sacré-Cœur Basilica domes visible,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,10.0,15.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,10.0,15.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,10.0,15.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,10.0,15.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,15.0,20.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,15.0,20.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,15.0,20.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,15.0,20.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,15.0,20.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,20.0,25.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,20.0,25.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,20.0,25.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,20.0,25.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,20.0,25.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,25.0,30.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,25.0,30.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,25.0,30.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,25.0,30.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,25.0,30.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,30.0,35.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,30.0,35.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,30.0,35.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,30.0,35.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,30.0,35.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,35.0,40.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,35.0,40.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,35.0,40.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,35.0,40.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,35.0,40.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,40.0,45.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,40.0,45.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,40.0,45.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,40.0,45.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,40.0,45.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,45.0,50.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,45.0,50.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,45.0,50.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,45.0,50.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,45.0,50.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,50.0,55.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,50.0,55.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,50.0,55.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,50.0,55.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,50.0,55.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,55.0,60.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,55.0,60.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,55.0,60.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,55.0,60.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,55.0,60.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,60.0,65.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,60.0,65.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,60.0,65.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,60.0,65.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,60.0,65.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,65.0,70.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,65.0,70.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,65.0,70.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,65.0,70.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,65.0,70.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,70.0,75.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,70.0,75.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,70.0,75.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,70.0,75.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,70.0,75.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,75.0,80.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,75.0,80.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,75.0,80.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,75.0,80.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,75.0,80.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,80.0,85.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,80.0,85.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,80.0,85.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,80.0,85.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,80.0,85.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,85.0,90.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,85.0,90.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,85.0,90.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,85.0,90.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,85.0,90.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,90.0,95.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,90.0,95.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,90.0,95.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,90.0,95.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,90.0,95.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,95.0,100.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,95.0,100.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,95.0,100.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,95.0,100.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,95.0,100.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,100.0,105.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,100.0,105.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,100.0,105.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,100.0,105.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,100.0,105.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,105.0,110.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,105.0,110.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,105.0,110.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,105.0,110.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,105.0,110.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,110.0,115.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,110.0,115.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,110.0,115.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,110.0,115.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,110.0,115.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,115.0,120.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,115.0,120.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,115.0,120.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,115.0,120.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,115.0,120.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,120.0,125.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,120.0,125.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,120.0,125.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,120.0,125.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,120.0,125.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,125.0,130.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,125.0,130.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,125.0,130.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,125.0,130.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,125.0,130.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,130.0,135.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,130.0,135.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,130.0,135.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,130.0,135.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,130.0,135.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,135.0,137.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street with people and cars,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,135.0,137.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_1] Parisian buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,135.0,137.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_1] Flower shop facade with displays,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,135.0,137.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_1] 'FLEURISTE MARGUERITE et CAPUCINE' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,135.0,137.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_1] Flower wraps held by Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+puente,,UNKNOWN,139.0,140.0,,,0.9,,gemini,gemini-2.5-flash,[puente_1] Pont de Bir-Hakeim with metro,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+monumento,,UNKNOWN,139.0,140.0,,,0.9,,gemini,gemini-2.5-flash,[monumento_1] Eiffel Tower visible in background,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,140.0,142.0,,,0.9,,gemini,gemini-2.5-flash,[calle_2] Aerial view of Parisian streets,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,140.0,142.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_4] Aerial view of Parisian buildings,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,142.0,144.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_2] Galerie Patrick Fourtin exterior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,142.0,144.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_2] 'GALERIE PATRICK FOURTIN' sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,145.0,150.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,145.0,150.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,145.0,150.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,150.0,155.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,150.0,155.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,150.0,155.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,155.0,158.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,155.0,158.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat with baby,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+identificador_personal,,UNKNOWN,158.0,159.0,,,0.9,,gemini,gemini-2.5-flash,[identificador_personal_1] Baby Jack in car seat,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,159.0,161.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,159.0,161.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat with baby,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+identificador_personal,,UNKNOWN,159.0,161.0,,,0.9,,gemini,gemini-2.5-flash,[identificador_personal_1] Baby Jack in car seat,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,161.0,163.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,161.0,163.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat with baby,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+identificador_personal,,UNKNOWN,161.0,163.0,,,0.9,,gemini,gemini-2.5-flash,[identificador_personal_1] Baby Jack in car seat,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,163.0,165.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,163.0,165.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat with baby,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+identificador_personal,,UNKNOWN,163.0,165.0,,,0.9,,gemini,gemini-2.5-flash,[identificador_personal_1] Baby Jack in car seat,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,165.0,170.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,165.0,170.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,165.0,170.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,170.0,175.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,170.0,175.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,170.0,175.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,175.0,180.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,175.0,180.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,175.0,180.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,180.0,185.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,180.0,185.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,180.0,185.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,185.0,190.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,185.0,190.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,185.0,190.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,190.0,195.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,190.0,195.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,190.0,195.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,195.0,200.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,195.0,200.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,195.0,200.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,200.0,205.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,200.0,205.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,200.0,205.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,205.0,210.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,205.0,210.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,205.0,210.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,210.0,215.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,210.0,215.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,210.0,215.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,215.0,220.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,215.0,220.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,215.0,220.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,220.0,225.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,220.0,225.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,220.0,225.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,225.0,230.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,225.0,230.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,225.0,230.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,230.0,235.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,230.0,235.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,230.0,235.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,235.0,240.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,235.0,240.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,235.0,240.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,240.0,245.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_1] Madeline's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,240.0,245.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_1] Painting on wall in Madeline's office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,240.0,245.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_2] Baby car seat on desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,245.0,250.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,250.0,255.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,255.0,260.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,260.0,265.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,265.0,270.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,270.0,275.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,275.0,280.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,280.0,285.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,285.0,290.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,290.0,295.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,295.0,300.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,300.0,305.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,305.0,310.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_3] Agence Grateau gift box with branded items,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_3] 'AGENCE GRATEAU' on gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_4] 'RIMOWA' on luggage tag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_5] 'PIERRE CADAULT' on phone case,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_6] 'MAISON LAVAUX' on perfume bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_7] 'ZIMMER HOTELS' on key card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,310.0,315.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_8] 'VOUS' on card,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,315.0,320.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,315.0,320.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_9] 'Pierre Cadault' on garment bag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,320.0,325.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,320.0,325.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_9] 'Pierre Cadault' on garment bag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,325.0,330.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,325.0,330.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_9] 'Pierre Cadault' on garment bag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,330.0,335.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_2] Sylvie's office interior with team,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,330.0,335.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_9] 'Pierre Cadault' on garment bag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+monumento,,UNKNOWN,335.0,336.0,,,0.9,,gemini,gemini-2.5-flash,[monumento_2] Pantheon building with French flag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,336.0,340.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,336.0,340.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,340.0,345.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,340.0,345.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,345.0,349.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,345.0,349.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,349.0,355.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior (split screen),gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,349.0,355.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_4] Alfie's office interior (split screen),gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,349.0,355.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,349.0,355.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_2] Alfie's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,355.0,359.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior (split screen),gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,355.0,359.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_4] Alfie's office interior (split screen),gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,355.0,359.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,355.0,359.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_2] Alfie's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,359.0,364.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior (split screen),gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,359.0,364.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_4] Alfie's office interior (split screen),gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,359.0,364.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,359.0,364.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_2] Alfie's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,364.0,368.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,364.0,368.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,368.0,373.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,368.0,373.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_1] Emily's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,373.0,378.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_4] Alfie's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+pantalla_con_contenido,,UNKNOWN,373.0,378.0,,,0.9,,gemini,gemini-2.5-flash,[pantalla_con_contenido_2] Alfie's phone screen with text message,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,378.0,380.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,378.0,380.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_4] Madeline's water bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,380.0,382.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,380.0,382.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_4] Madeline's water bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,382.0,384.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_3] Emily's office interior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+packaging,,UNKNOWN,382.0,384.0,,,0.9,,gemini,gemini-2.5-flash,[packaging_4] Madeline's water bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,384.0,388.0,,,0.9,,gemini,gemini-2.5-flash,[calle_2] Aerial view of Parisian streets,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,384.0,388.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_4] Aerial view of Parisian buildings,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+puente,,UNKNOWN,384.0,388.0,,,0.9,,gemini,gemini-2.5-flash,[puente_2] Multiple bridges over Seine,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+monumento,,UNKNOWN,384.0,388.0,,,0.9,,gemini,gemini-2.5-flash,[monumento_1] Eiffel Tower visible in background,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+puente,,UNKNOWN,388.0,390.0,,,0.9,,gemini,gemini-2.5-flash,[puente_1] Pont de Bir-Hakeim with metro,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+monumento,,UNKNOWN,388.0,390.0,,,0.9,,gemini,gemini-2.5-flash,[monumento_1] Eiffel Tower visible in background,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+calle,,UNKNOWN,390.0,392.0,,,0.9,,gemini,gemini-2.5-flash,[calle_1] Parisian street outside Tiffany & Co.,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+edificio,,UNKNOWN,390.0,392.0,,,0.9,,gemini,gemini-2.5-flash,[edificio_3] Tiffany & Co. building exterior,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+logo_marca,,UNKNOWN,390.0,392.0,,,0.9,,gemini,gemini-2.5-flash,[logo_marca_10] 'TIFFANY & CO.' sign on building,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+escaparate,,UNKNOWN,390.0,392.0,,,0.9,,gemini,gemini-2.5-flash,[escaparate_2] Tiffany & Co. window display,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,392.0,396.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_5] Tiffany & Co. interior entrance,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,396.0,400.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_5] Tiffany & Co. interior staircase,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,400.0,404.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_5] Tiffany & Co. interior staircase chandelier,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,404.0,408.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_5] Tiffany & Co. interior showroom,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,404.0,408.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_2] Paintings on wall in Tiffany & Co.,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+interior_reconocible,,UNKNOWN,408.0,410.0,,,0.9,,gemini,gemini-2.5-flash,[interior_reconocible_5] Tiffany & Co. interior showroom,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0
+artwork,,UNKNOWN,408.0,410.0,,,0.9,,gemini,gemini-2.5-flash,[artwork_2] Paintings on wall in Tiffany & Co.,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,1,0

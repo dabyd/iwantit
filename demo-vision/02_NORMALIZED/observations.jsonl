@@ -1,0 +1,94 @@
+family,candidate,brand,start_s,end_s,x,y,l1_conf,l2_conf,provider,model,evidence,source_ref,clearance_relevant,needs_family_review
+texto_visible,,UNKNOWN,5.7,8.0,,,1.0,,gemini,gemini-2.5-flash,Text 'A NETFLIX SERIES' on black screen,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+monumento,,UNKNOWN,9.0,10.0,,,1.0,,gemini,gemini-2.5-flash,Eiffel Tower visible in the background,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+edificio,,UNKNOWN,9.0,15.0,,,1.0,,gemini,gemini-2.5-flash,Buildings in Paris street scene,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+planta_interior,,UNKNOWN,9.0,15.0,,,1.0,,gemini,gemini-2.5-flash,Greenery and trees on the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+escaparate,,UNKNOWN,10.0,15.0,,,1.0,,gemini,gemini-2.5-flash,Flower shop exterior with various flowers,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,10.0,15.0,,,1.0,,gemini,gemini-2.5-flash,Text 'FLEURISTE MARGUERITE et CAPUCINE' on shop sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+persona,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Emily and Mindy walking and talking,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+cara,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Faces of Emily and Mindy visible,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+blazer,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Emily's plaid blazer and Mindy's pastel blazer,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+pantalon,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Emily's blue pants and Mindy's shorts,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+camiseta,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Emily's striped shirt and Mindy's yellow top,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+bolso,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Emily's white bag and Mindy's striped bag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+joya,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Necklaces and earrings worn by Emily and Mindy,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+gafas,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Mindy's sunglasses,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+planta_interior,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Flowers held by Mindy and displayed in shop,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+calle,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Cobblestone street in Paris,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+coche,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Cars parked on the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+edificio,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,Buildings lining the street,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+grupo_personas,,UNKNOWN,15.0,135.0,,,1.0,,gemini,gemini-2.5-flash,People walking in the background,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,136.0,139.0,,,1.0,,gemini,gemini-2.5-flash,Title card 'EMILY IN PARIS',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+escaparate,,UNKNOWN,136.0,139.0,,,1.0,,gemini,gemini-2.5-flash,Flower shop exterior with various flowers,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+planta_interior,,UNKNOWN,136.0,139.0,,,1.0,,gemini,gemini-2.5-flash,Flowers displayed outside the shop,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,136.0,139.0,,,1.0,,gemini,gemini-2.5-flash,Text 'FLEURISTE MARGUERITE et CAPUCINE' on shop sign,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+persona,,UNKNOWN,136.0,139.0,,,1.0,,gemini,gemini-2.5-flash,Woman riding a bicycle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+bicicleta,,UNKNOWN,136.0,139.0,,,1.0,,gemini,gemini-2.5-flash,Bicycle ridden by a woman,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+NEEDS_FAMILY_REVIEW,tren,UNKNOWN,140.0,141.0,,,0.8,,gemini,gemini-2.5-flash,Green train on a bridge,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,1
+puente,,UNKNOWN,140.0,142.0,,,1.0,,gemini,gemini-2.5-flash,Arch bridge over water,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+edificio,,UNKNOWN,141.0,145.0,,,1.0,,gemini,gemini-2.5-flash,Rooftops of Paris buildings,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+edificio,,UNKNOWN,145.0,149.0,,,1.0,,gemini,gemini-2.5-flash,Buildings in a Parisian square,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+grupo_personas,,UNKNOWN,145.0,149.0,,,1.0,,gemini,gemini-2.5-flash,People walking in the square,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,145.0,149.0,,,1.0,,gemini,gemini-2.5-flash,Text 'GALERIE PATRICK FOURTIN' on building,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,145.0,149.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'STARRING LILY COLLINS',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,149.0,154.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'PHILIPPINE LEROY-BEAULIEU',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+persona,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,"Emily, Madeline, and Josette in the office",gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+cara,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,"Faces of Emily, Madeline, and Josette visible",gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+blazer,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,"Emily's plaid blazer, Madeline's yellow blazer, Josette's dark blazer",gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+camiseta,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,"Emily's striped shirt, Madeline's patterned shirt, Josette's light blue shirt",gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+vestido,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Madeline's pink/silver dress,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+gafas,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Madeline's sunglasses,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+joya,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,"Necklaces, earrings, bracelets worn by Emily and Madeline",gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+bolso,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Madeline's yellow bag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+NEEDS_FAMILY_REVIEW,silla_bebe,UNKNOWN,149.0,234.0,,,0.8,,gemini,gemini-2.5-flash,Baby carrier on the desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,1
+mesa,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Glass desk in the office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+planta_interior,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Bouquet of flowers on the desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+libro_revista,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Books and notebooks on the desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+lampara,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Desk lamps,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+botella,,UNKNOWN,149.0,234.0,,,1.0,,gemini,gemini-2.5-flash,Various bottles and containers on the desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,155.0,159.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'ASHLEY PARK',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+persona,,UNKNOWN,157.0,169.0,,,1.0,,gemini,gemini-2.5-flash,Baby in the carrier,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,160.0,164.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'LUCAS BRAVO',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,165.0,169.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'SAMUEL ARNOLD',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,170.0,174.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'BRUNO GOUERY',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,175.0,179.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'WILLIAM ABADIE',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,180.0,184.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'LUCIEN LAVISCOUNT',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,185.0,189.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'SUPERVISING PRODUCER JOE MURPHY',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+botella,,UNKNOWN,190.0,194.0,,,1.0,,gemini,gemini-2.5-flash,Madeline holding a lotion bottle,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,190.0,194.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'CO-EXECUTIVE PRODUCER GRANT SLOSS',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,195.0,199.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'EXECUTIVE PRODUCER ROBIN SCHIFF',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,200.0,204.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'EXECUTIVE PRODUCER ALISON BROWN',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,205.0,209.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'EXECUTIVE PRODUCERS TONY HERNANDEZ LILLY BURNS',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,210.0,214.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'CREATED BY DARREN STAR',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,215.0,219.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'WRITTEN BY ALISON BROWN',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,220.0,224.0,,,1.0,,gemini,gemini-2.5-flash,Text overlay 'DIRECTED BY ANDREW FLEMING',gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+movil,,UNKNOWN,225.0,229.0,,,1.0,,gemini,gemini-2.5-flash,Madeline looking at her phone,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+persona,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Sylvie and her team in the office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+cara,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Faces of Sylvie and team members visible,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+camiseta,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Sylvie's red shirt and other team members' shirts,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+pantalon,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Sylvie's purple pants,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+joya,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Rings and earrings worn by Sylvie,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+packaging,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Open gift box on the table,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+maleta,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Red luggage tag in the gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+movil,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Phone case in the gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+botella,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Perfume bottle in the gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+accesorio_moda,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Keychain in the gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+NEEDS_FAMILY_REVIEW,tarjeta,UNKNOWN,235.0,295.0,,,0.8,,gemini,gemini-2.5-flash,Hotel key card and 'VOUS' card in the gift box,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,1
+mesa,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Round wooden table in the office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+planta_interior,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Pink flowers in a vase on the table,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+libro_revista,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Stacked books/folders on the floor,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+texto_visible,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,"Text 'AGENCE GRATEAU', 'RIMOVA', 'PIERRE CADEAU', 'MAISON LAVAUX', 'ZIMMER HOTELS', 'VOUS' in box",gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+grupo_personas,,UNKNOWN,235.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Group of people in the office,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+blazer,,UNKNOWN,245.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Julien's blue blazer and Luc's white/silver blazer,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+NEEDS_FAMILY_REVIEW,funda_ropa,UNKNOWN,260.0,295.0,,,0.8,,gemini,gemini-2.5-flash,Garment bag with 'Pierre Cadault' logo,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,1
+texto_visible,,UNKNOWN,260.0,295.0,,,1.0,,gemini,gemini-2.5-flash,Text 'Pierre Cadault' on garment bag,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+persona,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Emily sitting at a desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+cara,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Emily's face visible,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+blazer,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Emily's plaid blazer,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+camiseta,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Emily's striped shirt,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+joya,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Emily's necklace,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+movil,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Emily holding her phone,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+mesa,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Wooden desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+lampara,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,Desk lamp,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0
+NEEDS_FAMILY_REVIEW,vela,UNKNOWN,295.0,300.0,,,0.8,,gemini,gemini-2.5-flash,Candle on the desk,gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,1
+texto_visible,,UNKNOWN,295.0,300.0,,,1.0,,gemini,gemini-2.5-flash,"Text overlay 'HEY, HOPE YOU'RE WELL...'",gs://iwantit-exp-emily-s03e02/video/clip_0_300.mp4,0,0

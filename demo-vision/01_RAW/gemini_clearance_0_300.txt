@@ -1,0 +1,385 @@
+```jsonl
+{"family":"monumento","entity_id":"monumento_1","start_s":5.0,"end_s":9.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Eiffel Tower visible"}
+{"family":"iglesia","entity_id":"iglesia_1","start_s":9.0,"end_s":10.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sacré-Cœur Basilica domes visible"}
+{"family":"calle","entity_id":"calle_1","start_s":10.0,"end_s":15.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":10.0,"end_s":15.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":10.0,"end_s":15.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":10.0,"end_s":15.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"calle","entity_id":"calle_1","start_s":15.0,"end_s":20.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":15.0,"end_s":20.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":15.0,"end_s":20.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":15.0,"end_s":20.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":15.0,"end_s":20.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":20.0,"end_s":25.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":20.0,"end_s":25.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":20.0,"end_s":25.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":20.0,"end_s":25.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":20.0,"end_s":25.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":25.0,"end_s":30.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":25.0,"end_s":30.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":25.0,"end_s":30.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":25.0,"end_s":30.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":25.0,"end_s":30.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":30.0,"end_s":35.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":30.0,"end_s":35.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":30.0,"end_s":35.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":30.0,"end_s":35.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":30.0,"end_s":35.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":35.0,"end_s":40.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":35.0,"end_s":40.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":35.0,"end_s":40.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":35.0,"end_s":40.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":35.0,"end_s":40.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":40.0,"end_s":45.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":40.0,"end_s":45.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":40.0,"end_s":45.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":40.0,"end_s":45.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":40.0,"end_s":45.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":45.0,"end_s":50.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":45.0,"end_s":50.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":45.0,"end_s":50.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":45.0,"end_s":50.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":45.0,"end_s":50.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":50.0,"end_s":55.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":50.0,"end_s":55.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":50.0,"end_s":55.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":50.0,"end_s":55.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":50.0,"end_s":55.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":55.0,"end_s":60.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":55.0,"end_s":60.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":55.0,"end_s":60.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":55.0,"end_s":60.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":55.0,"end_s":60.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":60.0,"end_s":65.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":60.0,"end_s":65.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":60.0,"end_s":65.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":60.0,"end_s":65.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":60.0,"end_s":65.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":65.0,"end_s":70.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":65.0,"end_s":70.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":65.0,"end_s":70.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":65.0,"end_s":70.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":65.0,"end_s":70.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":70.0,"end_s":75.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":70.0,"end_s":75.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":70.0,"end_s":75.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":70.0,"end_s":75.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":70.0,"end_s":75.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":75.0,"end_s":80.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":75.0,"end_s":80.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":75.0,"end_s":80.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":75.0,"end_s":80.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":75.0,"end_s":80.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":80.0,"end_s":85.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":80.0,"end_s":85.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":80.0,"end_s":85.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":80.0,"end_s":85.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":80.0,"end_s":85.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":85.0,"end_s":90.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":85.0,"end_s":90.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":85.0,"end_s":90.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":85.0,"end_s":90.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":85.0,"end_s":90.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":90.0,"end_s":95.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":90.0,"end_s":95.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":90.0,"end_s":95.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":90.0,"end_s":95.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":90.0,"end_s":95.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":95.0,"end_s":100.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":95.0,"end_s":100.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":95.0,"end_s":100.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":95.0,"end_s":100.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":95.0,"end_s":100.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":100.0,"end_s":105.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":100.0,"end_s":105.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":100.0,"end_s":105.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":100.0,"end_s":105.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":100.0,"end_s":105.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":105.0,"end_s":110.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":105.0,"end_s":110.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":105.0,"end_s":110.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":105.0,"end_s":110.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":105.0,"end_s":110.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":110.0,"end_s":115.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":110.0,"end_s":115.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":110.0,"end_s":115.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":110.0,"end_s":115.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":110.0,"end_s":115.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":115.0,"end_s":120.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":115.0,"end_s":120.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":115.0,"end_s":120.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":115.0,"end_s":120.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":115.0,"end_s":120.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":120.0,"end_s":125.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":120.0,"end_s":125.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":120.0,"end_s":125.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":120.0,"end_s":125.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":120.0,"end_s":125.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":125.0,"end_s":130.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":125.0,"end_s":130.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":125.0,"end_s":130.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":125.0,"end_s":130.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":125.0,"end_s":130.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":130.0,"end_s":135.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":130.0,"end_s":135.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":130.0,"end_s":135.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":130.0,"end_s":135.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":130.0,"end_s":135.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"calle","entity_id":"calle_1","start_s":135.0,"end_s":137.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street with people and cars"}
+{"family":"edificio","entity_id":"edificio_1","start_s":135.0,"end_s":137.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian buildings lining the street"}
+{"family":"escaparate","entity_id":"escaparate_1","start_s":135.0,"end_s":137.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower shop facade with displays"}
+{"family":"logo_marca","entity_id":"logo_marca_1","start_s":135.0,"end_s":137.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'FLEURISTE MARGUERITE et CAPUCINE' sign"}
+{"family":"packaging","entity_id":"packaging_1","start_s":135.0,"end_s":137.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Flower wraps held by Mindy"}
+{"family":"puente","entity_id":"puente_1","start_s":139.0,"end_s":140.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Pont de Bir-Hakeim with metro"}
+{"family":"monumento","entity_id":"monumento_1","start_s":139.0,"end_s":140.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Eiffel Tower visible in background"}
+{"family":"calle","entity_id":"calle_2","start_s":140.0,"end_s":142.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Aerial view of Parisian streets"}
+{"family":"edificio","entity_id":"edificio_4","start_s":140.0,"end_s":142.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Aerial view of Parisian buildings"}
+{"family":"edificio","entity_id":"edificio_2","start_s":142.0,"end_s":144.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Galerie Patrick Fourtin exterior"}
+{"family":"logo_marca","entity_id":"logo_marca_2","start_s":142.0,"end_s":144.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'GALERIE PATRICK FOURTIN' sign"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":145.0,"end_s":150.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":145.0,"end_s":150.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":145.0,"end_s":150.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":150.0,"end_s":155.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":150.0,"end_s":155.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":150.0,"end_s":155.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":155.0,"end_s":158.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"packaging","entity_id":"packaging_2","start_s":155.0,"end_s":158.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat with baby"}
+{"family":"identificador_personal","entity_id":"identificador_personal_1","start_s":158.0,"end_s":159.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby Jack in car seat"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":159.0,"end_s":161.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"packaging","entity_id":"packaging_2","start_s":159.0,"end_s":161.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat with baby"}
+{"family":"identificador_personal","entity_id":"identificador_personal_1","start_s":159.0,"end_s":161.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby Jack in car seat"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":161.0,"end_s":163.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"packaging","entity_id":"packaging_2","start_s":161.0,"end_s":163.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat with baby"}
+{"family":"identificador_personal","entity_id":"identificador_personal_1","start_s":161.0,"end_s":163.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby Jack in car seat"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":163.0,"end_s":165.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"packaging","entity_id":"packaging_2","start_s":163.0,"end_s":165.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat with baby"}
+{"family":"identificador_personal","entity_id":"identificador_personal_1","start_s":163.0,"end_s":165.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby Jack in car seat"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":165.0,"end_s":170.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":165.0,"end_s":170.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":165.0,"end_s":170.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":170.0,"end_s":175.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":170.0,"end_s":175.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":170.0,"end_s":175.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":175.0,"end_s":180.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":175.0,"end_s":180.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":175.0,"end_s":180.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":180.0,"end_s":185.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":180.0,"end_s":185.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":180.0,"end_s":185.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":185.0,"end_s":190.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":185.0,"end_s":190.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":185.0,"end_s":190.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":190.0,"end_s":195.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":190.0,"end_s":195.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":190.0,"end_s":195.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":195.0,"end_s":200.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":195.0,"end_s":200.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":195.0,"end_s":200.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":200.0,"end_s":205.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":200.0,"end_s":205.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":200.0,"end_s":205.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":205.0,"end_s":210.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":205.0,"end_s":210.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":205.0,"end_s":210.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":210.0,"end_s":215.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":210.0,"end_s":215.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":210.0,"end_s":215.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":215.0,"end_s":220.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":215.0,"end_s":220.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":215.0,"end_s":220.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":220.0,"end_s":225.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":220.0,"end_s":225.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":220.0,"end_s":225.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":225.0,"end_s":230.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":225.0,"end_s":230.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":225.0,"end_s":230.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":230.0,"end_s":235.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":230.0,"end_s":235.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":230.0,"end_s":235.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":235.0,"end_s":240.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":235.0,"end_s":240.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":235.0,"end_s":240.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_1","start_s":240.0,"end_s":245.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's office interior"}
+{"family":"artwork","entity_id":"artwork_1","start_s":240.0,"end_s":245.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Painting on wall in Madeline's office"}
+{"family":"packaging","entity_id":"packaging_2","start_s":240.0,"end_s":245.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Baby car seat on desk"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior"}
+{"family":"packaging","entity_id":"packaging_3","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":245.0,"end_s":250.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":250.0,"end_s":255.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":255.0,"end_s":260.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":260.0,"end_s":265.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":265.0,"end_s":270.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":270.0,"end_s":275.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":275.0,"end_s":280.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":280.0,"end_s":285.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":285.0,"end_s":290.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":290.0,"end_s":295.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":295.0,"end_s":300.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":300.0,"end_s":305.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":305.0,"end_s":310.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"packaging","entity_id":"packaging_3","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Agence Grateau gift box with branded items"}
+{"family":"logo_marca","entity_id":"logo_marca_3","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'AGENCE GRATEAU' on gift box"}
+{"family":"logo_marca","entity_id":"logo_marca_4","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'RIMOWA' on luggage tag"}
+{"family":"logo_marca","entity_id":"logo_marca_5","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'PIERRE CADAULT' on phone case"}
+{"family":"logo_marca","entity_id":"logo_marca_6","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'MAISON LAVAUX' on perfume bottle"}
+{"family":"logo_marca","entity_id":"logo_marca_7","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'ZIMMER HOTELS' on key card"}
+{"family":"logo_marca","entity_id":"logo_marca_8","start_s":310.0,"end_s":315.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'VOUS' on card"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":315.0,"end_s":320.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"logo_marca","entity_id":"logo_marca_9","start_s":315.0,"end_s":320.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'Pierre Cadault' on garment bag"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":320.0,"end_s":325.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"logo_marca","entity_id":"logo_marca_9","start_s":320.0,"end_s":325.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'Pierre Cadault' on garment bag"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":325.0,"end_s":330.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"logo_marca","entity_id":"logo_marca_9","start_s":325.0,"end_s":330.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'Pierre Cadault' on garment bag"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_2","start_s":330.0,"end_s":335.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Sylvie's office interior with team"}
+{"family":"logo_marca","entity_id":"logo_marca_9","start_s":330.0,"end_s":335.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'Pierre Cadault' on garment bag"}
+{"family":"monumento","entity_id":"monumento_2","start_s":335.0,"end_s":336.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Pantheon building with French flag"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":336.0,"end_s":340.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":336.0,"end_s":340.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":340.0,"end_s":345.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":340.0,"end_s":345.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":345.0,"end_s":349.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":345.0,"end_s":349.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":349.0,"end_s":355.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior (split screen)"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_4","start_s":349.0,"end_s":355.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's office interior (split screen)"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":349.0,"end_s":355.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_2","start_s":349.0,"end_s":355.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":355.0,"end_s":359.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior (split screen)"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_4","start_s":355.0,"end_s":359.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's office interior (split screen)"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":355.0,"end_s":359.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_2","start_s":355.0,"end_s":359.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":359.0,"end_s":364.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior (split screen)"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_4","start_s":359.0,"end_s":364.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's office interior (split screen)"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":359.0,"end_s":364.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_2","start_s":359.0,"end_s":364.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":364.0,"end_s":368.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":364.0,"end_s":368.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":368.0,"end_s":373.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_1","start_s":368.0,"end_s":373.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_4","start_s":373.0,"end_s":378.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's office interior"}
+{"family":"pantalla_con_contenido","entity_id":"pantalla_con_contenido_2","start_s":373.0,"end_s":378.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Alfie's phone screen with text message"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":378.0,"end_s":380.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"packaging","entity_id":"packaging_4","start_s":378.0,"end_s":380.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's water bottle"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":380.0,"end_s":382.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"packaging","entity_id":"packaging_4","start_s":380.0,"end_s":382.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's water bottle"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_3","start_s":382.0,"end_s":384.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Emily's office interior"}
+{"family":"packaging","entity_id":"packaging_4","start_s":382.0,"end_s":384.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Madeline's water bottle"}
+{"family":"calle","entity_id":"calle_2","start_s":384.0,"end_s":388.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Aerial view of Parisian streets"}
+{"family":"edificio","entity_id":"edificio_4","start_s":384.0,"end_s":388.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Aerial view of Parisian buildings"}
+{"family":"puente","entity_id":"puente_2","start_s":384.0,"end_s":388.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Multiple bridges over Seine"}
+{"family":"monumento","entity_id":"monumento_1","start_s":384.0,"end_s":388.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Eiffel Tower visible in background"}
+{"family":"puente","entity_id":"puente_1","start_s":388.0,"end_s":390.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Pont de Bir-Hakeim with metro"}
+{"family":"monumento","entity_id":"monumento_1","start_s":388.0,"end_s":390.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Eiffel Tower visible in background"}
+{"family":"calle","entity_id":"calle_1","start_s":390.0,"end_s":392.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Parisian street outside Tiffany & Co."}
+{"family":"edificio","entity_id":"edificio_3","start_s":390.0,"end_s":392.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Tiffany & Co. building exterior"}
+{"family":"logo_marca","entity_id":"logo_marca_10","start_s":390.0,"end_s":392.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"'TIFFANY & CO.' sign on building"}
+{"family":"escaparate","entity_id":"escaparate_2","start_s":390.0,"end_s":392.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Tiffany & Co. window display"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_5","start_s":392.0,"end_s":396.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Tiffany & Co. interior entrance"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_5","start_s":396.0,"end_s":400.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Tiffany & Co. interior staircase"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_5","start_s":400.0,"end_s":404.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Tiffany & Co. interior staircase chandelier"}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_5","start_s":404.0,"end_s":408.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Tiffany & Co. interior showroom"}
+{"family":"artwork","entity_id":"artwork_2","start_s":404.0,"end_s":408.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Paintings on wall in Tiffany & Co."}
+{"family":"interior_reconocible","entity_id":"interior_reconocible_5","start_s":408.0,"end_s":410.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Tiffany & Co. interior showroom"}
+{"family":"artwork","entity_id":"artwork_2","start_s":408.0,"end_s":410.0,"l1_conf":0.9,"clearance_relevant":1,"evidence":"Paintings on wall in Tiffany & Co."}
+{"summary":"monumento","distinct_count":2,"note":"Eiffel Tower and Pantheon"}
+{"summary":"iglesia","distinct_count":1,"note":"Sacré-Cœur Basilica"}
+{"summary":"calle","distinct_count":2,"note":"Ground level Parisian street and aerial Parisian streets"}
+{"summary":"edificio","distinct_count":4,"note":"General Parisian buildings, Galerie Patrick Fourtin, aerial Parisian buildings, Tiffany & Co. building"}
+{"summary":"escaparate","distinct_count":2,"note":"Flower shop facade and Tiffany & Co. window display"}
+{"summary":"logo_marca","distinct_count":10,"note":"Multiple brands visible on signs and products"}
+{"summary":"packaging","distinct_count":4,"note":"Flower wraps, baby car seat, gift box, water bottle"}
+{"summary":"puente","distinct_count":2,"note":"Pont de Bir-Hakeim and other bridges in aerial view"}
+{"summary":"interior_reconocible","distinct_count":5,"note":"Madeline's office, Sylvie's office, Emily's office, Alfie's office, Tiffany & Co. interior"}
+{"summary":"artwork","distinct_count":2,"note":"Painting in Madeline's office and paintings in Tiffany & Co."}
+{"summary":"identificador_personal","distinct_count":1,"note":"Baby Jack"}
+{"summary":"pantalla_con_contenido","distinct_count":2,"note":"Emily's phone screen and Alfie's phone screen"}
+```

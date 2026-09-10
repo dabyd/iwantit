@@ -1,0 +1,1 @@
+{"family":"gafas","brand":"UNKNOWN","model":null,"l2_conf":0.0,"evidence_type":"none","evidence":"No hay logo visible ni características distintivas para identificar la marca."}

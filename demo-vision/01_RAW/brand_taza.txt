@@ -1,0 +1,1 @@
+{"family":"taza","brand":"UNKNOWN","model":null,"l2_conf":0.0,"evidence_type":"none","evidence":"No visible branding or distinctive features on the mug."}
