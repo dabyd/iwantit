@@ -171,8 +171,21 @@ class IwantitController extends Controller
 
         $data = json_decode($data);
 
+        // IDs de producto válidos: evita borrar/insertar huérfanos si el
+        // producto ya no existe en la tabla products (p. ej. fue eliminado
+        // con la página del editor abierta).
+        $validIds = DB::table('products')
+            ->whereIn('id', collect($data)->map(fn ($p) => (int) $p->producto)->filter()->unique()->values()->all())
+            ->pluck('id')
+            ->flip()
+            ->toArray();
+
         $productos = [];
         foreach ($data as $producto) {
+            $pid = (int) $producto->producto;
+            if ($pid <= 0 || ! isset($validIds[$pid])) {
+                continue;
+            }
             if (! isset($productos[$producto->producto])) {
                 $productos[$producto->producto] = '*';
                 DB::table('hotpoints')

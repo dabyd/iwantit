@@ -799,9 +799,29 @@ class ProjectController extends Controller
             }
             $prd = $allProducts->get($object_id);
 
-            // Si el producto no existe, saltamos esta iteración
+            // Si el producto no existe, mostrarlo como desconocido en lugar
+            // de ocultarlo: así los huérfanos son visibles y diagnosticables.
             if (! $prd) {
-                unset($objects[$object_id]);
+                $hpd = $allHotpointsDates->get($object_id);
+                $objects[$object_id] = [
+                    'id' => $object_id,
+                    'thumbnail' => '',
+                    'thumbnail_brand' => '',
+                    'name' => 'Unknown product (ID '.$object_id.')',
+                    'family' => '',
+                    'brand' => '',
+                    'time' => formatSecondsToTime($ttime),
+                    'segundos' => ceil($ttime),
+                    'estado' => $hpd ? $hpd->getEstadoTextAttribute() : 'Enabled',
+                    'precio' => 'No price',
+                    'precio_s' => '0',
+                    'date_in' => '---',
+                    'date_out' => '---',
+                    'url' => '',
+                    'url_brand' => '',
+                    'veces' => count($veces),
+                    'data' => $veces,
+                ];
 
                 continue;
             }

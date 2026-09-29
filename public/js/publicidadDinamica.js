@@ -50,6 +50,15 @@ class ControlGeneral {
 //        this.botonCargar.addEventListener("click", e=> this.ventanaLoadSave.activa());
 //        this.botonSalvar.addEventListener("click", e => this.ventanaLoadSave.activa(true));
         this.botonSalvar.addEventListener("click", e => {
+            const validos = new Set(Array.from(document.querySelectorAll('.product-hotpoint-element[data-value]')).map(o => o.dataset.value));
+            const sinAsignar = Producto.productos.filter(pr =>
+                pr.segmentos.some(sg => sg.target.length > 0) &&
+                (!pr.producto || pr.producto == 0 || !validos.has(String(pr.producto))));
+            if (sinAsignar.length > 0) {
+                if (!confirm("Hay " + sinAsignar.length + " objeto(s) con posiciones pero sin un producto válido asignado. No se guardarán en la base de datos. ¿Guardar de todos modos?")) {
+                    return;
+                }
+            }
             const datosASalvar = Producto.codificaProductos();
             document.querySelector('#capa-save').style.display = "block";
             let comando = {
@@ -65,9 +74,8 @@ class ControlGeneral {
 
             },
             resultado => {                  // Resultado erróneo.
-                alert("DONE: Data has been saved successfully");
+                alert("ERROR: Failed to save data correctly");
                 document.querySelector('#capa-save').style.display = "none";
-                //                alert("ERROR: Failed to save data correctly");
             });
         });
 
@@ -1031,6 +1039,8 @@ class Producto {
                 if (l) {
                     e.querySelector('.label-product-hotpoint').innerHTML = l.innerHTML;
                     l.classList.add('selected');
+                } else {
+                    e.querySelector('.label-product-hotpoint').innerHTML = 'Unknown product (ID ' + pr + ')';
                 }
             }
         })
