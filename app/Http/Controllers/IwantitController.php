@@ -186,6 +186,21 @@ class IwantitController extends Controller
             if ($pid <= 0 || ! isset($validIds[$pid])) {
                 continue;
             }
+            // Si el cliente no envió precalculados pero los segmentos sí traen
+            // marcadores, se recalculan en servidor (port de
+            // generaListaCompletaDeTargets de publicidadDinamica.js).
+            $precalculados = $producto->segmentos_precalculados ?? [];
+            if (count($precalculados) === 0) {
+                $precalculados = self::precalculateTargets($producto->segmentos ?? []);
+            }
+
+            // Rangos de tiempo definidos pero sin posiciones (ni enviadas ni
+            // calculables por falta de marcadores): trabajo incompleto. Se
+            // conserva lo existente en BD en lugar de borrarlo para no
+            // insertar nada.
+            if (count($precalculados) === 0 && count($producto->segmentos ?? []) > 0) {
+                continue;
+            }
             if (! isset($productos[$producto->producto])) {
                 $productos[$producto->producto] = '*';
                 DB::table('hotpoints')
@@ -195,7 +210,8 @@ class IwantitController extends Controller
                     ])
                     ->delete();
             }
-            foreach ($producto->segmentos_precalculados as $segmento) {
+            foreach ($precalculados as $segmento) {
+                $segmento = (object) $segmento;
                 $hotpoint = new Hotpoint;
                 $hotpoint->versions_id = $id;
                 $hotpoint->products_id = $producto->producto;
@@ -218,6 +234,121 @@ class IwantitController extends Controller
     }
     else echo json_encode("BAD");
 */
+    }
+
+    /**
+     * Port a PHP de generaListaCompletaDeTargets() de publicidadDinamica.js.
+     *
+     * Interpola los marcadores (target) de cada segmento a pasos de 0.1 s.
+     * Devuelve una lista de ['time' => ..., 'pcx' => ..., 'pcy' => ...].
+     * Un segmento sin marcadores no aporta nada: sin posición de origen
+     * no hay nada que interpolar.
+     */
+    public static function precalculateTargets($segmentos): array
+    {
+        $lista = [];
+        foreach (array_values((array) $segmentos) as $i => $sg) {
+            $sg = (object) $sg;
+            $time = ((int) ((float) $sg->inicio * 10)) / 10.0;
+            if (count($lista) > 0 && $time == $lista[count($lista) - 1]['time']) {
+                array_pop($lista);
+            }
+            $guard = 0;
+            while (true) {
+                if (++$guard > 100000) {
+                    break;
+                }
+                $rsp = self::markerAtTime($segmentos, $time);
+                if (! $rsp || $rsp['segm'] != $i + 1) {
+                    break;
+                }
+                $lista[] = [
+                    'time' => $time,
+                    'pcx' => ((int) ($rsp['pcx'] * 10000)) / 10000.0,
+                    'pcy' => ((int) ($rsp['pcy'] * 10000)) / 10000.0,
+                ];
+                $time = (((int) ($time * 10)) + 1) / 10.0;
+            }
+        }
+
+        return $lista;
+    }
+
+    /**
+     * Port a PHP de procesaMarcadoresSobreVideo(false, pr, time).
+     *
+     * Devuelve ['segm' => ..., 'pcx' => ..., 'pcy' => ...] con la posición
+     * exacta (si hay un marcador en ese tiempo) o interpolada entre los
+     * marcadores adyacentes, o false si no hay posición definible.
+     */
+    private static function markerAtTime($segmentos, float $time)
+    {
+        $tiempoActual = (int) ($time * 10);
+        $segm = 0;
+        $segIdx = -1;
+        foreach (array_values((array) $segmentos) as $s => $p) {
+            $p = (object) $p;
+            if (! $segm) {
+                $inicio = (int) ((float) $p->inicio * 10);
+                $final = (int) ((float) $p->fin * 10);
+                if ($inicio <= $tiempoActual && $tiempoActual <= $final) {
+                    $segm = $s + 1;
+                    $segIdx = $s;
+                }
+            }
+        }
+        if (! $segm) {
+            return false;
+        }
+        $all = array_values((array) $segmentos);
+        $targets = array_values((array) (((object) $all[$segIdx])->target ?? []));
+        foreach ($targets as $t) {
+            $t = (object) $t;
+            if ((int) ((float) $t->time * 10) == $tiempoActual) {
+                return ['segm' => $segm, 'pcx' => (float) $t->pcx, 'pcy' => (float) $t->pcy];
+            }
+        }
+        $t0 = -1;
+        $t1 = -1;
+        foreach ($targets as $cnt => $t) {
+            $t = (object) $t;
+            $tt = (int) ((float) $t->time * 10);
+            if ($tiempoActual < $tt) {
+                $t1 = $cnt;
+                if ($t0 < 0) {
+                    $t0 = $t1;
+                }
+
+                break;
+            } elseif ($tiempoActual > $tt) {
+                $t0 = $cnt;
+            }
+        }
+        if ($t1 < 0) {
+            $t1 = $t0;
+        }
+        if ($t0 >= 0 && $t1 >= 0) {
+            $s0 = (object) $targets[$t0];
+            $s1 = (object) $targets[$t1];
+            if ($t0 == $t1) {
+                return ['segm' => $segm, 'pcx' => (float) $s0->pcx, 'pcy' => (float) $s0->pcy];
+            }
+            $den = (int) ((float) $s1->time * 10) - (int) ((float) $s0->time * 10);
+            if ($den == 0) {
+                return ['segm' => $segm, 'pcx' => (float) $s0->pcx, 'pcy' => (float) $s0->pcy];
+            }
+            $ang = atan2((float) $s1->pcy - (float) $s0->pcy, (float) $s1->pcx - (float) $s0->pcx);
+            $dd = sqrt(pow((float) $s1->pcy - (float) $s0->pcy, 2) + pow((float) $s1->pcx - (float) $s0->pcx, 2));
+            $pt = ($tiempoActual - (int) ((float) $s0->time * 10)) / $den;
+
+            return [
+                'segm' => $segm,
+                'pcx' => (float) $s0->pcx + $dd * $pt * cos($ang),
+                'pcy' => (float) $s0->pcy + $dd * $pt * sin($ang),
+            ];
+        }
+
+        return false;
     }
 
     public static function getQueryWithBindings($query): string

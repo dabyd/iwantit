@@ -2,6 +2,22 @@
 
 Todos los cambios notables de este proyecto se documentan en este fichero. Formato basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/).
 
+## [v. 0.4] - 2026-09-29
+
+### Corregido
+- **Player devolvía `null` aunque había hotpoints**: la migración `2026_07_06` añadió `status` con default `draft` y el endpoint solo sirve `published`. Publicados todos los hotpoints existentes (69.998 en local, 229.027 en UAT).
+- **Objetos del Hotpoints editor que no llegaban a BD**: `save_hotpoints` (`app/Http/Controllers/IwantitController.php`) omite productos con ID 0, vacío o inexistente en `products` (antes creaba filas huérfanas invisibles).
+- **Borrado accidental al guardar**: si un producto traía rangos de tiempo pero sin posiciones calculadas (sin marcadores), el `DELETE` previo borraba sus filas sin insertar nada. Ahora se conserva lo existente.
+- **Alerta de guardado falsa**: el callback de error mostraba el mismo `DONE: Data has been saved successfully`. Ahora informa del error real.
+
+### Añadido
+- **Recálculo de `segmentos_precalculados` en servidor** (`IwantitController::precalculateTargets` + `markerAtTime`, port del algoritmo JS a pasos de 0,1 s con interpolación lineal): si el cliente envía precalculados vacíos pero los segmentos traen marcadores, se generan antes de guardar.
+- **Avisos pre-guardado en el editor** (`public/js/publicidadDinamica.js`, modal propio estilo CodyHouse en vanilla, sin jQuery): dos popups secuenciales con listado vertical, primero objetos sin posiciones marcadas en pantalla y luego objetos sin producto válido (Cancelar/Aceptar). Etiqueta `Unknown product (ID)` para IDs fantasma en el desplegable.
+- **Pestaña Objects muestra huérfanos** (`ProjectController::edit`): los hotpoints cuyo producto ya no existe aparecen como `Unknown product (ID)` en lugar de ocultarse.
+
+### Infra
+- Versión `IWI_VERSION` `v. 0.3` → `v. 0.4`.
+
 ## [v. 0.3] - 2026-09-03
 
 ### Añadido

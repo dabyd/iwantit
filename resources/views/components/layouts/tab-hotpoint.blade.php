@@ -169,5 +169,107 @@
         </div>
     </template>
 
+    <!-- Popup de confirmación (estilo CodyHouse): overlay + caja con animación de escala -->
+    <style>
+        .iwi-confirm {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.55);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+        .iwi-confirm.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .iwi-confirm-box {
+            width: 90%;
+            max-width: 420px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+            padding: 24px;
+            transform: scale(0.9);
+            transition: transform 0.25s ease;
+        }
+        .iwi-confirm.show .iwi-confirm-box {
+            transform: scale(1);
+        }
+        .iwi-confirm-box h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .iwi-confirm-box p {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .iwi-confirm-list {
+            list-style: none;
+            margin: 0 0 16px 0;
+            padding: 0;
+            max-height: 180px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            color: var(--palette-brown);
+        }
+        .iwi-confirm-list li {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .iwi-confirm-list li:last-child {
+            border-bottom: none;
+            color: var(--palette-brown);
+        }
+        .iwi-confirm-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .iwi-confirm-btns button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #iwi-confirm-cancel {
+            background-color: #6c757d;
+            color: #fff;
+        }
+        #iwi-confirm-cancel:hover {
+            background-color: #545b62;
+        }
+        #iwi-confirm-ok {
+            background-color: #007cba;
+            color: #fff;
+        }
+        #iwi-confirm-ok:hover {
+            background-color: #005177;
+        }
+    </style>
+    <div id="iwi-confirm" class="iwi-confirm" aria-hidden="true">
+        <div class="iwi-confirm-box" role="dialog" aria-modal="true">
+            <h3 id="iwi-confirm-title"></h3>
+            <p id="iwi-confirm-msg"></p>
+            <ul id="iwi-confirm-list" class="iwi-confirm-list"></ul>
+            <div class="iwi-confirm-btns">
+                <button type="button" id="iwi-confirm-cancel">Cancelar</button>
+                <button type="button" id="iwi-confirm-ok">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
     <script src="{{ URL::asset('js/publicidadDinamica.js' ) }}"></script>
 @endisset

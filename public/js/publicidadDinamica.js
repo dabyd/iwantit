@@ -49,15 +49,40 @@ class ControlGeneral {
 
 //        this.botonCargar.addEventListener("click", e=> this.ventanaLoadSave.activa());
 //        this.botonSalvar.addEventListener("click", e => this.ventanaLoadSave.activa(true));
-        this.botonSalvar.addEventListener("click", e => {
+        this.botonSalvar.addEventListener("click", async e => {
             const validos = new Set(Array.from(document.querySelectorAll('.product-hotpoint-element[data-value]')).map(o => o.dataset.value));
-            const sinAsignar = Producto.productos.filter(pr =>
-                pr.segmentos.some(sg => sg.target.length > 0) &&
-                (!pr.producto || pr.producto == 0 || !validos.has(String(pr.producto))));
-            if (sinAsignar.length > 0) {
-                if (!confirm("Hay " + sinAsignar.length + " objeto(s) con posiciones pero sin un producto válido asignado. No se guardarán en la base de datos. ¿Guardar de todos modos?")) {
-                    return;
+            const etiqueta = (pr) => {
+                const el = document.querySelector('.producto[data-elemento="' + pr.identificador + '"] .label-product-hotpoint');
+                const nombre = el ? el.textContent.trim() : '';
+                return (nombre && nombre !== 'No product assigned') ? nombre : ('objeto ' + pr.identificador);
+            };
+            const sinProducto = [];
+            const sinPosicion = [];
+            Producto.productos.forEach(pr => {
+                const conRangos = pr.segmentos.length > 0;
+                const conMarcadores = pr.segmentos.some(sg => sg.target.length > 0);
+                if (!conRangos && !conMarcadores) return; // placeholder vacío: nada que hacer
+                if (!pr.producto || pr.producto == 0 || !validos.has(String(pr.producto))) {
+                    sinProducto.push(etiqueta(pr));
+                } else if (!conMarcadores) {
+                    sinPosicion.push(etiqueta(pr));
                 }
+            });
+            if (sinPosicion.length > 0) {
+                const seguir = await iwiConfirmList({
+                    title: 'Sin posiciones marcadas',
+                    message: 'Estos objetos tienen rangos de tiempo pero ninguna posición marcada en pantalla, así que no generarán hotpoints:',
+                    items: sinPosicion
+                });
+                if (!seguir) return;
+            }
+            if (sinProducto.length > 0) {
+                const seguir = await iwiConfirmList({
+                    title: 'Sin producto válido',
+                    message: 'Estos objetos no tienen un producto válido asignado y no se guardarán en la base de datos:',
+                    items: sinProducto
+                });
+                if (!seguir) return;
             }
             const datosASalvar = Producto.codificaProductos();
             document.querySelector('#capa-save').style.display = "block";
@@ -1209,6 +1234,56 @@ class VentanaLoadSave {
 /////////////////////////////////////////////////////////////////////////////////
 
 const URL_PELIS = "/api-iwi";
+
+/**
+ * Popup de confirmación con listado (un producto por línea).
+ * Todo vanilla: muestra el modal #iwi-confirm y resuelve true (Aceptar)
+ * o false (Cancelar, clic fuera o Escape).
+ */
+function iwiConfirmList({ title, message, items }) {
+    return new Promise(resolve => {
+        const root = document.getElementById('iwi-confirm');
+        if (!root) {
+            resolve(confirm((title ? title + '\n' : '') + (message || '') + '\n' + items.join('\n')));
+
+            return;
+        }
+        root.querySelector('#iwi-confirm-title').textContent = title || '';
+        root.querySelector('#iwi-confirm-msg').textContent = message || '';
+        const list = root.querySelector('#iwi-confirm-list');
+        list.innerHTML = '';
+        items.forEach(nombre => {
+            const li = document.createElement('li');
+            li.textContent = nombre;
+            list.appendChild(li);
+        });
+        const okBtn = root.querySelector('#iwi-confirm-ok');
+        const cancelBtn = root.querySelector('#iwi-confirm-cancel');
+        const done = (value) => {
+            root.classList.remove('show');
+            root.setAttribute('aria-hidden', 'true');
+            okBtn.removeEventListener('click', onOk);
+            cancelBtn.removeEventListener('click', onCancel);
+            root.removeEventListener('mousedown', onOverlay);
+            document.removeEventListener('keydown', onKey);
+            resolve(value);
+        };
+        const onOk = () => done(true);
+        const onCancel = () => done(false);
+        const onOverlay = (ev) => {
+            if (ev.target === root) done(false);
+        };
+        const onKey = (ev) => {
+            if (ev.key === 'Escape') done(false);
+        };
+        okBtn.addEventListener('click', onOk);
+        cancelBtn.addEventListener('click', onCancel);
+        root.addEventListener('mousedown', onOverlay);
+        document.addEventListener('keydown', onKey);
+        root.setAttribute('aria-hidden', 'false');
+        root.classList.add('show');
+    });
+}
 
 async function consultaBase(parametros = null, callbackOk = null, callbackBad = null) {
     const data = new FormData();
